@@ -1,0 +1,16 @@
+Enemy
+- Finds a way from start to end
+- Dies and does damage to player when reaches the end
+- Has hp and takes damage from towers
+- Different types
+Tower
+- Shoots enemy when in range
+- Has hp and takes damage from specific enemies
+- Has the ability to be upgraded into any path
+Player
+- Gains money every X second
+- Can spend money to buy or upgrade towers. Towers can be placed anywhere if there is room for one
+- Has hp and takes damage if an enemy goes to end. Game ends when hp is 0
+Game
+- Spawns different enemies based on players towers
+- Has a budget to spawn enemies which increases over time.
