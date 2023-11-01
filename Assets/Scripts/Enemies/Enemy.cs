@@ -1,6 +1,4 @@
-using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
@@ -29,12 +27,12 @@ public class Enemy : MonoBehaviour
     {
         MaxHealth = health;
     }
-    private void Update()
+    public void UpdateEnemy()
     {
         GetTargetDirection();
         UpdateStatuses();
     }
-    private void FixedUpdate()
+    public void FixedUpdateEnemy()
     {
         MoveToNextTarget();
     }

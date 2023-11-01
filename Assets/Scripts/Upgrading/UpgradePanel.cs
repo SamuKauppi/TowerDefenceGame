@@ -1,26 +1,23 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using TMPro;
 using UnityEngine.EventSystems;
 
 public class UpgradePanel : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     public static UpgradePanel Instance { get; private set; }
     [SerializeField] private UpgradeButton[] upgradeButtons;
-    public int IsMouseOver;
+    public bool IsMouseOver { get; private set; }
+    private int isMouseOverCounter = 0;
     private void Awake()
     {
         Instance = this;
-        IsMouseOver = 0;
     }
 
     public void DisplayUpgrades(Tower target)
     {
-        for (int i = 0; i < target.currentUpgrade.upgradePaths.Length; i++)
+        for (int i = 0; i < target.CurrentUpgrade.upgradePaths.Length; i++)
         {
             upgradeButtons[i].gameObject.SetActive(true);
-            upgradeButtons[i].DefineUpgrade(target.currentUpgrade.upgradePaths[i], target);
+            upgradeButtons[i].DefineUpgrade(target.CurrentUpgrade.upgradePaths[i], target);
         }
     }
 
@@ -34,13 +31,17 @@ public class UpgradePanel : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        IsMouseOver++;
+        isMouseOverCounter++;
+        IsMouseOver = true;
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        IsMouseOver--;
-        if (IsMouseOver < 0)
-            IsMouseOver = 0;
+        isMouseOverCounter--;
+        if (isMouseOverCounter < 0)
+        {
+            isMouseOverCounter = 0;
+            IsMouseOver = false;
+        }
     }
 }

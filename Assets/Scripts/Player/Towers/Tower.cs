@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using Unity.Mathematics;
 using UnityEngine;
@@ -6,35 +5,32 @@ using Random = UnityEngine.Random;
 
 public class Tower : MonoBehaviour
 {
-
     [SerializeField] private List<Transform> targets;               // Enemies inside circlecollider2d that istrigger
     [SerializeField] private Transform barrel;                      // Barrel of the turret (pointed towards enemies)
-    private Vector3 endpoint;                                       // Last pathpoint (used to calculate enemy closest to exit)
+
     [SerializeField] private Collider2D towerHitbox;                // Hitbox of the turret
     [SerializeField] private CircleCollider2D attackRangeCollider;  // Collider for attack range
 
-    public float rotationSpeed;         // how fast does the turret rotate
-    private int accuracyAngle;          // how accurate turret is (max rotation offset after finding target)
+    [SerializeField] private SpriteRenderer barrelSpriterend;       // Sprite renderer of the barrel
+    [SerializeField] public SpriteRenderer towerSpriterend;         // Sprite renderer of the tower
 
-    GameObject latestBulletShot;
+    private Vector3 endpoint;           // Last pathpoint (used to calculate enemy closest to exit)
+    public float rotationSpeed;         // How fast does the turret rotate
+    private int accuracyAngle;          // How accurate turret is (max rotation offset after finding target)
 
-    // Is the tower functional (has to be disabled while placing down)
-    private bool IsFunctional { get; set; }
-    // Current upgrade of the turret
-    public TowerProperties currentUpgrade;
-    // Size of the turret
-    public Vector3 towerSize;
-    // Timers and counters related to firing
-    private float attackTimer;
+    private bool IsFunctional { get; set; }                     // Is the tower functional (has to be disabled while placing down)
+    public TowerProperties CurrentUpgrade { get; private set; } // Current upgrade of the turret 
+
+    public Vector3 TowerSize { get; private set; }   // Size of the turret
+    private float attackTimer;  // Timers and counters related to firing
     private float chargeTimer;
     private int numberOfBursts;
 
-    // Sprite renderer
-    [SerializeField] private SpriteRenderer barrelSpriterend;
-    [SerializeField] public SpriteRenderer towerSpriterend;
-
     private void Start()
     {
+        Vector3 spriteRendSize = towerSpriterend.bounds.size;
+        TowerSize = new Vector3(spriteRendSize.x, spriteRendSize.y);
+
         endpoint = Pathfinding.Instance.GetEndPoint();
         UpgradeTower("Normal");
     }
@@ -42,7 +38,7 @@ public class Tower : MonoBehaviour
     {
         if (IsFunctional)
         {
-            if (currentUpgrade.chargeTime > 0)
+            if (CurrentUpgrade.chargeTime > 0)
             {
                 chargeTimer += Time.deltaTime;
             }
@@ -74,8 +70,8 @@ public class Tower : MonoBehaviour
             barrel.Rotate(0, 0, accuracyAngle);
         }
 
-        if (attackTimer >= currentUpgrade.attackSpeed &&
-                chargeTimer >= currentUpgrade.chargeTime)
+        if (attackTimer >= CurrentUpgrade.attackSpeed &&
+                chargeTimer >= CurrentUpgrade.chargeTime)
         {
             FireABullet();
         }
@@ -104,9 +100,9 @@ public class Tower : MonoBehaviour
     {
         int shotsFired = 0;
         int currentShotAngle = 0;
-        while (shotsFired < currentUpgrade.spreadShots)
+        while (shotsFired < CurrentUpgrade.spreadShots)
         {
-            latestBulletShot = ObjectPooler.Instance.GetPooledObject(currentUpgrade.bullet);
+            GameObject latestBulletShot = ObjectPooler.Instance.GetPooledObject(CurrentUpgrade.bullet);
             latestBulletShot.transform.SetPositionAndRotation(barrel.position, barrel.rotation);
             latestBulletShot.transform.Rotate(0, 0, currentShotAngle);
             if (currentShotAngle > 0)
@@ -115,17 +111,17 @@ public class Tower : MonoBehaviour
             }
             else
             {
-                currentShotAngle = math.abs(currentShotAngle) + currentUpgrade.degreePerShot;
+                currentShotAngle = math.abs(currentShotAngle) + CurrentUpgrade.degreePerShot;
             }
             shotsFired++;
         }
 
-        accuracyAngle = Random.Range(-currentUpgrade.accuracy, currentUpgrade.accuracy + 1);
+        accuracyAngle = Random.Range(-CurrentUpgrade.accuracy, CurrentUpgrade.accuracy + 1);
 
         attackTimer = 0;
 
         numberOfBursts++;
-        if (numberOfBursts > currentUpgrade.burstShots)
+        if (numberOfBursts > CurrentUpgrade.burstShots)
         {
             chargeTimer = 0;
             numberOfBursts = 0;
@@ -156,10 +152,10 @@ public class Tower : MonoBehaviour
 
     public void UpgradeTower(string upgrade)
     {
-        currentUpgrade = TowerTypes.Instance.GetTowerProperties(upgrade);
-        attackRangeCollider.radius = currentUpgrade.attackRange;
-        barrelSpriterend.sprite = currentUpgrade.barrelSprite;
-        towerSpriterend.sprite = currentUpgrade.towerSprite;
-        rotationSpeed = currentUpgrade.rotationSpeed;
+        CurrentUpgrade = TowerTypes.Instance.GetTowerProperties(upgrade);
+        attackRangeCollider.radius = CurrentUpgrade.attackRange;
+        barrelSpriterend.sprite = CurrentUpgrade.barrelSprite;
+        towerSpriterend.sprite = CurrentUpgrade.towerSprite;
+        rotationSpeed = CurrentUpgrade.rotationSpeed;
     }
 }

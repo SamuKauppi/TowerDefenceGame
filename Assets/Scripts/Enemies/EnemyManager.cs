@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class EnemyManager : MonoBehaviour
 {
+    [SerializeField] private List<Enemy> enemies;
     [SerializeField] private string[] enemyTypes;
-    private Enemy latestEnemySpawned;
     private float time = 0f;
     [SerializeField] private float spawnTimer = 0.5f;
     [SerializeField] private bool reduceSpawnTime;
@@ -21,18 +21,32 @@ public class EnemyManager : MonoBehaviour
         time += Time.deltaTime;
         if (time > spawnTimer)
         {
+            Enemy latestEnemySpawned;
             latestEnemySpawned = ObjectPooler.Instance.
                 GetPooledObject(enemyTypes[Random.Range(0, enemyTypes.Length)]).GetComponent<Enemy>();
 
             latestEnemySpawned.transform.position =
                 new Vector3(transform.position.x, transform.position.y + Random.Range(-3f, 4f));
+
+            enemies.Add(latestEnemySpawned);
             time = 0;
+        }
+        foreach (Enemy enemy in enemies)
+        {
+            enemy.UpdateEnemy();
+        }
+    }
+    private void FixedUpdate()
+    {
+        foreach (Enemy enemy in enemies)
+        {
+            enemy.FixedUpdateEnemy();
         }
     }
 
-    IEnumerator ReduceSpawn()
+    private IEnumerator ReduceSpawn()
     {
-        while (spawnTimer > 0.0002)
+        while (spawnTimer > 0.0002f)
         {
             yield return new WaitForSeconds(1f);
             spawnTimer *= 0.97f;

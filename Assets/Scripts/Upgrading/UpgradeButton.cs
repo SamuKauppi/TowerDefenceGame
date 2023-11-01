@@ -1,15 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-using UnityEngine.UI;
 
 public class UpgradeButton : MonoBehaviour
 {
     [SerializeField] private TMP_Text buttonText;
     private Tower targetToUpgrade;
     private string upgradeType;
-
 
     public void DefineUpgrade(string upgrade, Tower t)
     {
