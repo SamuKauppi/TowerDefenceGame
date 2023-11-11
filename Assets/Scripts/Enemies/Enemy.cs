@@ -1,72 +1,101 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour
+public class Enemy : MonoBehaviour, IFixedUpdate, IUpdate
 {
     // References
-    [SerializeField] private Rigidbody2D _rb;
-    [SerializeField] private PathPoint currentTarget;
-    private Vector3 targetdir = Vector3.zero;
-    private Vector3 newDir = Vector3.zero;
-    [SerializeField] private float moveTimer;
+    [SerializeField] private Rigidbody2D _rb;           // Reference to rigidbody component
+    [SerializeField] private PathPoint currentTarget;   // Current pathpoint target
+    [SerializeField] private float moveTimer;           // Keeps the pathfinding from not breaking
 
     // Stats
-    [SerializeField] private float health = 100f;
-    public float MaxHealth { get; private set; }
-    [SerializeField] private float damage;
-    [SerializeField] private float distanceToStop;
-    [SerializeField] private float speed;
-    [SerializeField] private float turnSpeed;
+    public float MaxHealth { get; private set; }        // Max health
+
+    [SerializeField] private float health = 100f;       // Current health
+    [SerializeField] private float damage;              // Damage to enemy
+
+    // Pathfinding
+    [SerializeField] private float distanceToStop;      // When a pathpoint is reached
+    [SerializeField] private float speed;               // How fast this enemy is
+    [SerializeField] private float turnSpeed;           // How fast enemy can alter direction of movement
 
     // Status elements
     [SerializeField] private List<StatusElementClass> statuses = new();
     private float statusTimer;                          // Used to update statuses every 0.1s
     private float speedModifier = 1f;                   // When slowed, change this value
 
+    private Vector3 targetdir = Vector3.zero;           // Direction to the next pathpoint
+    private Vector3 currentDirection = Vector3.zero;    // Current direction of movement
+
+    // From interfaces
+    public GameObject Object => gameObject;
+
+    // Static
+    private const string BULLET_TAG = "bullet";
+
     private void Start()
     {
         MaxHealth = health;
+        GameObjectUpdateManager.Instance.AddObject(this);
     }
-    public void UpdateEnemy()
+    /// <summary>
+    /// Update enemy
+    /// </summary>
+    public void UpdateObject()
     {
         GetTargetDirection();
         UpdateStatuses();
     }
-    public void FixedUpdateEnemy()
+
+    /// <summary>
+    /// Fixedupdate enemy
+    /// </summary>
+    public void FixedUpdateGameobject()
     {
         MoveToNextTarget();
     }
-
+    /// <summary>
+    /// Update direction of movement
+    /// </summary>
     private void MoveToNextTarget()
     {
-        if (newDir != targetdir)
+        if (currentDirection != targetdir)
         {
-            newDir += targetdir * turnSpeed;
-            newDir.Normalize();
+            currentDirection += targetdir * turnSpeed;
+            currentDirection.Normalize();
         }
-        _rb.MovePosition(speedModifier * speed * Time.fixedDeltaTime * newDir + transform.position);
+        _rb.MovePosition(speedModifier * speed * Time.fixedDeltaTime * currentDirection + transform.position);
     }
 
+    /// <summary>
+    /// Get the direction to current
+    /// </summary>
     private void GetTargetDirection()
     {
+        // Get a new target if none is found or target has not been reached in x seconds
         if (currentTarget == null || moveTimer > 2f)
         {
             moveTimer = 0f;
             currentTarget = Pathfinding.Instance.GetClosestPathPoint(transform.position);
         }
+        // Target has not been reached yet
         else if (Vector2.Distance(transform.position, currentTarget.transform.position) > distanceToStop)
         {
             moveTimer += Time.deltaTime;
             targetdir = currentTarget.transform.position - transform.position;
             targetdir.Normalize();
         }
+        // Target has been reached, get a new one
         else
         {
             moveTimer = 0f;
-            currentTarget = Pathfinding.Instance.GetNextPathPoint(currentTarget);
+            currentTarget = Pathfinding.Instance.GetNextPathpoint(currentTarget);
         }
     }
-
+    /// <summary>
+    /// Take damage
+    /// </summary>
+    /// <param name="amount"></param>
     public void TakeDamage(float amount)
     {
         health -= amount;
@@ -79,7 +108,10 @@ public class Enemy : MonoBehaviour
             speedModifier = 1f;
         }
     }
-
+    /// <summary>
+    /// Returns enemy damage
+    /// </summary>
+    /// <returns></returns>
     public float GetEnemyDamage()
     {
         return damage;
@@ -97,7 +129,7 @@ public class Enemy : MonoBehaviour
         }
         statuses.Add(s);
     }
-
+    //
     private void ApplyStatus(StatusElementClass s)
     {
         switch (s.statusEff)
@@ -139,5 +171,19 @@ public class Enemy : MonoBehaviour
             }
             statusTimer = 0f;
         }
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (!collision.CompareTag(BULLET_TAG))
+            return;
+
+        Bullet b = collision.GetComponent<Bullet>();
+
+        foreach (StatusElementClass status in b.GetBulletStatusElements())
+        {
+            CreateStatus(status);
+        }
+
+        TakeDamage(b.GetAndReduceBulletDamage());
     }
 }

@@ -1,8 +1,5 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using Unity.VisualScripting;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -14,6 +11,7 @@ public class Pathfinding : MonoBehaviour
     [SerializeField] PathPoint[] pathPoints;
     [SerializeField] private PathPoint endPoint;
     [SerializeField] private PathPoint startingPoint;
+    [SerializeField] private float exitPointSize = 5f;
 
     // Create pathpoints and determine singleton
     private void Awake()
@@ -23,7 +21,10 @@ public class Pathfinding : MonoBehaviour
         startingPoint = endPoint; // give a starting point a starting value
         GeneratePaths();
     }
-    //Determine position of pathpoints
+
+    /// <summary>
+    /// Generate pathpoints 
+    /// </summary>
     private void GeneratePaths()
     {
         // Initialize pathpoint list with endpoint at start
@@ -42,7 +43,7 @@ public class Pathfinding : MonoBehaviour
             while (xPos >= -9)
             {
                 xPoint++;
-                points.Add(CreatePathPoint(new Vector3(xPos, yPos), new Vector2(xPoint, yPoint)));
+                points.Add(CreatePathpoint(new Vector3(xPos, yPos), new Vector2(xPoint, yPoint)));
                 xPos -= 0.2f;
             }
             xPos = 6f;
@@ -68,8 +69,14 @@ public class Pathfinding : MonoBehaviour
         // Calculate distances from end to start
         RecalculateDistances();
     }
-    // Create pathpoint at position and determine variables
-    private PathPoint CreatePathPoint(Vector3 pos, Vector2 pathId)
+
+    /// <summary>
+    /// Create a pathpoint
+    /// </summary>
+    /// <param name="pos"></param>
+    /// <param name="pathId"></param>
+    /// <returns></returns>
+    private PathPoint CreatePathpoint(Vector3 pos, Vector2 pathId)
     {
         // Create pathpoint
         PathPoint pathpoint = Instantiate(point_prefab, pos, Quaternion.identity, transform);
@@ -85,7 +92,11 @@ public class Pathfinding : MonoBehaviour
         return pathpoint;
 
     }
-    // Initialize neighbours for a pathpoint
+    /// <summary>
+    /// Determine neighbours for pathpoints
+    /// </summary>
+    /// <param name="currentPoint"></param>
+    /// <returns></returns>
     private PathPoint[] DetermineNeighbours(PathPoint currentPoint)
     {
         // Make list to save neighbours
@@ -137,13 +148,18 @@ public class Pathfinding : MonoBehaviour
                     frontier.Enqueue(currentNeighbours[i]);
                     // Add it to dictionary and save it's own distance with current pathpoint distance + 1
                     distances.Add(currentNeighbours[i], 1 + current.DistanceToEnd);
-                    currentNeighbours[i].SetDistanceToEnd(1 + current.DistanceToEnd);
+                    currentNeighbours[i].SetDistanceToEnd(1 + current.DistanceToEnd, exitPointSize);
                 }
             }
         }
     }
-    // Get the next pathpoint with shortest distance
-    public PathPoint GetNextPathPoint(PathPoint currentPoint)
+
+    /// <summary>
+    /// Get the closest pathpoint
+    /// </summary>
+    /// <param name="currentPoint"></param>
+    /// <returns></returns>
+    public PathPoint GetNextPathpoint(PathPoint currentPoint)
     {
         PathPoint shortestPoint = null;
         for (int i = 0; i < currentPoint.Neighbours.Length; i++)
@@ -196,8 +212,13 @@ public class Pathfinding : MonoBehaviour
         return shortestDist;
     }
 
-    //Check if path would be valid if a tower is built in position
-    public bool CheckIfPathIsValid(Vector3 position, Vector2 size)
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="position"></param>
+    /// <param name="size"></param>
+    /// <returns></returns>
+    public bool CheckIfPathIsValid(Vector3 position, Vector2 size, int towerCount = 0)
     {
         // Get relevant pathpoints
         PathPoint[] points = GetPathpointsInArea(position, size);
@@ -209,7 +230,6 @@ public class Pathfinding : MonoBehaviour
             if (points[i].IsCloseToExit)
             {
                 // Too close to exit
-                Debug.Log("Too close to exit");
                 return false;
             }
         }
@@ -218,23 +238,24 @@ public class Pathfinding : MonoBehaviour
         SetPathPointsActive(points, false);
 
         // Make a pathfinding simulation from the start until it's close to exit
-        PathPoint testPath = startingPoint;
-        List<PathPoint> lastPathpoints = new();
-        while (!testPath.IsCloseToExit)
+        if (towerCount > 3)
         {
-            testPath = GetNextPathPoint(testPath);
-            if (lastPathpoints.Contains(testPath))
+            PathPoint testPath = startingPoint;
+            List<PathPoint> lastPathpoints = new();
+            while (!testPath.IsCloseToExit)
             {
-                // Blocking path
-                SetPathPointsActive(points, true);
-                Debug.Log("Will block the path at: " + testPath.PathfindingId + ", " + testPath.DistanceToEnd);
-                return false;
+                testPath = GetNextPathpoint(testPath);
+                if (lastPathpoints.Contains(testPath))
+                {
+                    // Blocking path
+                    SetPathPointsActive(points, true);
+                    return false;
+                }
+                lastPathpoints.Add(testPath);
             }
-            lastPathpoints.Add(testPath);
         }
 
         // Is a valid path
-        Debug.Log("Valid path");
         return true;
     }
     // Get pathpoints inside an area

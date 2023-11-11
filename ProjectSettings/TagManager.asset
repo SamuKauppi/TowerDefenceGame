@@ -9,6 +9,7 @@ TagManager:
   - upgradePanel
   - tower
   - enemy
+  - bullet
   layers:
   - Default
   - TransparentFX
@@ -17,8 +18,8 @@ TagManager:
   - Water
   - UI
   - Tower
-  - 
-  - 
+  - Enemy
+  - VFX
   - 
   - 
   - 

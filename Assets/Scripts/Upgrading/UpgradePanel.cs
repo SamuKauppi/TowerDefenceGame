@@ -3,15 +3,22 @@ using UnityEngine.EventSystems;
 
 public class UpgradePanel : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
+    // Singleton
     public static UpgradePanel Instance { get; private set; }
-    [SerializeField] private UpgradeButton[] upgradeButtons;
-    public bool IsMouseOver { get; private set; }
-    private int isMouseOverCounter = 0;
+
+    // Variables
+    public bool IsMouseOver { get; private set; }               // Is the players mouse over this this panel
+    [SerializeField] private UpgradeButton[] upgradeButtons;    // Button objects
+    private int isMouseOverCounter = 0;                         // Failsafe detecting if OnPointer-events happen multiple times
     private void Awake()
     {
         Instance = this;
     }
 
+    /// <summary>
+    /// Display upgrades on panel
+    /// </summary>
+    /// <param name="target"></param>
     public void DisplayUpgrades(Tower target)
     {
         for (int i = 0; i < target.CurrentUpgrade.upgradePaths.Length; i++)
@@ -20,7 +27,9 @@ public class UpgradePanel : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
             upgradeButtons[i].DefineUpgrade(target.CurrentUpgrade.upgradePaths[i], target);
         }
     }
-
+    /// <summary>
+    /// Hide the upgrade buttons
+    /// </summary>
     public void HideUpgrades()
     {
         for (int i = 0; i < upgradeButtons.Length; i++)
@@ -38,7 +47,7 @@ public class UpgradePanel : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
     public void OnPointerExit(PointerEventData eventData)
     {
         isMouseOverCounter--;
-        if (isMouseOverCounter < 0)
+        if (isMouseOverCounter <= 0)
         {
             isMouseOverCounter = 0;
             IsMouseOver = false;

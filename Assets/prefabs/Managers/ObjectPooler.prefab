@@ -81,23 +81,23 @@ MonoBehaviour:
   objectsToBePooled:
   - ident: tower
     obj: {fileID: 5669326493566211029, guid: fbd6b4eba2c56db49aa85cf1bb954e25, type: 3}
-    amount: 20
+    amount: 10
     parent: {fileID: 4343196528215575428}
   - ident: fastE
     obj: {fileID: 874322408005280109, guid: bf536480109957349a9465dcff3299a0, type: 3}
-    amount: 10
+    amount: 50
     parent: {fileID: 4343196527950363764}
   - ident: fatE
     obj: {fileID: 874322408005280109, guid: aa04dcd65d154cf4bb55359cf7ac0734, type: 3}
-    amount: 10
+    amount: 50
     parent: {fileID: 4343196527950363764}
   - ident: normalE
     obj: {fileID: 6355185362051688843, guid: 8627abffb1a47104290e54fdc1b33a27, type: 3}
-    amount: 10
+    amount: 50
     parent: {fileID: 4343196527950363764}
   - ident: bullet
     obj: {fileID: 2477231569044453831, guid: c7f9a2e14c4e02d4ab3e82511d145d2c, type: 3}
-    amount: 20
+    amount: 10
     parent: {fileID: 4343196529389596898}
   - ident: impact
     obj: {fileID: 938123661205416765, guid: aa2538b215be01445a60c11008903c1b, type: 3}

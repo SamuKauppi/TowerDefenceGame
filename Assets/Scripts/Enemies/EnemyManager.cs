@@ -1,10 +1,8 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyManager : MonoBehaviour
 {
-    [SerializeField] private List<Enemy> enemies;
     [SerializeField] private string[] enemyTypes;
     private float time = 0f;
     [SerializeField] private float spawnTimer = 0.5f;
@@ -28,20 +26,9 @@ public class EnemyManager : MonoBehaviour
             latestEnemySpawned.transform.position =
                 new Vector3(transform.position.x, transform.position.y + Random.Range(-3f, 4f));
 
-            enemies.Add(latestEnemySpawned);
             time = 0;
         }
-        foreach (Enemy enemy in enemies)
-        {
-            enemy.UpdateEnemy();
-        }
-    }
-    private void FixedUpdate()
-    {
-        foreach (Enemy enemy in enemies)
-        {
-            enemy.FixedUpdateEnemy();
-        }
+
     }
 
     private IEnumerator ReduceSpawn()

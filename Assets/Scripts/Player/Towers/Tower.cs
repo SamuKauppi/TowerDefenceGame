@@ -1,30 +1,37 @@
 using System.Collections.Generic;
+using System.Linq;
 using Unity.Mathematics;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public class Tower : MonoBehaviour
+public class Tower : MonoBehaviour, IUpdate
 {
-    [SerializeField] private List<Transform> targets;               // Enemies inside circlecollider2d that istrigger
-    [SerializeField] private Transform barrel;                      // Barrel of the turret (pointed towards enemies)
-
+    // Hitboxes
     [SerializeField] private Collider2D towerHitbox;                // Hitbox of the turret
     [SerializeField] private CircleCollider2D attackRangeCollider;  // Collider for attack range
 
+    // Sprites
     [SerializeField] private SpriteRenderer barrelSpriterend;       // Sprite renderer of the barrel
     [SerializeField] public SpriteRenderer towerSpriterend;         // Sprite renderer of the tower
 
+    // Targeting
+    [SerializeField] private HashSet<Transform> targets = new();    // Enemies inside circlecollider2d that istrigger
+    [SerializeField] private Transform barrel;                      // Barrel of the turret (pointed towards enemies)
+
+    // Properties
+    private bool IsFunctional { get; set; }                     // Is the tower functional (has to be disabled while placing down)
+    public Vector3 TowerSize { get; private set; }              // Size of the turret
+    public TowerProperties CurrentUpgrade { get; private set; } // Current upgrade of the turret 
+
+    public GameObject Object => gameObject;
+
+    // firing properties
     private Vector3 endpoint;           // Last pathpoint (used to calculate enemy closest to exit)
     public float rotationSpeed;         // How fast does the turret rotate
     private int accuracyAngle;          // How accurate turret is (max rotation offset after finding target)
-
-    private bool IsFunctional { get; set; }                     // Is the tower functional (has to be disabled while placing down)
-    public TowerProperties CurrentUpgrade { get; private set; } // Current upgrade of the turret 
-
-    public Vector3 TowerSize { get; private set; }   // Size of the turret
-    private float attackTimer;  // Timers and counters related to firing
-    private float chargeTimer;
-    private int numberOfBursts;
+    private float attackTimer;          // Timers and counters related to firing
+    private float chargeTimer;          // How long does the tower take to charge a shot
+    private int numberOfBursts;         // How many shots can the tower shoot
 
     private void Start()
     {
@@ -33,8 +40,10 @@ public class Tower : MonoBehaviour
 
         endpoint = Pathfinding.Instance.GetEndPoint();
         UpgradeTower("Normal");
+        GameObjectUpdateManager.Instance.AddObject(this);
     }
-    void Update()
+
+    public void UpdateObject()
     {
         if (IsFunctional)
         {
@@ -79,22 +88,19 @@ public class Tower : MonoBehaviour
     }
     private Vector2 ClostestTargetToEnd()
     {
-        Vector2 closest = targets[0].position;
-        for (int i = targets.Count - 1; i >= 0; i--)
+        Vector2 closest = targets.First().position;
+
+        foreach (Transform target in targets)
         {
-            if (!targets[i].gameObject.activeSelf)
+            if (Vector2.Distance(endpoint, target.position) < Vector2.Distance(endpoint, closest))
             {
-                targets.Remove(targets[i]);
-                continue;
-            }
-            if (Vector2.Distance(endpoint, targets[i].position)
-                < Vector2.Distance(endpoint, closest))
-            {
-                closest = targets[i].position;
+                closest = target.position;
             }
         }
+
         return closest;
     }
+
 
     private void FireABullet()
     {

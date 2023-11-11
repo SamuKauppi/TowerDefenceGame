@@ -14,11 +14,12 @@ public class BulletBoomerang : BulletProperties
     void BoomerangMovement()
     {
         LeanTween.rotateAround(gameObject, Vector3.forward, 210f, 1.125f).setEase(LeanTweenType.easeInOutQuart);
-        LeanTween.rotateAround(rotatingSprite, Vector3.forward, -3960f, 3f).setEase(LeanTweenType.easeOutQuad);
+        LeanTween.rotateZ(rotatingSprite, -4600, 3f).setEase(LeanTweenType.easeOutQuad);
     }
 
     public override void OnBulletDespawn()
     {
         LeanTween.cancel(rotatingSprite);
+        LeanTween.cancel(gameObject);
     }
 }

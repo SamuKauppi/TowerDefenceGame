@@ -1,6 +1,7 @@
+using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerScript : MonoBehaviour
+public class PlayerScript : MonoBehaviour, IUpdate
 {
     [SerializeField] private Tower tower_prefab;        // Prefab
     [SerializeField] private bool isAttached;           // If a tower is attached to the cursor
@@ -11,20 +12,24 @@ public class PlayerScript : MonoBehaviour
     // TODO: Create a way for player to get money from kills
     public int PlayerMoney { get; private set; }        // Players money
 
-    private Tower tower_attached;                           // Instance of a tower that is attached to cursor
+    private Tower towerAttached;                            // Instance of a tower that is attached to cursor
+    private int towersPlaced = 0;                           // Amount of towers placed
 
     private Vector2 mousePosition;                          // The current position of mouse
     private Vector2 lastMousePos;                           // Position of the mouse in the last frame.
                                                             // Move attached tower to this pos
     private readonly float maxDistanceFromLastPos = 0.1f;   // How far until lastMousePos is updated
+    public GameObject Object => gameObject;
 
     private void Start()
     {
         // TODO: make better way to asign player stats
         PlayerHealth = 100f;
-        PlayerMoney = 200;
+        PlayerMoney = 20000;
+        GameObjectUpdateManager.Instance.AddObject(this);
     }
-    private void Update()
+
+    public void UpdateObject()
     {
         mousePosition = mainCamera.ScreenToWorldPoint(Input.mousePosition);
         if (!isAttached)
@@ -50,7 +55,7 @@ public class PlayerScript : MonoBehaviour
         Collider2D[] collidersInRange =
             Physics2D.OverlapCircleAll(mousePosition, checkDistance, towerLayer);
 
-        // If colldiers were found in range, satrt upgrade panel for closest tower
+        // If colldiers were found in range, activate upgrade panel for closest tower
         if (collidersInRange.Length > 0)
         {
             Collider2D shortestDist = collidersInRange[0];
@@ -78,10 +83,9 @@ public class PlayerScript : MonoBehaviour
         // Update the position of the attached turret if mouse has moved further than max distance
         if (Vector3.Distance(lastMousePos, mousePosition) > maxDistanceFromLastPos)
         {
-            tower_attached.transform.position =
+            towerAttached.transform.position =
                 Pathfinding.Instance.GetClosestPathPoint(mainCamera.ScreenToWorldPoint(Input.mousePosition)).transform.position;
             lastMousePos = mainCamera.ScreenToWorldPoint(Input.mousePosition);
-            Debug.Log("os");
         }
 
         // Check input
@@ -102,7 +106,7 @@ public class PlayerScript : MonoBehaviour
     public void StartPlacingTower()
     {
         if (isAttached) return;
-        tower_attached = ObjectPooler.Instance.GetPooledObject("tower").GetComponent<Tower>();
+        towerAttached = ObjectPooler.Instance.GetPooledObject("tower").GetComponent<Tower>();
         isAttached = true;
         UpgradePanel.Instance.HideUpgrades();
     }
@@ -114,7 +118,7 @@ public class PlayerScript : MonoBehaviour
     {
         if (!isAttached) return;
         isAttached = false;
-        tower_attached.gameObject.SetActive(false);
+        towerAttached.gameObject.SetActive(false);
         UpgradePanel.Instance.HideUpgrades();
     }
     /// <summary>
@@ -125,8 +129,8 @@ public class PlayerScript : MonoBehaviour
     private void AttemptToPlaceTower()
     {
         Collider2D[] collidersInRange = Physics2D.OverlapAreaAll(
-            tower_attached.transform.position - (tower_attached.TowerSize * 0.4f),
-            tower_attached.transform.position + (tower_attached.TowerSize * 0.4f),
+            towerAttached.transform.position - (towerAttached.TowerSize * 0.4f),
+            towerAttached.transform.position + (towerAttached.TowerSize * 0.4f),
             towerLayer);
 
         for (int i = 0; i < collidersInRange.Length; i++)
@@ -138,10 +142,11 @@ public class PlayerScript : MonoBehaviour
             }
         }
 
-        if (Pathfinding.Instance.CheckIfPathIsValid(tower_attached.transform.position, tower_attached.TowerSize))
+        towersPlaced++;
+        if (Pathfinding.Instance.CheckIfPathIsValid(towerAttached.transform.position, towerAttached.TowerSize, towersPlaced))
         {
             isAttached = false;
-            tower_attached.SetFunctional(true);
+            towerAttached.SetFunctional(true);
         }
         else
         {
