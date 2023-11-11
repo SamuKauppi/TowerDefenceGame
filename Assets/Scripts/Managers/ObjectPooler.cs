@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,9 +5,9 @@ public class ObjectPooler : MonoBehaviour
 {
     public static ObjectPooler Instance { get; private set; }
 
-    private Dictionary<string, Queue<GameObject>> objectPool = new();
     [SerializeField] private PooledObject[] objectsToBePooled;
-    GameObject objectToCheck;
+
+    private readonly Dictionary<string, Queue<GameObject>> objectPool = new();
     private void Awake()
     {
         Instance = this;
@@ -29,22 +28,19 @@ public class ObjectPooler : MonoBehaviour
     {
         if (!objectPool.ContainsKey(ident)) return null;
 
-        for (int i = 0; i < objectPool[ident].Count; i++)
+        if (!objectPool[ident].Peek().activeSelf)
         {
-            if (!objectPool[ident].Peek().activeSelf)
-            {
-                objectToCheck = objectPool[ident].Dequeue();
-                objectToCheck.SetActive(true);
-                objectPool[ident].Enqueue(objectToCheck);
-                return objectToCheck;
-            }
+            GameObject objectToCheck = objectPool[ident].Dequeue();
+            objectToCheck.SetActive(true);
+            objectPool[ident].Enqueue(objectToCheck);
+            return objectToCheck;
         }
 
-        for (int i = 0; i < objectsToBePooled.Length; i++)
+        foreach (PooledObject pooledObj in objectsToBePooled)
         {
-            if (objectsToBePooled[i].ident == ident)
+            if (pooledObj.ident == ident)
             {
-                objectToCheck = Instantiate(objectsToBePooled[i].obj, objectsToBePooled[i].parent);
+                GameObject objectToCheck = Instantiate(pooledObj.obj, pooledObj.parent);
                 objectToCheck.SetActive(true);
                 objectPool[ident].Enqueue(objectToCheck);
                 return objectToCheck;

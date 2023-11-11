@@ -16,6 +16,15 @@ public class Framerate : MonoBehaviour
             frameRate = Mathf.FloorToInt(1f / Time.deltaTime);
             m_Text.text = frameRate.ToString();
             timer = 0f;
+
+            if (frameRate < 60f)
+            {
+                m_Text.color = Color.red;
+            }
+            else if (m_Text.color == Color.red)
+            {
+                m_Text.color = Color.white;
+            }
         }
 
     }

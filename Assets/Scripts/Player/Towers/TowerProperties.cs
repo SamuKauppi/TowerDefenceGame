@@ -25,6 +25,10 @@ public class TowerProperties
     public float attackRange;
     // How long tower has to charge between bursts (if 0 = ignored)
     public float chargeTime;
+    // Does the tower aim while shooting a burst
+    public bool aimWhileFiring = true;
+    // The max angle between barrel and enemy before tower starts firing
+    public float aimThreshold = 30f;
     // How many bullets it shoots in bursts (has to be at least 1)
     public int burstShots = 1;
     // How many spread shots it fires (has to be at least 1)

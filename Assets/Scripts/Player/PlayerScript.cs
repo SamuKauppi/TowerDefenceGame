@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerScript : MonoBehaviour, IUpdate
+public class PlayerScript : MonoBehaviour
 {
     [SerializeField] private Tower tower_prefab;        // Prefab
     [SerializeField] private bool isAttached;           // If a tower is attached to the cursor
@@ -19,7 +19,6 @@ public class PlayerScript : MonoBehaviour, IUpdate
     private Vector2 lastMousePos;                           // Position of the mouse in the last frame.
                                                             // Move attached tower to this pos
     private readonly float maxDistanceFromLastPos = 0.1f;   // How far until lastMousePos is updated
-    public GameObject Object => gameObject;
 
     private void Start()
     {
@@ -29,7 +28,7 @@ public class PlayerScript : MonoBehaviour, IUpdate
         GameObjectUpdateManager.Instance.AddObject(this);
     }
 
-    public void UpdateObject()
+    public void Update()
     {
         mousePosition = mainCamera.ScreenToWorldPoint(Input.mousePosition);
         if (!isAttached)
@@ -164,7 +163,7 @@ public class PlayerScript : MonoBehaviour, IUpdate
         PlayerHealth -= amount;
         if (PlayerHealth <= 0)
         {
-            Debug.Log("dead");
+
         }
     }
 }

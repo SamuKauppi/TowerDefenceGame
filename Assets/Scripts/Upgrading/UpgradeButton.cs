@@ -10,12 +10,12 @@ public class UpgradeButton : MonoBehaviour
     public void DefineUpgrade(string upgrade, Tower t)
     {
         if(targetToUpgrade != null)
-            targetToUpgrade.towerSpriterend.color = Color.white;
+            targetToUpgrade.TowerBaseRend.color = Color.white;
 
         upgradeType = upgrade;
         targetToUpgrade = t;
 
-        targetToUpgrade.towerSpriterend.color = Color.red;
+        targetToUpgrade.TowerBaseRend.color = Color.red;
 
         buttonText.text = TowerTypes.Instance.GetTowerProperties(upgrade).name;
     }
@@ -24,6 +24,6 @@ public class UpgradeButton : MonoBehaviour
     {
         targetToUpgrade.UpgradeTower(upgradeType);
         UpgradePanel.Instance.HideUpgrades();
-        targetToUpgrade.towerSpriterend.color = Color.white;
+        targetToUpgrade.TowerBaseRend.color = Color.white;
     }
 }
