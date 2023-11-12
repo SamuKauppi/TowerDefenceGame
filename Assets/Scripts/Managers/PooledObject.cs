@@ -1,12 +1,13 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 [Serializable]
 public class PooledObject
 {
-    public string ident;
+#if UNITY_EDITOR
+    public string ident;        // Only in inspector
+#endif
+    public GameEntity gameIdent;
     public GameObject obj;
     public int amount;
     public Transform parent;

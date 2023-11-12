@@ -44,10 +44,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0b3046fe24232a43b55be74624d63e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemies: []
-  enemyTypes:
-  - fastE
-  - fatE
-  - normalE
+  enemyTypes: 030000000200000001000000
   spawnTimer: 2
   reduceSpawnTime: 1

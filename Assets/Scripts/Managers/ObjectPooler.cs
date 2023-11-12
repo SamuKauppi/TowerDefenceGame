@@ -7,7 +7,7 @@ public class ObjectPooler : MonoBehaviour
 
     [SerializeField] private PooledObject[] objectsToBePooled;
 
-    private readonly Dictionary<string, Queue<GameObject>> objectPool = new();
+    private readonly Dictionary<GameEntity, Queue<GameObject>> objectPool = new();
     private void Awake()
     {
         Instance = this;
@@ -20,11 +20,11 @@ public class ObjectPooler : MonoBehaviour
                 obj.SetActive(false);
                 tempQueue.Enqueue(obj);
             }
-            objectPool.Add(objectsToBePooled[i].ident, tempQueue);
+            objectPool.Add(objectsToBePooled[i].gameIdent, tempQueue);
         }
     }
 
-    public GameObject GetPooledObject(string ident)
+    public GameObject GetPooledObject(GameEntity ident)
     {
         if (!objectPool.ContainsKey(ident)) return null;
 
@@ -38,7 +38,7 @@ public class ObjectPooler : MonoBehaviour
 
         foreach (PooledObject pooledObj in objectsToBePooled)
         {
-            if (pooledObj.ident == ident)
+            if (pooledObj.gameIdent == ident)
             {
                 GameObject objectToCheck = Instantiate(pooledObj.obj, pooledObj.parent);
                 objectToCheck.SetActive(true);

@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class TowerTypes : MonoBehaviour
@@ -12,17 +10,16 @@ public class TowerTypes : MonoBehaviour
         Instance = this;
     }
 
-    public TowerProperties GetTowerProperties(string name)
+    public TowerProperties GetTowerProperties(TowerUpgrade upgrade)
     {
-        for (int i = 0; i < towerTypes.Length; i++)
+        foreach (TowerProperties property in towerTypes)
         {
-            if (towerTypes[i].name == name)
+            if (property.upgradeIdent == upgrade)
             {
-                return towerTypes[i];
+                return property;
             }
         }
 
         return null;
     }
-
 }

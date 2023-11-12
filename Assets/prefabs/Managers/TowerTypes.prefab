@@ -51,17 +51,18 @@ MonoBehaviour:
     - Impact
     - Rapid-fire
     - Scope
+    - New Beam
     barrelSprite: {fileID: 21300000, guid: f31ff9baa33a9434889841319e2a7dae, type: 3}
     towerSprite: {fileID: 21300000, guid: cdedf60acfc9f9148923f3d87fe5fe67, type: 3}
-    bullet: bullet
+    bulletIdent: 4
     attackSpeed: 0.4
     rotationSpeed: 0
     accuracy: 5
+    aimThreshold: 30
     attackRange: 10
     chargeTime: 0
-    aimWhileFiring: 1
-    aimThreshold: 30
     burstShots: 1
+    aimWhileFiring: 1
     spreadShots: 1
     degreePerShot: 0
     cost: 0
@@ -73,15 +74,15 @@ MonoBehaviour:
     - Wallop
     barrelSprite: {fileID: 21300000, guid: f31ff9baa33a9434889841319e2a7dae, type: 3}
     towerSprite: {fileID: 21300000, guid: cdedf60acfc9f9148923f3d87fe5fe67, type: 3}
-    bullet: impact
+    bulletIdent: 5
     attackSpeed: 0.4
     rotationSpeed: 0
     accuracy: 5
+    aimThreshold: 30
     attackRange: 10
     chargeTime: 0
-    aimWhileFiring: 1
-    aimThreshold: 30
     burstShots: 1
+    aimWhileFiring: 1
     spreadShots: 1
     degreePerShot: 0
     cost: 0
@@ -93,15 +94,15 @@ MonoBehaviour:
     - Catapult
     barrelSprite: {fileID: 21300000, guid: f31ff9baa33a9434889841319e2a7dae, type: 3}
     towerSprite: {fileID: 21300000, guid: cdedf60acfc9f9148923f3d87fe5fe67, type: 3}
-    bullet: impact
+    bulletIdent: 5
     attackSpeed: 0.02
     rotationSpeed: 0
     accuracy: 5
+    aimThreshold: 30
     attackRange: 15
     chargeTime: 0.2
-    aimWhileFiring: 0
-    aimThreshold: 30
     burstShots: 3
+    aimWhileFiring: 0
     spreadShots: 1
     degreePerShot: 0
     cost: 0
@@ -111,15 +112,15 @@ MonoBehaviour:
     - Trebuchet
     barrelSprite: {fileID: 21300000, guid: f31ff9baa33a9434889841319e2a7dae, type: 3}
     towerSprite: {fileID: 21300000, guid: cdedf60acfc9f9148923f3d87fe5fe67, type: 3}
-    bullet: rock
+    bulletIdent: 15
     attackSpeed: 1.5
     rotationSpeed: 0
     accuracy: 2
+    aimThreshold: 30
     attackRange: 25
     chargeTime: 0
-    aimWhileFiring: 1
-    aimThreshold: 30
     burstShots: 1
+    aimWhileFiring: 1
     spreadShots: 1
     degreePerShot: 0
     cost: 0
@@ -128,15 +129,15 @@ MonoBehaviour:
     upgradePaths: []
     barrelSprite: {fileID: 21300000, guid: f31ff9baa33a9434889841319e2a7dae, type: 3}
     towerSprite: {fileID: 21300000, guid: cdedf60acfc9f9148923f3d87fe5fe67, type: 3}
-    bullet: rock
+    bulletIdent: 15
     attackSpeed: 2
     rotationSpeed: 0
     accuracy: 0
+    aimThreshold: 30
     attackRange: 60
     chargeTime: 0
-    aimWhileFiring: 1
-    aimThreshold: 30
     burstShots: 1
+    aimWhileFiring: 1
     spreadShots: 3
     degreePerShot: 10
     cost: 0
@@ -146,34 +147,17 @@ MonoBehaviour:
     - Boomaster
     barrelSprite: {fileID: 21300000, guid: f31ff9baa33a9434889841319e2a7dae, type: 3}
     towerSprite: {fileID: 21300000, guid: cdedf60acfc9f9148923f3d87fe5fe67, type: 3}
-    bullet: boomerang
+    bulletIdent: 14
     attackSpeed: 1.25
     rotationSpeed: 0
     accuracy: 0
+    aimThreshold: 30
     attackRange: 18
     chargeTime: 0
-    aimWhileFiring: 1
-    aimThreshold: 30
     burstShots: 1
+    aimWhileFiring: 1
     spreadShots: 1
     degreePerShot: 0
-    cost: 0
-  - name: Boomaster
-    description: Throws Boomerangs like anyone else
-    upgradePaths: []
-    barrelSprite: {fileID: 21300000, guid: f31ff9baa33a9434889841319e2a7dae, type: 3}
-    towerSprite: {fileID: 21300000, guid: cdedf60acfc9f9148923f3d87fe5fe67, type: 3}
-    bullet: boomerang
-    attackSpeed: 0.5
-    rotationSpeed: 0
-    accuracy: 0
-    attackRange: 18
-    chargeTime: 0
-    aimWhileFiring: 1
-    aimThreshold: 30
-    burstShots: 1
-    spreadShots: 1
-    degreePerShot: 1
     cost: 0
   - name: Punch
     description: Simple yet effective
@@ -181,15 +165,15 @@ MonoBehaviour:
     - Knuckle Sandwich
     barrelSprite: {fileID: 21300000, guid: f31ff9baa33a9434889841319e2a7dae, type: 3}
     towerSprite: {fileID: 21300000, guid: cdedf60acfc9f9148923f3d87fe5fe67, type: 3}
-    bullet: impact
+    bulletIdent: 5
     attackSpeed: 0.02
     rotationSpeed: 0
     accuracy: 5
+    aimThreshold: 30
     attackRange: 15
     chargeTime: 0.15
-    aimWhileFiring: 0
-    aimThreshold: 30
     burstShots: 5
+    aimWhileFiring: 0
     spreadShots: 1
     degreePerShot: 0
     cost: 0
@@ -198,72 +182,36 @@ MonoBehaviour:
     upgradePaths: []
     barrelSprite: {fileID: 21300000, guid: f31ff9baa33a9434889841319e2a7dae, type: 3}
     towerSprite: {fileID: 21300000, guid: cdedf60acfc9f9148923f3d87fe5fe67, type: 3}
-    bullet: impact
+    bulletIdent: 5
     attackSpeed: 0.01
     rotationSpeed: 0
     accuracy: 15
+    aimThreshold: 30
     attackRange: 15
     chargeTime: 0.2
-    aimWhileFiring: 0
-    aimThreshold: 30
     burstShots: 10
+    aimWhileFiring: 0
     spreadShots: 2
     degreePerShot: 15
     cost: 0
   - name: Beam
     description: Shoots a beam of energy but has to charge between shots
     upgradePaths:
-    - Ice Beam
     - Better Beam
     - Lazer Beam
     barrelSprite: {fileID: 21300000, guid: f31ff9baa33a9434889841319e2a7dae, type: 3}
     towerSprite: {fileID: 21300000, guid: cdedf60acfc9f9148923f3d87fe5fe67, type: 3}
-    bullet: beam
+    bulletIdent: 10
     attackSpeed: 0.005
     rotationSpeed: 100
     accuracy: 0
+    aimThreshold: 30
     attackRange: 10
     chargeTime: 0
-    aimWhileFiring: 1
-    aimThreshold: 30
     burstShots: 1
+    aimWhileFiring: 1
     spreadShots: 1
     degreePerShot: 0
-    cost: 0
-  - name: Ice Beam
-    description: Slows enemies
-    upgradePaths:
-    - Blizzard
-    barrelSprite: {fileID: 21300000, guid: f31ff9baa33a9434889841319e2a7dae, type: 3}
-    towerSprite: {fileID: 21300000, guid: cdedf60acfc9f9148923f3d87fe5fe67, type: 3}
-    bullet: icebeam
-    attackSpeed: 0.005
-    rotationSpeed: 60
-    accuracy: 0
-    attackRange: 10
-    chargeTime: 0
-    aimWhileFiring: 1
-    aimThreshold: 30
-    burstShots: 1
-    spreadShots: 1
-    degreePerShot: 0
-    cost: 0
-  - name: Blizzard
-    description: Stuns enemies. Sounds broken
-    upgradePaths: []
-    barrelSprite: {fileID: 21300000, guid: f31ff9baa33a9434889841319e2a7dae, type: 3}
-    towerSprite: {fileID: 21300000, guid: cdedf60acfc9f9148923f3d87fe5fe67, type: 3}
-    bullet: icebeam
-    attackSpeed: 0.005
-    rotationSpeed: 180
-    accuracy: 45
-    attackRange: 10
-    chargeTime: 0
-    aimWhileFiring: 1
-    aimThreshold: 30
-    burstShots: 1
-    spreadShots: 3
-    degreePerShot: 6
     cost: 0
   - name: Lazer Beam
     description: Continious beam of light
@@ -271,15 +219,15 @@ MonoBehaviour:
     - Light that burns the sky
     barrelSprite: {fileID: 21300000, guid: f31ff9baa33a9434889841319e2a7dae, type: 3}
     towerSprite: {fileID: 21300000, guid: cdedf60acfc9f9148923f3d87fe5fe67, type: 3}
-    bullet: lbeam
+    bulletIdent: 13
     attackSpeed: 0.015
     rotationSpeed: 0
     accuracy: 0
+    aimThreshold: 30
     attackRange: 10
     chargeTime: 0
-    aimWhileFiring: 1
-    aimThreshold: 30
     burstShots: 1
+    aimWhileFiring: 1
     spreadShots: 1
     degreePerShot: 3
     cost: 0
@@ -288,15 +236,15 @@ MonoBehaviour:
     upgradePaths: []
     barrelSprite: {fileID: 21300000, guid: f31ff9baa33a9434889841319e2a7dae, type: 3}
     towerSprite: {fileID: 21300000, guid: cdedf60acfc9f9148923f3d87fe5fe67, type: 3}
-    bullet: lbeam
+    bulletIdent: 13
     attackSpeed: 0.015
     rotationSpeed: 0
     accuracy: 0
+    aimThreshold: 30
     attackRange: 10
     chargeTime: 0
-    aimWhileFiring: 1
-    aimThreshold: 30
     burstShots: 1
+    aimWhileFiring: 1
     spreadShots: 6
     degreePerShot: 60
     cost: 0
@@ -306,15 +254,15 @@ MonoBehaviour:
     - Hyper Beam
     barrelSprite: {fileID: 21300000, guid: f31ff9baa33a9434889841319e2a7dae, type: 3}
     towerSprite: {fileID: 21300000, guid: cdedf60acfc9f9148923f3d87fe5fe67, type: 3}
-    bullet: hbeam
-    attackSpeed: 0.005
+    bulletIdent: 12
+    attackSpeed: 0.05
     rotationSpeed: 120
-    accuracy: 0
+    accuracy: 1
+    aimThreshold: 10
     attackRange: 10
     chargeTime: 2
-    aimWhileFiring: 0
-    aimThreshold: 30
     burstShots: 70
+    aimWhileFiring: 0
     spreadShots: 3
     degreePerShot: 2
     cost: 0
@@ -323,15 +271,15 @@ MonoBehaviour:
     upgradePaths: []
     barrelSprite: {fileID: 21300000, guid: f31ff9baa33a9434889841319e2a7dae, type: 3}
     towerSprite: {fileID: 21300000, guid: cdedf60acfc9f9148923f3d87fe5fe67, type: 3}
-    bullet: hbeam
-    attackSpeed: 0.005
+    bulletIdent: 12
+    attackSpeed: 0.05
     rotationSpeed: 150
-    accuracy: 0
+    accuracy: 1
+    aimThreshold: 10
     attackRange: 12
     chargeTime: 2
-    aimWhileFiring: 0
-    aimThreshold: 30
     burstShots: 100
+    aimWhileFiring: 0
     spreadShots: 5
     degreePerShot: 2
     cost: 0
@@ -343,15 +291,15 @@ MonoBehaviour:
     - Cataboom
     barrelSprite: {fileID: 21300000, guid: f31ff9baa33a9434889841319e2a7dae, type: 3}
     towerSprite: {fileID: 21300000, guid: cdedf60acfc9f9148923f3d87fe5fe67, type: 3}
-    bullet: bomb
+    bulletIdent: 7
     attackSpeed: 1
     rotationSpeed: 0
     accuracy: 5
+    aimThreshold: 30
     attackRange: 10
     chargeTime: 0
-    aimWhileFiring: 1
-    aimThreshold: 30
     burstShots: 1
+    aimWhileFiring: 1
     spreadShots: 1
     degreePerShot: 0
     cost: 0
@@ -361,15 +309,15 @@ MonoBehaviour:
     - Hugeplosion
     barrelSprite: {fileID: 21300000, guid: f31ff9baa33a9434889841319e2a7dae, type: 3}
     towerSprite: {fileID: 21300000, guid: cdedf60acfc9f9148923f3d87fe5fe67, type: 3}
-    bullet: bbomb
-    attackSpeed: 1.1
+    bulletIdent: 8
+    attackSpeed: 1.5
     rotationSpeed: 0
     accuracy: 5
+    aimThreshold: 30
     attackRange: 10
     chargeTime: 0
-    aimWhileFiring: 1
-    aimThreshold: 30
     burstShots: 1
+    aimWhileFiring: 1
     spreadShots: 1
     degreePerShot: 0
     cost: 0
@@ -379,15 +327,15 @@ MonoBehaviour:
     - Hugeplosion
     barrelSprite: {fileID: 21300000, guid: f31ff9baa33a9434889841319e2a7dae, type: 3}
     towerSprite: {fileID: 21300000, guid: cdedf60acfc9f9148923f3d87fe5fe67, type: 3}
-    bullet: bbbomb
-    attackSpeed: 1.1
+    bulletIdent: 9
+    attackSpeed: 1.5
     rotationSpeed: 0
     accuracy: 5
+    aimThreshold: 30
     attackRange: 10
     chargeTime: 0
-    aimWhileFiring: 1
-    aimThreshold: 30
     burstShots: 1
+    aimWhileFiring: 1
     spreadShots: 8
     degreePerShot: 45
     cost: 0
@@ -397,15 +345,15 @@ MonoBehaviour:
     - Tossplosion
     barrelSprite: {fileID: 21300000, guid: f31ff9baa33a9434889841319e2a7dae, type: 3}
     towerSprite: {fileID: 21300000, guid: cdedf60acfc9f9148923f3d87fe5fe67, type: 3}
-    bullet: bomb
+    bulletIdent: 7
     attackSpeed: 0.15
     rotationSpeed: 0
     accuracy: 5
+    aimThreshold: 30
     attackRange: 10
     chargeTime: 0.5
-    aimWhileFiring: 1
-    aimThreshold: 30
     burstShots: 2
+    aimWhileFiring: 1
     spreadShots: 1
     degreePerShot: 0
     cost: 0
@@ -414,15 +362,15 @@ MonoBehaviour:
     upgradePaths: []
     barrelSprite: {fileID: 21300000, guid: f31ff9baa33a9434889841319e2a7dae, type: 3}
     towerSprite: {fileID: 21300000, guid: cdedf60acfc9f9148923f3d87fe5fe67, type: 3}
-    bullet: bomb
+    bulletIdent: 7
     attackSpeed: 0.15
     rotationSpeed: 0
     accuracy: 5
+    aimThreshold: 30
     attackRange: 10
     chargeTime: 1.25
-    aimWhileFiring: 1
-    aimThreshold: 30
     burstShots: 5
+    aimWhileFiring: 1
     spreadShots: 3
     degreePerShot: 30
     cost: 0
@@ -432,15 +380,15 @@ MonoBehaviour:
     - Mortarplosion
     barrelSprite: {fileID: 21300000, guid: f31ff9baa33a9434889841319e2a7dae, type: 3}
     towerSprite: {fileID: 21300000, guid: cdedf60acfc9f9148923f3d87fe5fe67, type: 3}
-    bullet: bomb
+    bulletIdent: 7
     attackSpeed: 1
     rotationSpeed: 0
     accuracy: 2
+    aimThreshold: 30
     attackRange: 20
     chargeTime: 0
-    aimWhileFiring: 1
-    aimThreshold: 30
     burstShots: 1
+    aimWhileFiring: 1
     spreadShots: 1
     degreePerShot: 0
     cost: 0
@@ -449,15 +397,15 @@ MonoBehaviour:
     upgradePaths: []
     barrelSprite: {fileID: 21300000, guid: f31ff9baa33a9434889841319e2a7dae, type: 3}
     towerSprite: {fileID: 21300000, guid: cdedf60acfc9f9148923f3d87fe5fe67, type: 3}
-    bullet: bomb
+    bulletIdent: 7
     attackSpeed: 0.15
     rotationSpeed: 0
     accuracy: 0
+    aimThreshold: 30
     attackRange: 60
     chargeTime: 1
-    aimWhileFiring: 1
-    aimThreshold: 30
     burstShots: 3
+    aimWhileFiring: 1
     spreadShots: 1
     degreePerShot: 5
     cost: 0
@@ -469,15 +417,15 @@ MonoBehaviour:
     - Sword
     barrelSprite: {fileID: 21300000, guid: f31ff9baa33a9434889841319e2a7dae, type: 3}
     towerSprite: {fileID: 21300000, guid: cdedf60acfc9f9148923f3d87fe5fe67, type: 3}
-    bullet: bullet
+    bulletIdent: 4
     attackSpeed: 0.28
     rotationSpeed: 0
     accuracy: 5
+    aimThreshold: 30
     attackRange: 10
     chargeTime: 0
-    aimWhileFiring: 1
-    aimThreshold: 30
     burstShots: 1
+    aimWhileFiring: 1
     spreadShots: 1
     degreePerShot: 0
     cost: 0
@@ -489,15 +437,15 @@ MonoBehaviour:
     - Rifle
     barrelSprite: {fileID: 21300000, guid: f31ff9baa33a9434889841319e2a7dae, type: 3}
     towerSprite: {fileID: 21300000, guid: cdedf60acfc9f9148923f3d87fe5fe67, type: 3}
-    bullet: gun
+    bulletIdent: 16
     attackSpeed: 0.28
     rotationSpeed: 0
     accuracy: 5
+    aimThreshold: 30
     attackRange: 10
     chargeTime: 0
-    aimWhileFiring: 1
-    aimThreshold: 30
     burstShots: 1
+    aimWhileFiring: 1
     spreadShots: 1
     degreePerShot: 0
     cost: 0
@@ -507,15 +455,15 @@ MonoBehaviour:
     - Blunderbuss
     barrelSprite: {fileID: 21300000, guid: f31ff9baa33a9434889841319e2a7dae, type: 3}
     towerSprite: {fileID: 21300000, guid: cdedf60acfc9f9148923f3d87fe5fe67, type: 3}
-    bullet: gun
+    bulletIdent: 16
     attackSpeed: 0.00015
     rotationSpeed: 0
     accuracy: 10
+    aimThreshold: 30
     attackRange: 10
     chargeTime: 1
-    aimWhileFiring: 1
-    aimThreshold: 30
     burstShots: 10
+    aimWhileFiring: 1
     spreadShots: 5
     degreePerShot: 1
     cost: 0
@@ -524,15 +472,15 @@ MonoBehaviour:
     upgradePaths: []
     barrelSprite: {fileID: 21300000, guid: f31ff9baa33a9434889841319e2a7dae, type: 3}
     towerSprite: {fileID: 21300000, guid: cdedf60acfc9f9148923f3d87fe5fe67, type: 3}
-    bullet: gun
+    bulletIdent: 16
     attackSpeed: 0.00015
     rotationSpeed: 0
     accuracy: 15
+    aimThreshold: 30
     attackRange: 10
     chargeTime: 1
-    aimWhileFiring: 1
-    aimThreshold: 30
     burstShots: 15
+    aimWhileFiring: 1
     spreadShots: 7
     degreePerShot: 1
     cost: 0
@@ -542,15 +490,15 @@ MonoBehaviour:
     - Minigun
     barrelSprite: {fileID: 21300000, guid: f31ff9baa33a9434889841319e2a7dae, type: 3}
     towerSprite: {fileID: 21300000, guid: cdedf60acfc9f9148923f3d87fe5fe67, type: 3}
-    bullet: gun
+    bulletIdent: 16
     attackSpeed: 0.0015
     rotationSpeed: 0
     accuracy: 5
+    aimThreshold: 30
     attackRange: 10
     chargeTime: 1.5
-    aimWhileFiring: 1
-    aimThreshold: 30
     burstShots: 100
+    aimWhileFiring: 1
     spreadShots: 1
     degreePerShot: 0
     cost: 0
@@ -559,15 +507,15 @@ MonoBehaviour:
     upgradePaths: []
     barrelSprite: {fileID: 21300000, guid: f31ff9baa33a9434889841319e2a7dae, type: 3}
     towerSprite: {fileID: 21300000, guid: cdedf60acfc9f9148923f3d87fe5fe67, type: 3}
-    bullet: gun
+    bulletIdent: 16
     attackSpeed: 0.0001
     rotationSpeed: 0
     accuracy: 6
+    aimThreshold: 30
     attackRange: 10
     chargeTime: 3
-    aimWhileFiring: 1
-    aimThreshold: 30
     burstShots: 1000
+    aimWhileFiring: 1
     spreadShots: 1
     degreePerShot: 0
     cost: 0
@@ -577,15 +525,15 @@ MonoBehaviour:
     - Sniper
     barrelSprite: {fileID: 21300000, guid: f31ff9baa33a9434889841319e2a7dae, type: 3}
     towerSprite: {fileID: 21300000, guid: cdedf60acfc9f9148923f3d87fe5fe67, type: 3}
-    bullet: gun
+    bulletIdent: 16
     attackSpeed: 0.0001
     rotationSpeed: 0
     accuracy: 0
+    aimThreshold: 30
     attackRange: 40
     chargeTime: 1
-    aimWhileFiring: 1
-    aimThreshold: 30
     burstShots: 2
+    aimWhileFiring: 1
     spreadShots: 1
     degreePerShot: 0
     cost: 0
@@ -594,15 +542,15 @@ MonoBehaviour:
     upgradePaths: []
     barrelSprite: {fileID: 21300000, guid: f31ff9baa33a9434889841319e2a7dae, type: 3}
     towerSprite: {fileID: 21300000, guid: cdedf60acfc9f9148923f3d87fe5fe67, type: 3}
-    bullet: sniper
+    bulletIdent: 17
     attackSpeed: 1.1
     rotationSpeed: 0
     accuracy: 0
+    aimThreshold: 30
     attackRange: 60
     chargeTime: 0
-    aimWhileFiring: 1
-    aimThreshold: 30
     burstShots: 1
+    aimWhileFiring: 1
     spreadShots: 1
     degreePerShot: 0
     cost: 0
@@ -614,15 +562,15 @@ MonoBehaviour:
     - Blue Flame
     barrelSprite: {fileID: 21300000, guid: f31ff9baa33a9434889841319e2a7dae, type: 3}
     towerSprite: {fileID: 21300000, guid: cdedf60acfc9f9148923f3d87fe5fe67, type: 3}
-    bullet: ember
+    bulletIdent: 18
     attackSpeed: 0.28
     rotationSpeed: 0
     accuracy: 5
+    aimThreshold: 30
     attackRange: 10
     chargeTime: 0
-    aimWhileFiring: 1
-    aimThreshold: 30
     burstShots: 1
+    aimWhileFiring: 1
     spreadShots: 1
     degreePerShot: 0
     cost: 0
@@ -632,15 +580,15 @@ MonoBehaviour:
     - Overheat
     barrelSprite: {fileID: 21300000, guid: f31ff9baa33a9434889841319e2a7dae, type: 3}
     towerSprite: {fileID: 21300000, guid: cdedf60acfc9f9148923f3d87fe5fe67, type: 3}
-    bullet: flame
+    bulletIdent: 19
     attackSpeed: 0.05
     rotationSpeed: 180
     accuracy: 30
+    aimThreshold: 30
     attackRange: 10
     chargeTime: 0
-    aimWhileFiring: 1
-    aimThreshold: 30
     burstShots: 1
+    aimWhileFiring: 1
     spreadShots: 1
     degreePerShot: 0
     cost: 0
@@ -649,15 +597,15 @@ MonoBehaviour:
     upgradePaths: []
     barrelSprite: {fileID: 21300000, guid: f31ff9baa33a9434889841319e2a7dae, type: 3}
     towerSprite: {fileID: 21300000, guid: cdedf60acfc9f9148923f3d87fe5fe67, type: 3}
-    bullet: flame
+    bulletIdent: 19
     attackSpeed: 0.05
     rotationSpeed: 180
     accuracy: 45
+    aimThreshold: 30
     attackRange: 10
     chargeTime: 0
-    aimWhileFiring: 1
-    aimThreshold: 30
     burstShots: 1
+    aimWhileFiring: 1
     spreadShots: 3
     degreePerShot: 10
     cost: 0
@@ -667,15 +615,15 @@ MonoBehaviour:
     - Toxic Spray
     barrelSprite: {fileID: 21300000, guid: f31ff9baa33a9434889841319e2a7dae, type: 3}
     towerSprite: {fileID: 21300000, guid: cdedf60acfc9f9148923f3d87fe5fe67, type: 3}
-    bullet: gflame
+    bulletIdent: 20
     attackSpeed: 0.05
     rotationSpeed: 180
     accuracy: 30
+    aimThreshold: 30
     attackRange: 10
     chargeTime: 0
-    aimWhileFiring: 1
-    aimThreshold: 30
     burstShots: 1
+    aimWhileFiring: 1
     spreadShots: 1
     degreePerShot: 0
     cost: 0
@@ -684,15 +632,15 @@ MonoBehaviour:
     upgradePaths: []
     barrelSprite: {fileID: 21300000, guid: f31ff9baa33a9434889841319e2a7dae, type: 3}
     towerSprite: {fileID: 21300000, guid: cdedf60acfc9f9148923f3d87fe5fe67, type: 3}
-    bullet: gflame
+    bulletIdent: 20
     attackSpeed: 0.05
     rotationSpeed: 180
     accuracy: 45
+    aimThreshold: 30
     attackRange: 9
     chargeTime: 0
-    aimWhileFiring: 1
-    aimThreshold: 30
     burstShots: 1
+    aimWhileFiring: 1
     spreadShots: 3
     degreePerShot: 10
     cost: 0
@@ -702,15 +650,15 @@ MonoBehaviour:
     - Cold Flame
     barrelSprite: {fileID: 21300000, guid: f31ff9baa33a9434889841319e2a7dae, type: 3}
     towerSprite: {fileID: 21300000, guid: cdedf60acfc9f9148923f3d87fe5fe67, type: 3}
-    bullet: cflame
+    bulletIdent: 21
     attackSpeed: 0.05
     rotationSpeed: 180
     accuracy: 30
+    aimThreshold: 30
     attackRange: 10
     chargeTime: 0
-    aimWhileFiring: 1
-    aimThreshold: 30
     burstShots: 1
+    aimWhileFiring: 1
     spreadShots: 1
     degreePerShot: 0
     cost: 0
@@ -719,15 +667,15 @@ MonoBehaviour:
     upgradePaths: []
     barrelSprite: {fileID: 21300000, guid: f31ff9baa33a9434889841319e2a7dae, type: 3}
     towerSprite: {fileID: 21300000, guid: cdedf60acfc9f9148923f3d87fe5fe67, type: 3}
-    bullet: cflame
+    bulletIdent: 21
     attackSpeed: 0.05
     rotationSpeed: 180
     accuracy: 45
+    aimThreshold: 30
     attackRange: 10
     chargeTime: 0
-    aimWhileFiring: 1
-    aimThreshold: 30
     burstShots: 1
+    aimWhileFiring: 1
     spreadShots: 3
     degreePerShot: 5
     cost: 0
@@ -739,15 +687,15 @@ MonoBehaviour:
     - Spinner
     barrelSprite: {fileID: 21300000, guid: f31ff9baa33a9434889841319e2a7dae, type: 3}
     towerSprite: {fileID: 21300000, guid: cdedf60acfc9f9148923f3d87fe5fe67, type: 3}
-    bullet: sword
+    bulletIdent: 22
     attackSpeed: 1
     rotationSpeed: 0
     accuracy: 0
+    aimThreshold: 30
     attackRange: 8
     chargeTime: 0
-    aimWhileFiring: 1
-    aimThreshold: 30
     burstShots: 1
+    aimWhileFiring: 1
     spreadShots: 1
     degreePerShot: 0
     cost: 0
@@ -757,15 +705,15 @@ MonoBehaviour:
     - Spectral Cuts
     barrelSprite: {fileID: 21300000, guid: f31ff9baa33a9434889841319e2a7dae, type: 3}
     towerSprite: {fileID: 21300000, guid: cdedf60acfc9f9148923f3d87fe5fe67, type: 3}
-    bullet: bullet
+    bulletIdent: 0
     attackSpeed: 0.2
     rotationSpeed: 0
     accuracy: 3
+    aimThreshold: 30
     attackRange: 10
     chargeTime: 0
-    aimWhileFiring: 1
-    aimThreshold: 30
     burstShots: 1
+    aimWhileFiring: 1
     spreadShots: 1
     degreePerShot: 0
     cost: 0
@@ -774,15 +722,15 @@ MonoBehaviour:
     upgradePaths: []
     barrelSprite: {fileID: 21300000, guid: f31ff9baa33a9434889841319e2a7dae, type: 3}
     towerSprite: {fileID: 21300000, guid: cdedf60acfc9f9148923f3d87fe5fe67, type: 3}
-    bullet: bullet
+    bulletIdent: 0
     attackSpeed: 0.15
     rotationSpeed: 0
     accuracy: 1
+    aimThreshold: 30
     attackRange: 15
     chargeTime: 0
-    aimWhileFiring: 1
-    aimThreshold: 30
     burstShots: 1
+    aimWhileFiring: 1
     spreadShots: 1
     degreePerShot: 0
     cost: 0
@@ -792,15 +740,15 @@ MonoBehaviour:
     - Night Slaher
     barrelSprite: {fileID: 21300000, guid: f31ff9baa33a9434889841319e2a7dae, type: 3}
     towerSprite: {fileID: 21300000, guid: cdedf60acfc9f9148923f3d87fe5fe67, type: 3}
-    bullet: bullet
+    bulletIdent: 0
     attackSpeed: 0.05
     rotationSpeed: 0
     accuracy: 5
+    aimThreshold: 30
     attackRange: 5
     chargeTime: 0
-    aimWhileFiring: 1
-    aimThreshold: 30
     burstShots: 1
+    aimWhileFiring: 1
     spreadShots: 1
     degreePerShot: 0
     cost: 0
@@ -809,15 +757,15 @@ MonoBehaviour:
     upgradePaths: []
     barrelSprite: {fileID: 21300000, guid: f31ff9baa33a9434889841319e2a7dae, type: 3}
     towerSprite: {fileID: 21300000, guid: cdedf60acfc9f9148923f3d87fe5fe67, type: 3}
-    bullet: bullet
+    bulletIdent: 0
     attackSpeed: 0.05
     rotationSpeed: 0
     accuracy: 5
+    aimThreshold: 30
     attackRange: 8
     chargeTime: 0
-    aimWhileFiring: 1
-    aimThreshold: 30
     burstShots: 1
+    aimWhileFiring: 1
     spreadShots: 1
     degreePerShot: 0
     cost: 0
@@ -827,15 +775,15 @@ MonoBehaviour:
     - Sword Storm
     barrelSprite: {fileID: 21300000, guid: f31ff9baa33a9434889841319e2a7dae, type: 3}
     towerSprite: {fileID: 21300000, guid: cdedf60acfc9f9148923f3d87fe5fe67, type: 3}
-    bullet: bullet
+    bulletIdent: 0
     attackSpeed: 0.1
     rotationSpeed: 0
     accuracy: 15
+    aimThreshold: 30
     attackRange: 5
     chargeTime: 0.3
-    aimWhileFiring: 1
-    aimThreshold: 30
     burstShots: 2
+    aimWhileFiring: 1
     spreadShots: 3
     degreePerShot: 45
     cost: 0
@@ -844,15 +792,15 @@ MonoBehaviour:
     upgradePaths: []
     barrelSprite: {fileID: 21300000, guid: f31ff9baa33a9434889841319e2a7dae, type: 3}
     towerSprite: {fileID: 21300000, guid: cdedf60acfc9f9148923f3d87fe5fe67, type: 3}
-    bullet: bullet
+    bulletIdent: 0
     attackSpeed: 0.05
     rotationSpeed: 0
     accuracy: 30
+    aimThreshold: 30
     attackRange: 5
     chargeTime: 0.3
-    aimWhileFiring: 1
-    aimThreshold: 30
     burstShots: 4
+    aimWhileFiring: 1
     spreadShots: 5
     degreePerShot: 45
     cost: 0
@@ -864,15 +812,15 @@ MonoBehaviour:
     - Binoculars
     barrelSprite: {fileID: 21300000, guid: f31ff9baa33a9434889841319e2a7dae, type: 3}
     towerSprite: {fileID: 21300000, guid: cdedf60acfc9f9148923f3d87fe5fe67, type: 3}
-    bullet: bullet
+    bulletIdent: 0
     attackSpeed: 0.4
     rotationSpeed: 0
     accuracy: 3
+    aimThreshold: 30
     attackRange: 12
     chargeTime: 0
-    aimWhileFiring: 1
-    aimThreshold: 30
     burstShots: 1
+    aimWhileFiring: 1
     spreadShots: 1
     degreePerShot: 0
     cost: 0
@@ -884,15 +832,15 @@ MonoBehaviour:
     - Thunder
     barrelSprite: {fileID: 21300000, guid: f31ff9baa33a9434889841319e2a7dae, type: 3}
     towerSprite: {fileID: 21300000, guid: cdedf60acfc9f9148923f3d87fe5fe67, type: 3}
-    bullet: bullet
+    bulletIdent: 0
     attackSpeed: 0.4
     rotationSpeed: 0
     accuracy: 3
+    aimThreshold: 30
     attackRange: 15
     chargeTime: 0
-    aimWhileFiring: 1
-    aimThreshold: 30
     burstShots: 1
+    aimWhileFiring: 1
     spreadShots: 1
     degreePerShot: 0
     cost: 0
@@ -902,15 +850,15 @@ MonoBehaviour:
     - Hurricane
     barrelSprite: {fileID: 21300000, guid: f31ff9baa33a9434889841319e2a7dae, type: 3}
     towerSprite: {fileID: 21300000, guid: cdedf60acfc9f9148923f3d87fe5fe67, type: 3}
-    bullet: bullet
+    bulletIdent: 0
     attackSpeed: 0.1
     rotationSpeed: 0
     accuracy: 15
+    aimThreshold: 30
     attackRange: 20
     chargeTime: 0.5
-    aimWhileFiring: 1
-    aimThreshold: 30
     burstShots: 3
+    aimWhileFiring: 1
     spreadShots: 1
     degreePerShot: 0
     cost: 0
@@ -919,15 +867,15 @@ MonoBehaviour:
     upgradePaths: []
     barrelSprite: {fileID: 21300000, guid: f31ff9baa33a9434889841319e2a7dae, type: 3}
     towerSprite: {fileID: 21300000, guid: cdedf60acfc9f9148923f3d87fe5fe67, type: 3}
-    bullet: bullet
+    bulletIdent: 0
     attackSpeed: 0.1
     rotationSpeed: 0
     accuracy: 30
+    aimThreshold: 30
     attackRange: 60
     chargeTime: 1
-    aimWhileFiring: 1
-    aimThreshold: 30
     burstShots: 5
+    aimWhileFiring: 1
     spreadShots: 2
     degreePerShot: 15
     cost: 0
@@ -937,15 +885,15 @@ MonoBehaviour:
     - Maelstrom
     barrelSprite: {fileID: 21300000, guid: f31ff9baa33a9434889841319e2a7dae, type: 3}
     towerSprite: {fileID: 21300000, guid: cdedf60acfc9f9148923f3d87fe5fe67, type: 3}
-    bullet: bullet
+    bulletIdent: 0
     attackSpeed: 0.4
     rotationSpeed: 0
     accuracy: 3
+    aimThreshold: 30
     attackRange: 25
     chargeTime: 0
-    aimWhileFiring: 1
-    aimThreshold: 30
     burstShots: 1
+    aimWhileFiring: 1
     spreadShots: 1
     degreePerShot: 0
     cost: 0
@@ -954,15 +902,15 @@ MonoBehaviour:
     upgradePaths: []
     barrelSprite: {fileID: 21300000, guid: f31ff9baa33a9434889841319e2a7dae, type: 3}
     towerSprite: {fileID: 21300000, guid: cdedf60acfc9f9148923f3d87fe5fe67, type: 3}
-    bullet: bullet
+    bulletIdent: 0
     attackSpeed: 0.25
     rotationSpeed: 0
     accuracy: 15
+    aimThreshold: 30
     attackRange: 60
     chargeTime: 0
-    aimWhileFiring: 1
-    aimThreshold: 30
     burstShots: 1
+    aimWhileFiring: 1
     spreadShots: 3
     degreePerShot: 15
     cost: 0
@@ -972,15 +920,15 @@ MonoBehaviour:
     - Thunder Storm
     barrelSprite: {fileID: 21300000, guid: f31ff9baa33a9434889841319e2a7dae, type: 3}
     towerSprite: {fileID: 21300000, guid: cdedf60acfc9f9148923f3d87fe5fe67, type: 3}
-    bullet: bullet
+    bulletIdent: 0
     attackSpeed: 0.4
     rotationSpeed: 0
     accuracy: 3
+    aimThreshold: 30
     attackRange: 15
     chargeTime: 0
-    aimWhileFiring: 1
-    aimThreshold: 30
     burstShots: 1
+    aimWhileFiring: 1
     spreadShots: 1
     degreePerShot: 0
     cost: 0
@@ -989,15 +937,15 @@ MonoBehaviour:
     upgradePaths: []
     barrelSprite: {fileID: 21300000, guid: f31ff9baa33a9434889841319e2a7dae, type: 3}
     towerSprite: {fileID: 21300000, guid: cdedf60acfc9f9148923f3d87fe5fe67, type: 3}
-    bullet: bullet
+    bulletIdent: 0
     attackSpeed: 0.25
     rotationSpeed: 0
     accuracy: 3
+    aimThreshold: 30
     attackRange: 60
     chargeTime: 0
-    aimWhileFiring: 1
-    aimThreshold: 30
     burstShots: 1
+    aimWhileFiring: 1
     spreadShots: 1
     degreePerShot: 0
     cost: 0
@@ -1009,15 +957,15 @@ MonoBehaviour:
     - Ice Shard
     barrelSprite: {fileID: 21300000, guid: f31ff9baa33a9434889841319e2a7dae, type: 3}
     towerSprite: {fileID: 21300000, guid: cdedf60acfc9f9148923f3d87fe5fe67, type: 3}
-    bullet: bullet
+    bulletIdent: 0
     attackSpeed: 0.4
     rotationSpeed: 0
     accuracy: 3
+    aimThreshold: 30
     attackRange: 12
     chargeTime: 0
-    aimWhileFiring: 1
-    aimThreshold: 30
     burstShots: 1
+    aimWhileFiring: 1
     spreadShots: 1
     degreePerShot: 0
     cost: 0
@@ -1027,15 +975,15 @@ MonoBehaviour:
     - Hydro Pump
     barrelSprite: {fileID: 21300000, guid: f31ff9baa33a9434889841319e2a7dae, type: 3}
     towerSprite: {fileID: 21300000, guid: cdedf60acfc9f9148923f3d87fe5fe67, type: 3}
-    bullet: bullet
+    bulletIdent: 0
     attackSpeed: 0.015
     rotationSpeed: 0
     accuracy: 5
+    aimThreshold: 30
     attackRange: 14
     chargeTime: 0.5
-    aimWhileFiring: 1
-    aimThreshold: 30
     burstShots: 8
+    aimWhileFiring: 1
     spreadShots: 1
     degreePerShot: 0
     cost: 0
@@ -1044,15 +992,15 @@ MonoBehaviour:
     upgradePaths: []
     barrelSprite: {fileID: 21300000, guid: f31ff9baa33a9434889841319e2a7dae, type: 3}
     towerSprite: {fileID: 21300000, guid: cdedf60acfc9f9148923f3d87fe5fe67, type: 3}
-    bullet: bullet
+    bulletIdent: 0
     attackSpeed: 0.015
     rotationSpeed: 0
     accuracy: 5
+    aimThreshold: 30
     attackRange: 15
     chargeTime: 0.5
-    aimWhileFiring: 1
-    aimThreshold: 30
     burstShots: 15
+    aimWhileFiring: 1
     spreadShots: 3
     degreePerShot: 5
     cost: 0
@@ -1062,15 +1010,15 @@ MonoBehaviour:
     - Steam Eruption
     barrelSprite: {fileID: 21300000, guid: f31ff9baa33a9434889841319e2a7dae, type: 3}
     towerSprite: {fileID: 21300000, guid: cdedf60acfc9f9148923f3d87fe5fe67, type: 3}
-    bullet: bullet
+    bulletIdent: 0
     attackSpeed: 0.4
     rotationSpeed: 0
     accuracy: 3
+    aimThreshold: 30
     attackRange: 12
     chargeTime: 0
-    aimWhileFiring: 1
-    aimThreshold: 30
     burstShots: 1
+    aimWhileFiring: 1
     spreadShots: 1
     degreePerShot: 0
     cost: 0
@@ -1079,15 +1027,15 @@ MonoBehaviour:
     upgradePaths: []
     barrelSprite: {fileID: 21300000, guid: f31ff9baa33a9434889841319e2a7dae, type: 3}
     towerSprite: {fileID: 21300000, guid: cdedf60acfc9f9148923f3d87fe5fe67, type: 3}
-    bullet: bullet
+    bulletIdent: 0
     attackSpeed: 0.05
     rotationSpeed: 0
     accuracy: 3
+    aimThreshold: 30
     attackRange: 13
     chargeTime: 0.15
-    aimWhileFiring: 1
-    aimThreshold: 30
     burstShots: 2
+    aimWhileFiring: 1
     spreadShots: 1
     degreePerShot: 0
     cost: 0
@@ -1097,15 +1045,15 @@ MonoBehaviour:
     - Icicle Spear
     barrelSprite: {fileID: 21300000, guid: f31ff9baa33a9434889841319e2a7dae, type: 3}
     towerSprite: {fileID: 21300000, guid: cdedf60acfc9f9148923f3d87fe5fe67, type: 3}
-    bullet: bullet
+    bulletIdent: 0
     attackSpeed: 0.4
     rotationSpeed: 0
     accuracy: 3
+    aimThreshold: 30
     attackRange: 12
     chargeTime: 0
-    aimWhileFiring: 1
-    aimThreshold: 30
     burstShots: 1
+    aimWhileFiring: 1
     spreadShots: 1
     degreePerShot: 0
     cost: 0
@@ -1114,15 +1062,15 @@ MonoBehaviour:
     upgradePaths: []
     barrelSprite: {fileID: 21300000, guid: f31ff9baa33a9434889841319e2a7dae, type: 3}
     towerSprite: {fileID: 21300000, guid: cdedf60acfc9f9148923f3d87fe5fe67, type: 3}
-    bullet: bullet
+    bulletIdent: 0
     attackSpeed: 0.1
     rotationSpeed: 0
     accuracy: 30
+    aimThreshold: 30
     attackRange: 12
     chargeTime: 0.5
-    aimWhileFiring: 1
-    aimThreshold: 30
     burstShots: 3
+    aimWhileFiring: 1
     spreadShots: 3
     degreePerShot: 15
     cost: 0
@@ -1134,15 +1082,15 @@ MonoBehaviour:
     - Sound
     barrelSprite: {fileID: 21300000, guid: f31ff9baa33a9434889841319e2a7dae, type: 3}
     towerSprite: {fileID: 21300000, guid: cdedf60acfc9f9148923f3d87fe5fe67, type: 3}
-    bullet: bullet
+    bulletIdent: 0
     attackSpeed: 0.02
     rotationSpeed: 0
     accuracy: 1
+    aimThreshold: 30
     attackRange: 15
     chargeTime: 0.2
-    aimWhileFiring: 1
-    aimThreshold: 30
     burstShots: 3
+    aimWhileFiring: 1
     spreadShots: 1
     degreePerShot: 0
     cost: 0
@@ -1152,15 +1100,15 @@ MonoBehaviour:
     - Nature' Wrath
     barrelSprite: {fileID: 21300000, guid: f31ff9baa33a9434889841319e2a7dae, type: 3}
     towerSprite: {fileID: 21300000, guid: cdedf60acfc9f9148923f3d87fe5fe67, type: 3}
-    bullet: bullet
+    bulletIdent: 0
     attackSpeed: 0.02
     rotationSpeed: 0
     accuracy: 50
+    aimThreshold: 30
     attackRange: 20
     chargeTime: 0.2
-    aimWhileFiring: 1
-    aimThreshold: 30
     burstShots: 3
+    aimWhileFiring: 1
     spreadShots: 1
     degreePerShot: 0
     cost: 0
@@ -1169,15 +1117,15 @@ MonoBehaviour:
     upgradePaths: []
     barrelSprite: {fileID: 21300000, guid: f31ff9baa33a9434889841319e2a7dae, type: 3}
     towerSprite: {fileID: 21300000, guid: cdedf60acfc9f9148923f3d87fe5fe67, type: 3}
-    bullet: bullet
+    bulletIdent: 0
     attackSpeed: 0.02
     rotationSpeed: 0
     accuracy: 50
+    aimThreshold: 30
     attackRange: 25
     chargeTime: 0.2
-    aimWhileFiring: 1
-    aimThreshold: 30
     burstShots: 5
+    aimWhileFiring: 1
     spreadShots: 1
     degreePerShot: 0
     cost: 0
@@ -1187,15 +1135,15 @@ MonoBehaviour:
     - Lazer Pointer
     barrelSprite: {fileID: 21300000, guid: f31ff9baa33a9434889841319e2a7dae, type: 3}
     towerSprite: {fileID: 21300000, guid: cdedf60acfc9f9148923f3d87fe5fe67, type: 3}
-    bullet: bullet
+    bulletIdent: 0
     attackSpeed: 0.02
     rotationSpeed: 0
     accuracy: 5
+    aimThreshold: 30
     attackRange: 17
     chargeTime: 0.2
-    aimWhileFiring: 1
-    aimThreshold: 30
     burstShots: 4
+    aimWhileFiring: 1
     spreadShots: 3
     degreePerShot: 5
     cost: 0
@@ -1205,15 +1153,15 @@ MonoBehaviour:
     - Lazer Pointer
     barrelSprite: {fileID: 21300000, guid: f31ff9baa33a9434889841319e2a7dae, type: 3}
     towerSprite: {fileID: 21300000, guid: cdedf60acfc9f9148923f3d87fe5fe67, type: 3}
-    bullet: bullet
+    bulletIdent: 0
     attackSpeed: 0.02
     rotationSpeed: 0
     accuracy: 10
+    aimThreshold: 30
     attackRange: 20
     chargeTime: 0.18
-    aimWhileFiring: 1
-    aimThreshold: 30
     burstShots: 6
+    aimWhileFiring: 1
     spreadShots: 3
     degreePerShot: 5
     cost: 0
@@ -1223,15 +1171,15 @@ MonoBehaviour:
     - Hypersonic
     barrelSprite: {fileID: 21300000, guid: f31ff9baa33a9434889841319e2a7dae, type: 3}
     towerSprite: {fileID: 21300000, guid: cdedf60acfc9f9148923f3d87fe5fe67, type: 3}
-    bullet: bullet
+    bulletIdent: 0
     attackSpeed: 0.02
     rotationSpeed: 0
     accuracy: 3
+    aimThreshold: 30
     attackRange: 25
     chargeTime: 0.2
-    aimWhileFiring: 1
-    aimThreshold: 30
     burstShots: 4
+    aimWhileFiring: 1
     spreadShots: 3
     degreePerShot: 10
     cost: 0
@@ -1240,15 +1188,32 @@ MonoBehaviour:
     upgradePaths: []
     barrelSprite: {fileID: 21300000, guid: f31ff9baa33a9434889841319e2a7dae, type: 3}
     towerSprite: {fileID: 21300000, guid: cdedf60acfc9f9148923f3d87fe5fe67, type: 3}
-    bullet: bullet
+    bulletIdent: 0
     attackSpeed: 0.02
     rotationSpeed: 0
     accuracy: 5
+    aimThreshold: 30
     attackRange: 30
     chargeTime: 0.17
-    aimWhileFiring: 1
-    aimThreshold: 30
     burstShots: 5
+    aimWhileFiring: 1
     spreadShots: 5
     degreePerShot: 15
+    cost: 0
+  - name: New Beam
+    description: Strong sound
+    upgradePaths: []
+    barrelSprite: {fileID: 21300000, guid: f31ff9baa33a9434889841319e2a7dae, type: 3}
+    towerSprite: {fileID: 21300000, guid: cdedf60acfc9f9148923f3d87fe5fe67, type: 3}
+    bulletIdent: 23
+    attackSpeed: 1
+    rotationSpeed: 0
+    accuracy: 0
+    aimThreshold: 30
+    attackRange: 70
+    chargeTime: 1
+    burstShots: 1
+    aimWhileFiring: 1
+    spreadShots: 1
+    degreePerShot: 0
     cost: 0

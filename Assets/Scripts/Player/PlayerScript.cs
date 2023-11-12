@@ -20,6 +20,8 @@ public class PlayerScript : MonoBehaviour
                                                             // Move attached tower to this pos
     private readonly float maxDistanceFromLastPos = 0.1f;   // How far until lastMousePos is updated
 
+    private const GameEntity towerIdent = GameEntity.Tower;
+
     private void Start()
     {
         // TODO: make better way to asign player stats
@@ -45,7 +47,7 @@ public class PlayerScript : MonoBehaviour
     /// </summary>
     private void NoTurretAttached()
     {
-        if (!Input.GetMouseButtonDown(0) || UpgradePanel.Instance.IsMouseOver)
+        if (!Input.GetMouseButtonDown(0))
         {
             return;
         }
@@ -55,25 +57,52 @@ public class PlayerScript : MonoBehaviour
             Physics2D.OverlapCircleAll(mousePosition, checkDistance, towerLayer);
 
         // If colldiers were found in range, activate upgrade panel for closest tower
-        if (collidersInRange.Length > 0)
+        if (collidersInRange.Length > 0 && !UpgradePanel.Instance.IsMouseOver)
         {
-            Collider2D shortestDist = collidersInRange[0];
-            for (int i = 0; i < collidersInRange.Length; i++)
+            // Get the closest collider to mouse
+            Collider2D shortestDist = GetClosestColliderToMouse(collidersInRange);
+
+            // if a shortest distance was found, diplay upgrades and return
+            if (shortestDist != null)
             {
-                if (Vector2.Distance(mousePosition, collidersInRange[i].transform.position)
-                    < Vector2.Distance(mousePosition, shortestDist.transform.position))
-                {
-                    shortestDist = collidersInRange[i];
-                }
+                UpgradePanel.Instance.DisplayUpgrades(shortestDist.GetComponent<Tower>());
+                return;
             }
-            UpgradePanel.Instance.DisplayUpgrades(shortestDist.GetComponent<Tower>());
         }
-        // Otherwise hide upgrades
-        else
-        {
-            UpgradePanel.Instance.HideUpgrades();
-        }
+
+        UpgradePanel.Instance.HideUpgrades();    
     }
+    /// <summary>
+    /// Find the closest collider to mouse position
+    /// </summary>
+    /// <param name="collidersInRange"></param>
+    /// <returns></returns>
+    private Collider2D GetClosestColliderToMouse(Collider2D[] collidersInRange)
+    {
+        Collider2D shortestDist = null;
+        foreach (Collider2D collider in collidersInRange)
+        {
+            // Confirm that the collider is not the range indicator of a tower
+            if (collider.isTrigger)
+                continue;
+            // Give shortest distance a base value
+            else if (shortestDist == null)
+            {
+                shortestDist = collider;
+                continue;
+            }
+
+            // Compare distances
+            if (Vector2.Distance(mousePosition, collider.transform.position)
+                < Vector2.Distance(mousePosition, shortestDist.transform.position))
+            {
+                shortestDist = collider;
+            }
+        }
+
+        return shortestDist;
+    }
+
     /// <summary>
     /// Handles turret placement
     /// </summary>
@@ -105,7 +134,7 @@ public class PlayerScript : MonoBehaviour
     public void StartPlacingTower()
     {
         if (isAttached) return;
-        towerAttached = ObjectPooler.Instance.GetPooledObject("tower").GetComponent<Tower>();
+        towerAttached = ObjectPooler.Instance.GetPooledObject(towerIdent).GetComponent<Tower>();
         isAttached = true;
         UpgradePanel.Instance.HideUpgrades();
     }

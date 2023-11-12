@@ -1,20 +1,13 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public abstract class BulletProperties : MonoBehaviour
 {
-    public StatusElementClass[] StatusElementOnHit;
-    public Vector3 StartingSize { get; set; }
-    private void Start()
-    {
-       StartingSize = transform.localScale;
-    }
+    // References
+    [SerializeField] private TransitionOverTimeEffects scaler;
     public virtual void OnBulletSpawn()
-    { 
-        transform.localScale = StartingSize * 0.65f;
-        StartCoroutine(ScaleToNormal());
+    {
+        if (scaler)
+            scaler.StartTransition();
     }
     public virtual void OnBulletDespawn()
     { return; }
@@ -22,13 +15,4 @@ public abstract class BulletProperties : MonoBehaviour
     { return; }
     public virtual void OnBulletFixedUpdate() 
     { return; }
-
-    IEnumerator ScaleToNormal()
-    {
-        while (transform.localScale.magnitude < StartingSize.magnitude) 
-        {
-            transform.localScale *= 1.1f;
-            yield return new WaitForSecondsRealtime(0.01f);
-        }
-    }
 }

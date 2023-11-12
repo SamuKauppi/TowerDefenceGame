@@ -5,9 +5,9 @@ public class UpgradeButton : MonoBehaviour
 {
     [SerializeField] private TMP_Text buttonText;
     private Tower targetToUpgrade;
-    private string upgradeType;
+    private TowerUpgrade upgradeType;
 
-    public void DefineUpgrade(string upgrade, Tower t)
+    public void DefineUpgrade(TowerUpgrade upgrade, Tower t)
     {
         if(targetToUpgrade != null)
             targetToUpgrade.TowerBaseRend.color = Color.white;

@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class EnemyManager : MonoBehaviour
 {
-    [SerializeField] private string[] enemyTypes;
+    [SerializeField] private GameEntity[] enemyTypes;
     private float time = 0f;
     [SerializeField] private float spawnTimer = 0.5f;
     [SerializeField] private bool reduceSpawnTime;

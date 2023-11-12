@@ -179,7 +179,7 @@ public class Enemy : MonoBehaviour, IFixedUpdate, IUpdate
 
         Bullet b = collision.GetComponent<Bullet>();
 
-        foreach (StatusElementClass status in b.GetBulletStatusElements())
+        foreach (StatusElementClass status in b.StatusElements)
         {
             CreateStatus(status);
         }

@@ -19,19 +19,19 @@ public class Tower : MonoBehaviour, IUpdate
     [SerializeField] private Transform barrel;                      // Barrel of the turret (pointed towards enemies)
 
     // Properties
-    private bool IsFunctional { get; set; }                     // Is the tower functional (has to be disabled while placing down)
-    public Vector3 TowerSize { get; private set; }              // Size of the turret
-    public TowerProperties CurrentUpgrade { get; private set; } // Current upgrade of the turret 
-    public SpriteRenderer TowerBaseRend { get; private set; }   // Public renderer of the base
-    public SpriteRenderer TowerBarrelRend { get; private set; } // Public renderer of the barrel
+    private bool IsFunctional { get; set; }                                     // Is the tower functional (has to be disabled while placing down)
+    public Vector3 TowerSize { get; private set; }                              // Size of the turret
+    public TowerProperties CurrentUpgrade { get; private set; }                 // Current upgrade of the turret 
+    public SpriteRenderer TowerBaseRend { get { return towerSpriterend; } }     // Public renderer of the base
+    public SpriteRenderer TowerBarrelRend { get { return barrelSpriterend; } }  // Public renderer of the barrel
 
-    // Firing properties
-    public float rotationSpeed;         // How fast does the turret rotate
-    private int accuracyAngle;          // How accurate turret is (max rotation offset after finding target)
-
-    // Firing variables
-    private bool isFiring;              // Is the tower firing
+    // Aiming
     private bool isAimingEnemy;         // Is the tower aiming towards an enemy
+    private int accuracyAngle;          // How accurate the next shot will be
+                                        // (randomized after every shot based on CurrenUpgrades.accuracyAngle)
+
+    // Firing
+    private bool isFiring;              // Is the tower firing
     private float attackTimer;          // Timer for firing speed
     private float chargeTimer;          // Timer for firing delay
     private int numberOfBursts;         // Counter for how many bursts per charge
@@ -45,9 +45,6 @@ public class Tower : MonoBehaviour, IUpdate
     /// </summary>
     private void Start()
     {
-        // Save renderers to public variables
-        TowerBaseRend = towerSpriterend;
-        TowerBarrelRend = barrelSpriterend;
 
         // Get the size of the tower
         Vector3 spriteRendSize = towerSpriterend.bounds.size;
@@ -57,12 +54,12 @@ public class Tower : MonoBehaviour, IUpdate
         endpoint = Pathfinding.Instance.GetEndPoint();
 
         // Apply standard upgrade
-        UpgradeTower("Normal");
+        UpgradeTower(TowerUpgrade.Normal);
 
         // Add this to updatable objects
         GameObjectUpdateManager.Instance.AddObject(this);
     }
-    
+
     /// <summary>
     /// Update gameobject
     /// From interface
@@ -71,7 +68,7 @@ public class Tower : MonoBehaviour, IUpdate
     {
         if (!IsFunctional)
             return;
-        
+
         // Update chargetime only if its used
         if (CurrentUpgrade.chargeTime > 0)
         {
@@ -81,7 +78,7 @@ public class Tower : MonoBehaviour, IUpdate
 
         // Handle aiming and firing
         AimAndFireAtClosestEnemy();
-        
+
     }
     /// <summary>
     /// First aims then starts firing at target closest to endpoint
@@ -91,20 +88,21 @@ public class Tower : MonoBehaviour, IUpdate
         // Aim if a target enters in range
         if (targets.Count > 0)
             AimAtClosest();
-        // If no targets are found then reset áiming towards a target
+        // If no targets are found then tower is no longer aiming at an enemy
         else
             isAimingEnemy = false;
 
 
         // Fire if:
         // 1. Firing rate allows it
-        // 2. Tower is not charging next shot
-        // 3. The barrel points towards an enemy, or isFiring is true
+        // 2. Tower is not charging next burst of shots
+        // 3. Tower is aiming at a target or is currently firing a burst while aimWhileFiring is false
+        // (aimWhileFiring locks rotation while firing a burst)
         if (attackTimer >= CurrentUpgrade.attackSpeed &&
             chargeTimer >= CurrentUpgrade.chargeTime &&
-            (isAimingEnemy || isFiring))
+            (isAimingEnemy || isFiring && !CurrentUpgrade.aimWhileFiring))
         {
-            FireABullet();
+            FireBullet();
         }
     }
     /// <summary>
@@ -113,11 +111,11 @@ public class Tower : MonoBehaviour, IUpdate
     private void AimAtClosest()
     {
         // Get the closest target from the list of enemies in range
-        Vector3 closest = ClostestTargetToEnd();
+        Vector3 closest = GetClosestTargetToEnd();
 
         // Check if tower is pointing towards enemy
         isAimingEnemy = IsBarrelPointingTowardsEnemy(closest);
-        
+
         // If the tower is locked while firing, don't aim
         if (!IsAllowedToAim())
         {
@@ -125,21 +123,28 @@ public class Tower : MonoBehaviour, IUpdate
         }
 
         // Smooth the aiming if rotation speed is > 0
-        if (rotationSpeed > 0)
+        if (CurrentUpgrade.rotationSpeed > 0)
         {
+            // Get the true direction form the barrel pos to closest
             Vector3 direction = closest - barrel.position;
-            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90f + accuracyAngle;
+            // Get the angle
+            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90f;
 
-            Quaternion desiredRotation = Quaternion.Euler(0, 0, angle);
-            Quaternion newRotation = Quaternion.RotateTowards(barrel.rotation, desiredRotation, rotationSpeed * Time.deltaTime);
+            // Rotate towards the angle
+            Quaternion newRotation = Quaternion.RotateTowards(barrel.rotation,
+                Quaternion.Euler(0, 0, angle),
+                CurrentUpgrade.rotationSpeed * Time.deltaTime);
+
+            // Set the new rotation
             barrel.rotation = newRotation;
         }
+        // Otherwise set the rotation to look at target
         else
         {
             barrel.up = closest - barrel.position;
-            barrel.Rotate(0, 0, accuracyAngle);
         }
     }
+
     /// <summary>
     /// Checks if the barrel is pointing at position
     /// </summary>
@@ -147,13 +152,21 @@ public class Tower : MonoBehaviour, IUpdate
     /// <returns></returns>
     private bool IsBarrelPointingTowardsEnemy(Vector3 pos)
     {
-        return Vector3.Dot(barrel.up.normalized, (pos - barrel.position).normalized) 
+        return Vector3.Dot(barrel.up.normalized, (pos - barrel.position).normalized)
             >= Mathf.Cos(Mathf.Deg2Rad * CurrentUpgrade.aimThreshold);
     }
 
-
-    private Vector2 ClostestTargetToEnd()
+    /// <summary>
+    /// Returns the position of the closest enemy in range
+    /// </summary>
+    /// <returns></returns>
+    private Vector2 GetClosestTargetToEnd()
     {
+        targets = targets.Where(targets => targets.gameObject.activeInHierarchy).ToHashSet();
+        if (targets.Count <= 0)
+            return barrel.up;
+
+        // Take the first avaliable targets position
         Vector2 closest = targets.First().position;
 
         foreach (Transform target in targets)
@@ -167,41 +180,90 @@ public class Tower : MonoBehaviour, IUpdate
         return closest;
     }
 
-
-    private void FireABullet()
+    /// <summary>
+    /// Fires a bullet towards the direction of the barrel
+    /// </summary>
+    private void FireBullet()
     {
+        // Randomize accuracyAngle
+        accuracyAngle = Random.Range(-CurrentUpgrade.accuracy, CurrentUpgrade.accuracy + 1);
+        barrel.Rotate(0, 0, accuracyAngle);
+
         isFiring = true;
         int shotsFired = 0;
         int currentShotAngle = 0;
+
+        // While loop for shooting spread shots
         while (shotsFired < CurrentUpgrade.spreadShots)
         {
-            GameObject latestBulletShot = ObjectPooler.Instance.GetPooledObject(CurrentUpgrade.bullet);
-            latestBulletShot.transform.SetPositionAndRotation(barrel.position, barrel.rotation);
-            latestBulletShot.transform.Rotate(0, 0, currentShotAngle);
-            if (currentShotAngle > 0)
-            {
-                currentShotAngle *= -1;
-            }
-            else
+            SpawnABullet(currentShotAngle);
+
+            // Add rotation for next shot based on angle
+            if (currentShotAngle <= 0)
             {
                 currentShotAngle = math.abs(currentShotAngle) + CurrentUpgrade.degreePerShot;
+            }
+            // Swap sides for next shot
+            else
+            {
+                currentShotAngle *= -1;
             }
             shotsFired++;
         }
 
-        accuracyAngle = Random.Range(-CurrentUpgrade.accuracy, CurrentUpgrade.accuracy + 1);
-
+        // A bullet was fired. Reset attack timer and increase burst counter
         attackTimer = 0;
-
         numberOfBursts++;
+
+        // If all the bullets were fired from a burst:
+        // Reset variables
         if (numberOfBursts > CurrentUpgrade.burstShots)
         {
             chargeTimer = 0;
             numberOfBursts = 0;
             isFiring = false;
+            accuracyAngle = 0;
         }
     }
+    /// <summary>
+    /// Spawns a bullet and rotates by parameter
+    /// </summary>
+    /// <param name="currentShotAngle"></param>
+    private void SpawnABullet(int currentShotAngle)
+    {
+        // Get a pooled bullet object
+        GameObject latestBulletShot = ObjectPooler.Instance.GetPooledObject(CurrentUpgrade.bulletIdent);
+        // Align it with barrel
+        latestBulletShot.transform.SetPositionAndRotation(barrel.position, barrel.rotation);
+        // Rotate it equal to currentShotAngle
+        latestBulletShot.transform.Rotate(0, 0, currentShotAngle);
+        // Configure bullet properties
+        ConfigureBulletProperties(latestBulletShot);
+    }
+    /// <summary>
+    /// Configure properties for specific type of bullets
+    /// </summary>
+    /// <param name="bullet"></param>
+    private void ConfigureBulletProperties(GameObject bullet)
+    {
+        if (!bullet.TryGetComponent<BulletProperties>(out var properties))
+        {
+            return;
+        }
 
+        // Beam needs the barrel transform
+        if (properties is BulletBeam beam)
+        {
+            beam.SetTowerBarrel(barrel);
+        }
+        // Add more conditions for other configurations as needed
+    }
+
+    /// <summary>
+    /// Return if tower is allowed to aim
+    /// Ignored if aimWhileFiring is true
+    /// </summary>
+    /// <returns></returns>
     private bool IsAllowedToAim()
     {
         if (CurrentUpgrade.aimWhileFiring)
@@ -212,6 +274,10 @@ public class Tower : MonoBehaviour, IUpdate
         else
             return true;
     }
+    /// <summary>
+    /// To detect enemies entering range
+    /// </summary>
+    /// <param name="collision"></param>
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("enemy"))
@@ -219,7 +285,10 @@ public class Tower : MonoBehaviour, IUpdate
             targets.Add(collision.transform);
         }
     }
-
+    /// <summary>
+    /// To detect enemies leaving range
+    /// </summary>
+    /// <param name="collision"></param>
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.CompareTag("enemy"))
@@ -227,6 +296,11 @@ public class Tower : MonoBehaviour, IUpdate
             targets.Remove(collision.transform);
         }
     }
+
+    /// <summary>
+    /// Set this towers functionality
+    /// </summary>
+    /// <param name="value"></param>
     public void SetFunctional(bool value)
     {
         IsFunctional = value;
@@ -234,13 +308,16 @@ public class Tower : MonoBehaviour, IUpdate
         attackRangeCollider.enabled = value;
     }
 
-
-    public void UpgradeTower(string upgrade)
+    /// <summary>
+    /// Upgrade tower
+    /// Update upgrade and update relevant properties
+    /// </summary>
+    /// <param name="upgrade"></param>
+    public void UpgradeTower(TowerUpgrade upgrade)
     {
         CurrentUpgrade = TowerTypes.Instance.GetTowerProperties(upgrade);
         attackRangeCollider.radius = CurrentUpgrade.attackRange;
         TowerBarrelRend.sprite = CurrentUpgrade.barrelSprite;
         TowerBaseRend.sprite = CurrentUpgrade.towerSprite;
-        rotationSpeed = CurrentUpgrade.rotationSpeed;
     }
 }

@@ -80,94 +80,117 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectsToBePooled:
   - ident: tower
+    gameIdent: 0
     obj: {fileID: 5669326493566211029, guid: fbd6b4eba2c56db49aa85cf1bb954e25, type: 3}
     amount: 10
     parent: {fileID: 4343196528215575428}
   - ident: fastE
+    gameIdent: 1
     obj: {fileID: 874322408005280109, guid: bf536480109957349a9465dcff3299a0, type: 3}
     amount: 50
     parent: {fileID: 4343196527950363764}
   - ident: fatE
+    gameIdent: 2
     obj: {fileID: 874322408005280109, guid: aa04dcd65d154cf4bb55359cf7ac0734, type: 3}
     amount: 50
     parent: {fileID: 4343196527950363764}
   - ident: normalE
+    gameIdent: 3
     obj: {fileID: 6355185362051688843, guid: 8627abffb1a47104290e54fdc1b33a27, type: 3}
     amount: 50
     parent: {fileID: 4343196527950363764}
   - ident: bullet
+    gameIdent: 4
     obj: {fileID: 2477231569044453831, guid: c7f9a2e14c4e02d4ab3e82511d145d2c, type: 3}
     amount: 10
     parent: {fileID: 4343196529389596898}
   - ident: impact
+    gameIdent: 5
     obj: {fileID: 938123661205416765, guid: aa2538b215be01445a60c11008903c1b, type: 3}
     amount: 10
     parent: {fileID: 4343196529389596898}
   - ident: explosion
+    gameIdent: 6
     obj: {fileID: 3540091739760738816, guid: de1a163c4a0809142a971feb6f9c50ee, type: 3}
     amount: 10
     parent: {fileID: 4343196529389596898}
   - ident: bomb
+    gameIdent: 7
     obj: {fileID: 2377344280394233254, guid: f09f8941e6c25724984454493f5651c0, type: 3}
     amount: 10
     parent: {fileID: 4343196529389596898}
   - ident: bbomb
+    gameIdent: 8
     obj: {fileID: 8438981008746945418, guid: fc69760c097fd154d960541e379da22b, type: 3}
     amount: 10
     parent: {fileID: 4343196529389596898}
   - ident: bbbomb
+    gameIdent: 9
     obj: {fileID: 5435810596986229114, guid: ec9c4270159983b46a0c505957d4460b, type: 3}
     amount: 10
     parent: {fileID: 4343196529389596898}
   - ident: beam
+    gameIdent: 10
     obj: {fileID: 8020897677356372887, guid: ae24d2e576676cd408f37c2898880027, type: 3}
     amount: 10
     parent: {fileID: 4343196529389596898}
   - ident: icebeam
+    gameIdent: 11
     obj: {fileID: 5534491826709657619, guid: 2a2ea7664827c8d4092e5560db7d2b08, type: 3}
     amount: 10
     parent: {fileID: 4343196529389596898}
   - ident: hbeam
+    gameIdent: 12
     obj: {fileID: 6923693304240868170, guid: 34f61f6f8fd3a8f40b746402c45ebf6c, type: 3}
     amount: 10
     parent: {fileID: 4343196529389596898}
   - ident: lbeam
+    gameIdent: 13
     obj: {fileID: 3852453434603228870, guid: 08886638b891490498a54a2f9d3d769c, type: 3}
     amount: 10
     parent: {fileID: 4343196529389596898}
   - ident: boomerang
+    gameIdent: 14
     obj: {fileID: 7918461793772005949, guid: f130ee8d3b0ed4b4f991e09e81d38475, type: 3}
     amount: 10
     parent: {fileID: 4343196529389596898}
   - ident: rock
+    gameIdent: 15
     obj: {fileID: 7941478958021770476, guid: 93b018bd65ae2104893f6613cfe4c690, type: 3}
     amount: 10
     parent: {fileID: 4343196529389596898}
   - ident: gun
+    gameIdent: 16
     obj: {fileID: 334820565493981343, guid: 3612622c6eedfc64383d38134259a7c1, type: 3}
     amount: 10
     parent: {fileID: 4343196529389596898}
   - ident: sniper
+    gameIdent: 17
     obj: {fileID: 6333075138693619252, guid: 7b66caba0574bf1459c4beb96331af15, type: 3}
     amount: 10
     parent: {fileID: 4343196529389596898}
   - ident: ember
+    gameIdent: 18
     obj: {fileID: 3452514199856852640, guid: 6e2a2ccab9251fb4a9f86aef8984f449, type: 3}
     amount: 10
     parent: {fileID: 4343196529389596898}
   - ident: flame
+    gameIdent: 19
     obj: {fileID: 9110508362185551574, guid: b879d29c14a7dd7499bd4dd30a44609c, type: 3}
     amount: 10
     parent: {fileID: 4343196529389596898}
   - ident: gflame
+    gameIdent: 20
     obj: {fileID: 9053702637989385905, guid: e48e06b4c54136945b4a4e8717d11255, type: 3}
     amount: 10
     parent: {fileID: 4343196529389596898}
   - ident: cflame
+    gameIdent: 21
     obj: {fileID: 4962193532079841623, guid: 9d9ee4a5f5223eb47b9e018a3c4f8c0b, type: 3}
     amount: 10
     parent: {fileID: 4343196529389596898}
   - ident: sword
+    gameIdent: 22
     obj: {fileID: 8592739381457975989, guid: f741790163036454d8aeaafcbcdd29cd, type: 3}
     amount: 10
     parent: {fileID: 4343196529389596898}

@@ -13,6 +13,7 @@ public class UpgradePanel : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
     private void Awake()
     {
         Instance = this;
+        HideUpgrades();
     }
 
     /// <summary>

@@ -131,7 +131,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tower_prefab: {fileID: 5669326493566211039, guid: fbd6b4eba2c56db49aa85cf1bb954e25, type: 3}
   isAttached: 0
-  checkDistance: 0.05
+  checkDistance: 0.5
   towerLayer:
     serializedVersion: 2
     m_Bits: 64

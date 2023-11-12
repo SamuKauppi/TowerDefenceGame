@@ -6,30 +6,29 @@ public class Bullet : MonoBehaviour, IUpdate, IFixedUpdate
     [SerializeField] private BulletProperties properties;       // Properties
     [SerializeField] private Rigidbody2D _rb;                   // Rigidbody component
 
-    // Speeds
+    // Public
+    public StatusElementClass[] StatusElements { get { return statusElementsOnHit; } }
+    public GameObject Object => gameObject; // From interface
+
+    // Stats
+    [SerializeField] private StatusElementClass[] statusElementsOnHit;  // Status elements
+    [SerializeField] private bool isBeam;                       // Is the bullet a beam (overrides all speed related variables)
     [SerializeField] private float speed = 100;                 // Speed of the bullet
     [SerializeField] private float acceleration;                // Acceleration of the bullet
     [SerializeField] private bool containSpeed;                 // Will the speed be contained between 0 and staringspeed
-    private float startingSpeed;                                // Starting speed
-    private float initialAccel;                                 // Initial acceleration
-
-    // Damage
     [SerializeField] private float damage;                      // Damage of the bullet
-    private float initialDamage;
-        
-    // Bullet health
     [SerializeField] private float lifeTime;                    // How long will the bullet be alive
     [SerializeField] private int health = 1;                    // How many hits can the bullet take
+
+    // Variables
+    private float startingSpeed;                                // Starting speed
+    private float initialAccel;                                 // Initial acceleration
+    private float initialDamage;                                // Initial damage (damage reduses after every hit)
     private int maxHealth;                                      // Max health
     private float lifeTimer = 0;                                // Timer to live                    
-    private bool isInitialized = false;                         // Variable traking if this bullet has been initilized
-                                                                // Used everytime a bullet is SetActive
-
-    // From interface
-    public GameObject Object => gameObject;
 
     /// <summary>
-    /// Initilize bullets base stats for 
+    /// Initilize bullets base stats 
     /// </summary>
     private void Start()
     {
@@ -39,27 +38,39 @@ public class Bullet : MonoBehaviour, IUpdate, IFixedUpdate
         GameObjectUpdateManager.Instance.AddObject(this);
         initialDamage = damage;
     }
-    private void InitializeBullet()
-    {
-        properties.OnBulletSpawn();
-        isInitialized = true;
-    }
+    /// <summary>
+    /// Update bullet (From interface)
+    /// </summary>
     public void UpdateObject()
     {
-        if (!isInitialized)
-            InitializeBullet();
-
         properties.OnBulletUpdate();
 
-        if (lifeTime > 0)
-        {
-            lifeTimer += Time.deltaTime;
-            if (lifeTimer > lifeTime)
-            {
-                KillBullet();
-            }
-        }
+        UpdateLifeTime();
 
+        ContainSpeed();
+    }
+
+    /// <summary>
+    /// Updates the lifetime of a bullet
+    /// 0 == lifeTime = bullet does not die by time
+    /// </summary>
+    private void UpdateLifeTime()
+    {
+        if (lifeTime <= 0)
+        {
+            return;
+        }
+        lifeTimer += Time.deltaTime;
+        if (lifeTimer > lifeTime)
+        {
+            KillBullet();
+        }
+    }
+    /// <summary>
+    /// Contain speed if true
+    /// </summary>
+    private void ContainSpeed()
+    {
         if (containSpeed)
         {
             if (speed < 0)
@@ -74,13 +85,19 @@ public class Bullet : MonoBehaviour, IUpdate, IFixedUpdate
             }
         }
     }
+    /// <summary>
+    /// Fixed update (From interface)
+    /// </summary>
     public void FixedUpdateGameobject()
     {
         properties.OnBulletFixedUpdate();
         speed += (acceleration * Time.fixedDeltaTime);
         _rb.MovePosition(speed * Time.fixedDeltaTime * transform.up.normalized + transform.position);
     }
-
+    /// <summary>
+    /// Bullet hit enemy, reduce health
+    /// If maxhealth <= 0, bullet does not die from hits
+    /// </summary>
     private void ReduceBulletHits()
     {
         health--;
@@ -89,6 +106,17 @@ public class Bullet : MonoBehaviour, IUpdate, IFixedUpdate
             KillBullet();
         }
     }
+    /// <summary>
+    /// Initialize bullet
+    /// </summary>
+    public BulletProperties InitializeAndGetBulletProperties()
+    {
+        properties.OnBulletSpawn();
+        return properties;
+    }
+    /// <summary>
+    /// Set bullet inactive and reset variables
+    /// </summary>
     private void KillBullet()
     {
         lifeTimer = 0f;
@@ -98,13 +126,11 @@ public class Bullet : MonoBehaviour, IUpdate, IFixedUpdate
         damage = initialDamage;
         properties.OnBulletDespawn();
         gameObject.SetActive(false);
-        isInitialized = false;
     }
-
-    public StatusElementClass[] GetBulletStatusElements()
-    {
-        return properties.StatusElementOnHit;
-    }
+    /// <summary>
+    /// Returns bullet damage before reducing it
+    /// </summary>
+    /// <returns></returns>
     public float GetAndReduceBulletDamage()
     {
         ReduceBulletHits();
