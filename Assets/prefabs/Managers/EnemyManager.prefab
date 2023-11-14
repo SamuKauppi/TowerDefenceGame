@@ -45,5 +45,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyTypes: 030000000200000001000000
-  spawnTimer: 2
+  spawnTimer: 3
   reduceSpawnTime: 1

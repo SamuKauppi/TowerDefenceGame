@@ -12,6 +12,11 @@ public class Pathfinding : MonoBehaviour
     [SerializeField] private PathPoint endPoint;
     [SerializeField] private PathPoint startingPoint;
     [SerializeField] private float exitPointSize = 5f;
+    [SerializeField] private float positionStep = 0.2f;
+    [SerializeField] private float mapwidth = 9;
+    [SerializeField] private float mapheight = 4.6f;
+
+    private const float startingXPosition = 6f;
 
     // Create pathpoints and determine singleton
     private void Awake()
@@ -34,29 +39,30 @@ public class Pathfinding : MonoBehaviour
         };
 
         // Determine positions of pathpoints
-        float xPos = 6f;
+        float xPos = startingXPosition;
         float yPos = 0f;
-        int yPoint = 0;
-        int xPoint = 0;
-        while (yPos <= 4.6f)
+        // Determine x and y indexes
+        int yIndex = 0;
+        int xIndex = 0;
+        while (yPos <= mapheight)
         {
-            while (xPos >= -9)
+            while (xPos >= -mapwidth)
             {
-                xPoint++;
-                points.Add(CreatePathpoint(new Vector3(xPos, yPos), new Vector2(xPoint, yPoint)));
-                xPos -= 0.2f;
+                xIndex++;
+                points.Add(CreatePathpoint(new Vector3(xPos, yPos), new Vector2(xIndex, yIndex)));
+                xPos -= positionStep;
             }
-            xPos = 6f;
-            xPoint = 0;
+            xPos = startingXPosition;
+            xIndex = 0;
             if (yPos > 0)
             {
                 yPos *= -1f;
-                yPoint *= -1;
+                yIndex *= -1;
             }
             else
             {
-                yPos = Math.Abs(yPos) + 0.2f;
-                yPoint = Math.Abs(yPoint) + 1;
+                yPos = Math.Abs(yPos) + positionStep;
+                yIndex = Math.Abs(yIndex) + 1;
             }
         }
         pathPoints = points.ToArray();
@@ -66,7 +72,7 @@ public class Pathfinding : MonoBehaviour
             pathPoints[i].Neighbours = DetermineNeighbours(pathPoints[i]);
         }
 
-        // Calculate distances from end to start
+        // Calculate pathPointChecked from end to start
         RecalculateDistances();
     }
 
@@ -103,31 +109,31 @@ public class Pathfinding : MonoBehaviour
         List<PathPoint> neighbours = new();
         for (int i = 0; i < pathPoints.Length; i++)
         {
-            // If pathpoint is directly LEFT, RIGHT, UP or DOWN 
+            int xDifference = (int)Math.Abs(pathPoints[i].PathfindingId.x - currentPoint.PathfindingId.x);
+            int yDifference = (int)Math.Abs(pathPoints[i].PathfindingId.y - currentPoint.PathfindingId.y);
+
+            // If pathpoint is directly LEFT, RIGHT, UP, DOWN, or DIAGONAL
             // Add it as a neighbour
-            if ((pathPoints[i].PathfindingId.x == currentPoint.PathfindingId.x + 1
-                || pathPoints[i].PathfindingId.x == currentPoint.PathfindingId.x - 1) &&
-                pathPoints[i].PathfindingId.y == currentPoint.PathfindingId.y)
-            {
-                neighbours.Add(pathPoints[i]);
-            }
-            if ((pathPoints[i].PathfindingId.y == currentPoint.PathfindingId.y + 1
-                || pathPoints[i].PathfindingId.y == currentPoint.PathfindingId.y - 1) &&
-                pathPoints[i].PathfindingId.x == currentPoint.PathfindingId.x)
+            if ((xDifference == 1 && yDifference == 0) || // Horizontal
+                (xDifference == 0 && yDifference == 1) || // Vertical
+                (xDifference == 1 && yDifference == 1))   // Diagonal
             {
                 neighbours.Add(pathPoints[i]);
             }
         }
         return neighbours.ToArray();
     }
-    // Calculate pathfinding
+
+    /// <summary>
+    /// Calculate pathfinding
+    /// </summary>
     private void RecalculateDistances()
     {
         // Create queue and dictionary with the first point as first value
         // Dictionary value is int (number of steps from start)
         Queue<PathPoint> frontier = new();
         frontier.Enqueue(pathPoints[0]);
-        Dictionary<PathPoint, int> distances = new()
+        Dictionary<PathPoint, int> pathPointChecked = new()
         {
             { pathPoints[0], 0 }
         };
@@ -135,20 +141,20 @@ public class Pathfinding : MonoBehaviour
         // As long as there is a pathpoint to check, continue on checking
         while (frontier.Count > 0)
         {
-            // Get the next pathpoint in queue
+            // Get the next pathpoint from queue
             PathPoint current = frontier.Dequeue();
             // Get it's neighbours and go through them
             PathPoint[] currentNeighbours = current.Neighbours;
-            for (int i = 0; i < currentNeighbours.Length; i++)
+            foreach (PathPoint pathPoint in currentNeighbours)
             {
                 // If this neighbouring pathpoint has not been already been checked and is pathable
-                if (!distances.ContainsKey(currentNeighbours[i]) && currentNeighbours[i].IsPathable)
+                if (!pathPointChecked.ContainsKey(pathPoint) && pathPoint.IsPathable)
                 {
                     // Enqueue to check this pathpoints to check it 
-                    frontier.Enqueue(currentNeighbours[i]);
+                    frontier.Enqueue(pathPoint);
                     // Add it to dictionary and save it's own distance with current pathpoint distance + 1
-                    distances.Add(currentNeighbours[i], 1 + current.DistanceToEnd);
-                    currentNeighbours[i].SetDistanceToEnd(1 + current.DistanceToEnd, exitPointSize);
+                    pathPointChecked.Add(pathPoint, 1 + current.StepsFromEnd);
+                    pathPoint.SetDistanceToEnd(1 + current.StepsFromEnd, exitPointSize);
                 }
             }
         }
@@ -164,7 +170,7 @@ public class Pathfinding : MonoBehaviour
         PathPoint shortestPoint = null;
         for (int i = 0; i < currentPoint.Neighbours.Length; i++)
         {
-            // Get a neighbour that is pathable and has shortest distance (same distances get coin flipped)
+            // Get a neighbour that is pathable and has shortest distance (same pathPointChecked get coin flipped)
             if (currentPoint.Neighbours[i].IsPathable)
             {
                 if (!shortestPoint)
@@ -173,13 +179,13 @@ public class Pathfinding : MonoBehaviour
                 }
                 else
                 {
-                    // Compare distance and prefer the shorter
-                    if (currentPoint.Neighbours[i].DistanceToEnd < shortestPoint.DistanceToEnd)
+                    // Compare which is closer to end
+                    if (currentPoint.Neighbours[i].StepsFromEnd < shortestPoint.StepsFromEnd)
                     {
                         shortestPoint = currentPoint.Neighbours[i];
                     }
-                    // If distances equal, 50/50 chance to pick either one
-                    else if (currentPoint.Neighbours[i].DistanceToEnd == shortestPoint.DistanceToEnd && Random.Range(0, 4) != 0)
+                    // If pathPointChecked equal, chance to pick either one
+                    else if (currentPoint.Neighbours[i].StepsFromEnd == shortestPoint.StepsFromEnd && Random.Range(0, 5) == 0)
                     {
                         shortestPoint = currentPoint.Neighbours[i];
                     }
@@ -213,7 +219,9 @@ public class Pathfinding : MonoBehaviour
     }
 
     /// <summary>
-    /// 
+    /// Check if a path is valid on building tower
+    /// 1. Check if tower is too close to exit
+    /// 2. Do a simulation if path will be valid
     /// </summary>
     /// <param name="position"></param>
     /// <param name="size"></param>
@@ -258,8 +266,13 @@ public class Pathfinding : MonoBehaviour
         // Is a valid path
         return true;
     }
-    // Get pathpoints inside an area
-    // (NOTE: size is increased to avoid enemies getting stuck on towers)
+    /// <summary>
+    /// Get pathpoints inside an area
+    /// (NOTE: size is increased to avoid enemies getting stuck on towers)
+    /// </summary>
+    /// <param name="position"></param>
+    /// <param name="size"></param>
+    /// <returns></returns>
     private PathPoint[] GetPathpointsInArea(Vector2 position, Vector2 size)
     {
         Rect check = MakeACheckRect(position, size * 1.42f);
@@ -274,7 +287,12 @@ public class Pathfinding : MonoBehaviour
         return points.ToArray();
     }
 
-    // Create a rectangle at position with a size
+    /// <summary>
+    /// Create a rectangle at position with a size
+    /// </summary>
+    /// <param name="position"></param>
+    /// <param name="size"></param>
+    /// <returns></returns>
     private Rect MakeACheckRect(Vector3 position, Vector2 size)
     {
         return new()
@@ -286,7 +304,11 @@ public class Pathfinding : MonoBehaviour
         };
     }
 
-    //Set selected pathpoint pathable
+    /// <summary>
+    /// Set selected pathpoint pathable
+    /// </summary>
+    /// <param name="points"></param>
+    /// <param name="active"></param>
     private void SetPathPointsActive(PathPoint[] points, bool active)
     {
         for (int i = 0; i < points.Length; i++)
@@ -296,7 +318,10 @@ public class Pathfinding : MonoBehaviour
         RecalculateDistances();
     }
 
-    //Get endpoint
+    /// <summary>
+    /// Return endpoint
+    /// </summary>
+    /// <returns></returns>
     public Vector3 GetEndPoint()
     {
         return endPoint.transform.position;

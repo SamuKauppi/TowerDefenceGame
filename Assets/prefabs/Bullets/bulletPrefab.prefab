@@ -52,6 +52,7 @@ MonoBehaviour:
   properties: {fileID: 4512167439018768729}
   _rb: {fileID: 2477231569044453829}
   statusElementsOnHit: []
+  isBeam: 0
   speed: 15
   acceleration: 0
   containSpeed: 0
@@ -75,9 +76,13 @@ MonoBehaviour:
   transitions:
   - Time: 0
     Scale: {x: 0.1625, y: 0.1625, z: 1}
+    Rotation: {x: 0, y: 0, z: 0}
+    easeType: 1
     Color: {r: 1, g: 1, b: 1, a: 1}
   - Time: 0.15
     Scale: {x: 0.25, y: 0.25, z: 1}
+    Rotation: {x: 0, y: 0, z: 0}
+    easeType: 1
     Color: {r: 1, g: 1, b: 1, a: 1}
   stepsBetween: 0
 --- !u!50 &2477231569044453829

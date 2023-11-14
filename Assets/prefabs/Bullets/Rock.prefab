@@ -115,6 +115,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2182341004493362644, guid: aa2538b215be01445a60c11008903c1b, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 74503df150740f74da8933969b1be07d, type: 3}
     m_RemovedComponents:
     - {fileID: 1295478557853789091, guid: aa2538b215be01445a60c11008903c1b, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: aa2538b215be01445a60c11008903c1b, type: 3}
@@ -135,12 +139,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c45c459bb7ca5a419408dfe567ec316, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  StatusElementOnHit:
-  - statusName: rock
-    statusEff: slow
-    duration: 2
-    timer: 0
-    strength: 0
+  scaler: {fileID: 0}
   explosionStatuses:
   - statusName: rocke
     statusEff: slow

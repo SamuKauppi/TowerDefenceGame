@@ -87,5 +87,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: impact
       objectReference: {fileID: 0}
+    - target: {fileID: 3543555654316066606, guid: c7f9a2e14c4e02d4ab3e82511d145d2c, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 849c32746edbb5646b2dc9f079919dae, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c7f9a2e14c4e02d4ab3e82511d145d2c, type: 3}

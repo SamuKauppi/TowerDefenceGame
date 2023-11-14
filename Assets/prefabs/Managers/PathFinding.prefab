@@ -50,6 +50,9 @@ MonoBehaviour:
   endPoint: {fileID: 7218357693825726222}
   startingPoint: {fileID: 0}
   exitPointSize: 5
+  positionStep: 0.2
+  mapwidth: 9
+  mapheight: 4.6
 --- !u!1 &7218357693825726220
 GameObject:
   m_ObjectHideFlags: 0
@@ -98,7 +101,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_rend: {fileID: 7218357693825726259}
-  dist: 0
   pathValue: 0
 --- !u!114 &7218357693825726256
 MonoBehaviour:

@@ -19,7 +19,7 @@ public class TowerTypes : MonoBehaviour
                 return property;
             }
         }
-
+        Debug.LogWarning("Tower type " + upgrade + " not found");
         return null;
     }
 }

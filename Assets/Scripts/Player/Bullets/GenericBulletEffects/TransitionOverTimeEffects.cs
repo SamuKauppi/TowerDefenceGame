@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class TransitionOverTimeEffects: MonoBehaviour
+public class TransitionOverTimeEffects : MonoBehaviour
 {
     [SerializeField] private SpriteRenderer targetSpriteRenderer;
     [SerializeField] private GameObject targetGameObject;
@@ -16,33 +16,53 @@ public class TransitionOverTimeEffects: MonoBehaviour
         OriginalScale = targetGameObject.transform.localScale;
         OriginalColor = targetSpriteRenderer.color;
         stepsBetweenMultiplier = 1 / stepsBetween;
-    }
-
-    public void StartTransition()
-    {
-        LeanTween.scale(targetGameObject, OriginalScale, 0f);
-        targetSpriteRenderer.color = OriginalColor;
-        StartCoroutine(TransitionThrough());
+        targetSpriteRenderer.enabled = false;
     }
 
     IEnumerator TransitionThrough()
     {
-        for (int i = 0; i < transitions.Length; i++)
+        foreach (TransitionState effect in transitions)
         {
-            StartCoroutine(TransitionToNextState(transitions[i]));
-            yield return new WaitForSecondsRealtime(transitions[i].Time);
+            TransitionToNextState(effect);
+            yield return new WaitForSeconds(effect.Time);
         }
     }
 
-    IEnumerator TransitionToNextState(TransitionState effect)
+    private void TransitionToNextState(TransitionState effect)
     {
+        Scale(effect);
+
+        Rotate(effect);
+
+        StartCoroutine(ChangeColor(effect));
+    }
+
+    private void Scale(TransitionState effect)
+    {
+        if (targetGameObject.transform.localScale == effect.Scale)
+            return;
 
         if (LeanTween.isTweening(targetGameObject))
             LeanTween.cancel(targetGameObject);
 
-        LeanTween.scale(targetGameObject, effect.Scale, effect.Time);
+        LeanTween.scale(targetGameObject, effect.Scale, effect.Time).setEase(effect.easeType);
+    }
+    private void Rotate(TransitionState effect)
+    {
+        if (targetSpriteRenderer.transform.localRotation.z == effect.Rotation)
+            return;
 
-        if (effect.Time == 0f)
+        if (LeanTween.isTweening(targetSpriteRenderer.gameObject))
+            LeanTween.cancel(targetSpriteRenderer.gameObject);
+
+        LeanTween.rotateAround(targetSpriteRenderer.gameObject, 
+            targetSpriteRenderer.transform.forward,
+            effect.Rotation, 
+            effect.Time).setEase(effect.easeType);
+    }
+    private IEnumerator ChangeColor(TransitionState effect)
+    {
+        if (effect.Time == 0f || effect.Color == targetSpriteRenderer.color)
         {
             targetSpriteRenderer.color = effect.Color;
         }
@@ -58,5 +78,13 @@ public class TransitionOverTimeEffects: MonoBehaviour
                 yield return new WaitForSecondsRealtime(timeBetweenSteps);
             }
         }
+    }
+
+    public void StartTransition()
+    {
+        LeanTween.scale(targetGameObject, OriginalScale, 0f);
+        targetSpriteRenderer.color = OriginalColor;
+        targetSpriteRenderer.enabled = true;
+        StartCoroutine(TransitionThrough());
     }
 }

@@ -7,18 +7,18 @@ public class ObjectPooler : MonoBehaviour
 
     [SerializeField] private PooledObject[] objectsToBePooled;
 
-    private readonly Dictionary<GameEntity, Queue<GameObject>> objectPool = new();
+    private readonly Dictionary<GameEntity, HashSet<GameObject>> objectPool = new();
     private void Awake()
     {
         Instance = this;
         for (int i = 0; i < objectsToBePooled.Length; i++)
         {
-            Queue<GameObject> tempQueue = new();
+            HashSet<GameObject> tempQueue = new();
             for (int j = 0; j < objectsToBePooled[i].amount; j++)
             {
                 GameObject obj = Instantiate(objectsToBePooled[i].obj, objectsToBePooled[i].parent);
                 obj.SetActive(false);
-                tempQueue.Enqueue(obj);
+                tempQueue.Add(obj);
             }
             objectPool.Add(objectsToBePooled[i].gameIdent, tempQueue);
         }
@@ -28,12 +28,13 @@ public class ObjectPooler : MonoBehaviour
     {
         if (!objectPool.ContainsKey(ident)) return null;
 
-        if (!objectPool[ident].Peek().activeSelf)
+        foreach (GameObject obj in objectPool[ident])
         {
-            GameObject objectToCheck = objectPool[ident].Dequeue();
-            objectToCheck.SetActive(true);
-            objectPool[ident].Enqueue(objectToCheck);
-            return objectToCheck;
+            if (!obj.activeSelf)
+            {
+                obj.SetActive(true);
+                return obj;
+            }
         }
 
         foreach (PooledObject pooledObj in objectsToBePooled)
@@ -42,7 +43,7 @@ public class ObjectPooler : MonoBehaviour
             {
                 GameObject objectToCheck = Instantiate(pooledObj.obj, pooledObj.parent);
                 objectToCheck.SetActive(true);
-                objectPool[ident].Enqueue(objectToCheck);
+                objectPool[ident].Add(objectToCheck);
                 return objectToCheck;
             }
         }

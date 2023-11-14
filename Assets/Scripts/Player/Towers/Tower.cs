@@ -45,7 +45,6 @@ public class Tower : MonoBehaviour, IUpdate
     /// </summary>
     private void Start()
     {
-
         // Get the size of the tower
         Vector3 spriteRendSize = towerSpriterend.bounds.size;
         TowerSize = new Vector3(spriteRendSize.x, spriteRendSize.y);
@@ -58,6 +57,9 @@ public class Tower : MonoBehaviour, IUpdate
 
         // Add this to updatable objects
         GameObjectUpdateManager.Instance.AddObject(this);
+
+        attackTimer = CurrentUpgrade.attackSpeed;
+        chargeTimer = CurrentUpgrade.chargeTime;
     }
 
     /// <summary>
@@ -86,25 +88,40 @@ public class Tower : MonoBehaviour, IUpdate
     private void AimAndFireAtClosestEnemy()
     {
         // Aim if a target enters in range
-        if (targets.Count > 0)
-            AimAtClosest();
-        // If no targets are found then tower is no longer aiming at an enemy
-        else
-            isAimingEnemy = false;
-
+        switch (targets.Count)
+        {
+            case > 0:
+                // Aim at the closest if it's allowed or IsReadyToFire
+                if (CurrentUpgrade.aimWhileFiring || IsReadyToFire())
+                {
+                    AimAtClosest();
+                }
+                break;
+            // If no targets are found then tower is no longer aiming at an enemy
+            default:
+                isAimingEnemy = false;
+                break;
+        }
 
         // Fire if:
-        // 1. Firing rate allows it
-        // 2. Tower is not charging next burst of shots
-        // 3. Tower is aiming at a target or is currently firing a burst while aimWhileFiring is false
+        // 1. Tower is ready to fire
+        // 2. Tower is aiming at a target or is currently firing a burst while aimWhileFiring is false
         // (aimWhileFiring locks rotation while firing a burst)
-        if (attackTimer >= CurrentUpgrade.attackSpeed &&
-            chargeTimer >= CurrentUpgrade.chargeTime &&
+        if (IsReadyToFire() &&
             (isAimingEnemy || isFiring && !CurrentUpgrade.aimWhileFiring))
         {
             FireBullet();
         }
     }
+    /// <summary>
+    /// Check if both attackTimer and chargeTimer are ready
+    /// </summary>
+    /// <returns></returns>
+    private bool IsReadyToFire()
+    {
+        return attackTimer >= CurrentUpgrade.attackSpeed && chargeTimer >= CurrentUpgrade.chargeTime;
+    }
+
     /// <summary>
     /// Handles aiming logic
     /// </summary>
@@ -159,25 +176,53 @@ public class Tower : MonoBehaviour, IUpdate
     /// <summary>
     /// Returns the position of the closest enemy in range
     /// </summary>
-    /// <returns></returns>
+    /// <returns>The position of the closest enemy in range or barrel.up if no targets are active</returns>
     private Vector2 GetClosestTargetToEnd()
     {
-        targets = targets.Where(targets => targets.gameObject.activeInHierarchy).ToHashSet();
-        if (targets.Count <= 0)
+        if (!AreTargetsActive())
+        {
             return barrel.up;
+        }
 
-        // Take the first avaliable targets position
-        Vector2 closest = targets.First().position;
+        Vector2 closest = barrel.up;
+        float shortestDist = 0f;
 
         foreach (Transform target in targets)
         {
-            if (Vector2.Distance(endpoint, target.position) < Vector2.Distance(endpoint, closest))
+            float distanceToTarget = Vector2.Distance(transform.position, target.position);
+
+            if (distanceToTarget > CurrentUpgrade.attackRange)
             {
+                continue;
+            }
+
+            float targetToEndPoint = Vector2.Distance(target.position, endpoint);
+
+            if (shortestDist == 0f || targetToEndPoint < shortestDist)
+            {
+                shortestDist = targetToEndPoint;
                 closest = target.position;
             }
         }
 
         return closest;
+    }
+
+
+
+    /// <summary>
+    /// Filter nonactive targets from HashSet
+    /// </summary>
+    /// <returns>Does the HashSet have elements</returns>
+    private bool AreTargetsActive()
+    {
+        targets = targets.Where(targets => targets.gameObject.activeSelf).ToHashSet();
+        if (targets.Count <= 0)
+        {
+            isAimingEnemy = false;
+            return false;
+        }
+        return true;
     }
 
     /// <summary>
@@ -217,7 +262,7 @@ public class Tower : MonoBehaviour, IUpdate
 
         // If all the bullets were fired from a burst:
         // Reset variables
-        if (numberOfBursts > CurrentUpgrade.burstShots)
+        if (numberOfBursts >= CurrentUpgrade.burstShots)
         {
             chargeTimer = 0;
             numberOfBursts = 0;
@@ -241,7 +286,7 @@ public class Tower : MonoBehaviour, IUpdate
         ConfigureBulletProperties(latestBulletShot);
     }
     /// <summary>
-    /// Configure properties for specific type of bullets
+    /// Configure properties for specific type of bullets that was shot
     /// </summary>
     /// <param name="bullet"></param>
     private void ConfigureBulletProperties(GameObject bullet)
@@ -256,6 +301,7 @@ public class Tower : MonoBehaviour, IUpdate
         {
             beam.SetTowerBarrel(barrel);
         }
+
         // Add more conditions for other configurations as needed
     }
 

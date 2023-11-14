@@ -134,11 +134,6 @@ MonoBehaviour:
     obj: {fileID: 8020897677356372887, guid: ae24d2e576676cd408f37c2898880027, type: 3}
     amount: 10
     parent: {fileID: 4343196529389596898}
-  - ident: icebeam
-    gameIdent: 11
-    obj: {fileID: 5534491826709657619, guid: 2a2ea7664827c8d4092e5560db7d2b08, type: 3}
-    amount: 10
-    parent: {fileID: 4343196529389596898}
   - ident: hbeam
     gameIdent: 12
     obj: {fileID: 6923693304240868170, guid: 34f61f6f8fd3a8f40b746402c45ebf6c, type: 3}
@@ -146,7 +141,7 @@ MonoBehaviour:
     parent: {fileID: 4343196529389596898}
   - ident: lbeam
     gameIdent: 13
-    obj: {fileID: 3852453434603228870, guid: 08886638b891490498a54a2f9d3d769c, type: 3}
+    obj: {fileID: 5395740271375419187, guid: 08886638b891490498a54a2f9d3d769c, type: 3}
     amount: 10
     parent: {fileID: 4343196529389596898}
   - ident: boomerang
@@ -177,11 +172,6 @@ MonoBehaviour:
   - ident: flame
     gameIdent: 19
     obj: {fileID: 9110508362185551574, guid: b879d29c14a7dd7499bd4dd30a44609c, type: 3}
-    amount: 10
-    parent: {fileID: 4343196529389596898}
-  - ident: gflame
-    gameIdent: 20
-    obj: {fileID: 9053702637989385905, guid: e48e06b4c54136945b4a4e8717d11255, type: 3}
     amount: 10
     parent: {fileID: 4343196529389596898}
   - ident: cflame

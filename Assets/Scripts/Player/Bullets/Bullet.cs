@@ -1,22 +1,19 @@
 using UnityEngine;
 
-public class Bullet : MonoBehaviour, IUpdate, IFixedUpdate
+public class Bullet : BulletDamages, IUpdate, IFixedUpdate
 {
     // References 
     [SerializeField] private BulletProperties properties;       // Properties
     [SerializeField] private Rigidbody2D _rb;                   // Rigidbody component
 
     // Public
-    public StatusElementClass[] StatusElements { get { return statusElementsOnHit; } }
     public GameObject Object => gameObject; // From interface
 
     // Stats
-    [SerializeField] private StatusElementClass[] statusElementsOnHit;  // Status elements
     [SerializeField] private bool isBeam;                       // Is the bullet a beam (overrides all speed related variables)
     [SerializeField] private float speed = 100;                 // Speed of the bullet
     [SerializeField] private float acceleration;                // Acceleration of the bullet
     [SerializeField] private bool containSpeed;                 // Will the speed be contained between 0 and staringspeed
-    [SerializeField] private float damage;                      // Damage of the bullet
     [SerializeField] private float lifeTime;                    // How long will the bullet be alive
     [SerializeField] private int health = 1;                    // How many hits can the bullet take
 
@@ -26,7 +23,7 @@ public class Bullet : MonoBehaviour, IUpdate, IFixedUpdate
     private float initialDamage;                                // Initial damage (damage reduses after every hit)
     private int maxHealth;                                      // Max health
     private float lifeTimer = 0;                                // Timer to live                    
-
+    private bool HasInitialized;
     /// <summary>
     /// Initilize bullets base stats 
     /// </summary>
@@ -36,13 +33,17 @@ public class Bullet : MonoBehaviour, IUpdate, IFixedUpdate
         startingSpeed = speed;
         initialAccel = acceleration;
         GameObjectUpdateManager.Instance.AddObject(this);
-        initialDamage = damage;
+        initialDamage = Damage;
     }
     /// <summary>
     /// Update bullet (From interface)
     /// </summary>
     public void UpdateObject()
     {
+        if (!HasInitialized)
+        {
+            InitializeBullet();
+        }
         properties.OnBulletUpdate();
 
         UpdateLifeTime();
@@ -86,17 +87,7 @@ public class Bullet : MonoBehaviour, IUpdate, IFixedUpdate
         }
     }
     /// <summary>
-    /// Fixed update (From interface)
-    /// </summary>
-    public void FixedUpdateGameobject()
-    {
-        properties.OnBulletFixedUpdate();
-        speed += (acceleration * Time.fixedDeltaTime);
-        _rb.MovePosition(speed * Time.fixedDeltaTime * transform.up.normalized + transform.position);
-    }
-    /// <summary>
-    /// Bullet hit enemy, reduce health
-    /// If maxhealth <= 0, bullet does not die from hits
+    /// Reduce bullet hp. If max hp <= 0, the bullet can't die from time
     /// </summary>
     private void ReduceBulletHits()
     {
@@ -107,15 +98,7 @@ public class Bullet : MonoBehaviour, IUpdate, IFixedUpdate
         }
     }
     /// <summary>
-    /// Initialize bullet
-    /// </summary>
-    public BulletProperties InitializeAndGetBulletProperties()
-    {
-        properties.OnBulletSpawn();
-        return properties;
-    }
-    /// <summary>
-    /// Set bullet inactive and reset variables
+    /// Kill bullet and reset it's variables
     /// </summary>
     private void KillBullet()
     {
@@ -123,19 +106,42 @@ public class Bullet : MonoBehaviour, IUpdate, IFixedUpdate
         health = maxHealth;
         speed = startingSpeed;
         acceleration = initialAccel;
-        damage = initialDamage;
+        SetDamage(initialDamage);
         properties.OnBulletDespawn();
         gameObject.SetActive(false);
+        HasInitialized = false;
     }
     /// <summary>
-    /// Returns bullet damage before reducing it
+    /// Fixed update (From interface)
+    /// </summary>
+    public void FixedUpdateGameobject()
+    {
+        if (!_rb)
+            return;
+        speed += (acceleration * Time.fixedDeltaTime);
+        _rb.MovePosition(speed * Time.fixedDeltaTime * transform.up.normalized + transform.position);
+        properties.OnBulletFixedUpdate();
+    }
+
+    /// <summary>
+    /// Initialize bullet
+    /// </summary>
+    public void InitializeBullet()
+    {
+        properties.OnBulletSpawn();
+        HasInitialized = true;
+    }
+
+    /// <summary>
+    /// Override function
+    /// Normal bullets damage gets reduced after every hit
     /// </summary>
     /// <returns></returns>
-    public float GetAndReduceBulletDamage()
+    public override float GetBulletDamage()
     {
         ReduceBulletHits();
-        float currentDamage = damage;
-        damage *= 0.95f;
+        float currentDamage = Damage;
+        SetDamage(Damage * 0.95f);
         return currentDamage;
     }
 }

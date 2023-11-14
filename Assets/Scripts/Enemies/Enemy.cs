@@ -3,41 +3,47 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour, IFixedUpdate, IUpdate
 {
+    public float MaxHealth { get; private set; }        // Max health
+
     // References
     [SerializeField] private Rigidbody2D _rb;           // Reference to rigidbody component
     [SerializeField] private PathPoint currentTarget;   // Current pathpoint target
-    [SerializeField] private float moveTimer;           // Keeps the pathfinding from not breaking
 
     // Stats
-    public float MaxHealth { get; private set; }        // Max health
-
     [SerializeField] private float health = 100f;       // Current health
-    [SerializeField] private float damage;              // Damage to enemy
+    [SerializeField] private float damage;              // Damage to player when reaches end
+    private bool isDead;                                // Is the enemy dead
 
     // Pathfinding
-    [SerializeField] private float distanceToStop;      // When a pathpoint is reached
+    [SerializeField] private float distanceToStop;      // Distance to when enemy reaches pathpoint
     [SerializeField] private float speed;               // How fast this enemy is
     [SerializeField] private float turnSpeed;           // How fast enemy can alter direction of movement
-
-    // Status elements
-    [SerializeField] private List<StatusElementClass> statuses = new();
-    private float statusTimer;                          // Used to update statuses every 0.1s
-    private float speedModifier = 1f;                   // When slowed, change this value
-
     private Vector3 targetdir = Vector3.zero;           // Direction to the next pathpoint
     private Vector3 currentDirection = Vector3.zero;    // Current direction of movement
 
+    // Move timers
+    private float moveTimer;                            // Failsafe if no targets have been found in moveTime seconds
+    private const float moveTime = 2f;                  // Threshold for moveTimer
+
+    // Status elements
+    private readonly List<StatusElementClass> statuses = new();
+    private float statusTimer;                          // Used to update statuses every 0.1s
+    private float speedModifier = 1f;                   // When slowed, change this value
+
     // From interfaces
     public GameObject Object => gameObject;
-
-    // Static
-    private const string BULLET_TAG = "bullet";
 
     private void Start()
     {
         MaxHealth = health;
         GameObjectUpdateManager.Instance.AddObject(this);
     }
+
+    private void OnEnable()
+    {
+        isDead = false;
+    }
+
     /// <summary>
     /// Update enemy
     /// </summary>
@@ -54,6 +60,7 @@ public class Enemy : MonoBehaviour, IFixedUpdate, IUpdate
     {
         MoveToNextTarget();
     }
+
     /// <summary>
     /// Update direction of movement
     /// </summary>
@@ -72,13 +79,13 @@ public class Enemy : MonoBehaviour, IFixedUpdate, IUpdate
     /// </summary>
     private void GetTargetDirection()
     {
-        // Get a new target if none is found or target has not been reached in x seconds
-        if (currentTarget == null || moveTimer > 2f)
+        // Get a new target if its null or target has not been reached in x seconds
+        if (currentTarget == null || moveTimer > moveTime)
         {
             moveTimer = 0f;
             currentTarget = Pathfinding.Instance.GetClosestPathPoint(transform.position);
         }
-        // Target has not been reached yet
+        // Target has not been reached yet, continue moving
         else if (Vector2.Distance(transform.position, currentTarget.transform.position) > distanceToStop)
         {
             moveTimer += Time.deltaTime;
@@ -92,22 +99,17 @@ public class Enemy : MonoBehaviour, IFixedUpdate, IUpdate
             currentTarget = Pathfinding.Instance.GetNextPathpoint(currentTarget);
         }
     }
+
     /// <summary>
-    /// Take damage
+    /// Reset stats after dying
     /// </summary>
-    /// <param name="amount"></param>
-    public void TakeDamage(float amount)
+    private void ResetStats()
     {
-        health -= amount;
-        if (health <= 0)
-        {
-            gameObject.SetActive(false);
-            currentTarget = null;
-            statuses.Clear();
-            health = MaxHealth;
-            speedModifier = 1f;
-        }
+        statuses.Clear();
+        health = MaxHealth;
+        speedModifier = 1f;
     }
+
     /// <summary>
     /// Returns enemy damage
     /// </summary>
@@ -129,7 +131,6 @@ public class Enemy : MonoBehaviour, IFixedUpdate, IUpdate
         }
         statuses.Add(s);
     }
-    //
     private void ApplyStatus(StatusElementClass s)
     {
         switch (s.statusEff)
@@ -148,7 +149,6 @@ public class Enemy : MonoBehaviour, IFixedUpdate, IUpdate
                 break;
         }
     }
-
     private void UpdateStatuses()
     {
         statusTimer += Time.deltaTime;
@@ -156,9 +156,6 @@ public class Enemy : MonoBehaviour, IFixedUpdate, IUpdate
         {
             for (int i = statuses.Count - 1; i >= 0; i--)
             {
-                if (statuses.Count <= 0)
-                    break;
-
                 if (statuses[i].timer >= statuses[i].duration)
                 {
                     if (statuses[i].statusEff.Equals("slow"))
@@ -172,18 +169,58 @@ public class Enemy : MonoBehaviour, IFixedUpdate, IUpdate
             statusTimer = 0f;
         }
     }
-    private void OnTriggerEnter2D(Collider2D collision)
+    /// <summary>
+    /// Deal damage to this enemy
+    /// </summary>
+    /// <param name="bullet"></param>
+    /// <param name="damage"></param>
+    private void DealDamageToEnemy(BulletDamages bullet, float damage)
     {
-        if (!collision.CompareTag(BULLET_TAG))
-            return;
-
-        Bullet b = collision.GetComponent<Bullet>();
-
-        foreach (StatusElementClass status in b.StatusElements)
+        foreach (StatusElementClass status in bullet.StatusElements)
         {
             CreateStatus(status);
         }
 
-        TakeDamage(b.GetAndReduceBulletDamage());
+        TakeDamage(damage);
+    }
+    /// <summary>
+    /// Make damage calculations
+    /// </summary>
+    /// <param name="amount"></param>
+    public void TakeDamage(float amount)
+    {
+        if (isDead)
+        {
+            ResetStats();
+            return;
+        }
+        health -= amount;
+        if (health <= 0)
+        {
+            currentTarget = null;
+            gameObject.SetActive(false);
+            isDead = true;
+            ResetStats();
+        }
+    }
+    /// <summary>
+    /// Collision check for initial hit
+    /// </summary>
+    /// <param name="collision"></param>
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (!collision.TryGetComponent(out BulletDamages bullet) || !collision.gameObject.activeSelf)
+            return;
+        DealDamageToEnemy(bullet, bullet.GetBulletDamage());
+    }
+    /// <summary>
+    /// Collision check for damage over time
+    /// </summary>
+    /// <param name="collision"></param>
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (!collision.TryGetComponent(out BulletDamages bullet) || !collision.gameObject.activeSelf)
+            return;
+        DealDamageToEnemy(bullet, bullet.DamageOverTime * Time.fixedDeltaTime);
     }
 }

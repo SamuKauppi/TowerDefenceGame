@@ -23,6 +23,7 @@
     GreenFlame,
     ColdFlame,
     Sword,
-    NewBeam
+    Lightning,
+    Water
 }
 

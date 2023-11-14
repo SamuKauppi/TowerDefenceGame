@@ -47,7 +47,7 @@ public class PlayerScript : MonoBehaviour
     /// </summary>
     private void NoTurretAttached()
     {
-        if (!Input.GetMouseButtonDown(0))
+        if (!Input.GetMouseButtonDown(0) || UpgradePanel.Instance.IsMouseOver)
         {
             return;
         }
@@ -57,7 +57,7 @@ public class PlayerScript : MonoBehaviour
             Physics2D.OverlapCircleAll(mousePosition, checkDistance, towerLayer);
 
         // If colldiers were found in range, activate upgrade panel for closest tower
-        if (collidersInRange.Length > 0 && !UpgradePanel.Instance.IsMouseOver)
+        if (collidersInRange.Length > 0)
         {
             // Get the closest collider to mouse
             Collider2D shortestDist = GetClosestColliderToMouse(collidersInRange);

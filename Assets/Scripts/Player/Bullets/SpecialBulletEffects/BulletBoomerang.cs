@@ -3,21 +3,35 @@ using UnityEngine;
 public class BulletBoomerang : BulletProperties
 {
     [SerializeField] private Rigidbody2D rb;
-    [SerializeField] private GameObject rotatingSprite;
+    [SerializeField] private float initialRotation = -15f;
+    [SerializeField] private float rotationSpeed = 90f;
+    [SerializeField] private float rotaionIncrease = 720f;
+    [SerializeField] private float clampRotation = 450f;
+
+    private float stratingRotationSpeed;
+    private void Start()
+    {
+        stratingRotationSpeed = rotationSpeed;
+    }
     public override void OnBulletSpawn()
     {
         base.OnBulletSpawn();
-        BoomerangMovement();
+        transform.Rotate(0, 0, initialRotation);
     }
-    void BoomerangMovement()
+    public override void OnBulletFixedUpdate()
     {
-        LeanTween.rotateAround(gameObject, Vector3.forward, 210f, 1.125f).setEase(LeanTweenType.easeInOutQuart);
-        LeanTween.rotateZ(rotatingSprite, -4600, 3f).setEase(LeanTweenType.easeOutQuad);
+        IncreaseRotationSpeed();
+        rb.MoveRotation(rb.rotation + Time.fixedDeltaTime * rotationSpeed);
+    }
+
+    private void IncreaseRotationSpeed()
+    {
+        rotationSpeed += rotaionIncrease * Time.fixedDeltaTime;
+        rotationSpeed = Mathf.Clamp(rotationSpeed, 0, clampRotation);
     }
 
     public override void OnBulletDespawn()
     {
-        LeanTween.cancel(rotatingSprite);
-        LeanTween.cancel(gameObject);
+        rotationSpeed = stratingRotationSpeed;
     }
 }

@@ -7,7 +7,7 @@ public class PathPoint : MonoBehaviour
     // Is this pathpoint close to exit. If is, towers can't be place here
     public bool IsCloseToExit { get; private set; }
     // Steps to reach the end
-    public int DistanceToEnd { get; set; }
+    public int StepsFromEnd { get; set; }
     // Position in pathpoint grid
     public Vector2 PathfindingId { get; set; }
     // Neighbours to this pathpoint
@@ -15,8 +15,6 @@ public class PathPoint : MonoBehaviour
 
     // Renderer
     [SerializeField] private SpriteRenderer m_rend;
-    // To display steps to end in inspector
-    [SerializeField] private float dist;
     // Check how many towers are over this pathpoint
     [SerializeField] private int pathValue = 0;
 
@@ -26,9 +24,8 @@ public class PathPoint : MonoBehaviour
     /// <param name="distanceToEnd"></param>
     public void SetDistanceToEnd(int distanceToEnd, float shortestDist = 5)
     {
-        DistanceToEnd = distanceToEnd;
+        StepsFromEnd = distanceToEnd;
         m_rend.color = new Color(0, 0, 0, distanceToEnd * 0.01f);
-        dist = distanceToEnd;
         if (distanceToEnd < shortestDist)
         {
             m_rend.enabled = true;

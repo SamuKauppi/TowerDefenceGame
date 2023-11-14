@@ -36,6 +36,10 @@ public class UpgradePanel : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
         for (int i = 0; i < upgradeButtons.Length; i++)
         {
             upgradeButtons[i].gameObject.SetActive(false);
+            if (upgradeButtons[i].HasTarget)
+            {
+                upgradeButtons[i].SetTargetColor(Color.white);
+            }
         }
     }
 

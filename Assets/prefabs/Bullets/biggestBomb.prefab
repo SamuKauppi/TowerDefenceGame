@@ -7,6 +7,46 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4682790986890371510, guid: fc69760c097fd154d960541e379da22b, type: 3}
+      propertyPath: transitions.Array.data[1].Color.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4682790986890371510, guid: fc69760c097fd154d960541e379da22b, type: 3}
+      propertyPath: transitions.Array.data[1].Color.g
+      value: 0.108051226
+      objectReference: {fileID: 0}
+    - target: {fileID: 4682790986890371510, guid: fc69760c097fd154d960541e379da22b, type: 3}
+      propertyPath: transitions.Array.data[1].Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4682790986890371510, guid: fc69760c097fd154d960541e379da22b, type: 3}
+      propertyPath: transitions.Array.data[1].Scale.x
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4682790986890371510, guid: fc69760c097fd154d960541e379da22b, type: 3}
+      propertyPath: transitions.Array.data[1].Scale.y
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4682790986890371510, guid: fc69760c097fd154d960541e379da22b, type: 3}
+      propertyPath: transitions.Array.data[2].Color.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4682790986890371510, guid: fc69760c097fd154d960541e379da22b, type: 3}
+      propertyPath: transitions.Array.data[2].Color.g
+      value: 0.06354727
+      objectReference: {fileID: 0}
+    - target: {fileID: 4682790986890371510, guid: fc69760c097fd154d960541e379da22b, type: 3}
+      propertyPath: transitions.Array.data[2].Color.r
+      value: 0.5660378
+      objectReference: {fileID: 0}
+    - target: {fileID: 4682790986890371510, guid: fc69760c097fd154d960541e379da22b, type: 3}
+      propertyPath: transitions.Array.data[2].Scale.x
+      value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4682790986890371510, guid: fc69760c097fd154d960541e379da22b, type: 3}
+      propertyPath: transitions.Array.data[2].Scale.y
+      value: 1.2
+      objectReference: {fileID: 0}
     - target: {fileID: 7949876785994564498, guid: fc69760c097fd154d960541e379da22b, type: 3}
       propertyPath: damage
       value: 100
