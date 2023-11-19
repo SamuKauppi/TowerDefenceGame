@@ -1,13 +1,14 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
 [System.Serializable]
 public class StatusElementClass
 {
-    public string statusName;
-    public string statusEff;
+    public GameEntity bulletApplying;
+    public StatusEffects statusEff;
+
+    // Parameters
     public float duration;
-    public float timer;
     public float strength;
+
+    // Timer for how long status is applied
+    [UnityEngine.HideInInspector]
+    public float timer;
 }

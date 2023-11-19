@@ -63,6 +63,22 @@ PrefabInstance:
       propertyPath: damage
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 2377344280394233251, guid: f09f8941e6c25724984454493f5651c0, type: 3}
+      propertyPath: statusesOnHit.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2377344280394233251, guid: f09f8941e6c25724984454493f5651c0, type: 3}
+      propertyPath: statusesOnHit.Array.data[0].duration
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2377344280394233251, guid: f09f8941e6c25724984454493f5651c0, type: 3}
+      propertyPath: statusesOnHit.Array.data[0].strength
+      value: 0.85
+      objectReference: {fileID: 0}
+    - target: {fileID: 2377344280394233251, guid: f09f8941e6c25724984454493f5651c0, type: 3}
+      propertyPath: statusesOnHit.Array.data[0].bulletApplying
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 2377344280394233253, guid: f09f8941e6c25724984454493f5651c0, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -109,7 +125,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2377344280394233254, guid: f09f8941e6c25724984454493f5651c0, type: 3}
       propertyPath: m_Name
-      value: biggerBomb
+      value: BiggerBomb
       objectReference: {fileID: 0}
     - target: {fileID: 4301197489597443518, guid: f09f8941e6c25724984454493f5651c0, type: 3}
       propertyPath: damage
@@ -121,7 +137,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4301197489597443518, guid: f09f8941e6c25724984454493f5651c0, type: 3}
       propertyPath: lifeTime
-      value: 0.2
+      value: 0.35
       objectReference: {fileID: 0}
     - target: {fileID: 4301197489597443518, guid: f09f8941e6c25724984454493f5651c0, type: 3}
       propertyPath: explosionSStrength
@@ -153,7 +169,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4301197489597443518, guid: f09f8941e6c25724984454493f5651c0, type: 3}
       propertyPath: explosionStatuses.Array.data[0].statusEff
-      value: slow
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4301197489597443518, guid: f09f8941e6c25724984454493f5651c0, type: 3}
       propertyPath: StatusElementOnHit.Array.data[0].statusEff
@@ -166,6 +182,10 @@ PrefabInstance:
     - target: {fileID: 4301197489597443518, guid: f09f8941e6c25724984454493f5651c0, type: 3}
       propertyPath: StatusElementOnHit.Array.data[0].statusName
       value: bbomb
+      objectReference: {fileID: 0}
+    - target: {fileID: 4301197489597443518, guid: f09f8941e6c25724984454493f5651c0, type: 3}
+      propertyPath: explosionStatuses.Array.data[0].bulletApplying
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f09f8941e6c25724984454493f5651c0, type: 3}

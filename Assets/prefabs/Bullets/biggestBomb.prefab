@@ -57,7 +57,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7949876785994564498, guid: fc69760c097fd154d960541e379da22b, type: 3}
       propertyPath: lifeTime
-      value: 0.21
+      value: 0.4
       objectReference: {fileID: 0}
     - target: {fileID: 7949876785994564498, guid: fc69760c097fd154d960541e379da22b, type: 3}
       propertyPath: explosionSStrength
@@ -66,6 +66,10 @@ PrefabInstance:
     - target: {fileID: 7949876785994564498, guid: fc69760c097fd154d960541e379da22b, type: 3}
       propertyPath: explosionStatuses.Array.data[0].duration
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7949876785994564498, guid: fc69760c097fd154d960541e379da22b, type: 3}
+      propertyPath: explosionStatuses.Array.data[0].strength
+      value: 0.75
       objectReference: {fileID: 0}
     - target: {fileID: 7949876785994564498, guid: fc69760c097fd154d960541e379da22b, type: 3}
       propertyPath: StatusElementOnHit.Array.data[0].strength
@@ -78,6 +82,10 @@ PrefabInstance:
     - target: {fileID: 7949876785994564498, guid: fc69760c097fd154d960541e379da22b, type: 3}
       propertyPath: StatusElementOnHit.Array.data[0].statusName
       value: bbbomb
+      objectReference: {fileID: 0}
+    - target: {fileID: 7949876785994564498, guid: fc69760c097fd154d960541e379da22b, type: 3}
+      propertyPath: explosionStatuses.Array.data[0].bulletApplying
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 8438981008746945417, guid: fc69760c097fd154d960541e379da22b, type: 3}
       propertyPath: m_RootOrder
@@ -125,7 +133,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8438981008746945418, guid: fc69760c097fd154d960541e379da22b, type: 3}
       propertyPath: m_Name
-      value: biggestBomb
+      value: BiggestBomb
       objectReference: {fileID: 0}
     - target: {fileID: 8438981008746945421, guid: fc69760c097fd154d960541e379da22b, type: 3}
       propertyPath: m_Color.g
@@ -134,6 +142,18 @@ PrefabInstance:
     - target: {fileID: 8438981008746945423, guid: fc69760c097fd154d960541e379da22b, type: 3}
       propertyPath: damage
       value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 8438981008746945423, guid: fc69760c097fd154d960541e379da22b, type: 3}
+      propertyPath: statusesOnHit.Array.data[0].duration
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8438981008746945423, guid: fc69760c097fd154d960541e379da22b, type: 3}
+      propertyPath: statusesOnHit.Array.data[0].strength
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8438981008746945423, guid: fc69760c097fd154d960541e379da22b, type: 3}
+      propertyPath: statusesOnHit.Array.data[0].bulletApplying
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fc69760c097fd154d960541e379da22b, type: 3}

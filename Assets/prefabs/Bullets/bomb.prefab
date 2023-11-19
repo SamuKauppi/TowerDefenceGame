@@ -12,6 +12,10 @@ PrefabInstance:
       value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 1693689838188250107, guid: c7f9a2e14c4e02d4ab3e82511d145d2c, type: 3}
+      propertyPath: colorChangeSmooth
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 1693689838188250107, guid: c7f9a2e14c4e02d4ab3e82511d145d2c, type: 3}
       propertyPath: transitions.Array.size
       value: 3
       objectReference: {fileID: 0}
@@ -165,7 +169,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2477231569044453831, guid: c7f9a2e14c4e02d4ab3e82511d145d2c, type: 3}
       propertyPath: m_Name
-      value: bomb
+      value: Bomb
       objectReference: {fileID: 0}
     - target: {fileID: 3543555654316066606, guid: c7f9a2e14c4e02d4ab3e82511d145d2c, type: 3}
       propertyPath: m_Sprite
@@ -205,7 +209,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scaler: {fileID: 1522167287867838362}
   explosionStatuses: []
-  ExplosionSprite: {fileID: 21300000, guid: c6045f0c713d55f45ba42f4e002bddb9, type: 3}
   radius: 0.5
   damage: 30
-  lifeTime: 0.15
+  lifeTime: 0.3
+  explosionIdent: 6

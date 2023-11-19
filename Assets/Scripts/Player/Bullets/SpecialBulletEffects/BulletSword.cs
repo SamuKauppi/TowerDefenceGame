@@ -7,10 +7,9 @@ public class BulletSword : BulletProperties
     [SerializeField] private float angleToRotate;
     public override void OnBulletSpawn()
     {
-        RotateSword();
         sr.enabled = true;
         bx.enabled = true;
-        base.OnBulletSpawn();
+        RotateSword();
     }
     public override void OnBulletDespawn()
     {

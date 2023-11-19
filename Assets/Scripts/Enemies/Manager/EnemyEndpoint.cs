@@ -9,11 +9,12 @@ public class EnemyEndpoint : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("enemy"))
+        if (collision.TryGetComponent(out Enemy enemy))
         {
-            Enemy e = collision.GetComponent<Enemy>();
-            e.TakeDamage(e.MaxHealth);
-            player.TakeDamage(e.GetEnemyDamage());
+            // Check if it's an enemy, and if so, proceed with the logic
+            enemy.TakeDamage(enemy.MaxHealth);
+            player.TakeDamage(enemy.GetEnemyDamage());
         }
     }
+
 }

@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 1693689838188250107}
   - component: {fileID: 2477231569044453829}
   - component: {fileID: 2477231569044453827}
-  - component: {fileID: 4512167439018768729}
   m_Layer: 0
   m_Name: bulletPrefab
   m_TagString: bullet
@@ -49,14 +48,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 997b96accdf27b64a8fa9503bd0751a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  properties: {fileID: 4512167439018768729}
+  damage: 10
+  damageOverTime: 0
+  statusesOnHit: []
+  properties: {fileID: 0}
   _rb: {fileID: 2477231569044453829}
-  statusElementsOnHit: []
   isBeam: 0
   speed: 15
   acceleration: 0
   containSpeed: 0
-  damage: 10
   lifeTime: 1
   health: 1
 --- !u!114 &1693689838188250107
@@ -76,15 +76,16 @@ MonoBehaviour:
   transitions:
   - Time: 0
     Scale: {x: 0.1625, y: 0.1625, z: 1}
-    Rotation: {x: 0, y: 0, z: 0}
+    Rotation: 0
     easeType: 1
     Color: {r: 1, g: 1, b: 1, a: 1}
   - Time: 0.15
     Scale: {x: 0.25, y: 0.25, z: 1}
-    Rotation: {x: 0, y: 0, z: 0}
+    Rotation: 0
     easeType: 1
     Color: {r: 1, g: 1, b: 1, a: 1}
-  stepsBetween: 0
+  colorChangeSmooth: 20
+  resetRotation: 0
 --- !u!50 &2477231569044453829
 Rigidbody2D:
   serializedVersion: 4
@@ -132,19 +133,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &4512167439018768729
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2477231569044453831}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a2b0d80b5fbda3049abfcb98c7278aa3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  scaler: {fileID: 1693689838188250107}
 --- !u!1 &9021499171511107515
 GameObject:
   m_ObjectHideFlags: 0

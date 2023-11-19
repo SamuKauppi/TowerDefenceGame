@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4288204011418583568}
   - component: {fileID: 4288204011418583570}
   - component: {fileID: 4288204011418583569}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: BotWall
   m_TagString: map
   m_Icon: {fileID: 0}
@@ -122,7 +122,7 @@ GameObject:
   - component: {fileID: 4288204012024835567}
   - component: {fileID: 4288204012024835561}
   - component: {fileID: 4288204012024835560}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: TopWall
   m_TagString: map
   m_Icon: {fileID: 0}
@@ -231,7 +231,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4288204012436771596}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: GameMap
   m_TagString: map
   m_Icon: {fileID: 0}

@@ -133,7 +133,13 @@ PrefabInstance:
       objectReference: {fileID: 21300000, guid: 2360a80967cdfc14ab345087c40479dd, type: 3}
     m_RemovedComponents:
     - {fileID: 4512167439018768729, guid: c7f9a2e14c4e02d4ab3e82511d145d2c, type: 3}
+    - {fileID: 1693689838188250107, guid: c7f9a2e14c4e02d4ab3e82511d145d2c, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: c7f9a2e14c4e02d4ab3e82511d145d2c, type: 3}
+--- !u!212 &7237938928938828892 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 3543555654316066606, guid: c7f9a2e14c4e02d4ab3e82511d145d2c, type: 3}
+  m_PrefabInstance: {fileID: 6151756615374127986}
+  m_PrefabAsset: {fileID: 0}
 --- !u!61 &8592739381457975985 stripped
 BoxCollider2D:
   m_CorrespondingSourceObject: {fileID: 2477231569044453827, guid: c7f9a2e14c4e02d4ab3e82511d145d2c, type: 3}
@@ -157,6 +163,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scaler: {fileID: 0}
-  sr: {fileID: 0}
+  sr: {fileID: 7237938928938828892}
   bx: {fileID: 8592739381457975985}
   angleToRotate: 50

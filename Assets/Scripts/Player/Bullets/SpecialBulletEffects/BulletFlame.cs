@@ -1,60 +1,35 @@
 using System.Collections;
 using UnityEngine;
 
-public class BulletFlame : BulletProperties
+public class BulletFlame : BulletBeam
 {
-    [SerializeField] private SpriteRenderer sr;
-    [SerializeField] private Color[] colors;
-    [SerializeField] private Vector3[] scalesOverTime;
-    private float delay;
+    [SerializeField] private Animator _animator;        // Animator for flame effect
+    [SerializeField] private float _animationLength;    // Lifetime of the animation
+    private float _animationTimer;                      // Timer for life spawnTimer
+    private bool _isPlaying = false;
 
     private void Start()
     {
-        delay = 0.65f / colors.Length;
+        // Reduce the animation spawnTimer for 0.5 seconds (length of the end animation) 
+        _animationLength -= 0.5f;
     }
-
     public override void OnBulletSpawn()
     {
-        base.OnBulletSpawn();
-        StartCoroutine(CycleColors());
-        StartCoroutine(ScaleOverTime());
+        _animator.SetBool("IsBurning", true);
+        _animationTimer = 0f;
+        _isPlaying = true;
     }
 
-    private IEnumerator CycleColors()
+    public override void OnBulletUpdate()
     {
-        for (int i = 0; i < colors.Length - 1; i++)
+        if (!_isPlaying)
+            return;
+
+        _animationTimer += Time.deltaTime;
+        if (_animationTimer > _animationLength)
         {
-            StartCoroutine(SwapColor(colors[i], colors[i + 1], delay));
-            yield return new WaitForSecondsRealtime(delay * 1.01f);
+            _animator.SetBool("IsBurning", false);
+            _isPlaying = false;
         }
-    }
-
-    private IEnumerator SwapColor(Color original, Color target, float time)
-    {
-        float timeDelay = time * 0.1f;
-        while (original != target)
-        {
-            original = Color.Lerp(original, target, 0.1f);
-            sr.color = original;
-            yield return new WaitForSecondsRealtime(timeDelay);
-        }
-    }
-
-    private IEnumerator ScaleOverTime()
-    {
-        float delayBetween = delay / scalesOverTime.Length;
-        for (int i = 0; i < scalesOverTime.Length; i++)
-        {
-            if (LeanTween.isTweening())
-                LeanTween.cancel(gameObject);
-
-            LeanTween.scale(gameObject, scalesOverTime[i], delayBetween);
-            yield return new WaitForSecondsRealtime(delayBetween);
-        }
-    }
-
-    public override void OnBulletDespawn()
-    {
-        LeanTween.scale(gameObject, scalesOverTime[0], 0f);
     }
 }

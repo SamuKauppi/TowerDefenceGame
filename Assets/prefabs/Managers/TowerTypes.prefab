@@ -66,7 +66,7 @@ MonoBehaviour:
   - name: Impact
     upgradeIdent: 2
     description: Shoots more impactful bullets
-    upgradePaths: 04000000070000000c000000
+    upgradePaths: 04000000070000000e000000
     barrelSprite: {fileID: 21300000, guid: f31ff9baa33a9434889841319e2a7dae, type: 3}
     towerSprite: {fileID: 21300000, guid: cdedf60acfc9f9148923f3d87fe5fe67, type: 3}
     bulletIdent: 5
@@ -81,57 +81,39 @@ MonoBehaviour:
     spreadShots: 1
     degreePerShot: 0
     cost: 0
-  - name: Catapult
-    upgradeIdent: 12
-    description: Fling rocks towards your enemies
-    upgradePaths: 00000000
+  - name: Scope
+    upgradeIdent: 3
+    description: Shoots further and more accurate
+    upgradePaths: 1a0000001c0000000e000000
     barrelSprite: {fileID: 21300000, guid: f31ff9baa33a9434889841319e2a7dae, type: 3}
     towerSprite: {fileID: 21300000, guid: cdedf60acfc9f9148923f3d87fe5fe67, type: 3}
-    bulletIdent: 15
-    attackSpeed: 1.5
+    bulletIdent: 4
+    attackSpeed: 0.4
     rotationSpeed: 0
-    accuracy: 2
+    accuracy: 3
     aimThreshold: 30
-    attackRange: 25
+    attackRange: 12
     chargeTime: 0
     burstShots: 1
     aimWhileFiring: 1
     spreadShots: 1
     degreePerShot: 0
     cost: 0
-  - name: Trebuchet
-    upgradeIdent: 0
-    description: Best long range turret. I think so
-    upgradePaths: 
+  - name: Rapid-fire
+    upgradeIdent: 1
+    description: Shoots slightly faster
+    upgradePaths: 0e0000001900000014000000
     barrelSprite: {fileID: 21300000, guid: f31ff9baa33a9434889841319e2a7dae, type: 3}
     towerSprite: {fileID: 21300000, guid: cdedf60acfc9f9148923f3d87fe5fe67, type: 3}
-    bulletIdent: 15
-    attackSpeed: 2
-    rotationSpeed: 0
-    accuracy: 0
-    aimThreshold: 30
-    attackRange: 60
-    chargeTime: 0
-    burstShots: 1
-    aimWhileFiring: 1
-    spreadShots: 3
-    degreePerShot: 10
-    cost: 0
-  - name: Punch
-    upgradeIdent: 0
-    description: Simple yet effective
-    upgradePaths: 00000000
-    barrelSprite: {fileID: 21300000, guid: f31ff9baa33a9434889841319e2a7dae, type: 3}
-    towerSprite: {fileID: 21300000, guid: cdedf60acfc9f9148923f3d87fe5fe67, type: 3}
-    bulletIdent: 5
-    attackSpeed: 0.02
+    bulletIdent: 4
+    attackSpeed: 0.28
     rotationSpeed: 0
     accuracy: 5
     aimThreshold: 30
-    attackRange: 15
-    chargeTime: 0.15
-    burstShots: 5
-    aimWhileFiring: 0
+    attackRange: 10
+    chargeTime: 0
+    burstShots: 1
+    aimWhileFiring: 1
     spreadShots: 1
     degreePerShot: 0
     cost: 0
@@ -153,13 +135,13 @@ MonoBehaviour:
     spreadShots: 1
     degreePerShot: 0
     cost: 0
-  - name: Lazer Beam
+  - name: Lazer Blaster
     upgradeIdent: 10
     description: Continious beam of light
     upgradePaths: 0b000000
     barrelSprite: {fileID: 21300000, guid: f31ff9baa33a9434889841319e2a7dae, type: 3}
     towerSprite: {fileID: 21300000, guid: cdedf60acfc9f9148923f3d87fe5fe67, type: 3}
-    bulletIdent: 13
+    bulletIdent: 12
     attackSpeed: 0.15
     rotationSpeed: 0
     accuracy: 0
@@ -177,7 +159,7 @@ MonoBehaviour:
     upgradePaths: 
     barrelSprite: {fileID: 21300000, guid: f31ff9baa33a9434889841319e2a7dae, type: 3}
     towerSprite: {fileID: 21300000, guid: cdedf60acfc9f9148923f3d87fe5fe67, type: 3}
-    bulletIdent: 13
+    bulletIdent: 12
     attackSpeed: 0.15
     rotationSpeed: 0
     accuracy: 0
@@ -195,7 +177,7 @@ MonoBehaviour:
     upgradePaths: 
     barrelSprite: {fileID: 21300000, guid: f31ff9baa33a9434889841319e2a7dae, type: 3}
     towerSprite: {fileID: 21300000, guid: cdedf60acfc9f9148923f3d87fe5fe67, type: 3}
-    bulletIdent: 12
+    bulletIdent: 11
     attackSpeed: 3
     rotationSpeed: 180
     accuracy: 1
@@ -261,31 +243,13 @@ MonoBehaviour:
     spreadShots: 8
     degreePerShot: 45
     cost: 0
-  - name: Rapid-fire
-    upgradeIdent: 1
-    description: Shoots slightly faster
-    upgradePaths: 000000000000000000000000
-    barrelSprite: {fileID: 21300000, guid: f31ff9baa33a9434889841319e2a7dae, type: 3}
-    towerSprite: {fileID: 21300000, guid: cdedf60acfc9f9148923f3d87fe5fe67, type: 3}
-    bulletIdent: 4
-    attackSpeed: 0.28
-    rotationSpeed: 0
-    accuracy: 5
-    aimThreshold: 30
-    attackRange: 10
-    chargeTime: 0
-    burstShots: 1
-    aimWhileFiring: 1
-    spreadShots: 1
-    degreePerShot: 0
-    cost: 0
   - name: Gun
-    upgradeIdent: 0
+    upgradeIdent: 14
     description: Faster and stronger bullets
-    upgradePaths: 000000000000000000000000
+    upgradePaths: 110000000f00000013000000
     barrelSprite: {fileID: 21300000, guid: f31ff9baa33a9434889841319e2a7dae, type: 3}
     towerSprite: {fileID: 21300000, guid: cdedf60acfc9f9148923f3d87fe5fe67, type: 3}
-    bulletIdent: 16
+    bulletIdent: 15
     attackSpeed: 0.28
     rotationSpeed: 0
     accuracy: 5
@@ -298,12 +262,12 @@ MonoBehaviour:
     degreePerShot: 0
     cost: 0
   - name: Shotgun
-    upgradeIdent: 0
+    upgradeIdent: 15
     description: Shotguns are cool, right?
-    upgradePaths: 00000000
+    upgradePaths: 10000000
     barrelSprite: {fileID: 21300000, guid: f31ff9baa33a9434889841319e2a7dae, type: 3}
     towerSprite: {fileID: 21300000, guid: cdedf60acfc9f9148923f3d87fe5fe67, type: 3}
-    bulletIdent: 16
+    bulletIdent: 15
     attackSpeed: 0.00015
     rotationSpeed: 0
     accuracy: 10
@@ -316,12 +280,12 @@ MonoBehaviour:
     degreePerShot: 1
     cost: 0
   - name: Blunderbuss
-    upgradeIdent: 0
+    upgradeIdent: 16
     description: Shower enemies with bullets!
     upgradePaths: 
     barrelSprite: {fileID: 21300000, guid: f31ff9baa33a9434889841319e2a7dae, type: 3}
     towerSprite: {fileID: 21300000, guid: cdedf60acfc9f9148923f3d87fe5fe67, type: 3}
-    bulletIdent: 16
+    bulletIdent: 15
     attackSpeed: 0.00015
     rotationSpeed: 0
     accuracy: 15
@@ -334,12 +298,12 @@ MonoBehaviour:
     degreePerShot: 1
     cost: 0
   - name: SMG
-    upgradeIdent: 0
+    upgradeIdent: 17
     description: So many bullets but very inaccurate
-    upgradePaths: 00000000
+    upgradePaths: 12000000
     barrelSprite: {fileID: 21300000, guid: f31ff9baa33a9434889841319e2a7dae, type: 3}
     towerSprite: {fileID: 21300000, guid: cdedf60acfc9f9148923f3d87fe5fe67, type: 3}
-    bulletIdent: 16
+    bulletIdent: 15
     attackSpeed: 0.0015
     rotationSpeed: 0
     accuracy: 5
@@ -352,12 +316,12 @@ MonoBehaviour:
     degreePerShot: 0
     cost: 0
   - name: Minigun
-    upgradeIdent: 0
+    upgradeIdent: 18
     description: It's raining bullets
     upgradePaths: 
     barrelSprite: {fileID: 21300000, guid: f31ff9baa33a9434889841319e2a7dae, type: 3}
     towerSprite: {fileID: 21300000, guid: cdedf60acfc9f9148923f3d87fe5fe67, type: 3}
-    bulletIdent: 16
+    bulletIdent: 15
     attackSpeed: 0.0001
     rotationSpeed: 0
     accuracy: 6
@@ -370,12 +334,12 @@ MonoBehaviour:
     degreePerShot: 0
     cost: 0
   - name: Sniper
-    upgradeIdent: 0
+    upgradeIdent: 19
     description: Ultimate long range tower
     upgradePaths: 
     barrelSprite: {fileID: 21300000, guid: f31ff9baa33a9434889841319e2a7dae, type: 3}
     towerSprite: {fileID: 21300000, guid: cdedf60acfc9f9148923f3d87fe5fe67, type: 3}
-    bulletIdent: 17
+    bulletIdent: 16
     attackSpeed: 1.1
     rotationSpeed: 0
     accuracy: 0
@@ -388,12 +352,12 @@ MonoBehaviour:
     degreePerShot: 0
     cost: 0
   - name: Ember
-    upgradeIdent: 0
+    upgradeIdent: 20
     description: Burns enemies
-    upgradePaths: 000000000000000000000000
+    upgradePaths: 1500000017000000
     barrelSprite: {fileID: 21300000, guid: f31ff9baa33a9434889841319e2a7dae, type: 3}
     towerSprite: {fileID: 21300000, guid: cdedf60acfc9f9148923f3d87fe5fe67, type: 3}
-    bulletIdent: 18
+    bulletIdent: 17
     attackSpeed: 0.28
     rotationSpeed: 0
     accuracy: 5
@@ -406,16 +370,16 @@ MonoBehaviour:
     degreePerShot: 0
     cost: 0
   - name: Flamethrower
-    upgradeIdent: 0
+    upgradeIdent: 21
     description: Incinerate nearby enemies
-    upgradePaths: 00000000
+    upgradePaths: 16000000
     barrelSprite: {fileID: 21300000, guid: f31ff9baa33a9434889841319e2a7dae, type: 3}
     towerSprite: {fileID: 21300000, guid: cdedf60acfc9f9148923f3d87fe5fe67, type: 3}
-    bulletIdent: 19
-    attackSpeed: 0.05
-    rotationSpeed: 180
-    accuracy: 30
-    aimThreshold: 30
+    bulletIdent: 18
+    attackSpeed: 1.5
+    rotationSpeed: 150
+    accuracy: 0
+    aimThreshold: 45
     attackRange: 10
     chargeTime: 0
     burstShots: 1
@@ -423,67 +387,67 @@ MonoBehaviour:
     spreadShots: 1
     degreePerShot: 0
     cost: 0
-  - name: Overheat
-    upgradeIdent: 0
+  - name: Ring of Fire
+    upgradeIdent: 22
     description: Melt enemies
     upgradePaths: 
     barrelSprite: {fileID: 21300000, guid: f31ff9baa33a9434889841319e2a7dae, type: 3}
     towerSprite: {fileID: 21300000, guid: cdedf60acfc9f9148923f3d87fe5fe67, type: 3}
-    bulletIdent: 19
-    attackSpeed: 0.05
-    rotationSpeed: 180
-    accuracy: 45
-    aimThreshold: 30
+    bulletIdent: 18
+    attackSpeed: 1.5
+    rotationSpeed: 100
+    accuracy: 0
+    aimThreshold: 180
     attackRange: 10
     chargeTime: 0
     burstShots: 1
     aimWhileFiring: 1
-    spreadShots: 3
-    degreePerShot: 10
+    spreadShots: 9
+    degreePerShot: 40
     cost: 0
   - name: Blue Flame
-    upgradeIdent: 0
+    upgradeIdent: 23
     description: Burn so hot that enemies are slowed
-    upgradePaths: 00000000
+    upgradePaths: 18000000
     barrelSprite: {fileID: 21300000, guid: f31ff9baa33a9434889841319e2a7dae, type: 3}
     towerSprite: {fileID: 21300000, guid: cdedf60acfc9f9148923f3d87fe5fe67, type: 3}
-    bulletIdent: 21
-    attackSpeed: 0.05
-    rotationSpeed: 180
-    accuracy: 30
-    aimThreshold: 30
-    attackRange: 10
+    bulletIdent: 19
+    attackSpeed: 0.25
+    rotationSpeed: 150
+    accuracy: 5
+    aimThreshold: 45
+    attackRange: 15
     chargeTime: 0
     burstShots: 1
     aimWhileFiring: 1
     spreadShots: 1
     degreePerShot: 0
     cost: 0
-  - name: Cold Flame
-    upgradeIdent: 0
+  - name: Blizzard
+    upgradeIdent: 24
     description: Even hotter... or colder... who knows
     upgradePaths: 
     barrelSprite: {fileID: 21300000, guid: f31ff9baa33a9434889841319e2a7dae, type: 3}
     towerSprite: {fileID: 21300000, guid: cdedf60acfc9f9148923f3d87fe5fe67, type: 3}
-    bulletIdent: 21
-    attackSpeed: 0.05
-    rotationSpeed: 180
-    accuracy: 45
-    aimThreshold: 30
-    attackRange: 10
+    bulletIdent: 19
+    attackSpeed: 0.25
+    rotationSpeed: 150
+    accuracy: 10
+    aimThreshold: 45
+    attackRange: 20
     chargeTime: 0
     burstShots: 1
     aimWhileFiring: 1
     spreadShots: 3
-    degreePerShot: 5
+    degreePerShot: 15
     cost: 0
   - name: Sword
-    upgradeIdent: 0
+    upgradeIdent: 25
     description: Best close range tower
-    upgradePaths: 000000000000000000000000
+    upgradePaths: 
     barrelSprite: {fileID: 21300000, guid: f31ff9baa33a9434889841319e2a7dae, type: 3}
     towerSprite: {fileID: 21300000, guid: cdedf60acfc9f9148923f3d87fe5fe67, type: 3}
-    bulletIdent: 22
+    bulletIdent: 20
     attackSpeed: 1
     rotationSpeed: 0
     accuracy: 0
@@ -495,50 +459,50 @@ MonoBehaviour:
     spreadShots: 1
     degreePerShot: 0
     cost: 0
-  - name: Scope
-    upgradeIdent: 3
-    description: Shoots further and more accurate
-    upgradePaths: 1a0000001c0000001e000000
-    barrelSprite: {fileID: 21300000, guid: f31ff9baa33a9434889841319e2a7dae, type: 3}
-    towerSprite: {fileID: 21300000, guid: cdedf60acfc9f9148923f3d87fe5fe67, type: 3}
-    bulletIdent: 4
-    attackSpeed: 0.4
-    rotationSpeed: 0
-    accuracy: 3
-    aimThreshold: 30
-    attackRange: 12
-    chargeTime: 0
-    burstShots: 1
-    aimWhileFiring: 1
-    spreadShots: 1
-    degreePerShot: 0
-    cost: 0
   - name: Wallop
-    upgradeIdent: 30
+    upgradeIdent: 28
     description: Overwhelm your enemies
-    upgradePaths: 1f000000
+    upgradePaths: 0c0000001d000000
     barrelSprite: {fileID: 21300000, guid: f31ff9baa33a9434889841319e2a7dae, type: 3}
     towerSprite: {fileID: 21300000, guid: cdedf60acfc9f9148923f3d87fe5fe67, type: 3}
     bulletIdent: 5
-    attackSpeed: 0.02
+    attackSpeed: 0.5
     rotationSpeed: 0
     accuracy: 5
-    aimThreshold: 30
+    aimThreshold: 15
     attackRange: 15
-    chargeTime: 0.2
+    chargeTime: 1
     burstShots: 3
     aimWhileFiring: 0
     spreadShots: 1
     degreePerShot: 0
     cost: 0
   - name: Boomerang
-    upgradeIdent: 31
+    upgradeIdent: 29
+    description: Shoots one boomerang that comes back
+    upgradePaths: 1e000000
+    barrelSprite: {fileID: 21300000, guid: f31ff9baa33a9434889841319e2a7dae, type: 3}
+    towerSprite: {fileID: 21300000, guid: cdedf60acfc9f9148923f3d87fe5fe67, type: 3}
+    bulletIdent: 13
+    attackSpeed: 1.25
+    rotationSpeed: 0
+    accuracy: 0
+    aimThreshold: 30
+    attackRange: 18
+    chargeTime: 0
+    burstShots: 1
+    aimWhileFiring: 1
+    spreadShots: 1
+    degreePerShot: 0
+    cost: 0
+  - name: Boomaster
+    upgradeIdent: 30
     description: Shoots one boomerang that comes back
     upgradePaths: 
     barrelSprite: {fileID: 21300000, guid: f31ff9baa33a9434889841319e2a7dae, type: 3}
     towerSprite: {fileID: 21300000, guid: cdedf60acfc9f9148923f3d87fe5fe67, type: 3}
-    bulletIdent: 14
-    attackSpeed: 1.25
+    bulletIdent: 13
+    attackSpeed: 0.5
     rotationSpeed: 0
     accuracy: 0
     aimThreshold: 30
@@ -552,13 +516,13 @@ MonoBehaviour:
   - name: Lightning bolt
     upgradeIdent: 26
     description: L-L-Lightning
-    upgradePaths: 00000000
+    upgradePaths: 1b000000
     barrelSprite: {fileID: 21300000, guid: f31ff9baa33a9434889841319e2a7dae, type: 3}
     towerSprite: {fileID: 21300000, guid: cdedf60acfc9f9148923f3d87fe5fe67, type: 3}
-    bulletIdent: 23
-    attackSpeed: 0.4
+    bulletIdent: 21
+    attackSpeed: 1
     rotationSpeed: 0
-    accuracy: 3
+    accuracy: 0
     aimThreshold: 30
     attackRange: 15
     chargeTime: 0
@@ -568,55 +532,55 @@ MonoBehaviour:
     degreePerShot: 0
     cost: 0
   - name: Thunder Storm
-    upgradeIdent: 0
+    upgradeIdent: 27
     description: More thunder
     upgradePaths: 
     barrelSprite: {fileID: 21300000, guid: f31ff9baa33a9434889841319e2a7dae, type: 3}
     towerSprite: {fileID: 21300000, guid: cdedf60acfc9f9148923f3d87fe5fe67, type: 3}
-    bulletIdent: 0
-    attackSpeed: 0.25
+    bulletIdent: 21
+    attackSpeed: 0.5
     rotationSpeed: 0
-    accuracy: 3
+    accuracy: 0
     aimThreshold: 30
-    attackRange: 60
+    attackRange: 15
     chargeTime: 0
     burstShots: 1
     aimWhileFiring: 1
     spreadShots: 1
     degreePerShot: 0
     cost: 0
-  - name: Water Jet
-    upgradeIdent: 28
-    description: Water flows
-    upgradePaths: 00000000
+  - name: Catapult
+    upgradeIdent: 12
+    description: Fling rocks towards your enemies
+    upgradePaths: 0d000000
     barrelSprite: {fileID: 21300000, guid: f31ff9baa33a9434889841319e2a7dae, type: 3}
     towerSprite: {fileID: 21300000, guid: cdedf60acfc9f9148923f3d87fe5fe67, type: 3}
-    bulletIdent: 24
-    attackSpeed: 0.015
-    rotationSpeed: 0
-    accuracy: 5
-    aimThreshold: 30
-    attackRange: 14
-    chargeTime: 0.5
-    burstShots: 8
+    bulletIdent: 14
+    attackSpeed: 1.5
+    rotationSpeed: 90
+    accuracy: 2
+    aimThreshold: 5
+    attackRange: 25
+    chargeTime: 0
+    burstShots: 1
     aimWhileFiring: 1
     spreadShots: 1
     degreePerShot: 0
     cost: 0
-  - name: Hydro Pump
-    upgradeIdent: 0
-    description: Powerful balst of water
+  - name: Trebuchet
+    upgradeIdent: 13
+    description: Best long range turret. I think so
     upgradePaths: 
     barrelSprite: {fileID: 21300000, guid: f31ff9baa33a9434889841319e2a7dae, type: 3}
     towerSprite: {fileID: 21300000, guid: cdedf60acfc9f9148923f3d87fe5fe67, type: 3}
-    bulletIdent: 0
-    attackSpeed: 0.015
-    rotationSpeed: 0
-    accuracy: 5
-    aimThreshold: 30
-    attackRange: 15
-    chargeTime: 0.5
-    burstShots: 15
+    bulletIdent: 14
+    attackSpeed: 2
+    rotationSpeed: 90
+    accuracy: 0
+    aimThreshold: 5
+    attackRange: 60
+    chargeTime: 0
+    burstShots: 1
     aimWhileFiring: 1
     spreadShots: 3
     degreePerShot: 5

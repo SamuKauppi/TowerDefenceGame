@@ -1,0 +1,120 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &5576529121844243783
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1930133802080899264, guid: de1a163c4a0809142a971feb6f9c50ee, type: 3}
+      propertyPath: m_Size.x
+      value: 1.28
+      objectReference: {fileID: 0}
+    - target: {fileID: 1930133802080899264, guid: de1a163c4a0809142a971feb6f9c50ee, type: 3}
+      propertyPath: m_Size.y
+      value: 2.56
+      objectReference: {fileID: 0}
+    - target: {fileID: 1930133802080899264, guid: de1a163c4a0809142a971feb6f9c50ee, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 2021173073, guid: 7cd739cf753d76541b3079e117fbd37b, type: 3}
+    - target: {fileID: 1930133802080899264, guid: de1a163c4a0809142a971feb6f9c50ee, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3540091739760738816, guid: de1a163c4a0809142a971feb6f9c50ee, type: 3}
+      propertyPath: m_Name
+      value: LightningBolt
+      objectReference: {fileID: 0}
+    - target: {fileID: 3540091739760738816, guid: de1a163c4a0809142a971feb6f9c50ee, type: 3}
+      propertyPath: m_TagString
+      value: bullet
+      objectReference: {fileID: 0}
+    - target: {fileID: 7180441497108813941, guid: de1a163c4a0809142a971feb6f9c50ee, type: 3}
+      propertyPath: m_Size.x
+      value: 0.68566084
+      objectReference: {fileID: 0}
+    - target: {fileID: 7180441497108813941, guid: de1a163c4a0809142a971feb6f9c50ee, type: 3}
+      propertyPath: m_Size.y
+      value: 2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7180441497108813941, guid: de1a163c4a0809142a971feb6f9c50ee, type: 3}
+      propertyPath: m_Offset.x
+      value: 0.017830431
+      objectReference: {fileID: 0}
+    - target: {fileID: 7180441497108813941, guid: de1a163c4a0809142a971feb6f9c50ee, type: 3}
+      propertyPath: m_Offset.y
+      value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7384935558824570388, guid: de1a163c4a0809142a971feb6f9c50ee, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7384935558824570388, guid: de1a163c4a0809142a971feb6f9c50ee, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7384935558824570388, guid: de1a163c4a0809142a971feb6f9c50ee, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7384935558824570388, guid: de1a163c4a0809142a971feb6f9c50ee, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7384935558824570388, guid: de1a163c4a0809142a971feb6f9c50ee, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7384935558824570388, guid: de1a163c4a0809142a971feb6f9c50ee, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7384935558824570388, guid: de1a163c4a0809142a971feb6f9c50ee, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7384935558824570388, guid: de1a163c4a0809142a971feb6f9c50ee, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7384935558824570388, guid: de1a163c4a0809142a971feb6f9c50ee, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7384935558824570388, guid: de1a163c4a0809142a971feb6f9c50ee, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7384935558824570388, guid: de1a163c4a0809142a971feb6f9c50ee, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8565955595562019675, guid: de1a163c4a0809142a971feb6f9c50ee, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: db7434fa3af2e1c44867cd1ef7aebae6, type: 2}
+    m_RemovedComponents:
+    - {fileID: 0}
+  m_SourcePrefab: {fileID: 100100000, guid: de1a163c4a0809142a971feb6f9c50ee, type: 3}
+--- !u!1 &8954036899419156295 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3540091739760738816, guid: de1a163c4a0809142a971feb6f9c50ee, type: 3}
+  m_PrefabInstance: {fileID: 5576529121844243783}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &3737129826088408009
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8954036899419156295}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56d5cf73fa8779142973d5111cebcc92, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 0
+  damageOverTime: 0
+  statusesOnHit: []

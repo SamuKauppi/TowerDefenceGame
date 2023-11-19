@@ -22,14 +22,13 @@ public enum TowerUpgrade
     Sniper,
     Ember,
     Flamethrower,
-    Overheat,
+    RingOfFire,
     BlueFlame,
     Blizzard,
     Sword,
     LightningBolt,
     Thunderlord,
-    WaterJet,
-    HydroPump,
     Wallop,
-    Boomerang
+    Boomerang,
+    Boomaster
 }

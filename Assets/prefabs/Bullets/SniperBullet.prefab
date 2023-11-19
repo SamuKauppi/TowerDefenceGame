@@ -39,6 +39,22 @@ PrefabInstance:
       propertyPath: acceleration
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 334820565493981338, guid: 3612622c6eedfc64383d38134259a7c1, type: 3}
+      propertyPath: statusesOnHit.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 334820565493981338, guid: 3612622c6eedfc64383d38134259a7c1, type: 3}
+      propertyPath: statusesOnHit.Array.data[0].duration
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 334820565493981338, guid: 3612622c6eedfc64383d38134259a7c1, type: 3}
+      propertyPath: statusesOnHit.Array.data[0].strength
+      value: 0.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 334820565493981338, guid: 3612622c6eedfc64383d38134259a7c1, type: 3}
+      propertyPath: statusesOnHit.Array.data[0].bulletApplying
+      value: 16
+      objectReference: {fileID: 0}
     - target: {fileID: 334820565493981340, guid: 3612622c6eedfc64383d38134259a7c1, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -94,6 +110,18 @@ PrefabInstance:
     - target: {fileID: 334820565493981343, guid: 3612622c6eedfc64383d38134259a7c1, type: 3}
       propertyPath: m_Name
       value: SniperBullet
+      objectReference: {fileID: 0}
+    - target: {fileID: 1722728479211036278, guid: 3612622c6eedfc64383d38134259a7c1, type: 3}
+      propertyPath: m_Color.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1722728479211036278, guid: 3612622c6eedfc64383d38134259a7c1, type: 3}
+      propertyPath: m_Color.g
+      value: 0.23480466
+      objectReference: {fileID: 0}
+    - target: {fileID: 1722728479211036278, guid: 3612622c6eedfc64383d38134259a7c1, type: 3}
+      propertyPath: m_Color.r
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1755015285024792577, guid: 3612622c6eedfc64383d38134259a7c1, type: 3}
       propertyPath: statusDuration

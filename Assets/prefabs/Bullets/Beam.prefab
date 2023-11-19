@@ -12,6 +12,10 @@ PrefabInstance:
       value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 1693689838188250107, guid: c7f9a2e14c4e02d4ab3e82511d145d2c, type: 3}
+      propertyPath: colorChangeSmooth
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 1693689838188250107, guid: c7f9a2e14c4e02d4ab3e82511d145d2c, type: 3}
       propertyPath: transitions.Array.size
       value: 3
       objectReference: {fileID: 0}
@@ -117,7 +121,7 @@ PrefabInstance:
       objectReference: {fileID: 6363726037297055688}
     - target: {fileID: 2477231569044453826, guid: c7f9a2e14c4e02d4ab3e82511d145d2c, type: 3}
       propertyPath: damageOverTime
-      value: 15
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 2477231569044453827, guid: c7f9a2e14c4e02d4ab3e82511d145d2c, type: 3}
       propertyPath: m_Size.x

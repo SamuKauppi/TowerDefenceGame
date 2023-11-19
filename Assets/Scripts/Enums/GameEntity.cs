@@ -6,24 +6,23 @@
     NormalEnemy,
     Bullet,
     ImpactBullet,
-    Explosion,
+    BombExplosion,
     Bomb,
     BigBomb,
     BiggerBomb,
     Beam,
-    IceBeam,
     HyperBeam,
-    LaserBeam,
+    LaserBlast,
     Boomerang,
     Rock,
     GunBullet,
     SniperBullet,
     Ember,
     Flame,
-    GreenFlame,
     ColdFlame,
     Sword,
     Lightning,
-    Water
+    RockExplosion,
+    LightningBolt
 }
 

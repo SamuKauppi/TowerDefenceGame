@@ -53,7 +53,7 @@ public class Tower : MonoBehaviour, IUpdate
         endpoint = Pathfinding.Instance.GetEndPoint();
 
         // Apply standard upgrade
-        UpgradeTower(TowerUpgrade.Normal);
+        UpgradeTower(TowerUpgrade.LightningBolt);
 
         // Add this to updatable objects
         GameObjectUpdateManager.Instance.AddObject(this);
@@ -283,23 +283,23 @@ public class Tower : MonoBehaviour, IUpdate
         // Rotate it equal to currentShotAngle
         latestBulletShot.transform.Rotate(0, 0, currentShotAngle);
         // Configure bullet properties
-        ConfigureBulletProperties(latestBulletShot);
+        ConfigureBulletProperties(latestBulletShot, currentShotAngle);
     }
     /// <summary>
     /// Configure properties for specific type of bullets that was shot
     /// </summary>
     /// <param name="bullet"></param>
-    private void ConfigureBulletProperties(GameObject bullet)
+    private void ConfigureBulletProperties(GameObject bullet, float angleOffset)
     {
         if (!bullet.TryGetComponent<BulletProperties>(out var properties))
         {
             return;
         }
 
-        // Beam needs the barrel transform
+        // Beam needs the barrel transform and the angle offset
         if (properties is BulletBeam beam)
         {
-            beam.SetTowerBarrel(barrel);
+            beam.SetTowerBarrel(barrel, angleOffset);
         }
 
         // Add more conditions for other configurations as needed

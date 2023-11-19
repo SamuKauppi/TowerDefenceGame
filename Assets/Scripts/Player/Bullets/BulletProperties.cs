@@ -9,10 +9,7 @@ public abstract class BulletProperties : MonoBehaviour
         if (scaler)
             scaler.StartTransition();
     }
-    public virtual void OnBulletDespawn()
-    { return; }
-    public virtual void OnBulletUpdate() 
-    { return; }
-    public virtual void OnBulletFixedUpdate() 
-    { return; }
+    public virtual void OnBulletDespawn(){}
+    public virtual void OnBulletUpdate(){}
+    public virtual void OnBulletFixedUpdate(){}
 }

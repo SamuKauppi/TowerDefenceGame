@@ -53,7 +53,7 @@ public class Bullet : BulletDamages, IUpdate, IFixedUpdate
 
     /// <summary>
     /// Updates the lifetime of a bullet
-    /// 0 == lifeTime = bullet does not die by time
+    /// 0 == _animationLength = bullet does not die by spawnTimer
     /// </summary>
     private void UpdateLifeTime()
     {

@@ -1483,10 +1483,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   upgradeButtons:
-  - {fileID: 4993317015091803830}
-  - {fileID: 4993317015819096539}
-  - {fileID: 4993317014801014299}
   - {fileID: 4993317015242057593}
+  - {fileID: 4993317014801014299}
+  - {fileID: 4993317015819096539}
+  - {fileID: 4993317015091803830}
 --- !u!1 &4993317016539080410
 GameObject:
   m_ObjectHideFlags: 0
