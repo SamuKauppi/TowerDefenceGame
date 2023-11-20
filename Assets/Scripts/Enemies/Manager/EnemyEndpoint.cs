@@ -11,8 +11,9 @@ public class EnemyEndpoint : MonoBehaviour
     {
         if (collision.TryGetComponent(out Enemy enemy))
         {
-            // Check if it's an enemy, and if so, proceed with the logic
-            enemy.TakeDamage(enemy.MaxHealth);
+            // Kill enemy
+            enemy.TakeDamage(enemy.MaxHealth);  
+            // Player takes damage
             player.TakeDamage(enemy.GetEnemyDamage());
         }
     }

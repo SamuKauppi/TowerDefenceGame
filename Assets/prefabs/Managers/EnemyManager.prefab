@@ -44,6 +44,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0b3046fe24232a43b55be74624d63e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyTypes: 030000000200000001000000
-  spawnTimer: 3
-  reduceSpawnTime: 1
+  preDeterminedWaves:
+  - waveName: start
+    enemyFormations:
+    - enemiesToSpawn:
+      - enemyType: 3
+        enemyCount: 5
+      - enemyType: 2
+        enemyCount: 2
+      spawnOrder: 0
+    - enemiesToSpawn:
+      - enemyType: 3
+        enemyCount: 5
+      - enemyType: 2
+        enemyCount: 2
+      - enemyType: 1
+        enemyCount: 5
+      spawnOrder: 1
+    - enemiesToSpawn:
+      - enemyType: 3
+        enemyCount: 5
+      - enemyType: 2
+        enemyCount: 2
+      - enemyType: 1
+        enemyCount: 10
+      spawnOrder: 2
+    delayBeforeWave: 2
+    delayBewteenFormations: 5
+    delayBetweenSpawns: 1.5

@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Profiling;
 
 /// <summary>
 /// Manages the gameobject updating
@@ -46,7 +45,6 @@ public class GameObjectUpdateManager : MonoBehaviour
             updateObj.UpdateObject();
         }
     }
-
     private void FixedUpdate()
     {
         foreach (IFixedUpdate updateObj in fixedUpdates)

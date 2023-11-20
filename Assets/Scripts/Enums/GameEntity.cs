@@ -23,6 +23,7 @@
     Sword,
     Lightning,
     RockExplosion,
-    LightningBolt
+    LightningBolt,
+    Null
 }
 
