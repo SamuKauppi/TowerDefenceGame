@@ -49,9 +49,6 @@ public class Enemy : MonoBehaviour, IFixedUpdate, IUpdate
         pathfinding = Pathfinding.Instance;
     }
 
-    /// <summary>
-    /// Update direction of movement
-    /// </summary>
     private void MoveToNextTarget()
     {
         if (currentDirection != targetDirection)
@@ -66,6 +63,12 @@ public class Enemy : MonoBehaviour, IFixedUpdate, IUpdate
             currentDirection.Normalize();
         }
 
+        // Determine the rotation based on the movement direction
+        Quaternion targetRotation = Quaternion.LookRotation(Vector3.forward, currentDirection);
+
+        // Smoothly rotate towards the target rotation
+        transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.fixedDeltaTime * turnSpeed);
+
         _rb.MovePosition(statusElements.SpeedModifier *
             abilitySpeedModifier *
             speed *
@@ -73,6 +76,7 @@ public class Enemy : MonoBehaviour, IFixedUpdate, IUpdate
             currentDirection +
             transform.position);
     }
+
 
     /// <summary>
     /// Set current direction towards current target

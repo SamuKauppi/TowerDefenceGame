@@ -12,16 +12,20 @@ PrefabInstance:
       value: Mirror Enemy
       objectReference: {fileID: 0}
     - target: {fileID: 976617091015190362, guid: 15653ddc2a0542b4191cc7331315cf50, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -810558477, guid: 72733d69eb54b994fb0e56a7bdff8148, type: 3}
+    - target: {fileID: 976617091015190362, guid: 15653ddc2a0542b4191cc7331315cf50, type: 3}
       propertyPath: m_Color.b
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 976617091015190362, guid: 15653ddc2a0542b4191cc7331315cf50, type: 3}
       propertyPath: m_Color.g
-      value: 0.64669466
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 976617091015190362, guid: 15653ddc2a0542b4191cc7331315cf50, type: 3}
       propertyPath: m_Color.r
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 976617091015190363, guid: 15653ddc2a0542b4191cc7331315cf50, type: 3}
       propertyPath: m_RootOrder
@@ -67,9 +71,39 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5736154231517779001, guid: 15653ddc2a0542b4191cc7331315cf50, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -810558477, guid: 72733d69eb54b994fb0e56a7bdff8148, type: 3}
     m_RemovedComponents:
     - {fileID: 976617091015190340, guid: 15653ddc2a0542b4191cc7331315cf50, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 15653ddc2a0542b4191cc7331315cf50, type: 3}
+--- !u!1 &7516232255113062332 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 741227464598358816, guid: 15653ddc2a0542b4191cc7331315cf50, type: 3}
+  m_PrefabInstance: {fileID: 7063433234456964252}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &521613459128755452
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7516232255113062332}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 6b74d9c739750a342b3f03eda707bd85, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &8037798384930114501 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 976617091015190361, guid: 15653ddc2a0542b4191cc7331315cf50, type: 3}
@@ -90,11 +124,11 @@ MonoBehaviour:
   _rb: {fileID: 8037798384930114521}
   health: 100
   damage: 10
-  speed: 0.5
+  speed: 0.4
   distanceToStop: 0.5
   turnSpeed: 90
   copyTime: 1.5
-  copyRadius: 3
+  copyRadius: 1.5
   moveCopiedTime: 0.15
   copyTarget: 32
 --- !u!50 &8037798384930114521 stripped

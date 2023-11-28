@@ -51,7 +51,7 @@ public class EnemyStealth : Enemy, ISpecialAbility
 
                 // Apply conditions based if the enemy is be hidden or visible
                 enemyCollider.enabled = isVisible;
-                enemyColor.a = isVisible ? 1f : 0.5f;
+                enemyColor.a = isVisible ? 1f : 0.1f;
                 enemyRenderer.color = enemyColor;
                 abilitySpeedModifier = isVisible ? 1f : speedModifierAsHidden;
 

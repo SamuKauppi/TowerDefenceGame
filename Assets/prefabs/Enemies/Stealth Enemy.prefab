@@ -55,9 +55,44 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5736154231517779001, guid: 15653ddc2a0542b4191cc7331315cf50, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -1730244643, guid: c7df18ef5264fe149bcf52d703c4de75, type: 3}
     m_RemovedComponents:
     - {fileID: 976617091015190340, guid: 15653ddc2a0542b4191cc7331315cf50, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 15653ddc2a0542b4191cc7331315cf50, type: 3}
+--- !u!212 &866156292859156629 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 5736154231517779001, guid: 15653ddc2a0542b4191cc7331315cf50, type: 3}
+  m_PrefabInstance: {fileID: 4872856790543256748}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &5320584171780327308 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 741227464598358816, guid: 15653ddc2a0542b4191cc7331315cf50, type: 3}
+  m_PrefabInstance: {fileID: 4872856790543256748}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &627532843798824620
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5320584171780327308}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 2096e780c548d214a9f5d2f6a1353909, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!50 &5625692471412878313 stripped
 Rigidbody2D:
   m_CorrespondingSourceObject: {fileID: 976617091015190341, guid: 15653ddc2a0542b4191cc7331315cf50, type: 3}
@@ -88,17 +123,12 @@ MonoBehaviour:
   _rb: {fileID: 5625692471412878313}
   health: 25
   damage: 10
-  speed: 4
+  speed: 3
   distanceToStop: 0.5
   turnSpeed: 90
   enemyCollider: {fileID: 5625692471412878314}
-  enemyRenderer: {fileID: 5625692471412878326}
+  enemyRenderer: {fileID: 866156292859156629}
   startAsHidden: 1
   timeHidden: 1.5
   timeVisible: 1
   speedModifierAsHidden: 0.15
---- !u!212 &5625692471412878326 stripped
-SpriteRenderer:
-  m_CorrespondingSourceObject: {fileID: 976617091015190362, guid: 15653ddc2a0542b4191cc7331315cf50, type: 3}
-  m_PrefabInstance: {fileID: 4872856790543256748}
-  m_PrefabAsset: {fileID: 0}
