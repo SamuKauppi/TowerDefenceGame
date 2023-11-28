@@ -1,8 +1,9 @@
 [System.Serializable]
-public class EnemyCount
+public class EnemySpawnPool
 {
     public GameEntity enemyType = GameEntity.NormalEnemy;
-    public int enemyCount;
+    public int count;
+    public float delay;
     public int EnemiesSpawned { get; private set; } = 0;
 
     /// <summary>
@@ -11,7 +12,7 @@ public class EnemyCount
     /// <returns></returns>
     public GameEntity GetEnemy()
     {
-        if (EnemiesSpawned < enemyCount)
+        if (EnemiesSpawned < count)
         {
             EnemiesSpawned++;
             return enemyType;

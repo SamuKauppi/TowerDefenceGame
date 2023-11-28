@@ -33,7 +33,7 @@ public class Tower : MonoBehaviour, IUpdate
     // Firing
     private bool isFiring;              // Is the tower firing
     private float attackTimer;          // Timer for firing speed
-    private float chargeTimer;          // Timer for firing delay
+    private float chargeTimer;          // Timer for firing formationDelay
     private int numberOfBursts;         // Counter for how many bursts per charge
     private Vector3 endpoint;           // Last pathpoint (used to calculate enemy closest to exit)
 
@@ -53,7 +53,7 @@ public class Tower : MonoBehaviour, IUpdate
         endpoint = Pathfinding.Instance.GetEndPoint();
 
         // Apply standard upgrade
-        UpgradeTower(TowerUpgrade.LightningBolt);
+        UpgradeTower(TowerUpgrade.Normal);
 
         // Add this to updatable objects
         GameObjectUpdateManager.Instance.AddObject(this);
@@ -208,8 +208,6 @@ public class Tower : MonoBehaviour, IUpdate
         return closest;
     }
 
-
-
     /// <summary>
     /// Filter nonactive targets from HashSet
     /// </summary>
@@ -256,7 +254,7 @@ public class Tower : MonoBehaviour, IUpdate
             shotsFired++;
         }
 
-        // A bullet was fired. Reset attack timer and increase burst counter
+        // A bullet was fired. Reset attack waveTimer and increase burst counter
         attackTimer = 0;
         numberOfBursts++;
 
@@ -296,7 +294,7 @@ public class Tower : MonoBehaviour, IUpdate
             return;
         }
 
-        // Beam needs the barrel transform and the angle offset
+        // Beam needs the barrel transform and the angle moveOffset
         if (properties is BulletBeam beam)
         {
             beam.SetTowerBarrel(barrel, angleOffset);
@@ -320,6 +318,7 @@ public class Tower : MonoBehaviour, IUpdate
         else
             return true;
     }
+
     /// <summary>
     /// To detect enemies entering range
     /// </summary>
@@ -331,6 +330,7 @@ public class Tower : MonoBehaviour, IUpdate
             targets.Add(collision.transform);
         }
     }
+
     /// <summary>
     /// To detect enemies leaving range
     /// </summary>

@@ -5,20 +5,26 @@ using Random = UnityEngine.Random;
 
 public class Pathfinding : MonoBehaviour
 {
+    // Singleton
     public static Pathfinding Instance { get; private set; }
-    [SerializeField] private PathPoint point_prefab;
 
-    [SerializeField] PathPoint[] pathPoints;
-    [SerializeField] private PathPoint endPoint;
-    [SerializeField] private PathPoint startingPoint;
-    [SerializeField] private float exitPointSize = 5f;
-    [SerializeField] private float positionStep = 0.2f;
-    [SerializeField] private float mapwidth = 9;
-    [SerializeField] private float mapheight = 4.6f;
+    // Pathpoints
+    [SerializeField] private PathPoint point_prefab;            // Pathpoint prefab
+    [SerializeField] PathPoint[] pathPoints;                    // Pathpoints that have been created
+    [SerializeField] private PathPoint endPoint;                // Pathpoint which enemies try to get to
+    [SerializeField] private PathPoint startingPoint;           // Pathpoint which enemies start (used for checking if path is valid)
 
-    private const float startingXPosition = 6f;
+    // Pathfinding area variables
+    [SerializeField] private float exitPointSize = 5f;          // How big is the area where towers can't be built
+    [SerializeField] private float positionStep = 0.2f;         // Distance between pathpoints
+    [SerializeField] private float mapwidth = 9;                // How wide is the pathfinding area
+    [SerializeField] private float mapheight = 4.6f;            // How high is the pathfinding area
+    private const float startingXPosition = 6f;                 // From where the pathpoints are spawned in x axis
+                                                                // Used to give space for UI
 
-    // Create pathpoints and determine singleton
+    /// <summary>
+    /// Create Singleton and call GeneratePaths
+    /// </summary>
     private void Awake()
     {
         Instance = this;
@@ -98,6 +104,7 @@ public class Pathfinding : MonoBehaviour
         return pathpoint;
 
     }
+
     /// <summary>
     /// Determine neighbours for pathpoints
     /// </summary>
@@ -161,7 +168,7 @@ public class Pathfinding : MonoBehaviour
     }
 
     /// <summary>
-    /// Get the closest pathpoint
+    /// Get the closest pathpoint neighbour
     /// </summary>
     /// <param name="currentPoint"></param>
     /// <returns></returns>
@@ -184,11 +191,6 @@ public class Pathfinding : MonoBehaviour
                     {
                         shortestPoint = currentPoint.Neighbours[i];
                     }
-                    // If pathPointChecked equal, chance to pick either one
-                    else if (currentPoint.Neighbours[i].StepsFromEnd == shortestPoint.StepsFromEnd && Random.Range(0, 5) == 0)
-                    {
-                        shortestPoint = currentPoint.Neighbours[i];
-                    }
                 }
             }
         }
@@ -202,7 +204,11 @@ public class Pathfinding : MonoBehaviour
         return shortestPoint;
     }
 
-    //Get closests pathpoint from current position 
+    /// <summary>
+    /// Get the closest pathpoint from position
+    /// </summary>
+    /// <param name="currentPos"></param>
+    /// <returns></returns>
     public PathPoint GetClosestPathPoint(Vector3 currentPos)
     {
         PathPoint shortestDist = pathPoints[0];
@@ -219,7 +225,7 @@ public class Pathfinding : MonoBehaviour
     }
 
     /// <summary>
-    /// Check if a path is valid on building tower
+    /// Check if a path is valid when building tower
     /// 1. Check if tower is too close to exit
     /// 2. Do a simulation if path will be valid
     /// </summary>
@@ -266,6 +272,7 @@ public class Pathfinding : MonoBehaviour
         // Is a valid path
         return true;
     }
+
     /// <summary>
     /// Get pathpoints inside an area
     /// (NOTE: size is increased to avoid enemies getting stuck on towers)

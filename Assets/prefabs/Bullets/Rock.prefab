@@ -68,6 +68,10 @@ PrefabInstance:
       value: 85
       objectReference: {fileID: 0}
     - target: {fileID: 2477231569044453826, guid: c7f9a2e14c4e02d4ab3e82511d145d2c, type: 3}
+      propertyPath: lifeTime
+      value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2477231569044453826, guid: c7f9a2e14c4e02d4ab3e82511d145d2c, type: 3}
       propertyPath: properties
       value: 
       objectReference: {fileID: -3435138303599886262}
@@ -185,7 +189,7 @@ MonoBehaviour:
   explosionStatuses:
   - bulletApplying: 14
     statusEff: 0
-    duration: 0.25
+    duration: 1
     strength: 0.1
     timer: 0
   radius: 0.75

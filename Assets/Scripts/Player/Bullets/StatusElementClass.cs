@@ -2,7 +2,7 @@
 public class StatusElementClass
 {
     public GameEntity bulletApplying;
-    public StatusEffects statusEff;
+    public StatusEffect statusEff;
 
     // Parameters
     public float duration;

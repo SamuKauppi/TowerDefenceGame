@@ -19,7 +19,7 @@ public class PathPoint : MonoBehaviour
     [SerializeField] private int pathValue = 0;
 
     /// <summary>
-    /// 
+    /// Set pathpoints steps to end
     /// </summary>
     /// <param name="distanceToEnd"></param>
     public void SetDistanceToEnd(int distanceToEnd, float shortestDist = 5)
@@ -33,6 +33,7 @@ public class PathPoint : MonoBehaviour
             m_rend.color = Color.green;
         }
     }
+
     /// <summary>
     /// Set this pathpoint to pathable
     /// </summary>

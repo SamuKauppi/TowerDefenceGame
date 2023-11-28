@@ -86,29 +86,11 @@ public class BulletLightning : BulletProperties
         }
 
         // No enemies found, get a random position in check pos
-        Vector2 randomPosition = GetRandomPointInCircle(_currentCheckRadius, checkPos);
+        Vector2 randomPosition = StaticFunctions.GetRandomPointInCircle(_currentCheckRadius, checkPos);
         // Spawn lightning
         SpawnLightning(randomPosition);
         // Reduce targeting distance for next lightning
         ReduceTargetingDistance();
-    }
-
-    /// <summary>
-    /// Get random position in a circle
-    /// </summary>
-    /// <param name="radius"></param>
-    /// <param name="center"></param>
-    /// <returns></returns>
-    Vector2 GetRandomPointInCircle(float radius, Vector2 center)
-    {
-        // Generate a random angle in radians
-        float randomAngle = Random.Range(0f, 2f * Mathf.PI);
-
-        // Use polar coordinates to get x and y coordinates
-        float x = center.x + radius * Mathf.Cos(randomAngle);
-        float y = center.y + radius * Mathf.Sin(randomAngle);
-
-        return new Vector2(x, y);
     }
 
     /// <summary>
@@ -171,7 +153,7 @@ public class BulletLightning : BulletProperties
 
     /// <summary>
     /// FixedUpdate lightning
-    /// On timer, SpawnLightning
+    /// On waveTimer, SpawnLightning
     /// </summary>
     public override void OnBulletFixedUpdate()
     {

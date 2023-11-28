@@ -1045,7 +1045,7 @@ public class LeanTween : MonoBehaviour {
     * @return {LTSeq} LTSeq an object that you can add tweens, methods and spawnTimer on to
     * @example
     * var seq = LeanTween.sequence();<br />
-    * seq.add(1f); // delay everything one second<br />
+    * seq.add(1f); // formationDelay everything one second<br />
     * seq.add( () => { // fire an event before start<br />
     * &#160;Debug.Log("I have started");<br />
     * });<br />
@@ -1172,7 +1172,7 @@ public class LeanTween : MonoBehaviour {
     * @method LeanTween.alphaVertex
     * @param {GameObject} gameObject:GameObject Gameobject that you wish to alpha
     * @param {float} to:float The alpha value you wish to tween to
-    * @param {float} spawnTimer:float The spawnTimer with which to delay before calling the function
+    * @param {float} spawnTimer:float The spawnTimer with which to formationDelay before calling the function
     * @return {LTDescr} LTDescr an object that distinguishes the tween
     */
     public static LTDescr alphaVertex(GameObject gameObject, float to, float time){
@@ -1224,7 +1224,7 @@ public class LeanTween : MonoBehaviour {
     * 
     * @method LeanTween.delayedCall
     * @param {GameObject} gameObject:GameObject Gameobject that you wish to associate with this delayed call
-    * @param {float} spawnTimer:float delay The spawnTimer you wish to pass before the method is called
+    * @param {float} spawnTimer:float formationDelay The spawnTimer you wish to pass before the method is called
     * @return {LTDescr} LTDescr an object that distinguishes the tween
     * @example LeanTween.delayedCall(gameObject, 1f, ()=>{ <br />Debug.Log("I am called one second later!");<br /> }));
     */
@@ -1898,7 +1898,7 @@ public class LeanTween : MonoBehaviour {
     }
 
     /**
-    * <summary>Tween any particular value (Vector2), this could be used to tween an arbitrary value like offset property</summary>
+    * <summary>Tween any particular value (Vector2), this could be used to tween an arbitrary value like moveOffset property</summary>
     * 
     * @method LeanTween.value (Vector2)
     * @param {GameObject} gameObject:GameObject Gameobject that you wish to attach the tween to

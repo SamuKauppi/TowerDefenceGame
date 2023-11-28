@@ -119,17 +119,12 @@ MonoBehaviour:
   - ident: fastE
     gameIdent: 1
     obj: {fileID: 874322408005280109, guid: bf536480109957349a9465dcff3299a0, type: 3}
-    amount: 50
+    amount: 10
     parent: {fileID: 4343196527950363764}
   - ident: fatE
     gameIdent: 2
     obj: {fileID: 874322408005280109, guid: aa04dcd65d154cf4bb55359cf7ac0734, type: 3}
-    amount: 50
-    parent: {fileID: 4343196527950363764}
-  - ident: normalE
-    gameIdent: 3
-    obj: {fileID: 6355185362051688843, guid: 8627abffb1a47104290e54fdc1b33a27, type: 3}
-    amount: 50
+    amount: 10
     parent: {fileID: 4343196527950363764}
   - ident: bullet
     gameIdent: 4
@@ -231,6 +226,51 @@ MonoBehaviour:
     obj: {fileID: 8954036899419156295, guid: a241c5f9274ad7746ad7b4ae49601b05, type: 3}
     amount: 50
     parent: {fileID: 628350877}
+  - ident: WaveUi
+    gameIdent: 25
+    obj: {fileID: 1273729465144985213, guid: 33af6c81b1ff4944fbe585b2e9a467aa, type: 3}
+    amount: 7
+    parent: {fileID: 0}
+  - ident: normalE
+    gameIdent: 3
+    obj: {fileID: 6355185362051688843, guid: 8627abffb1a47104290e54fdc1b33a27, type: 3}
+    amount: 10
+    parent: {fileID: 4343196527950363764}
+  - ident: GhostE
+    gameIdent: 26
+    obj: {fileID: 1456510449449574136, guid: 45433dec586468149b3ce8ecda589806, type: 3}
+    amount: 10
+    parent: {fileID: 4343196527950363764}
+  - ident: MirrorE
+    gameIdent: 29
+    obj: {fileID: 8037798384930114501, guid: 7d02f401f49776941b60c5cf64ba728b, type: 3}
+    amount: 10
+    parent: {fileID: 4343196527950363764}
+  - ident: MirroredE
+    gameIdent: 32
+    obj: {fileID: 2643224328825240657, guid: 29b2c7889949915449e97d9b8ed1ee3b, type: 3}
+    amount: 10
+    parent: {fileID: 4343196527950363764}
+  - ident: TeleE
+    gameIdent: 30
+    obj: {fileID: 6715906167306687016, guid: 29681b3018e8b084fa51b5276c3e1e78, type: 3}
+    amount: 10
+    parent: {fileID: 4343196527950363764}
+  - ident: BurrowE
+    gameIdent: 31
+    obj: {fileID: 38614260951180064, guid: 23f905dac415cc14ebda939f8de55ac9, type: 3}
+    amount: 10
+    parent: {fileID: 4343196527950363764}
+  - ident: StealthE
+    gameIdent: 28
+    obj: {fileID: 5625692471412878325, guid: cdb29b1a4451cda48878b9ec33dea536, type: 3}
+    amount: 10
+    parent: {fileID: 4343196527950363764}
+  - ident: RegenE
+    gameIdent: 27
+    obj: {fileID: 5427644222717838896, guid: c16775e2e0412ca4998531369b6353fa, type: 3}
+    amount: 10
+    parent: {fileID: 4343196527950363764}
 --- !u!1 &4343196528215575429
 GameObject:
   m_ObjectHideFlags: 0

@@ -3,15 +3,17 @@ using UnityEngine;
 [System.Serializable]
 public class EnemyFormation
 {
-    public EnemyCount[] enemiesToSpawn;
+    // Enemies in formation
+    public EnemySpawnPool[] enemiesToSpawn;             // Enemies in formation
+    public float formationDelay = 1f;                   // Determines the time delay before this formation
+    public SpawnOrder spawnOrder = SpawnOrder.Random;   // Determines how are enemies picked spawnpool
 
-    // Spawn order type
-    public SpawnOrder spawnOrder = SpawnOrder.Random;
+    public int LastUsedIndex { get; private set; }      // Last index used
 
     // Varibles
-    private int _currentIndex = 0;          // Used both in AllFromOne and Rotating spawn order
-                                            // AllFromOne = +1 when everything is spawned from the current formation
-                                            // Rotating = +1 after every spawn and loops
+    private int _currentIndex = 0;                      // Used both in AllFromOne and Rotating spawn order
+                                                        // AllFromOne = +1 when everything is spawned from the current formation
+                                                        // Rotating = +1 after every spawn and loops
 
     /// <summary>
     /// Returns the GameEntity of the next enemy to be sapwned
@@ -27,6 +29,7 @@ public class EnemyFormation
             _ => GameEntity.Null,
         };
     }
+
     /// <summary>
     /// Random spawn order logic
     /// </summary>
@@ -43,6 +46,7 @@ public class EnemyFormation
             while (e == GameEntity.Null)
             {
                 int randomIndex = Random.Range(0, enemiesToSpawn.Length);
+                LastUsedIndex = randomIndex;
                 e = enemiesToSpawn[randomIndex].GetEnemy();
             }
         }
@@ -61,6 +65,7 @@ public class EnemyFormation
         {
             // Get enemy type
             enemyType = enemiesToSpawn[_currentIndex].GetEnemy();
+            LastUsedIndex = _currentIndex;
 
             // If the type is null, then no more of that type can be spawned
             // Move to next element in array
@@ -87,6 +92,7 @@ public class EnemyFormation
             {
                 // Get enemy type (returns null if no more enemies remain
                 enemyType = enemiesToSpawn[_currentIndex].GetEnemy();
+                LastUsedIndex = _currentIndex;
 
                 // Increase index if enemy type is null
                 if (enemyType == GameEntity.Null)
@@ -118,11 +124,11 @@ public class EnemyFormation
     /// Does the formation still have enemies to spawn
     /// </summary>
     /// <returns></returns>
-    private bool ContainsEnemies()
+    public bool ContainsEnemies()
     {
-        foreach (EnemyCount enemy in enemiesToSpawn)
+        foreach (EnemySpawnPool enemy in enemiesToSpawn)
         {
-            if (enemy.EnemiesSpawned < enemy.enemyCount)
+            if (enemy.EnemiesSpawned < enemy.count)
             {
                 return true;
             }

@@ -25,22 +25,25 @@ public class EnemyStatusElements
     /// <summary>
     /// Apply effects from status elements
     /// </summary>
-    /// <param name="s"></param>
-    private void ApplyStatusEffect(StatusElementClass s)
+    /// <param name="status"></param>
+    private void ApplyStatusEffect(StatusElementClass status)
     {
-        switch (s.statusEff)
+        switch (status.statusEff)
         {
-            case StatusEffects.Slow:
-                if (s.strength < SpeedModifier)
-                    SpeedModifier = s.strength;
+            // Handle slow
+            case StatusEffect.Slow:
+                if (status.strength < SpeedModifier)
+                    SpeedModifier = status.strength;
                 break;
 
-            case StatusEffects.Dot:
-                HostEnemy.TakeDamage(s.strength * statusTime);
+            // Handle dot
+            case StatusEffect.Dot:
+                HostEnemy.TakeDamage(status.strength * statusTimer);
                 break;
 
-            case StatusEffects.DotPrecent:
-                HostEnemy.TakeDamage(s.strength * HostEnemy.MaxHealth * statusTime);
+            // Handle %dot
+            case StatusEffect.DotPrecent:
+                HostEnemy.TakeDamage(status.strength * HostEnemy.MaxHealth * statusTimer);
                 break;
 
             default:
@@ -53,27 +56,33 @@ public class EnemyStatusElements
     /// </summary>
     public void UpdateStatuses()
     {
+        // Apply status at time
         statusTimer += Time.deltaTime;
         if (statusTimer > statusTime)
         {
             for (int i = statuses.Count - 1; i >= 0; i--)
             {
+                // To prevent a rare bug
                 if (statuses.Count <= 0)
                 {
                     break;
                 }
 
-                statuses[i].timer += 0.1f;
+                // Check if the status has ended
+                statuses[i].timer += statusTimer;
                 if (statuses[i].timer >= statuses[i].duration)
                 {
-                    if (statuses[i].statusEff == StatusEffects.Slow)
+                    // Remove the slowing effects if it was slow
+                    if (statuses[i].statusEff == StatusEffect.Slow)
                     {
                         SpeedModifier = 1f;
                     }
 
+                    // Remove status and don't apply it
                     statuses.RemoveAt(i);
                     continue;
                 }
+                // Apply status
                 ApplyStatusEffect(statuses[i]);
             }
             statusTimer = 0f;
@@ -83,23 +92,23 @@ public class EnemyStatusElements
     /// <summary>
     /// Add a new status element
     /// </summary>
-    /// <param name="s"></param>
-    public void CreateStatus(StatusElementClass s)
+    /// <param name="newStatus"></param>
+    public void CreateStatus(StatusElementClass newStatus)
     {
         foreach (StatusElementClass status in statuses)
         {
             // If the same status is already being applied
             // Reset duration but set the stronger effect
-            if (s.bulletApplying == status.bulletApplying)
+            if (newStatus.bulletApplying == status.bulletApplying)
             {
-                if (s.strength > status.strength)
-                    status.strength = s.strength;
+                if (newStatus.strength > status.strength)
+                    status.strength = newStatus.strength;
                 status.timer = 0f;
                 return;
             }
         }
         // Add new status
-        statuses.Add(s);
+        statuses.Add(newStatus);
     }
 
     /// <summary>

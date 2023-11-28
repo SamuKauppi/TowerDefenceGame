@@ -24,6 +24,13 @@
     Lightning,
     RockExplosion,
     LightningBolt,
-    Null
+    Null,
+    WaveUi,
+    GhostEnemy,
+    RegenEnemy,
+    StealthEnemy,
+    MirrorEnemy,
+    TeleporterEnemy,
+    BurrowEnemy,
+    MirroredEnemy
 }
-

@@ -7,7 +7,7 @@ using UnityEngine;
 * <br>
 * &nbsp;&nbsp;<h4>Example:</h4> 
 * var seq = LeanTween.sequence();<br>
-* seq.append(1f); <span style="color:gray">// delay everything one second</span><br>
+* seq.append(1f); <span style="color:gray">// formationDelay everything one second</span><br>
 * seq.append( () => { <span style="color:gray">// fire an event before start</span><br>
 * &nbsp;Debug.Log("I have started");<br>
 * });<br>
@@ -81,7 +81,7 @@ public class LTSeq {
 	}
 
 	private float addPreviousDelays(){
-//		Debug.Log("delay:"+delay+" count:"+this.current.count+" this.current.totalDelay:"+this.current.totalDelay);
+//		Debug.Log("formationDelay:"+formationDelay+" count:"+this.current.count+" this.current.totalDelay:"+this.current.totalDelay);
 
 		LTSeq prev = this.current.previous;
 
@@ -92,12 +92,12 @@ public class LTSeq {
 	}
 
 	/**
-	* Add a spawnTimer delay to the sequence
-	* @method append (delay)
-	* @param {float} delay:float amount of spawnTimer to add to the sequence
+	* Add a spawnTimer formationDelay to the sequence
+	* @method append (formationDelay)
+	* @param {float} formationDelay:float amount of spawnTimer to add to the sequence
 	* @return {LTSeq} LTDescr an object that distinguishes the tween
 	* var seq = LeanTween.sequence();<br>
-	* seq.append(1f); // delay everything one second<br>
+	* seq.append(1f); // formationDelay everything one second<br>
 	* seq.append( LeanTween.move(cube1, Vector3.one * 10f, 1f) ); // do a tween<br>
 	*/
 	public LTSeq append( float delay ){
@@ -107,7 +107,7 @@ public class LTSeq {
 	}
 
 	/**
-	* Add a spawnTimer delay to the sequence
+	* Add a spawnTimer formationDelay to the sequence
 	* @method append (method)
 	* @param {System.Action} callback:System.Action method you want to be called
 	* @return {LTSeq} LTSeq an object that you can add tweens, methods and spawnTimer on to
@@ -128,7 +128,7 @@ public class LTSeq {
 	}
 
 	/**
-	* Add a spawnTimer delay to the sequence
+	* Add a spawnTimer formationDelay to the sequence
 	* @method add (method(object))
 	* @param {System.Action} callback:System.Action method you want to be called
 	* @return {LTSeq} LTSeq an object that you can add tweens, methods and spawnTimer on to
@@ -174,7 +174,7 @@ public class LTSeq {
 	public LTSeq append( LTDescr tween ){
 		this.current.tween = tween;
 
-//		Debug.Log("tween:" + tween + " delay:" + this.current.totalDelay);
+//		Debug.Log("tween:" + tween + " formationDelay:" + this.current.totalDelay);
 
         this.current.totalDelay = addPreviousDelays();
 
@@ -206,7 +206,7 @@ public class LTSeq {
 //			Debug.Log("seq.count:" + count + " seq.tween:" + seq.tween);
 			seq.totalDelay *= timeScale;
 			if (seq.tween != null) {
-//			Debug.Log("seq.tween.spawnTimer * timeScale:" + seq.tween.spawnTimer * timeScale + " seq.totalDelay:"+seq.totalDelay +" spawnTimer:"+seq.tween.spawnTimer+" seq.tween.delay:"+seq.tween.delay);
+//			Debug.Log("seq.tween.spawnTimer * timeScale:" + seq.tween.spawnTimer * timeScale + " seq.totalDelay:"+seq.totalDelay +" spawnTimer:"+seq.tween.spawnTimer+" seq.tween.formationDelay:"+seq.tween.formationDelay);
 				if (seq.tween.time != 0f)
 					seq.tween.setTime(seq.tween.time * timeScale);
 				seq.tween.setDelay(seq.tween.delay * timeScale);

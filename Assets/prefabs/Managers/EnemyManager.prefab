@@ -44,31 +44,225 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0b3046fe24232a43b55be74624d63e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  waveUiManager: {fileID: 0}
   preDeterminedWaves:
-  - waveName: start
+  - waveName: test
+    waveColor: {r: 1, g: 0, b: 0, a: 0}
+    delayBeforeWave: 5
     enemyFormations:
     - enemiesToSpawn:
-      - enemyType: 3
-        enemyCount: 5
-      - enemyType: 2
-        enemyCount: 2
-      spawnOrder: 0
-    - enemiesToSpawn:
-      - enemyType: 3
-        enemyCount: 5
-      - enemyType: 2
-        enemyCount: 2
-      - enemyType: 1
-        enemyCount: 5
+      - enemyType: 26
+        count: 10
+        delay: 1
+      - enemyType: 29
+        count: 10
+        delay: 1
+      - enemyType: 30
+        count: 10
+        delay: 1
+      - enemyType: 28
+        count: 10
+        delay: 1
+      - enemyType: 31
+        count: 10
+        delay: 1
+      formationDelay: 0.5
       spawnOrder: 1
+  - waveName: test
+    waveColor: {r: 1, g: 0, b: 0, a: 0}
+    delayBeforeWave: 5
+    enemyFormations:
     - enemiesToSpawn:
-      - enemyType: 3
-        enemyCount: 5
-      - enemyType: 2
-        enemyCount: 2
-      - enemyType: 1
-        enemyCount: 10
-      spawnOrder: 2
-    delayBeforeWave: 2
-    delayBewteenFormations: 5
-    delayBetweenSpawns: 1.5
+      - enemyType: 26
+        count: 10
+        delay: 1
+      - enemyType: 29
+        count: 10
+        delay: 1
+      - enemyType: 30
+        count: 10
+        delay: 1
+      - enemyType: 28
+        count: 10
+        delay: 1
+      - enemyType: 31
+        count: 10
+        delay: 1
+      formationDelay: 0.5
+      spawnOrder: 1
+  - waveName: test
+    waveColor: {r: 1, g: 0, b: 0, a: 0}
+    delayBeforeWave: 5
+    enemyFormations:
+    - enemiesToSpawn:
+      - enemyType: 26
+        count: 10
+        delay: 1
+      - enemyType: 29
+        count: 10
+        delay: 1
+      - enemyType: 30
+        count: 10
+        delay: 1
+      - enemyType: 28
+        count: 10
+        delay: 1
+      - enemyType: 31
+        count: 10
+        delay: 1
+      formationDelay: 0.5
+      spawnOrder: 1
+  - waveName: test
+    waveColor: {r: 1, g: 0, b: 0, a: 0}
+    delayBeforeWave: 5
+    enemyFormations:
+    - enemiesToSpawn:
+      - enemyType: 26
+        count: 10
+        delay: 1
+      - enemyType: 29
+        count: 10
+        delay: 1
+      - enemyType: 30
+        count: 10
+        delay: 1
+      - enemyType: 28
+        count: 10
+        delay: 1
+      - enemyType: 31
+        count: 10
+        delay: 1
+      formationDelay: 0.5
+      spawnOrder: 1
+  - waveName: test
+    waveColor: {r: 1, g: 0, b: 0, a: 0}
+    delayBeforeWave: 5
+    enemyFormations:
+    - enemiesToSpawn:
+      - enemyType: 26
+        count: 10
+        delay: 1
+      - enemyType: 29
+        count: 10
+        delay: 1
+      - enemyType: 30
+        count: 10
+        delay: 1
+      - enemyType: 28
+        count: 10
+        delay: 1
+      - enemyType: 31
+        count: 10
+        delay: 1
+      formationDelay: 0.5
+      spawnOrder: 1
+  - waveName: test
+    waveColor: {r: 1, g: 0, b: 0, a: 0}
+    delayBeforeWave: 5
+    enemyFormations:
+    - enemiesToSpawn:
+      - enemyType: 26
+        count: 10
+        delay: 1
+      - enemyType: 29
+        count: 10
+        delay: 1
+      - enemyType: 30
+        count: 10
+        delay: 1
+      - enemyType: 28
+        count: 10
+        delay: 1
+      - enemyType: 31
+        count: 10
+        delay: 1
+      formationDelay: 0.5
+      spawnOrder: 1
+  - waveName: test
+    waveColor: {r: 1, g: 0, b: 0, a: 0}
+    delayBeforeWave: 5
+    enemyFormations:
+    - enemiesToSpawn:
+      - enemyType: 26
+        count: 10
+        delay: 1
+      - enemyType: 29
+        count: 10
+        delay: 1
+      - enemyType: 30
+        count: 10
+        delay: 1
+      - enemyType: 28
+        count: 10
+        delay: 1
+      - enemyType: 31
+        count: 10
+        delay: 1
+      formationDelay: 0.5
+      spawnOrder: 1
+  - waveName: test
+    waveColor: {r: 1, g: 0, b: 0, a: 0}
+    delayBeforeWave: 5
+    enemyFormations:
+    - enemiesToSpawn:
+      - enemyType: 26
+        count: 10
+        delay: 1
+      - enemyType: 29
+        count: 10
+        delay: 1
+      - enemyType: 30
+        count: 10
+        delay: 1
+      - enemyType: 28
+        count: 10
+        delay: 1
+      - enemyType: 31
+        count: 10
+        delay: 1
+      formationDelay: 0.5
+      spawnOrder: 1
+  - waveName: test
+    waveColor: {r: 1, g: 0, b: 0, a: 0}
+    delayBeforeWave: 5
+    enemyFormations:
+    - enemiesToSpawn:
+      - enemyType: 26
+        count: 10
+        delay: 1
+      - enemyType: 29
+        count: 10
+        delay: 1
+      - enemyType: 30
+        count: 10
+        delay: 1
+      - enemyType: 28
+        count: 10
+        delay: 1
+      - enemyType: 31
+        count: 10
+        delay: 1
+      formationDelay: 0.5
+      spawnOrder: 1
+  - waveName: test
+    waveColor: {r: 1, g: 0, b: 0, a: 0}
+    delayBeforeWave: 5
+    enemyFormations:
+    - enemiesToSpawn:
+      - enemyType: 26
+        count: 10
+        delay: 1
+      - enemyType: 29
+        count: 10
+        delay: 1
+      - enemyType: 30
+        count: 10
+        delay: 1
+      - enemyType: 28
+        count: 10
+        delay: 1
+      - enemyType: 31
+        count: 10
+        delay: 1
+      formationDelay: 0.5
+      spawnOrder: 1

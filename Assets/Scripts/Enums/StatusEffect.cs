@@ -1,4 +1,4 @@
-public enum StatusEffects
+public enum StatusEffect
 {
     Slow,
     Dot,

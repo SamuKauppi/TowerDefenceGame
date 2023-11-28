@@ -34,7 +34,7 @@ public class Explosion : BulletDamages
         if (radius > 0)
             transform.localScale = new Vector3(radius, radius, radius);
 
-        // Start kill timer
+        // Start kill waveTimer
         StartCoroutine(KillExplosion(lifeTime));
     }
 

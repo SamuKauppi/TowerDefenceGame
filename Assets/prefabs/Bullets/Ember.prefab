@@ -33,7 +33,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2477231569044453826, guid: c7f9a2e14c4e02d4ab3e82511d145d2c, type: 3}
       propertyPath: damage
-      value: 10
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 2477231569044453826, guid: c7f9a2e14c4e02d4ab3e82511d145d2c, type: 3}
       propertyPath: lifeTime

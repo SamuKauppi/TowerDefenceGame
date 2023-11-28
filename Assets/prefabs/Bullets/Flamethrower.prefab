@@ -45,7 +45,7 @@ PrefabInstance:
       objectReference: {fileID: 6902190370896288564}
     - target: {fileID: 8020897677356372882, guid: ae24d2e576676cd408f37c2898880027, type: 3}
       propertyPath: damageOverTime
-      value: 10
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 8020897677356372882, guid: ae24d2e576676cd408f37c2898880027, type: 3}
       propertyPath: statusesOnHit.Array.size
@@ -57,7 +57,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8020897677356372882, guid: ae24d2e576676cd408f37c2898880027, type: 3}
       propertyPath: statusesOnHit.Array.data[0].strength
-      value: 20
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 8020897677356372882, guid: ae24d2e576676cd408f37c2898880027, type: 3}
       propertyPath: statusesOnHit.Array.data[1].duration
