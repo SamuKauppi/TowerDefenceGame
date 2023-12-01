@@ -1,0 +1,11 @@
+Wave difficulty:
+- Enemy types:
+	min	 = 1 * count
+	max	 = 30 * count
+- Average delay between spawns:
+	min(0.1) = 50
+	max(2)	 = 0
+- Average delay between formations:
+	min(0.1) = 50
+	max(2)	 = 0
+- 

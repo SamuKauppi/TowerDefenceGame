@@ -13,15 +13,16 @@ public class EnemyTeleport : Enemy, ISpecialAbility
         {
             yield return new WaitForSeconds(teleportFrequency);
 
-            if (transform.position.x < maxXPosition)
+            if (transform.position.x >= maxXPosition)
             {
-                Vector3 randomPos = StaticFunctions.GetRandomPointInCircle(teleportDistance, transform.position);
+                continue;
+            }
+            Vector3 randomPos = StaticFunctions.GetRandomPointInCircle(teleportDistance, transform.position);
 
-                if (Mathf.Abs(randomPos.y) < teleportDistance &&
-                    randomPos.x >= transform.position.x)
-                {
-                    LeanTween.move(gameObject, randomPos, 0.1f).setEase(LeanTweenType.easeOutElastic);
-                }
+            if (Mathf.Abs(randomPos.y) < teleportDistance &&
+                randomPos.x >= transform.position.x)
+            {
+                LeanTween.move(gameObject, randomPos, 0.1f).setEase(LeanTweenType.easeOutElastic);
             }
 
         }

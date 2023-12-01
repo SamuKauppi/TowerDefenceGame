@@ -50,8 +50,14 @@ TagManager:
   - name: Background
     uniqueID: 3346246527
     locked: 0
+  - name: TowerRange
+    uniqueID: 1981058353
+    locked: 0
   - name: TowerBase
     uniqueID: 2054934825
+    locked: 0
+  - name: BackVFX
+    uniqueID: 581728095
     locked: 0
   - name: Enemies
     uniqueID: 1761752229

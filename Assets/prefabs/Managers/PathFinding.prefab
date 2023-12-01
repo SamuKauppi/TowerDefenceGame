@@ -53,6 +53,9 @@ MonoBehaviour:
   positionStep: 0.2
   mapwidth: 9
   mapheight: 4.6
+  startingXPosition: 6
+  topYPosOffset: 0.6
+  botYPosOffset: 0
 --- !u!1 &7218357693825726220
 GameObject:
   m_ObjectHideFlags: 0

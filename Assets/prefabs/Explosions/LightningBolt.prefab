@@ -103,6 +103,18 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 3540091739760738816, guid: de1a163c4a0809142a971feb6f9c50ee, type: 3}
   m_PrefabInstance: {fileID: 5576529121844243783}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &-9126070267086805312
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8954036899419156295}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb274689a2f05334a97625cd2fc1b782, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &3737129826088408009
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -118,3 +130,4 @@ MonoBehaviour:
   damage: 0
   damageOverTime: 0
   statusesOnHit: []
+  _killTimer: {fileID: -9126070267086805312}

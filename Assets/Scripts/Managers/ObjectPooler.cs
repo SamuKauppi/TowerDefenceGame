@@ -11,6 +11,20 @@ public class ObjectPooler : MonoBehaviour
 
     // Dictionary for pooled objects
     private readonly Dictionary<GameEntity, Queue<GameObject>> objectPool = new();
+    
+
+    /// <summary>
+    /// Check if object is an enemy and asgin correct value to it
+    /// </summary>
+    /// <param name="g"></param>
+    /// <param name="e"></param>
+    private void SetValueIfEnemy(GameObject g, GameEntity e)
+    {
+        if (g.TryGetComponent(out Enemy enemy))
+        {
+            enemy.SetEnemyValue(EnemyDifficultyData.Instance.GetCurrencyValue(e));
+        }
+    }
 
     /// <summary>
     /// Set instance and populate dictionary
@@ -26,6 +40,8 @@ public class ObjectPooler : MonoBehaviour
                 GameObject obj = Instantiate(objectsToBePooled[i].obj, objectsToBePooled[i].parent);
                 obj.SetActive(false);
                 tempQueue.Enqueue(obj);
+
+                SetValueIfEnemy(obj, objectsToBePooled[i].gameIdent);
             }
             objectPool.Add(objectsToBePooled[i].gameIdent, tempQueue);
         }

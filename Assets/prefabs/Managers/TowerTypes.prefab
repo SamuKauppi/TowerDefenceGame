@@ -56,7 +56,7 @@ MonoBehaviour:
     rotationSpeed: 0
     accuracy: 5
     aimThreshold: 30
-    attackRange: 10
+    attackRange: 7
     chargeTime: 0
     burstShots: 1
     aimWhileFiring: 1
@@ -74,7 +74,7 @@ MonoBehaviour:
     rotationSpeed: 0
     accuracy: 5
     aimThreshold: 30
-    attackRange: 10
+    attackRange: 7
     chargeTime: 0
     burstShots: 1
     aimWhileFiring: 1
@@ -92,7 +92,7 @@ MonoBehaviour:
     rotationSpeed: 0
     accuracy: 3
     aimThreshold: 30
-    attackRange: 12
+    attackRange: 8
     chargeTime: 0
     burstShots: 1
     aimWhileFiring: 1
@@ -110,7 +110,7 @@ MonoBehaviour:
     rotationSpeed: 0
     accuracy: 5
     aimThreshold: 30
-    attackRange: 10
+    attackRange: 7
     chargeTime: 0
     burstShots: 1
     aimWhileFiring: 1
@@ -128,7 +128,7 @@ MonoBehaviour:
     rotationSpeed: 180
     accuracy: 0
     aimThreshold: 5
-    attackRange: 10
+    attackRange: 7
     chargeTime: 1
     burstShots: 1
     aimWhileFiring: 1
@@ -146,7 +146,7 @@ MonoBehaviour:
     rotationSpeed: 0
     accuracy: 0
     aimThreshold: 30
-    attackRange: 10
+    attackRange: 7
     chargeTime: 0
     burstShots: 1
     aimWhileFiring: 1
@@ -164,7 +164,7 @@ MonoBehaviour:
     rotationSpeed: 0
     accuracy: 0
     aimThreshold: 30
-    attackRange: 10
+    attackRange: 8
     chargeTime: 0
     burstShots: 1
     aimWhileFiring: 1
@@ -182,7 +182,7 @@ MonoBehaviour:
     rotationSpeed: 180
     accuracy: 1
     aimThreshold: 5
-    attackRange: 12
+    attackRange: 8
     chargeTime: 2
     burstShots: 1
     aimWhileFiring: 0
@@ -200,7 +200,7 @@ MonoBehaviour:
     rotationSpeed: 0
     accuracy: 5
     aimThreshold: 30
-    attackRange: 10
+    attackRange: 7
     chargeTime: 0
     burstShots: 1
     aimWhileFiring: 1
@@ -218,7 +218,7 @@ MonoBehaviour:
     rotationSpeed: 0
     accuracy: 5
     aimThreshold: 30
-    attackRange: 10
+    attackRange: 7
     chargeTime: 0
     burstShots: 1
     aimWhileFiring: 1
@@ -236,11 +236,11 @@ MonoBehaviour:
     rotationSpeed: 0
     accuracy: 5
     aimThreshold: 30
-    attackRange: 10
+    attackRange: 7
     chargeTime: 0
     burstShots: 1
     aimWhileFiring: 1
-    spreadShots: 8
+    spreadShots: 3
     degreePerShot: 45
     cost: 0
   - name: Gun
@@ -254,7 +254,7 @@ MonoBehaviour:
     rotationSpeed: 0
     accuracy: 5
     aimThreshold: 30
-    attackRange: 10
+    attackRange: 7
     chargeTime: 0
     burstShots: 1
     aimWhileFiring: 1
@@ -272,7 +272,7 @@ MonoBehaviour:
     rotationSpeed: 0
     accuracy: 10
     aimThreshold: 30
-    attackRange: 10
+    attackRange: 7
     chargeTime: 1
     burstShots: 10
     aimWhileFiring: 1
@@ -290,7 +290,7 @@ MonoBehaviour:
     rotationSpeed: 0
     accuracy: 15
     aimThreshold: 30
-    attackRange: 10
+    attackRange: 7
     chargeTime: 1
     burstShots: 15
     aimWhileFiring: 1
@@ -308,7 +308,7 @@ MonoBehaviour:
     rotationSpeed: 0
     accuracy: 5
     aimThreshold: 30
-    attackRange: 10
+    attackRange: 7
     chargeTime: 1.5
     burstShots: 100
     aimWhileFiring: 1
@@ -326,7 +326,7 @@ MonoBehaviour:
     rotationSpeed: 0
     accuracy: 6
     aimThreshold: 30
-    attackRange: 10
+    attackRange: 7
     chargeTime: 3
     burstShots: 1000
     aimWhileFiring: 1
@@ -362,7 +362,7 @@ MonoBehaviour:
     rotationSpeed: 0
     accuracy: 5
     aimThreshold: 30
-    attackRange: 10
+    attackRange: 7
     chargeTime: 0
     burstShots: 1
     aimWhileFiring: 1
@@ -380,7 +380,7 @@ MonoBehaviour:
     rotationSpeed: 150
     accuracy: 0
     aimThreshold: 45
-    attackRange: 10
+    attackRange: 7
     chargeTime: 0
     burstShots: 1
     aimWhileFiring: 1
@@ -398,7 +398,7 @@ MonoBehaviour:
     rotationSpeed: 100
     accuracy: 0
     aimThreshold: 180
-    attackRange: 10
+    attackRange: 7
     chargeTime: 0
     burstShots: 1
     aimWhileFiring: 1
@@ -416,7 +416,7 @@ MonoBehaviour:
     rotationSpeed: 150
     accuracy: 5
     aimThreshold: 45
-    attackRange: 15
+    attackRange: 9
     chargeTime: 0
     burstShots: 1
     aimWhileFiring: 1
@@ -434,7 +434,7 @@ MonoBehaviour:
     rotationSpeed: 150
     accuracy: 10
     aimThreshold: 45
-    attackRange: 20
+    attackRange: 11
     chargeTime: 0
     burstShots: 1
     aimWhileFiring: 1
@@ -452,7 +452,7 @@ MonoBehaviour:
     rotationSpeed: 0
     accuracy: 0
     aimThreshold: 30
-    attackRange: 8
+    attackRange: 5
     chargeTime: 0
     burstShots: 1
     aimWhileFiring: 1
@@ -470,7 +470,7 @@ MonoBehaviour:
     rotationSpeed: 0
     accuracy: 5
     aimThreshold: 15
-    attackRange: 15
+    attackRange: 9
     chargeTime: 1
     burstShots: 3
     aimWhileFiring: 0
@@ -488,7 +488,7 @@ MonoBehaviour:
     rotationSpeed: 0
     accuracy: 0
     aimThreshold: 30
-    attackRange: 18
+    attackRange: 13
     chargeTime: 0
     burstShots: 1
     aimWhileFiring: 1
@@ -506,7 +506,7 @@ MonoBehaviour:
     rotationSpeed: 0
     accuracy: 0
     aimThreshold: 30
-    attackRange: 18
+    attackRange: 13
     chargeTime: 0
     burstShots: 1
     aimWhileFiring: 1
@@ -524,7 +524,7 @@ MonoBehaviour:
     rotationSpeed: 0
     accuracy: 0
     aimThreshold: 30
-    attackRange: 15
+    attackRange: 9
     chargeTime: 0
     burstShots: 1
     aimWhileFiring: 1
@@ -542,7 +542,7 @@ MonoBehaviour:
     rotationSpeed: 0
     accuracy: 0
     aimThreshold: 30
-    attackRange: 15
+    attackRange: 9
     chargeTime: 0
     burstShots: 1
     aimWhileFiring: 1
@@ -560,7 +560,7 @@ MonoBehaviour:
     rotationSpeed: 90
     accuracy: 2
     aimThreshold: 5
-    attackRange: 25
+    attackRange: 13
     chargeTime: 0
     burstShots: 1
     aimWhileFiring: 1

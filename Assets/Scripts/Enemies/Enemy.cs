@@ -6,12 +6,23 @@ public class Enemy : MonoBehaviour, IFixedUpdate, IUpdate
     public GameObject Object => gameObject;             // From interface
     public float MaxHealth { get; private set; }        // Max health
 
+    // Enemy death handling
+    public delegate 
+        void EnemyDeathEventHandler(int value);             // Delegate
+    public static 
+        event EnemyDeathEventHandler OnEnemyDeath;          // Event
+
+    // Enemy value
+    private const GameEntity coinType 
+        = GameEntity.CoinSpawner;                           // Coinspawner ident
+    private int _enemyValue;                                // Value of the enemy when killed
+
     // References
     [SerializeField] private Rigidbody2D _rb;           // Reference to rigidbody component
 
     // Stats
     [SerializeField] private float health = 100f;       // Current health
-    [SerializeField] private float damage;              // Damage to player when reaches end
+    [SerializeField] private float damage;              // Damage to parentTower when reaches end
     [SerializeField] private float speed;               // How fast this enemy is
 
     // Pathfinding
@@ -23,19 +34,19 @@ public class Enemy : MonoBehaviour, IFixedUpdate, IUpdate
     private Pathfinding pathfinding;                    // To save the reference
 
     // Move timers
-    private float moveTimer;                            // Failsafe if no targets have been found in moveTime seconds
-    private const float moveTime = 2f;                  // Threshold for moveTimer
+    private float _moveTimer;                            // Failsafe if no targets have been found in _moveTime seconds
+    private const float _moveTime = 2f;                  // Threshold for _moveTimer
 
     // Damage over time done from contact
     private readonly List<BulletDamages> bulletDamages = new();         // Every bullet that hits this enemy (for dealing dot)
-    private float damageTimer;                                          // Timer for when dot is applied
-    private const float damageTime = 0.1f;                              // How often is dot applied 
+    private float _damageTimer;                                          // Timer for when dot is applied
+    private const float _damageTime = 0.1f;                              // How often is dot applied 
 
     // Status elements
     private EnemyStatusElements statusElements;         // Reference to statusElements (created at start)
 
     // Ability variables
-    private bool hasBeenActivated;                      // Ensures that ability is acitvated only once per lifetime
+    private bool _hasAbilityActivated;                  // Ensures that ability is acitvated only once per lifetime
     protected float abilitySpeedModifier = 1f;          // Speed modifier for abilities
 
     /// <summary>
@@ -49,8 +60,13 @@ public class Enemy : MonoBehaviour, IFixedUpdate, IUpdate
         pathfinding = Pathfinding.Instance;
     }
 
+    /// <summary>
+    /// Moves enemy towards a a target
+    /// </summary>
     private void MoveToNextTarget()
     {
+
+        // If current direction is not target direction, aim towards target
         if (currentDirection != targetDirection)
         {
             // Calculate the difference between targetDirection and currentDirection
@@ -77,29 +93,28 @@ public class Enemy : MonoBehaviour, IFixedUpdate, IUpdate
             transform.position);
     }
 
-
     /// <summary>
     /// Set current direction towards current target
     /// </summary>c
     private void SetDirectionToTarget()
     {
         // Get a new target if its null or target has not been reached in x seconds
-        if (currentTarget == null || moveTimer > moveTime)
+        if (currentTarget == null || _moveTimer > _moveTime)
         {
-            moveTimer = 0f;
+            _moveTimer = 0f;
             currentTarget = pathfinding.GetClosestPathPoint(transform.position);
         }
         // Target has not been reached yet, continue moving
         else if (Vector2.Distance(transform.position, currentTarget.transform.position) > distanceToStop)
         {
-            moveTimer += Time.deltaTime;
+            _moveTimer += Time.deltaTime;
             targetDirection = currentTarget.transform.position - transform.position;
             targetDirection.Normalize();
         }
         // Target has been reached, get a new one
         else
         {
-            moveTimer = 0f;
+            _moveTimer = 0f;
             currentTarget = pathfinding.GetNextPathpoint(currentTarget);
         }
     }
@@ -110,11 +125,11 @@ public class Enemy : MonoBehaviour, IFixedUpdate, IUpdate
     private void UpdateDamageOverTime()
     {
 
-        // Update damage over spawnTimer effects based on waveTimer
-        damageTimer += Time.fixedDeltaTime;
-        if (damageTimer <= damageTime) return;
+        // Update damage over spawnTimer effects based on _waveTimer
+        _damageTimer += Time.fixedDeltaTime;
+        if (_damageTimer <= _damageTime) return;
 
-        damageTimer = 0f;
+        _damageTimer = 0f;
         for (int i = bulletDamages.Count - 1; i >= 0; i--)
         {
             if (bulletDamages.Count <= 0)
@@ -126,7 +141,7 @@ public class Enemy : MonoBehaviour, IFixedUpdate, IUpdate
             // If damage is not null, take damage from it
             if (damage != null && damage.gameObject.activeSelf)
             {
-                TakeDamage(damage.DamageOverTime * damageTime);
+                TakeDamage(damage.DamageOverTime * _damageTime);
             }
             // Otherwise remove it from list
             else
@@ -137,16 +152,29 @@ public class Enemy : MonoBehaviour, IFixedUpdate, IUpdate
     }
 
     /// <summary>
-    /// Reset stats after dying
+    /// Handle dying logic
     /// </summary>
     private void KillEnemy()
+    {
+        // Handle scoring and visual
+        OnEnemyDeath?.Invoke(_enemyValue);
+        // Create a coin spawner and start it
+        CoinSpawner coinspawner = ObjectPooler.Instance.GetPooledObject(coinType).GetComponent<CoinSpawner>();
+        coinspawner.StartSpawningCoins(_enemyValue, transform.position);
+        ResetEnemy();
+    }
+
+    /// <summary>
+    /// Resets enemy variables and sets this to inactive
+    /// </summary>
+    private void ResetEnemy()
     {
         currentTarget = null;
         bulletDamages.Clear();
         health = MaxHealth;
         statusElements.ResetStatuses();
         gameObject.SetActive(false);
-        hasBeenActivated = false;
+        _hasAbilityActivated = false;
     }
 
     /// <summary>
@@ -211,6 +239,33 @@ public class Enemy : MonoBehaviour, IFixedUpdate, IUpdate
     }
 
     /// <summary>
+    /// Update enemy. From interface
+    /// </summary>
+    public void UpdateObject()
+    {
+        // Activate special ability if it's the first frame
+        if (!_hasAbilityActivated)
+        {
+            _hasAbilityActivated = true;
+            if (TryGetComponent(out ISpecialAbility ability))
+            {
+                ability.ActivateAbility();
+            }
+        }
+        SetDirectionToTarget();
+    }
+
+    /// <summary>
+    /// Fixedupdate enemy. From interface
+    /// </summary>
+    public void FixedUpdateGameobject()
+    {
+        MoveToNextTarget();
+        UpdateDamageOverTime();
+        statusElements.UpdateStatuses();
+    }
+
+    /// <summary>
     /// Make damage calculations
     /// </summary>
     /// <param name="amount"></param>
@@ -233,29 +288,19 @@ public class Enemy : MonoBehaviour, IFixedUpdate, IUpdate
     }
 
     /// <summary>
-    /// Update enemy. From interface
+    /// Set the enemy value
     /// </summary>
-    public void UpdateObject()
+    /// <param name="value"></param>
+    public void SetEnemyValue(int value)
     {
-        // Activate special ability if it's the first frame
-        if (!hasBeenActivated)
-        {
-            hasBeenActivated = true;
-            if (TryGetComponent(out ISpecialAbility ability))
-            {
-                ability.ActivateAbility();
-            }
-        }
-        SetDirectionToTarget();
+        _enemyValue = value;
     }
 
     /// <summary>
-    /// Fixedupdate enemy. From interface
+    /// Handle when enemy reaches end instead of dying
     /// </summary>
-    public void FixedUpdateGameobject()
+    public void EnemyReachedEnd()
     {
-        MoveToNextTarget();
-        UpdateDamageOverTime();
-        statusElements.UpdateStatuses();
+        ResetEnemy();
     }
 }

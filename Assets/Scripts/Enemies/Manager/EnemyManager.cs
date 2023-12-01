@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class EnemyManager : MonoBehaviour
 {
+    [SerializeField] private Vector2 spawnYPositions = new(-3f, 4f);
     // Refeneces
     [SerializeField] private WaveUiManager waveUiManager;
 
@@ -16,8 +17,8 @@ public class EnemyManager : MonoBehaviour
     // Waves
     private readonly Queue<EnemyWave> enemyWaveQueue = new();       // Queue for waves used in runtime
     private EnemyWave currentWave = null;                           // Current wave 
-
-    // private int waveNumber = 1;
+    private int _waveNumber = 0;                                    // Current wave number (starts at wave 0)
+   // private int _lastestDifficulty;                                 // Lastest difficulty (used to measure difficulty scale)
 
 
     // Variables for current wave
@@ -25,7 +26,7 @@ public class EnemyManager : MonoBehaviour
     private float _betweenFormationsTimer;      // Timer to formationDelay formations
     private float _betweenSpawnsTimer;          // Timer to formationDelay spawns
     private int _formationIndex;                // Counter keeping track which formations is used
-    private float waveTimer;
+    private float _waveTimer;                   // Timer to keep visuals and wave in sync
 
     /// <summary>
     /// Set the ObjectPooler reference and add waves from inspector to queue
@@ -115,12 +116,16 @@ public class EnemyManager : MonoBehaviour
     /// <param name="enemySpawnIdent"></param>
     private void SpawnEnemy(GameEntity enemySpawnIdent)
     {
-        // Spawn enemy at position and reset spawn waveTimer
-        GameObject lastestEnemySpawned = pooler.GetPooledObject(enemySpawnIdent);
-        lastestEnemySpawned.transform.position =
-            new Vector3(transform.position.x, transform.position.y + Random.Range(-3f, 4f));
+        // Confirm that the enemy ident is correct
+        if (enemySpawnIdent != GameEntity.Null)
+        {
+            // Spawn enemy at position and reset spawn _waveTimer
+            GameObject lastestEnemySpawned = pooler.GetPooledObject(enemySpawnIdent);
+            lastestEnemySpawned.transform.position =
+                new Vector3(transform.position.x, transform.position.y + Random.Range(spawnYPositions.x, spawnYPositions.y));
+        }
 
-        // Reset spawn waveTimer
+        // Reset spawn _waveTimer
         _betweenSpawnsTimer = 0f;
         // Update formationDelay between spawns
         currentWave.UpdateSpawnDelay();
@@ -137,9 +142,9 @@ public class EnemyManager : MonoBehaviour
         _betweenSpawnsTimer = 0f;
         _formationIndex = 0;
         currentWave.UpdateFormationDelay(_formationIndex);  // Update formationDelay between formations
-        Debug.Log("Wave lasted for: " + waveTimer);
-        waveTimer = 0f;
-        Debug.Log("Starting new wave. Expected time: " + currentWave.TotalWaveTime);
+        currentWave.UpdateSpawnDelay();
+        _waveTimer = 0f;
+        //_lastestDifficulty = currentWave.WaveDifficulty;
     }
 
     /// <summary>
@@ -152,6 +157,7 @@ public class EnemyManager : MonoBehaviour
         {
             // Get new wave
             StartNextWave();
+            Debug.Log("Wave: " + _waveNumber + ", Difficulty: " + currentWave.WaveDifficulty);
 
             while (currentWave.WaveHasEnemies)
             {
@@ -160,14 +166,15 @@ public class EnemyManager : MonoBehaviour
             }
 
             // Either delay the start of the new wave or stop wave Ui elements to fix desync between them
-            if (currentWave.TotalWaveTime > waveTimer)
+            if (currentWave.TotalWaveTime > _waveTimer)
             {
-                yield return new WaitForSeconds(currentWave.TotalWaveTime - waveTimer);
+                yield return new WaitForSeconds(currentWave.TotalWaveTime - _waveTimer);
             }
             else
             {
-                waveUiManager.FreezeUiElementsFor(waveTimer - currentWave.TotalWaveTime);
+                waveUiManager.FreezeUiElementsFor(_waveTimer - currentWave.TotalWaveTime);
             }
+            _waveNumber++;
         }
     }
 
@@ -179,8 +186,14 @@ public class EnemyManager : MonoBehaviour
     {
         while (true)
         {
-            waveTimer += Time.deltaTime;
+            _waveTimer += Time.deltaTime;
             yield return null;
         }
+    }
+
+
+    private void CreateNewWave()
+    {
+        // EnemyWave newWave = new();
     }
 }

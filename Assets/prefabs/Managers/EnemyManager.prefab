@@ -44,36 +44,158 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0b3046fe24232a43b55be74624d63e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spawnYPositions: {x: -3, y: 3}
   waveUiManager: {fileID: 0}
   preDeterminedWaves:
-  - waveName: test
-    waveColor: {r: 1, g: 0, b: 0, a: 0}
+  - waveName: Get your defences ready!
+    waveColor: {r: 1, g: 1, b: 1, a: 0}
+    delayBeforeWave: 10
+    enemyFormations: []
+  - waveName: First wave
+    waveColor: {r: 0.37169808, g: 0.40018892, b: 1, a: 0}
+    delayBeforeWave: 0
+    enemyFormations:
+    - enemiesToSpawn:
+      - enemyType: 3
+        count: 10
+        delay: 2
+      formationDelay: 0
+      spawnOrder: 0
+  - waveName: Babymode
+    waveColor: {r: 0.37254906, g: 1, b: 0.94797873, a: 0}
+    delayBeforeWave: 10
+    enemyFormations:
+    - enemiesToSpawn:
+      - enemyType: 3
+        count: 10
+        delay: 2
+      - enemyType: 1
+        count: 10
+        delay: 1
+      formationDelay: 0
+      spawnOrder: 2
+  - waveName: Starting to get hang of it now!
+    waveColor: {r: 0.4700212, g: 1, b: 0.390566, a: 0}
+    delayBeforeWave: 5
+    enemyFormations:
+    - enemiesToSpawn:
+      - enemyType: 3
+        count: 8
+        delay: 2
+      - enemyType: 2
+        count: 8
+        delay: 2
+      - enemyType: 1
+        count: 8
+        delay: 2
+      formationDelay: 0
+      spawnOrder: 1
+  - waveName: These enemies sure look healthy ;)
+    waveColor: {r: 0.52103746, g: 1, b: 0, a: 0}
+    delayBeforeWave: 5
+    enemyFormations:
+    - enemiesToSpawn:
+      - enemyType: 27
+        count: 3
+        delay: 1
+      - enemyType: 2
+        count: 6
+        delay: 1
+      formationDelay: 0
+      spawnOrder: 2
+    - enemiesToSpawn:
+      - enemyType: 3
+        count: 5
+        delay: 0.1
+      - enemyType: 2
+        count: 5
+        delay: 0.1
+      - enemyType: 3
+        count: 5
+        delay: 0.1
+      - enemyType: 3
+        count: 5
+        delay: 3
+      formationDelay: 8
+      spawnOrder: 2
+  - waveName: 'Remember to check my portfolio out at: url :D'
+    waveColor: {r: 0.95539796, g: 1, b: 0, a: 0}
+    delayBeforeWave: 15
+    enemyFormations:
+    - enemiesToSpawn:
+      - enemyType: 1
+        count: 10
+        delay: 0.1
+      - enemyType: 1
+        count: 10
+        delay: 0.1
+      - enemyType: 1
+        count: 10
+        delay: 0.5
+      formationDelay: 0
+      spawnOrder: 2
+    - enemiesToSpawn:
+      - enemyType: 2
+        count: 5
+        delay: 0.1
+      - enemyType: 27
+        count: 5
+        delay: 0.1
+      - enemyType: 2
+        count: 5
+        delay: 3
+      formationDelay: 1
+      spawnOrder: 2
+  - waveName: Time to get sneaky >:]
+    waveColor: {r: 0.1468205, g: 0.6603774, b: 0, a: 0}
+    delayBeforeWave: 15
+    enemyFormations:
+    - enemiesToSpawn:
+      - enemyType: 3
+        count: 5
+        delay: 1
+      - enemyType: 2
+        count: 5
+        delay: 1
+      - enemyType: 28
+        count: 15
+        delay: 1
+      formationDelay: 0
+      spawnOrder: 1
+    - enemiesToSpawn:
+      - enemyType: 1
+        count: 50
+        delay: 0.25
+      formationDelay: 2
+      spawnOrder: 0
+  - waveName: You won't survive
+    waveColor: {r: 1, g: 0.5124, b: 0, a: 0}
     delayBeforeWave: 1
     enemyFormations:
     - enemiesToSpawn:
-      - enemyType: 31
-        count: 10
-        delay: 10
+      - enemyType: 1
+        count: 100
+        delay: 0.1
       - enemyType: 28
         count: 10
-        delay: 10
+        delay: 0.5
+      - enemyType: 27
+        count: 5
+        delay: 1
+      formationDelay: 5
+      spawnOrder: 2
+    - enemiesToSpawn:
       - enemyType: 3
         count: 10
-        delay: 10
-      - enemyType: 29
-        count: 10
-        delay: 10
-      - enemyType: 30
-        count: 10
-        delay: 10
-      - enemyType: 27
-        count: 10
-        delay: 10
-      - enemyType: 1
-        count: 10
-        delay: 10
+        delay: 0
       - enemyType: 2
         count: 10
-        delay: 10
-      formationDelay: 0.5
+        delay: 0
+      - enemyType: 2
+        count: 10
+        delay: 0
+      - enemyType: 27
+        count: 10
+        delay: 1.5
+      formationDelay: 0
       spawnOrder: 2

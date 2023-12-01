@@ -1,0 +1,83 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &5491642973787147104
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 685873555239452255, guid: eef3136c22fccfb4a81a2b8d7f21fd33, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 685873555239452255, guid: eef3136c22fccfb4a81a2b8d7f21fd33, type: 3}
+      propertyPath: m_Color.r
+      value: 0.023021698
+      objectReference: {fileID: 0}
+    - target: {fileID: 5445973096497417533, guid: eef3136c22fccfb4a81a2b8d7f21fd33, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5445973096497417533, guid: eef3136c22fccfb4a81a2b8d7f21fd33, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5445973096497417533, guid: eef3136c22fccfb4a81a2b8d7f21fd33, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5445973096497417533, guid: eef3136c22fccfb4a81a2b8d7f21fd33, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5445973096497417533, guid: eef3136c22fccfb4a81a2b8d7f21fd33, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5445973096497417533, guid: eef3136c22fccfb4a81a2b8d7f21fd33, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5445973096497417533, guid: eef3136c22fccfb4a81a2b8d7f21fd33, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5445973096497417533, guid: eef3136c22fccfb4a81a2b8d7f21fd33, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5445973096497417533, guid: eef3136c22fccfb4a81a2b8d7f21fd33, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5445973096497417533, guid: eef3136c22fccfb4a81a2b8d7f21fd33, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5445973096497417533, guid: eef3136c22fccfb4a81a2b8d7f21fd33, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5445973096497417535, guid: eef3136c22fccfb4a81a2b8d7f21fd33, type: 3}
+      propertyPath: m_Name
+      value: Regen Enemy ++
+      objectReference: {fileID: 0}
+    - target: {fileID: 6947436634545338016, guid: eef3136c22fccfb4a81a2b8d7f21fd33, type: 3}
+      propertyPath: damage
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 6947436634545338016, guid: eef3136c22fccfb4a81a2b8d7f21fd33, type: 3}
+      propertyPath: health
+      value: 940
+      objectReference: {fileID: 0}
+    - target: {fileID: 6947436634545338016, guid: eef3136c22fccfb4a81a2b8d7f21fd33, type: 3}
+      propertyPath: healthRegen
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 6947436634545338016, guid: eef3136c22fccfb4a81a2b8d7f21fd33, type: 3}
+      propertyPath: difficultyValue
+      value: 5
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: eef3136c22fccfb4a81a2b8d7f21fd33, type: 3}

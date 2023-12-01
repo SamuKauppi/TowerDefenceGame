@@ -1,53 +1,96 @@
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerScript : MonoBehaviour
 {
-    [SerializeField] private Tower tower_prefab;        // Prefab
-    [SerializeField] private bool isAttached;           // If a tower is attached to the cursor
-    [SerializeField] private float checkDistance;       // How far are towers detected from cursor
-    [SerializeField] private LayerMask towerLayer;      // Layer mask of the turrets
-    [SerializeField] private Camera mainCamera;         // Main camera of the scene
-    public float PlayerHealth { get; private set; }     // Players health
-    // TODO: Create a way for player to get money from kills
-    public int PlayerMoney { get; private set; }        // Players money
+    // For detecting towers
+    [SerializeField] private float checkDistance;           // How far are towers detected from cursor
+    [SerializeField] private LayerMask towerLayer;          // Layer mask of the turrets
+    [SerializeField] private Camera mainCamera;             // Main camera of the scene
+    private readonly float maxDistanceFromLastPos = 0.2f;   // How far until lastMousePos is updated (should match pathfinding positionStep)
 
+    // Costs
+    [SerializeField] private int startingMoney;
+    [SerializeField] private int towerCostIncrese = 50;     // How much does the cost increse after every tower
+    [SerializeField] private int startingCost = 100;        // How much does the costs of tower start at
+    private UpgradePanel upgradePanel;                      // Reference for faster access
+
+    // Tower related variables
+    private bool isAttached;                                // If a tower is attached to the cursor
     private Tower towerAttached;                            // Instance of a tower that is attached to cursor
     private int towersPlaced = 0;                           // Amount of towers placed
-
     private Vector2 mousePosition;                          // The current position of mouse
     private Vector2 lastMousePos;                           // Position of the mouse in the last frame.
                                                             // Move attached tower to this pos
-    private readonly float maxDistanceFromLastPos = 0.1f;   // How far until lastMousePos is updated
 
-    private const GameEntity towerIdent = GameEntity.Tower;
+    private const GameEntity towerIdent = GameEntity.Tower; // Tower tag
+
+    // Gameplay
+    public float PlayerHealth { get; private set; } = 100f; // Players health
+    public int PlayerMoney { get; private set; }            // Players money
+    private int _costOfNextTower = 0;
 
     private void Start()
     {
-        // TODO: make better way to asign player stats
-        PlayerHealth = 100f;
-        PlayerMoney = 20000;
+        _costOfNextTower = startingCost;
         GameObjectUpdateManager.Instance.AddObject(this);
+        upgradePanel = UpgradePanel.Instance;
+        UpdateMoney(startingMoney);
+        upgradePanel.UpdateMoneyText(PlayerMoney, _costOfNextTower, true);
     }
 
-    public void Update()
+    /// <summary>
+    /// Subscribe parentTower to enemy death delegate
+    /// </summary>
+    private void OnEnable()
     {
+        Enemy.OnEnemyDeath += UpdateMoney;
+    }
+
+    /// <summary>
+    /// Unsubscribe parentTower from enemy death delegate
+    /// </summary>
+    private void OnDisable()
+    {
+        Enemy.OnEnemyDeath -= UpdateMoney;
+    }
+
+    /// <summary>
+    /// Increases parentTower money by amount
+    /// </summary>
+    /// <param name="amount"></param>
+    private void UpdateMoney(int amount)
+    {
+        PlayerMoney += amount;
+        bool canBuildNew = PlayerMoney >= _costOfNextTower;
+        upgradePanel.UpdateMoneyText(PlayerMoney, _costOfNextTower, canBuildNew);
+    }
+
+    /// <summary>
+    /// Update parentTower
+    /// </summary>
+    private void Update()
+    {
+        // Get mouse pos
         mousePosition = mainCamera.ScreenToWorldPoint(Input.mousePosition);
+
+        // Handle when no turret is attached
         if (!isAttached)
         {
             NoTurretAttached();
         }
-        else if (PlayerMoney > 50)
+        // Move the attached tower with the mouse if one exists
+        else if (towerAttached != null)
         {
             TurretPlacement();
         }
     }
+
     /// <summary>
-    /// Handles update when no turret is attached and player clicks
+    /// Handles update when no turret is attached and parentTower clicks
     /// </summary>
     private void NoTurretAttached()
     {
-        if (!Input.GetMouseButtonDown(0) || UpgradePanel.Instance.IsMouseOver)
+        if (!Input.GetMouseButtonDown(0) || upgradePanel.IsMouseOver)
         {
             return;
         }
@@ -65,13 +108,14 @@ public class PlayerScript : MonoBehaviour
             // if a shortest distance was found, diplay upgrades and return
             if (shortestDist != null)
             {
-                UpgradePanel.Instance.DisplayUpgrades(shortestDist.GetComponent<Tower>());
+                upgradePanel.DisplayUpgrades(shortestDist.GetComponent<Tower>());
                 return;
             }
         }
 
-        UpgradePanel.Instance.HideUpgrades();    
+        upgradePanel.HideUpgrades();    
     }
+
     /// <summary>
     /// Find the closest collider to mouse position
     /// </summary>
@@ -133,10 +177,10 @@ public class PlayerScript : MonoBehaviour
     /// </summary>
     public void StartPlacingTower()
     {
-        if (isAttached) return;
+        if (isAttached || PlayerMoney < _costOfNextTower) return;
         towerAttached = ObjectPooler.Instance.GetPooledObject(towerIdent).GetComponent<Tower>();
         isAttached = true;
-        UpgradePanel.Instance.HideUpgrades();
+        upgradePanel.HideUpgrades();
     }
 
     /// <summary>
@@ -147,7 +191,7 @@ public class PlayerScript : MonoBehaviour
         if (!isAttached) return;
         isAttached = false;
         towerAttached.gameObject.SetActive(false);
-        UpgradePanel.Instance.HideUpgrades();
+        upgradePanel.HideUpgrades();
     }
     /// <summary>
     /// If no towers are found within turret area range
@@ -175,6 +219,9 @@ public class PlayerScript : MonoBehaviour
         {
             isAttached = false;
             towerAttached.SetFunctional(true);
+            int currentCost = -_costOfNextTower;
+            _costOfNextTower += towerCostIncrese;
+            UpdateMoney(currentCost);
         }
         else
         {
@@ -192,7 +239,7 @@ public class PlayerScript : MonoBehaviour
         PlayerHealth -= amount;
         if (PlayerHealth <= 0)
         {
-
+            Debug.Log("deth");
         }
     }
 }

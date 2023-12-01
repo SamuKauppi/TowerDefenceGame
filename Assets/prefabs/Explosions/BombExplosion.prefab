@@ -122,6 +122,18 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 3540091739760738816, guid: de1a163c4a0809142a971feb6f9c50ee, type: 3}
   m_PrefabInstance: {fileID: 1989200861258401839}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &-9170982627434398425
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3079302206500801071}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb274689a2f05334a97625cd2fc1b782, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &6027606796800631153
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -138,6 +150,7 @@ MonoBehaviour:
   damageOverTime: 0
   statusesOnHit: []
   _animator: {fileID: 7889018598953001844}
+  _killTimer: {fileID: -9170982627434398425}
 --- !u!95 &7889018598953001844 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 8565955595562019675, guid: de1a163c4a0809142a971feb6f9c50ee, type: 3}

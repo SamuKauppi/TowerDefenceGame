@@ -12,12 +12,16 @@ public class UpgradeButton : MonoBehaviour
     public void DefineUpgrade(TowerUpgrade upgrade, Tower t)
     {
         if (HasTarget)
+        {
             SetTargetColor(Color.white);
+            ShowTargetRange(false);
+        }
 
         upgradeType = upgrade;
         targetToUpgrade = t;
 
         SetTargetColor(Color.red);
+        ShowTargetRange(true);
         buttonText.text = TowerTypes.Instance.GetTowerProperties(upgrade).name;
     }
 
@@ -33,5 +37,10 @@ public class UpgradeButton : MonoBehaviour
     public void SetTargetColor(Color color)
     {
         targetToUpgrade.TowerBaseRend.color = color;
+    }
+
+    public void ShowTargetRange(bool value)
+    {
+        targetToUpgrade.ShowTowerRange = value;
     }
 }

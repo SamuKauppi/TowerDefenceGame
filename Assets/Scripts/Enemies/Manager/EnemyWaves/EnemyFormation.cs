@@ -8,27 +8,13 @@ public class EnemyFormation
     public float formationDelay = 1f;                   // Determines the time delay before this formation
     public SpawnOrder spawnOrder = SpawnOrder.Random;   // Determines how are enemies picked spawnpool
 
-    public int LastUsedIndex { get; private set; }      // Last index used
+    public int LastUsedIndex { get; private set; } = 0; // Last index used. Used to keep track of enemy unit spawn times
 
     // Varibles
     private int _currentIndex = 0;                      // Used both in AllFromOne and Rotating spawn order
                                                         // AllFromOne = +1 when everything is spawned from the current formation
-                                                        // Rotating = +1 after every spawn and loops
-
-    /// <summary>
-    /// Returns the GameEntity of the next enemy to be sapwned
-    /// </summary>
-    /// <returns></returns>
-    public GameEntity GetEnemyTypeFromFormation()
-    {
-        return spawnOrder switch
-        {
-            SpawnOrder.AllFromOne => GetAllFromOneEnemyType(),
-            SpawnOrder.Random => GetRandomEnemyType(),
-            SpawnOrder.Rotating => GetRotatingEnemyType(),
-            _ => GameEntity.Null,
-        };
-    }
+                                                        // Rotating = +1 after every spawn and loops formations
+    private bool firstRandomIndexUsed;
 
     /// <summary>
     /// Random spawn order logic
@@ -42,11 +28,15 @@ public class EnemyFormation
         // Ensure that formation contains enemies
         if (ContainsEnemies())
         {
-            // Randomly select once a valid GameEntity type is selected
+            // Keep selecting a valid GameEntity type randomly
             while (e == GameEntity.Null)
             {
-                int randomIndex = Random.Range(0, enemiesToSpawn.Length);
+                // Use LastUsedIndex for the first iteration, then randomize
+                int randomIndex = firstRandomIndexUsed ? Random.Range(0, enemiesToSpawn.Length) : LastUsedIndex;
                 LastUsedIndex = randomIndex;
+                firstRandomIndexUsed = true;
+
+                // Get a GameEntity from the selected index
                 e = enemiesToSpawn[randomIndex].GetEnemy();
             }
         }
@@ -134,5 +124,30 @@ public class EnemyFormation
             }
         }
         return false;
+    }
+
+    /// <summary>
+    /// Ensure that if spawing is random, the spawn delays are correctly used 
+    /// </summary>
+    public void InitializeFirstRandomIndex()
+    {
+        if (spawnOrder != SpawnOrder.Random) { return; }
+        firstRandomIndexUsed = false;
+        LastUsedIndex = Random.Range(0, enemiesToSpawn.Length);
+    }
+
+    /// <summary>
+    /// Returns the GameEntity of the next enemy to be sapwned
+    /// </summary>
+    /// <returns></returns>
+    public GameEntity GetEnemyTypeFromFormation()
+    {
+        return spawnOrder switch
+        {
+            SpawnOrder.AllFromOne => GetAllFromOneEnemyType(),
+            SpawnOrder.Random => GetRandomEnemyType(),
+            SpawnOrder.Rotating => GetRotatingEnemyType(),
+            _ => GameEntity.Null,
+        };
     }
 }

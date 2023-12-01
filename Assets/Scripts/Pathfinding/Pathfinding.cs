@@ -19,8 +19,9 @@ public class Pathfinding : MonoBehaviour
     [SerializeField] private float positionStep = 0.2f;         // Distance between pathpoints
     [SerializeField] private float mapwidth = 9;                // How wide is the pathfinding area
     [SerializeField] private float mapheight = 4.6f;            // How high is the pathfinding area
-    private const float startingXPosition = 6f;                 // From where the pathpoints are spawned in x axis
-                                                                // Used to give space for UI
+    [SerializeField] private float startingXPosition = 6f;      // From where the pathpoints start being spawned in x axis
+    [SerializeField] private float topYPosOffset;               // Offset from top where no more pathpoints are spawned
+    [SerializeField] private float botYPosOffset;               // Offset from bot where no more pathpoints are spawned
 
     /// <summary>
     /// Create Singleton and call GeneratePaths
@@ -43,21 +44,26 @@ public class Pathfinding : MonoBehaviour
         {
             endPoint
         };
-
         // Determine positions of pathpoints
         float xPos = startingXPosition;
         float yPos = 0f;
         // Determine x and y indexes
         int yIndex = 0;
         int xIndex = 0;
-        while (yPos <= mapheight)
+        // Continue loop until yPos is over both top and bot mapHeight
+        while (MathF.Abs(yPos) <= mapheight - topYPosOffset || MathF.Abs(yPos) <= mapheight - botYPosOffset)
         {
-            while (xPos >= -mapwidth)
+            if ((yPos >= 0 && yPos <= mapheight - topYPosOffset) || 
+                (yPos < 0 && yPos >= -(mapheight - botYPosOffset)))
             {
-                xIndex++;
-                points.Add(CreatePathpoint(new Vector3(xPos, yPos), new Vector2(xIndex, yIndex)));
-                xPos -= positionStep;
+                while (xPos >= -mapwidth)
+                {
+                    xIndex++;
+                    points.Add(CreatePathpoint(new Vector3(xPos, yPos), new Vector2(xIndex, yIndex)));
+                    xPos -= positionStep;
+                }
             }
+
             xPos = startingXPosition;
             xIndex = 0;
             if (yPos > 0)

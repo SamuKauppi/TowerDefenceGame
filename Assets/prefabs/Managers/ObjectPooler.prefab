@@ -116,16 +116,6 @@ MonoBehaviour:
     obj: {fileID: 5669326493566211029, guid: fbd6b4eba2c56db49aa85cf1bb954e25, type: 3}
     amount: 10
     parent: {fileID: 4343196528215575428}
-  - ident: fastE
-    gameIdent: 1
-    obj: {fileID: 874322408005280109, guid: bf536480109957349a9465dcff3299a0, type: 3}
-    amount: 10
-    parent: {fileID: 4343196527950363764}
-  - ident: fatE
-    gameIdent: 2
-    obj: {fileID: 874322408005280109, guid: aa04dcd65d154cf4bb55359cf7ac0734, type: 3}
-    amount: 10
-    parent: {fileID: 4343196527950363764}
   - ident: bullet
     gameIdent: 4
     obj: {fileID: 2903515293147374990, guid: fc4dc3995c9c91a4c8bc20e32cdcdbf4, type: 3}
@@ -136,11 +126,6 @@ MonoBehaviour:
     obj: {fileID: 938123661205416765, guid: aa2538b215be01445a60c11008903c1b, type: 3}
     amount: 10
     parent: {fileID: 4343196529389596898}
-  - ident: explosion
-    gameIdent: 6
-    obj: {fileID: 3079302206500801071, guid: e1aec11e80e62fc47993cb6af17227e5, type: 3}
-    amount: 10
-    parent: {fileID: 628350877}
   - ident: bomb
     gameIdent: 7
     obj: {fileID: 2377344280394233254, guid: f09f8941e6c25724984454493f5651c0, type: 3}
@@ -211,11 +196,6 @@ MonoBehaviour:
     obj: {fileID: 8592739381457975989, guid: f741790163036454d8aeaafcbcdd29cd, type: 3}
     amount: 10
     parent: {fileID: 4343196529389596898}
-  - ident: rockExplosion
-    gameIdent: 22
-    obj: {fileID: 269538762329880918, guid: 41a66669c9a2fd04093d31ceeb10b8f7, type: 3}
-    amount: 10
-    parent: {fileID: 628350877}
   - ident: lightning
     gameIdent: 21
     obj: {fileID: 947197518995540346, guid: 80da78d47f10cdd4e9f27f21449bfbac, type: 3}
@@ -231,9 +211,49 @@ MonoBehaviour:
     obj: {fileID: 1273729465144985213, guid: 33af6c81b1ff4944fbe585b2e9a467aa, type: 3}
     amount: 7
     parent: {fileID: 0}
+  - ident: fatE
+    gameIdent: 2
+    obj: {fileID: 874322408005280109, guid: aa04dcd65d154cf4bb55359cf7ac0734, type: 3}
+    amount: 10
+    parent: {fileID: 4343196527950363764}
+  - ident: fatE+
+    gameIdent: 35
+    obj: {fileID: 7580488006010247540, guid: 721d66a98137f304fb7b63fa056663ac, type: 3}
+    amount: 10
+    parent: {fileID: 4343196527950363764}
+  - ident: fatE++
+    gameIdent: 36
+    obj: {fileID: 1470949304113592291, guid: e527ae397fe43f747b37ecb630825055, type: 3}
+    amount: 10
+    parent: {fileID: 4343196527950363764}
+  - ident: fastE
+    gameIdent: 1
+    obj: {fileID: 874322408005280109, guid: bf536480109957349a9465dcff3299a0, type: 3}
+    amount: 10
+    parent: {fileID: 4343196527950363764}
+  - ident: fastE+
+    gameIdent: 33
+    obj: {fileID: 2313809556868064621, guid: fc3be4497e4e07d459b732af8a2fd229, type: 3}
+    amount: 10
+    parent: {fileID: 4343196527950363764}
+  - ident: fastE++
+    gameIdent: 34
+    obj: {fileID: 3339136613885627287, guid: df5cdef1316fe3a468b0071e226012d0, type: 3}
+    amount: 10
+    parent: {fileID: 4343196527950363764}
   - ident: normalE
     gameIdent: 3
     obj: {fileID: 6355185362051688843, guid: 8627abffb1a47104290e54fdc1b33a27, type: 3}
+    amount: 10
+    parent: {fileID: 4343196527950363764}
+  - ident: normalE+
+    gameIdent: 37
+    obj: {fileID: 8079019838769297261, guid: 2d63df40bc23c6c48b4499b0ad01ac28, type: 3}
+    amount: 10
+    parent: {fileID: 4343196527950363764}
+  - ident: normalE++
+    gameIdent: 38
+    obj: {fileID: 8224764983016676938, guid: eb46f975270bdac46bbfcd31a457f825, type: 3}
     amount: 10
     parent: {fileID: 4343196527950363764}
   - ident: GhostE
@@ -241,9 +261,29 @@ MonoBehaviour:
     obj: {fileID: 1456510449449574136, guid: 45433dec586468149b3ce8ecda589806, type: 3}
     amount: 10
     parent: {fileID: 4343196527950363764}
+  - ident: GhostE+
+    gameIdent: 39
+    obj: {fileID: 6968899780789112961, guid: b76dedc7780c6324db8f0f5bcec6b3cc, type: 3}
+    amount: 10
+    parent: {fileID: 4343196527950363764}
+  - ident: GhostE++
+    gameIdent: 40
+    obj: {fileID: 5134141939992345528, guid: e05d8fc4f401c21418758ecd8e3d3d84, type: 3}
+    amount: 10
+    parent: {fileID: 4343196527950363764}
   - ident: MirrorE
     gameIdent: 29
     obj: {fileID: 8037798384930114501, guid: 7d02f401f49776941b60c5cf64ba728b, type: 3}
+    amount: 10
+    parent: {fileID: 4343196527950363764}
+  - ident: MirrorE+
+    gameIdent: 45
+    obj: {fileID: 5750505443801814098, guid: 7ec27cd46ecadea44825b4f7da4426fa, type: 3}
+    amount: 10
+    parent: {fileID: 4343196527950363764}
+  - ident: MirrorE++
+    gameIdent: 46
+    obj: {fileID: 7961439832182046381, guid: ec5b4ae0b78430447b92d4fdc5d24fb0, type: 3}
     amount: 10
     parent: {fileID: 4343196527950363764}
   - ident: MirroredE
@@ -256,9 +296,29 @@ MonoBehaviour:
     obj: {fileID: 6715906167306687016, guid: 29681b3018e8b084fa51b5276c3e1e78, type: 3}
     amount: 10
     parent: {fileID: 4343196527950363764}
+  - ident: TeleE+
+    gameIdent: 47
+    obj: {fileID: 4997405479545140068, guid: 59f3aebba9c846d45921eadde1cefa1b, type: 3}
+    amount: 10
+    parent: {fileID: 4343196527950363764}
+  - ident: TeleE++
+    gameIdent: 48
+    obj: {fileID: 4495032600184413026, guid: 12a5ef73f369c744880018ae947db98b, type: 3}
+    amount: 10
+    parent: {fileID: 4343196527950363764}
   - ident: BurrowE
     gameIdent: 31
     obj: {fileID: 38614260951180064, guid: 23f905dac415cc14ebda939f8de55ac9, type: 3}
+    amount: 10
+    parent: {fileID: 4343196527950363764}
+  - ident: BurrowE+
+    gameIdent: 49
+    obj: {fileID: 8977000613651890030, guid: 2b0dedcc79391e245822167ed912fbdb, type: 3}
+    amount: 10
+    parent: {fileID: 4343196527950363764}
+  - ident: BurrowE++
+    gameIdent: 50
+    obj: {fileID: 5710975727508958652, guid: 3bf9a23fdc7edcf4b929728fbc6b5713, type: 3}
     amount: 10
     parent: {fileID: 4343196527950363764}
   - ident: StealthE
@@ -266,11 +326,56 @@ MonoBehaviour:
     obj: {fileID: 5625692471412878325, guid: cdb29b1a4451cda48878b9ec33dea536, type: 3}
     amount: 10
     parent: {fileID: 4343196527950363764}
+  - ident: StealthE+
+    gameIdent: 43
+    obj: {fileID: 6527779036326443602, guid: dec540fbd3c9ba641b6c77efebcebc9c, type: 3}
+    amount: 10
+    parent: {fileID: 4343196527950363764}
+  - ident: StealthE++
+    gameIdent: 44
+    obj: {fileID: 6667941720543953716, guid: 16958c0927f33f64e9bc13f4c9ec35fa, type: 3}
+    amount: 10
+    parent: {fileID: 4343196527950363764}
   - ident: RegenE
     gameIdent: 27
     obj: {fileID: 5427644222717838896, guid: c16775e2e0412ca4998531369b6353fa, type: 3}
     amount: 10
     parent: {fileID: 4343196527950363764}
+  - ident: RegenE+
+    gameIdent: 41
+    obj: {fileID: 5445973096497417535, guid: eef3136c22fccfb4a81a2b8d7f21fd33, type: 3}
+    amount: 10
+    parent: {fileID: 4343196527950363764}
+  - ident: RegenE++
+    gameIdent: 42
+    obj: {fileID: 551066007298000479, guid: 0f144fd9def111b4f8221eb6067b12bd, type: 3}
+    amount: 10
+    parent: {fileID: 4343196527950363764}
+  - ident: BurrowVFX
+    gameIdent: 51
+    obj: {fileID: 106362621924781023, guid: d998466cd779ad34e814b75b2df3f810, type: 3}
+    amount: 10
+    parent: {fileID: 628350877}
+  - ident: CoinVFX
+    gameIdent: 52
+    obj: {fileID: 1305211678086078092, guid: 91b73e81d41562b49b357b7988bffbe7, type: 3}
+    amount: 50
+    parent: {fileID: 628350877}
+  - ident: ExplosionVFX
+    gameIdent: 6
+    obj: {fileID: 3079302206500801071, guid: e1aec11e80e62fc47993cb6af17227e5, type: 3}
+    amount: 10
+    parent: {fileID: 628350877}
+  - ident: RockVFX
+    gameIdent: 22
+    obj: {fileID: 269538762329880918, guid: 41a66669c9a2fd04093d31ceeb10b8f7, type: 3}
+    amount: 10
+    parent: {fileID: 628350877}
+  - ident: CoinSpawner
+    gameIdent: 53
+    obj: {fileID: 4029765767335302060, guid: 090297a01ea5b8940ab5ce240fc9a920, type: 3}
+    amount: 20
+    parent: {fileID: 628350877}
 --- !u!1 &4343196528215575429
 GameObject:
   m_ObjectHideFlags: 0

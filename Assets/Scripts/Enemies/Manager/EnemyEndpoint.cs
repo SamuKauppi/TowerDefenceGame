@@ -11,10 +11,10 @@ public class EnemyEndpoint : MonoBehaviour
     {
         if (collision.TryGetComponent(out Enemy enemy))
         {
-            // Kill enemy
-            enemy.TakeDamage(enemy.MaxHealth);  
             // Player takes damage
             player.TakeDamage(enemy.GetEnemyDamage());
+            // Reset enemy
+            enemy.EnemyReachedEnd();
         }
     }
 

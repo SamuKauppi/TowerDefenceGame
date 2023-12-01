@@ -129,10 +129,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c28bf7356ba49dc428c4153f8f4ac1cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tower_prefab: {fileID: 5669326493566211039, guid: fbd6b4eba2c56db49aa85cf1bb954e25, type: 3}
-  isAttached: 0
   checkDistance: 0.5
   towerLayer:
     serializedVersion: 2
     m_Bits: 64
   mainCamera: {fileID: 519420031}
+  startingMoney: 250
+  towerCostIncrese: 25
+  startingCost: 50

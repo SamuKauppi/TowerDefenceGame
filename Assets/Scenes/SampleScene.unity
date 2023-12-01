@@ -207,6 +207,63 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &321718770280629629
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 321718770023742513, guid: e66591f70cdffe743955b846d0638ede, type: 3}
+      propertyPath: m_Name
+      value: EnemyData
+      objectReference: {fileID: 0}
+    - target: {fileID: 321718770023742515, guid: e66591f70cdffe743955b846d0638ede, type: 3}
+      propertyPath: m_RootOrder
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 321718770023742515, guid: e66591f70cdffe743955b846d0638ede, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 321718770023742515, guid: e66591f70cdffe743955b846d0638ede, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 321718770023742515, guid: e66591f70cdffe743955b846d0638ede, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 321718770023742515, guid: e66591f70cdffe743955b846d0638ede, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 321718770023742515, guid: e66591f70cdffe743955b846d0638ede, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 321718770023742515, guid: e66591f70cdffe743955b846d0638ede, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 321718770023742515, guid: e66591f70cdffe743955b846d0638ede, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 321718770023742515, guid: e66591f70cdffe743955b846d0638ede, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 321718770023742515, guid: e66591f70cdffe743955b846d0638ede, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 321718770023742515, guid: e66591f70cdffe743955b846d0638ede, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: e66591f70cdffe743955b846d0638ede, type: 3}
 --- !u!1001 &590500536503498575
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -430,7 +487,7 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4343196528124514097, guid: c3e954190d2054f459854692931216be, type: 3}
-      propertyPath: objectsToBePooled.Array.data[23].parent
+      propertyPath: objectsToBePooled.Array.data[19].parent
       value: 
       objectReference: {fileID: 4993317014770537769}
     - target: {fileID: 4343196528124514102, guid: c3e954190d2054f459854692931216be, type: 3}
@@ -446,10 +503,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 4993317014770537772, guid: 545f8fe2ff060024e9768ee3db8d45ad, type: 3}
-      propertyPath: uiScaleFactor
-      value: 25
-      objectReference: {fileID: 0}
     - target: {fileID: 4993317015064832515, guid: 545f8fe2ff060024e9768ee3db8d45ad, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -542,10 +595,6 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 814854201}
-    - target: {fileID: 7349216432224526780, guid: 545f8fe2ff060024e9768ee3db8d45ad, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 100
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 545f8fe2ff060024e9768ee3db8d45ad, type: 3}
 --- !u!224 &4993317014770537769 stripped

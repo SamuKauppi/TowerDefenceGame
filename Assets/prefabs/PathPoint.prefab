@@ -46,7 +46,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_rend: {fileID: -87608674267959712}
-  dist: 0
   pathValue: 0
 --- !u!212 &-87608674267959712
 SpriteRenderer:

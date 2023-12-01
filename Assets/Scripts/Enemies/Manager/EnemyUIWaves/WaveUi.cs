@@ -12,7 +12,7 @@ public class WaveUi : MonoBehaviour
     public void DetermineWaveElement(float time, string waveName, float scale, Color waveColor)
     {
         waveText.text = waveName;
-        waveImage.color = new Color(waveColor.r, waveColor.g, waveColor.b, 0.5f);
+        waveImage.color = new Color(waveColor.r, waveColor.g, waveColor.b, 1f);
         WaveTransform.sizeDelta = new Vector2(time * scale, WaveTransform.sizeDelta.y);
     }
 }

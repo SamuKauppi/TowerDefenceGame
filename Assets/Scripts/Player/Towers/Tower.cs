@@ -8,22 +8,24 @@ public class Tower : MonoBehaviour, IUpdate
 {
     // Hitboxes
     [SerializeField] private Collider2D towerHitbox;                // Hitbox of the turret
-    [SerializeField] private CircleCollider2D attackRangeCollider;  // Collider for attack range
+    [SerializeField] private Transform attackRangeObj;              // Range of the attacks 
 
     // Sprites
-    [SerializeField] private SpriteRenderer barrelSpriterend;       // Sprite renderer of the barrel (asigned in inspector)
-    [SerializeField] private SpriteRenderer towerSpriterend;        // Sprite renderer of the tower (asigned in inspector)
+    [SerializeField] private SpriteRenderer barrelSpriteRend;       // Sprite renderer of the barrel (asigned in inspector)
+    [SerializeField] private SpriteRenderer towerSpriteRend;        // Sprite renderer of the tower (asigned in inspector)
+    [SerializeField] private SpriteRenderer rangeSpriteRend;
 
     // Targeting
-    [SerializeField] private HashSet<Transform> targets = new();    // Enemies inside circlecollider2d that istrigger
     [SerializeField] private Transform barrel;                      // Barrel of the turret (pointed towards enemies)
+    private HashSet<Transform> targets = new();                     // Enemies inside circlecollider2d that istrigger
 
     // Properties
     private bool IsFunctional { get; set; }                                     // Is the tower functional (has to be disabled while placing down)
     public Vector3 TowerSize { get; private set; }                              // Size of the turret
     public TowerProperties CurrentUpgrade { get; private set; }                 // Current upgrade of the turret 
-    public SpriteRenderer TowerBaseRend { get { return towerSpriterend; } }     // Public renderer of the base
-    public SpriteRenderer TowerBarrelRend { get { return barrelSpriterend; } }  // Public renderer of the barrel
+    public SpriteRenderer TowerBaseRend { get { return towerSpriteRend; } }     // Public renderer of the base
+    public SpriteRenderer TowerBarrelRend { get { return barrelSpriteRend; } }  // Public renderer of the barrel
+    public bool ShowTowerRange { set { rangeSpriteRend.enabled = value; } }     // Public access to set range indicator visible
 
     // Aiming
     private bool isAimingEnemy;         // Is the tower aiming towards an enemy
@@ -46,7 +48,7 @@ public class Tower : MonoBehaviour, IUpdate
     private void Start()
     {
         // Get the size of the tower
-        Vector3 spriteRendSize = towerSpriterend.bounds.size;
+        Vector3 spriteRendSize = towerSpriteRend.bounds.size;
         TowerSize = new Vector3(spriteRendSize.x, spriteRendSize.y);
 
         // Get endpoint
@@ -254,7 +256,7 @@ public class Tower : MonoBehaviour, IUpdate
             shotsFired++;
         }
 
-        // A bullet was fired. Reset attack waveTimer and increase burst counter
+        // A bullet was fired. Reset attack _waveTimer and increase burst counter
         attackTimer = 0;
         numberOfBursts++;
 
@@ -320,30 +322,6 @@ public class Tower : MonoBehaviour, IUpdate
     }
 
     /// <summary>
-    /// To detect enemies entering range
-    /// </summary>
-    /// <param name="collision"></param>
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.CompareTag("enemy"))
-        {
-            targets.Add(collision.transform);
-        }
-    }
-
-    /// <summary>
-    /// To detect enemies leaving range
-    /// </summary>
-    /// <param name="collision"></param>
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.CompareTag("enemy"))
-        {
-            targets.Remove(collision.transform);
-        }
-    }
-
-    /// <summary>
     /// Set this towers functionality
     /// </summary>
     /// <param name="value"></param>
@@ -351,7 +329,7 @@ public class Tower : MonoBehaviour, IUpdate
     {
         IsFunctional = value;
         towerHitbox.enabled = value;
-        attackRangeCollider.enabled = value;
+        attackRangeObj.gameObject.SetActive(value);
     }
 
     /// <summary>
@@ -362,8 +340,26 @@ public class Tower : MonoBehaviour, IUpdate
     public void UpgradeTower(TowerUpgrade upgrade)
     {
         CurrentUpgrade = TowerTypes.Instance.GetTowerProperties(upgrade);
-        attackRangeCollider.radius = CurrentUpgrade.attackRange;
+        attackRangeObj.localScale = new Vector3(CurrentUpgrade.attackRange, CurrentUpgrade.attackRange, 1f);
         TowerBarrelRend.sprite = CurrentUpgrade.barrelSprite;
         TowerBaseRend.sprite = CurrentUpgrade.towerSprite;
     }
+
+    /// <summary>
+    /// Adds or removes enemies from targets hashset
+    /// </summary>
+    /// <param name="target"></param>
+    /// <param name="isAdding"></param>
+    public void DetectEnemy(Transform target, bool isAdding)
+    {
+        if (isAdding)
+        {
+            targets.Add(target);
+        }
+        else
+        {
+            targets.Remove(target);
+        }
+    }
+
 }
