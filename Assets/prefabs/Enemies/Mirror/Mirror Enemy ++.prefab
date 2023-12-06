@@ -13,7 +13,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4956611422459314147, guid: 7ec27cd46ecadea44825b4f7da4426fa, type: 3}
       propertyPath: health
-      value: 500
+      value: 50000
       objectReference: {fileID: 0}
     - target: {fileID: 4956611422459314147, guid: 7ec27cd46ecadea44825b4f7da4426fa, type: 3}
       propertyPath: copyTime
@@ -25,7 +25,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4956611422459314147, guid: 7ec27cd46ecadea44825b4f7da4426fa, type: 3}
       propertyPath: copyTarget
-      value: 29
+      value: 45
+      objectReference: {fileID: 0}
+    - target: {fileID: 4956611422459314147, guid: 7ec27cd46ecadea44825b4f7da4426fa, type: 3}
+      propertyPath: spawnLimit
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4956611422459314147, guid: 7ec27cd46ecadea44825b4f7da4426fa, type: 3}
       propertyPath: difficultyValue

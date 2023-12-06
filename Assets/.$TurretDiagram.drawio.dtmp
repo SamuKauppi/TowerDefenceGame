@@ -1,0 +1,265 @@
+<mxfile host="Electron" modified="2023-12-05T12:56:59.054Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/22.1.2 Chrome/114.0.5735.289 Electron/25.9.4 Safari/537.36" etag="1w4S_iEuwvvmjuz8ITMM" version="22.1.2" type="device">
+  <diagram id="Q7nDkFITh00NXHWy7-K4" name="Page-1">
+    <mxGraphModel dx="1500" dy="899" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="4000" pageHeight="700" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="VLRyIlqznZRcnYNGjUtV-8" value="+ range&lt;br&gt;+ accuracy" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;labelBorderColor=default;" parent="1" source="VLRyIlqznZRcnYNGjUtV-1" target="VLRyIlqznZRcnYNGjUtV-7" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="_5wMx_-kx0hjoRFrakkW-137" value="+ impact bullet" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;labelBorderColor=default;" parent="1" source="VLRyIlqznZRcnYNGjUtV-1" target="VLRyIlqznZRcnYNGjUtV-2" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="_5wMx_-kx0hjoRFrakkW-138" value="+ speed" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;labelBorderColor=default;" parent="1" source="VLRyIlqznZRcnYNGjUtV-1" target="VLRyIlqznZRcnYNGjUtV-5" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="VLRyIlqznZRcnYNGjUtV-1" value="Normal turret" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="1524" y="90" width="80" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="VLRyIlqznZRcnYNGjUtV-18" value="+ bomb bullets&lt;br&gt;- speed" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="VLRyIlqznZRcnYNGjUtV-2" target="VLRyIlqznZRcnYNGjUtV-13" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="jTilQWdeyiVG8SAP1Mdp-1" value="+ beam bullet (low damage)&lt;br&gt;+ speed (to shoot a beam)" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="VLRyIlqznZRcnYNGjUtV-2" target="_5wMx_-kx0hjoRFrakkW-30" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points" />
+            <mxPoint x="1330.0000000000002" y="260" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="VLRyIlqznZRcnYNGjUtV-2" value="Impact&lt;br&gt;600" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="1290" y="180" width="80" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="IRU_vTcyjv4M9P6Ac7NZ-52" value="- range&lt;br&gt;+ speed&lt;br&gt;+ sword bullet&lt;br&gt;(large bullet but very short lifetime)" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;labelBorderColor=default;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" parent="1" source="VLRyIlqznZRcnYNGjUtV-5" target="IRU_vTcyjv4M9P6Ac7NZ-37" edge="1">
+          <mxGeometry x="0.4596" y="-10" relative="1" as="geometry">
+            <mxPoint x="1610" y="200" as="sourcePoint" />
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="IRU_vTcyjv4M9P6Ac7NZ-53" value="+ fire&lt;br&gt;(leaves dot on hit)" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;labelBorderColor=default;" parent="1" source="VLRyIlqznZRcnYNGjUtV-5" target="IRU_vTcyjv4M9P6Ac7NZ-19" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Drxne5DX06lcvUppRBQd-18" value="+ Impact&lt;br&gt;+ burst&lt;br&gt;-speed" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;labelBorderColor=default;" parent="1" source="VLRyIlqznZRcnYNGjUtV-7" target="jTilQWdeyiVG8SAP1Mdp-2" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="VLRyIlqznZRcnYNGjUtV-7" value="Scope&lt;br&gt;600" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="1994" y="180" width="80" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="VLRyIlqznZRcnYNGjUtV-13" value="Bomb" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="1060" y="280" width="80" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="_5wMx_-kx0hjoRFrakkW-124" value="+ boomerang&lt;br&gt;+ range" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;labelBorderColor=default;" parent="1" source="jTilQWdeyiVG8SAP1Mdp-2" target="_5wMx_-kx0hjoRFrakkW-84" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="_5wMx_-kx0hjoRFrakkW-125" value="+ rock bullets&lt;br&gt;- speed&lt;br&gt;+ range&lt;br&gt;+ accuracy" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;labelBorderColor=default;" parent="1" source="jTilQWdeyiVG8SAP1Mdp-2" target="_5wMx_-kx0hjoRFrakkW-121" edge="1">
+          <mxGeometry x="0.467" relative="1" as="geometry">
+            <mxPoint as="offset" />
+            <mxPoint x="2080" y="300" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="jTilQWdeyiVG8SAP1Mdp-2" value="Wallop:&lt;br&gt;900" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="1994" y="280" width="80" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="_5wMx_-kx0hjoRFrakkW-30" value="Beam" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="1290" y="280" width="80" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="_5wMx_-kx0hjoRFrakkW-38" value="Flamethrower" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="1290" y="410" width="80" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="_5wMx_-kx0hjoRFrakkW-39" value="Overheat" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="1290" y="550" width="80" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="_5wMx_-kx0hjoRFrakkW-48" value="+ bomb bullets&lt;br&gt;- speed" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" target="_5wMx_-kx0hjoRFrakkW-54" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1290" y="200" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="_5wMx_-kx0hjoRFrakkW-49" value="+ beam bullet (low damage)&lt;br&gt;+ speed (to shoot a beam)" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" target="_5wMx_-kx0hjoRFrakkW-73" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points" />
+            <mxPoint x="1330" y="220" as="sourcePoint" />
+            <mxPoint x="1330.0000000000002" y="260" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="_5wMx_-kx0hjoRFrakkW-51" value="+ bigger bombs&lt;br&gt;- speed" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;labelBorderColor=default;" parent="1" source="_5wMx_-kx0hjoRFrakkW-54" edge="1">
+          <mxGeometry x="-0.3362" relative="1" as="geometry">
+            <mxPoint x="1100" y="440" as="targetPoint" />
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="_5wMx_-kx0hjoRFrakkW-54" value="Bomb" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="1060" y="280" width="80" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="_5wMx_-kx0hjoRFrakkW-73" value="Beam" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="1290" y="280" width="80" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="HSD4xJo1R1fu4qBwuys--84" value="+single powerful beam&lt;br&gt;- can&#39;t aim while firing" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;labelBorderColor=default;" parent="1" source="_5wMx_-kx0hjoRFrakkW-114" target="_5wMx_-kx0hjoRFrakkW-79" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1210" y="449.9999999999998" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="_5wMx_-kx0hjoRFrakkW-79" value="Hyper beam:&lt;br&gt;20000" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="1180" y="410" width="80" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="HSD4xJo1R1fu4qBwuys--3" value="+ spread&lt;br&gt;+ speed&lt;br&gt;+ shorter charge time" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;labelBorderColor=default;" parent="1" source="_5wMx_-kx0hjoRFrakkW-81" target="_5wMx_-kx0hjoRFrakkW-120" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="_5wMx_-kx0hjoRFrakkW-81" value="Lazer Blast:&lt;br&gt;4000" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="1290" y="410" width="80" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="_5wMx_-kx0hjoRFrakkW-82" value="Overheat" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="1290" y="550" width="80" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="gn0R1F9Epo_eSYioOC-Y-32" value="+ speed" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="_5wMx_-kx0hjoRFrakkW-84" target="gn0R1F9Epo_eSYioOC-Y-31" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="_5wMx_-kx0hjoRFrakkW-84" value="Boomerang:&lt;br&gt;5000" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="1994" y="420" width="80" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="_5wMx_-kx0hjoRFrakkW-89" value="+ bomb bullets&lt;br&gt;- speed" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;labelBorderColor=default;" parent="1" target="_5wMx_-kx0hjoRFrakkW-95" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1290" y="200" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="_5wMx_-kx0hjoRFrakkW-90" value="+ beam bullet (low damage)&lt;br&gt;+ speed (to shoot a beam)" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;labelBorderColor=default;" parent="1" target="_5wMx_-kx0hjoRFrakkW-114" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points" />
+            <mxPoint x="1330" y="220" as="sourcePoint" />
+            <mxPoint x="1330.0000000000002" y="260" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="_5wMx_-kx0hjoRFrakkW-95" value="Bomb:&lt;br&gt;1500" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="1060" y="280" width="80" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="_5wMx_-kx0hjoRFrakkW-97" value="+ even bigger bombs&lt;br&gt;+ spread" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;labelBorderColor=default;" parent="1" source="_5wMx_-kx0hjoRFrakkW-98" target="_5wMx_-kx0hjoRFrakkW-106" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="_5wMx_-kx0hjoRFrakkW-98" value="Kaboom:&lt;br&gt;4000" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="1060" y="410" width="80" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="_5wMx_-kx0hjoRFrakkW-106" value="Hugeplosion:&lt;br&gt;15000" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="1060" y="550" width="80" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="HSD4xJo1R1fu4qBwuys--2" value="+ lazer (piercing)&lt;br&gt;+ burst" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;labelBorderColor=default;" parent="1" source="_5wMx_-kx0hjoRFrakkW-114" target="_5wMx_-kx0hjoRFrakkW-81" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="_5wMx_-kx0hjoRFrakkW-114" value="Beam:&lt;br&gt;1500" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="1290" y="280" width="80" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="_5wMx_-kx0hjoRFrakkW-120" value="Light that burns the sky:&lt;br&gt;10000" style="rounded=0;whiteSpace=wrap;html=1;labelBorderColor=none;" parent="1" vertex="1">
+          <mxGeometry x="1290" y="550" width="80" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="_5wMx_-kx0hjoRFrakkW-131" value="+ global range&lt;br&gt;+ spread" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;labelBorderColor=default;" parent="1" source="_5wMx_-kx0hjoRFrakkW-121" target="_5wMx_-kx0hjoRFrakkW-130" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="_5wMx_-kx0hjoRFrakkW-121" value="Catapult:&lt;br&gt;3000" style="rounded=0;whiteSpace=wrap;html=1;labelBorderColor=none;" parent="1" vertex="1">
+          <mxGeometry x="2130" y="420" width="80" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="_5wMx_-kx0hjoRFrakkW-130" value="Trebuchet:&lt;br&gt;10000" style="rounded=0;whiteSpace=wrap;html=1;labelBorderColor=none;" parent="1" vertex="1">
+          <mxGeometry x="2130" y="550" width="80" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="IRU_vTcyjv4M9P6Ac7NZ-1" value="+ 5 bullet spread&lt;br&gt;+ 2 bullet burst&lt;br&gt;- 15 accuracy&lt;br&gt;- speed" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;labelBorderColor=default;" parent="1" source="_5wMx_-kx0hjoRFrakkW-134" target="_5wMx_-kx0hjoRFrakkW-143" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="IRU_vTcyjv4M9P6Ac7NZ-6" value="+ small bullets&lt;br&gt;+ speed&lt;br&gt;- 15 accuracy" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;labelBorderColor=default;" parent="1" source="_5wMx_-kx0hjoRFrakkW-134" target="_5wMx_-kx0hjoRFrakkW-144" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="_5wMx_-kx0hjoRFrakkW-134" value="Gun&lt;br&gt;700" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="2390" y="280" width="80" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="IRU_vTcyjv4M9P6Ac7NZ-4" value="+ 7 bullet spread&lt;br&gt;+ 3 bullet burst&lt;br&gt;- 25 accuray&lt;br&gt;- speed" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;labelBorderColor=default;" parent="1" source="_5wMx_-kx0hjoRFrakkW-143" target="IRU_vTcyjv4M9P6Ac7NZ-3" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="_5wMx_-kx0hjoRFrakkW-143" value="Shotgun:&lt;br&gt;2000" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="2270" y="410" width="80" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="IRU_vTcyjv4M9P6Ac7NZ-8" value="+ speed&lt;br&gt;+ burst&lt;br&gt;+ spread&lt;br&gt;- 30 accuracy" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;labelBorderColor=default;" parent="1" source="_5wMx_-kx0hjoRFrakkW-144" target="IRU_vTcyjv4M9P6Ac7NZ-7" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="_5wMx_-kx0hjoRFrakkW-144" value="SMG:&lt;br&gt;2500" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="2390" y="410" width="80" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="IRU_vTcyjv4M9P6Ac7NZ-11" value="+ sniper bullets&lt;br&gt;(extremely fast, &lt;br&gt;piercing&lt;br&gt;and &lt;br&gt;massive damage)" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;labelBorderColor=default;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" parent="1" source="_5wMx_-kx0hjoRFrakkW-134" target="IRU_vTcyjv4M9P6Ac7NZ-10" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1340" y="310" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="IRU_vTcyjv4M9P6Ac7NZ-3" value="Blunderbuss:&lt;br&gt;7000" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="2270" y="550" width="80" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="IRU_vTcyjv4M9P6Ac7NZ-7" value="Minigun:&lt;br&gt;10000" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="2390" y="550" width="80" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="IRU_vTcyjv4M9P6Ac7NZ-10" value="Sniper:&lt;br&gt;15000" style="rounded=0;whiteSpace=wrap;html=1;labelBorderColor=none;" parent="1" vertex="1">
+          <mxGeometry x="2500" y="410" width="80" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="IRU_vTcyjv4M9P6Ac7NZ-62" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;labelBorderColor=default;" parent="1" source="IRU_vTcyjv4M9P6Ac7NZ-19" target="IRU_vTcyjv4M9P6Ac7NZ-29" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="HSD4xJo1R1fu4qBwuys--4" value="+ cold flame&lt;br&gt;(fire that &lt;br&gt;applies&lt;br&gt;slow)" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];labelBorderColor=default;" parent="IRU_vTcyjv4M9P6Ac7NZ-62" vertex="1" connectable="0">
+          <mxGeometry x="-0.0354" y="-1" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="IRU_vTcyjv4M9P6Ac7NZ-64" value="+ speed&lt;br&gt;+ spread" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;labelBorderColor=default;" parent="1" source="IRU_vTcyjv4M9P6Ac7NZ-19" target="IRU_vTcyjv4M9P6Ac7NZ-24" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="IRU_vTcyjv4M9P6Ac7NZ-19" value="Ember:&lt;br&gt;1000" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="1524" y="280" width="80" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="IRU_vTcyjv4M9P6Ac7NZ-20" value="Punch" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="1404" y="410" width="80" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="IRU_vTcyjv4M9P6Ac7NZ-65" value="+ scorcing flames&lt;br&gt;(damage, dot&lt;br&gt;and leaves&lt;br&gt;fire on ground)&lt;br&gt;+ spread" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;labelBorderColor=default;" parent="1" source="IRU_vTcyjv4M9P6Ac7NZ-24" target="IRU_vTcyjv4M9P6Ac7NZ-30" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="IRU_vTcyjv4M9P6Ac7NZ-24" value="Flamethrower:&lt;br&gt;5000" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="1404" y="410" width="80" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="IRU_vTcyjv4M9P6Ac7NZ-63" value="+ spread&lt;br&gt;+ speed&lt;br&gt;+ range&lt;br&gt;- accuracy" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;labelBorderColor=default;" parent="1" source="IRU_vTcyjv4M9P6Ac7NZ-29" target="IRU_vTcyjv4M9P6Ac7NZ-33" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="IRU_vTcyjv4M9P6Ac7NZ-29" value="Blue Flame:&lt;br&gt;3000" style="rounded=0;whiteSpace=wrap;html=1;labelBorderColor=none;" parent="1" vertex="1">
+          <mxGeometry x="1524" y="410" width="80" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="IRU_vTcyjv4M9P6Ac7NZ-30" value="Ring of Fire:&lt;br&gt;15000" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="1404" y="550" width="80" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="IRU_vTcyjv4M9P6Ac7NZ-33" value="Blizzard:&lt;br&gt;10000" style="rounded=0;whiteSpace=wrap;html=1;labelBorderColor=none;" parent="1" vertex="1">
+          <mxGeometry x="1524" y="550" width="80" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="IRU_vTcyjv4M9P6Ac7NZ-37" value="Sword:&lt;br&gt;2000" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="1690" y="280" width="80" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="HSD4xJo1R1fu4qBwuys--65" value="Lightning Bolts &lt;br&gt;(Bounce around)" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;labelBorderColor=default;" parent="1" source="VLRyIlqznZRcnYNGjUtV-7" target="HSD4xJo1R1fu4qBwuys--17" edge="1">
+          <mxGeometry x="0.001" relative="1" as="geometry">
+            <mxPoint x="1790" y="180" as="sourcePoint" />
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="HSD4xJo1R1fu4qBwuys--12" value="Flamethrower" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="1860" y="280" width="80" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="HSD4xJo1R1fu4qBwuys--67" value="+ spread" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;labelBorderColor=default;" parent="1" source="HSD4xJo1R1fu4qBwuys--17" target="HSD4xJo1R1fu4qBwuys--22" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="HSD4xJo1R1fu4qBwuys--17" value="Lightning Bolt:&lt;br&gt;3000" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="1860" y="280" width="80" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="HSD4xJo1R1fu4qBwuys--22" value="Thunder Lord:&lt;br&gt;17000" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="1860" y="420" width="80" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="gn0R1F9Epo_eSYioOC-Y-31" value="Boomaster:&lt;br&gt;10000" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="1994" y="550" width="80" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="VLRyIlqznZRcnYNGjUtV-5" value="Rapid-fire&lt;br&gt;600" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="1524" y="180" width="80" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="_5wMx_-kx0hjoRFrakkW-139" value="+ gun bullet&lt;br&gt;(more damage and&amp;nbsp;&lt;br&gt;way faster)&lt;br&gt;Can be upgrades from any tier 1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;labelBorderColor=default;" parent="1" target="_5wMx_-kx0hjoRFrakkW-134" edge="1">
+          <mxGeometry x="0.0123" relative="1" as="geometry">
+            <mxPoint x="2430" y="170" as="sourcePoint" />
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

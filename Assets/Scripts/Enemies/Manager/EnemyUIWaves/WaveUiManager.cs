@@ -10,17 +10,22 @@ public class WaveUiManager : MonoBehaviour, IUpdate
     [SerializeField] private float uiScaleFactor = 10f;         // How big and fast are the ui elements
 
     private const GameEntity waveIdent = GameEntity.WaveUi;     // Ident for searching ui elements
-    private readonly List<WaveUi> currentWaves = new();         // Waves
+    private readonly List<WaveUi> _currentWaves = new();        // Waves
 
     // Positioning waveUi elements
-    private Vector2 endOfNextWave;              // Position to spawn next wave
-    private RectTransform lastSpawnedWave;      // Last wave spawned
-    private bool isFirstSpawn = true;           // Has a wave been spawned
+    private Vector2 _endOfNextWave;                             // Position to spawn next wave
+    private RectTransform _lastSpawnedWave;                     // Last wave spawned
+    private bool _isFirstSpawn = true;                          // Has a wave been spawned
 
-    // Updating waveUi elements
-    private Vector3 moveOffset;                 // The movement done every frame
-    private float containerXPos;                // The position of the left most side of container in x-axis
-    private bool isAllowedToMove = true;        // Are the waveUi elements allowed to be moved (to sync visuals and spawning)
+    // Updating waveUi elements 
+    private Vector3 _moveOffset;                                // The movement done every frame
+    private float _containerXPos;                               // The position of the left most side of container in x-axis
+
+    // Syncing waveUi elements
+    private int _isAllowedToMove = -1;                          // When less 0, stop moving ui (to sync Ui and waves)
+                                                                // Starts at -1 to not move at beginning
+    private float _middleXPos;                                  // Middle point x pos
+    private readonly HashSet<WaveUi> _wavesPastMiddle = new();  // When a new ui element passed the middlepoint, add it to set
 
     // From interface
     public GameObject Object => gameObject;
@@ -30,22 +35,10 @@ public class WaveUiManager : MonoBehaviour, IUpdate
     /// </summary>
     private void Start()
     {
-        containerXPos = container.anchoredPosition.x - container.sizeDelta.x * 0.5f;
-
-        endOfNextWave.x = middlePoint.localPosition.x;
+        _containerXPos = container.anchoredPosition.x - container.sizeDelta.x * 0.5f;
+        _middleXPos = middlePoint.position.x;
+        _endOfNextWave.x = middlePoint.localPosition.x;
         GameObjectUpdateManager.Instance.AddObject(this);
-    }
-
-    /// <summary>
-    /// Stop moving wave ui elements for a time
-    /// </summary>
-    /// <param name="time"></param>
-    /// <returns></returns>
-    private IEnumerator StopMovingFor(float time)
-    {
-        isAllowedToMove = false;
-        yield return new WaitForSeconds(time);
-        isAllowedToMove = true;
     }
 
     /// <summary>
@@ -62,20 +55,20 @@ public class WaveUiManager : MonoBehaviour, IUpdate
         waveUi.DetermineWaveElement(time, waveName, uiScaleFactor, waveColor);
 
         // If this is not the first spawn, find the right most position of the ui element
-        if (!isFirstSpawn)
+        if (!_isFirstSpawn)
         {
-            endOfNextWave = new Vector2(lastSpawnedWave.rect.width + lastSpawnedWave.localPosition.x, 0);
+            _endOfNextWave = new Vector2(_lastSpawnedWave.rect.width + _lastSpawnedWave.localPosition.x, 0);
         }
 
         // Move the ui element to position
-        waveUi.WaveTransform.localPosition = endOfNextWave;
+        waveUi.WaveTransform.localPosition = _endOfNextWave;
 
         // Update lastSpawned RectTransform
-        lastSpawnedWave = waveUi.WaveTransform;
-        isFirstSpawn = false;
+        _lastSpawnedWave = waveUi.WaveTransform;
+        _isFirstSpawn = false;
 
         // Add it to be updated
-        currentWaves.Add(waveUi);
+        _currentWaves.Add(waveUi);
     }
 
     /// <summary>
@@ -83,26 +76,37 @@ public class WaveUiManager : MonoBehaviour, IUpdate
     /// </summary>
     public void UpdateObject()
     {
-        if (!isAllowedToMove)
+        if (_isAllowedToMove < 0)
         {
             return;
         }
 
-        // Set the movement moveOffset
-        moveOffset.x = -uiScaleFactor * Time.deltaTime;
+        // Set the movement _moveOffset
+        _moveOffset.x = -uiScaleFactor * Time.deltaTime;
 
-        for (int i = currentWaves.Count - 1; i >= 0; i--)
+        for (int i = _currentWaves.Count - 1; i >= 0; i--)
         {
             // Move the wave ui element
-            WaveUi waveUi = currentWaves[i];
-            waveUi.WaveTransform.localPosition += moveOffset;
+            WaveUi waveUi = _currentWaves[i];
+            waveUi.WaveTransform.localPosition += _moveOffset;
+
+            // Get the position of this wave ui element
+            float waveUiXPos = waveUi.WaveTransform.position.x + waveUi.WaveTransform.sizeDelta.x;
+
+            // Check if this element has passed the middle point and it has not already been checked
+            if (waveUiXPos < _middleXPos && !_wavesPastMiddle.Contains(waveUi))
+            {
+                // Reduce _isAllowedToMove and add it to list
+                _isAllowedToMove--;
+                _wavesPastMiddle.Add(waveUi);
+            }
 
             // Check if the wave ui elements right most side has moved out of the containers left most side
-            float waveUiXPos = waveUi.WaveTransform.position.x + waveUi.WaveTransform.sizeDelta.x;
-            if (waveUiXPos < containerXPos)
+            if (waveUiXPos < _containerXPos)
             {
                 waveUi.gameObject.SetActive(false);
-                currentWaves.Remove(waveUi);
+                _currentWaves.Remove(waveUi);
+                _wavesPastMiddle.Remove(waveUi);
             }
         }
     }
@@ -110,8 +114,8 @@ public class WaveUiManager : MonoBehaviour, IUpdate
     /// <summary>
     /// Allow moving again
     /// </summary>
-    public void FreezeUiElementsFor(float time)
+    public void ContinueUiMovement()
     {
-        StartCoroutine(StopMovingFor(time));
+        _isAllowedToMove++;
     }
 }

@@ -1,4 +1,6 @@
+using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerScript : MonoBehaviour
 {
@@ -6,12 +8,13 @@ public class PlayerScript : MonoBehaviour
     [SerializeField] private float checkDistance;           // How far are towers detected from cursor
     [SerializeField] private LayerMask towerLayer;          // Layer mask of the turrets
     [SerializeField] private Camera mainCamera;             // Main camera of the scene
-    private readonly float maxDistanceFromLastPos = 0.2f;   // How far until lastMousePos is updated (should match pathfinding positionStep)
+    private readonly float maxDistanceFromLastPos = 0.1f;   // How far until lastMousePos is updated
 
-    // Costs
+    // Gameplay set in inspector
     [SerializeField] private int startingMoney;
     [SerializeField] private int towerCostIncrese = 50;     // How much does the cost increse after every tower
     [SerializeField] private int startingCost = 100;        // How much does the costs of tower start at
+    [SerializeField] private float startingHealth = 100f;   // Satrting health
     private UpgradePanel upgradePanel;                      // Reference for faster access
 
     // Tower related variables
@@ -21,37 +24,67 @@ public class PlayerScript : MonoBehaviour
     private Vector2 mousePosition;                          // The current position of mouse
     private Vector2 lastMousePos;                           // Position of the mouse in the last frame.
                                                             // Move attached tower to this pos
-
     private const GameEntity towerIdent = GameEntity.Tower; // Tower tag
 
     // Gameplay
-    public float PlayerHealth { get; private set; } = 100f; // Players health
+    public float PlayerHealth { get; private set; }         // Players health
     public int PlayerMoney { get; private set; }            // Players money
     private int _costOfNextTower = 0;
+
+    // Background
+    [SerializeField] private SpriteRenderer backgroundColorSr;  // Background sprite
+    [SerializeField] private float smoothnessValue = 100f;      // How smooth is the transition
+    [SerializeField] private float transitionTime;              // How long is the transition
 
     private void Start()
     {
         _costOfNextTower = startingCost;
         GameObjectUpdateManager.Instance.AddObject(this);
         upgradePanel = UpgradePanel.Instance;
+        TakeDamage(-startingHealth);
         UpdateMoney(startingMoney);
         upgradePanel.UpdateMoneyText(PlayerMoney, _costOfNextTower, true);
+        backgroundColorSr.color = Color.white;
     }
 
     /// <summary>
-    /// Subscribe parentTower to enemy death delegate
+    /// Subscribe to delgates
     /// </summary>
     private void OnEnable()
     {
+        // Ememy death
         Enemy.OnEnemyDeath += UpdateMoney;
+        // Tower upgrade
+        UpgradeButton.OnUpgrade += UpdateMoney;
+        // Wave change
+        EnemyManager.OnWaveChange += StartBackgroundChange;
     }
 
     /// <summary>
-    /// Unsubscribe parentTower from enemy death delegate
+    /// Unsubscribe from delegates
     /// </summary>
     private void OnDisable()
     {
+        // Enemy death
         Enemy.OnEnemyDeath -= UpdateMoney;
+        // Upgrade tower
+        UpgradeButton.OnUpgrade -= UpdateMoney;
+        // Wave change
+        EnemyManager.OnWaveChange -= StartBackgroundChange;
+    }
+
+    /// <summary>
+    /// Start TransitionColor coroutine
+    /// </summary>
+    /// <param name="color"></param>
+    private void StartBackgroundChange(Color color)
+    {
+        // Ensure that alpha is 1
+        color.a = 1f;
+        StaticFunctions.StartTransition(backgroundColorSr, color, transitionTime, smoothnessValue);
+
+        // Gain one health on wave end
+        TakeDamage(-1f);
     }
 
     /// <summary>
@@ -106,14 +139,14 @@ public class PlayerScript : MonoBehaviour
             Collider2D shortestDist = GetClosestColliderToMouse(collidersInRange);
 
             // if a shortest distance was found, diplay upgrades and return
-            if (shortestDist != null)
+            if (shortestDist != null && shortestDist.TryGetComponent(out Tower target))
             {
-                upgradePanel.DisplayUpgrades(shortestDist.GetComponent<Tower>());
+                upgradePanel.DisplayUpgrades(target, PlayerMoney);
                 return;
             }
         }
 
-        upgradePanel.HideUpgrades();    
+        upgradePanel.HideUpgrades();
     }
 
     /// <summary>
@@ -148,7 +181,7 @@ public class PlayerScript : MonoBehaviour
     }
 
     /// <summary>
-    /// Handles turret placement
+    /// Handles turret placement. Called from button
     /// </summary>
     private void TurretPlacement()
     {
@@ -169,18 +202,6 @@ public class PlayerScript : MonoBehaviour
         {
             StopPlacingTower();
         }
-    }
-
-    /// <summary>
-    /// Starts placing tower
-    /// Activated from a button
-    /// </summary>
-    public void StartPlacingTower()
-    {
-        if (isAttached || PlayerMoney < _costOfNextTower) return;
-        towerAttached = ObjectPooler.Instance.GetPooledObject(towerIdent).GetComponent<Tower>();
-        isAttached = true;
-        upgradePanel.HideUpgrades();
     }
 
     /// <summary>
@@ -219,6 +240,7 @@ public class PlayerScript : MonoBehaviour
         {
             isAttached = false;
             towerAttached.SetFunctional(true);
+            towerAttached.ShowTowerRange = false;
             int currentCost = -_costOfNextTower;
             _costOfNextTower += towerCostIncrese;
             UpdateMoney(currentCost);
@@ -230,16 +252,30 @@ public class PlayerScript : MonoBehaviour
     }
 
     /// <summary>
+    /// Starts placing tower
+    /// Activated from a button
+    /// </summary>
+    public void StartPlacingTower()
+    {
+        if (isAttached || PlayerMoney < _costOfNextTower) return;
+        towerAttached = ObjectPooler.Instance.GetPooledObject(towerIdent).GetComponent<Tower>();
+        isAttached = true;
+        upgradePanel.HideUpgrades();
+    }
+
+    /// <summary>
     /// Take damage
     /// TODO: Handle death
     /// </summary>
     /// <param name="amount"></param>
     public void TakeDamage(float amount)
     {
-        PlayerHealth -= amount;
+        PlayerHealth = Mathf.Clamp(PlayerHealth - amount, 0, startingHealth);
+        upgradePanel.UpdateLivesText(PlayerHealth);
         if (PlayerHealth <= 0)
         {
             Debug.Log("deth");
+            SceneManager.LoadScene(0);
         }
     }
 }

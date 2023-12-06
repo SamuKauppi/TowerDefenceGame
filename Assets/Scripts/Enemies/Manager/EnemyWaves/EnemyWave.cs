@@ -5,10 +5,12 @@ using UnityEngine;
 public class EnemyWave
 {
     // Wave determined variables (public to be visible in inspector)
-    public string waveName;
-    public UnityEngine.Color waveColor;
-    public float delayBeforeWave = 1f;
-    public EnemyFormation[] enemyFormations;
+    // Visuals
+    public string waveName;                                             // Wave name displayed in Ui 
+    public Color waveColor;                                             // Color of wave ui
+    // Wave
+    public float delayBeforeWave = 1f;                                  // Delay before wave starts
+    public EnemyFormation[] enemyFormations;                            // Formations
 
     // Auto-implemented properties
     public float DelayBeforeWave { get { return delayBeforeWave; } }    // How long until this wave starts
@@ -17,12 +19,17 @@ public class EnemyWave
     public float TotalWaveTime { get; private set; }                    // How long will the wave last
     public bool WaveHasEnemies { get; private set; } = true;            // Does the wave contain enemies
     public bool FormationHasEnemies { get; private set; } = true;       // Does the current formation have enemies
-    public int WaveDifficulty { get; private set; }                     // Total time
+    public int WaveAvgDifficulty { get; private set; } = 0;             // Average difficulty between waves and spawns
+    public int WaveEnemyDifficulty { get; private set; } = 0;           // Total difficulty of the enemies in wave
+    public int WaveSpawnDifficulty {  get; private set; } = 0;          // Total difficulty of the spawn times in wave 
 
-    private int _formationIndex;                                        // index of the formation last used (used for updating delays)
-
+    // Private properties
+    private int _formationIndex;                                        // Index of the formation last used spawn (used for updating delays)
     private int _enemyCount;                                            // How many enemies can be spawned
     private int _enemyCounter;                                          // How many enemies have been spawned
+
+    // Const
+    private const string WAVENAME = "Infinite wave: ";
 
     /// <summary>
     /// Calcualtes the total time it takes to complete this wave
@@ -40,24 +47,22 @@ public class EnemyWave
     }
 
     /// <summary>
-    /// Calculate how many enemies does this wave has
+    /// Iterate through all formations
+    /// Calculate difficulties and enemy count
     /// </summary>
     /// <returns>Total enemy count</returns>
     private int IterateThroughFormations()
     {
         // Create variables
         int totalEnemyCount = 0;            // How many enemies are there in total (return value)
-        int totalEnemyDifficulty = 0;       // How difficult are enemies
-        float totalEnemySpawnDifficulty = 0;// How difficult are spawns delays
-        float totalFormationDifficulty = 0; // How difficult are formations delays  
+        int totalEnemyDifficulty = 0;       // Sum of every enemy type difficulty * count
+        float totalEnemySpawnDifficulty = 0;// Sum of every spawn delay (mapped to difficulty)
 
         // Iterate through formations
         foreach (EnemyFormation formation in enemyFormations)
         {
             // If formation is random, then initialize the first spawn index
             formation.InitializeFirstRandomIndex();
-            // Add to formation delay time
-            totalFormationDifficulty += MapTimeToDifficulty(formation.formationDelay);
 
             // Iterate through spawn pools
             foreach (EnemySpawnPool pool in formation.enemiesToSpawn)
@@ -71,14 +76,12 @@ public class EnemyWave
             }
         }
 
-        // If only one formation exists, don't affect time
-        if(enemyFormations.Length <= 0)
-            totalFormationDifficulty = 0;
+        // Save difficulties
+        WaveEnemyDifficulty = totalEnemyDifficulty;
+        WaveSpawnDifficulty = Mathf.CeilToInt(totalEnemySpawnDifficulty);
+        WaveAvgDifficulty = (WaveEnemyDifficulty + WaveSpawnDifficulty) / 2;
 
-        // Calculate total wave time
-        WaveDifficulty = totalEnemyDifficulty +
-            Mathf.CeilToInt(totalEnemySpawnDifficulty / totalEnemyCount) +
-            Mathf.CeilToInt(totalFormationDifficulty / enemyFormations.Length);
+        Debug.Log("average: " + WaveEnemyDifficulty + " and " + WaveSpawnDifficulty + " = " + WaveAvgDifficulty);
 
         // Return total enemy count
         return totalEnemyCount;
@@ -92,13 +95,13 @@ public class EnemyWave
     private float MapTimeToDifficulty(float time)
     {
         // Ensure the time is within the specified range
-        time = Mathf.Clamp(time, 0.1f, 2.0f);
+        time = Mathf.Clamp(time, 0f, 5f);
 
-        // Map the time to a value between 0 and 1
-        float normalizedTime = Mathf.InverseLerp(0.1f, 2.0f, time);
+        // Map the time to a value between 0 and 5
+        float normalizedTime = Mathf.InverseLerp(0f, 5f, time);
 
-        // Map the normalized time to the range 0-30
-        return Mathf.Lerp(30f, 0f, normalizedTime);
+        // Map the normalized time to the range 0-100
+        return Mathf.Lerp(100f, 0f, normalizedTime);
     }
 
     /// <summary>
@@ -108,6 +111,16 @@ public class EnemyWave
     {
         TotalWaveTime = CalculateTotalTime();
         _enemyCount = IterateThroughFormations();
+    }
+
+    /// <summary>
+    /// Gives value to name and color
+    /// </summary>
+    /// <param name="waveNumber"></param>
+    public void CreateWaveVisuals(int waveNumber)
+    {
+        waveName = WAVENAME + waveNumber;
+        waveColor = Random.ColorHSV();
     }
 
     /// <summary>
@@ -172,6 +185,4 @@ public class EnemyWave
             }
         }
     }
-
-
 }

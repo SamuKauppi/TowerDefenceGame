@@ -92,15 +92,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _rb: {fileID: 38614260951180092}
-  health: 300
+  health: 350
   damage: 10
   speed: 0.35
   distanceToStop: 0.5
   turnSpeed: 45
+  flyToEnd: 1
   enemyRenderer: {fileID: 4800382585030299712}
   enemyCollider: {fileID: 38614260951180095}
-  burrowTime: 2
+  burrowTime: 3.2
   burrowSpeed: 7
+  burrowPathfinding: 30
 --- !u!50 &38614260951180092 stripped
 Rigidbody2D:
   m_CorrespondingSourceObject: {fileID: 976617091015190341, guid: 15653ddc2a0542b4191cc7331315cf50, type: 3}

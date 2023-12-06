@@ -11,7 +11,6 @@ public class TransitionOverTimeEffects : MonoBehaviour
     [SerializeField] private TransitionState[] transitions;     // Contains states for rotation, scale, color and spawnTimer between
     [SerializeField] private float colorChangeSmooth;           // How smooth color change will be
     [SerializeField] private bool resetRotation;                // Will rotation be reset on each spawn
-    private float stepsBetweenMultiplier;                       // Multiplier for faster calculations
 
     // Original dimensions
     private Vector2 OriginalScale { get; set; }
@@ -26,7 +25,6 @@ public class TransitionOverTimeEffects : MonoBehaviour
         OriginalScale = transitions[0].Scale;
         OriginalColor = transitions[0].Color;
         OriginalRotation = targetSpriteRenderer.transform.rotation.eulerAngles;
-        stepsBetweenMultiplier = 1 / colorChangeSmooth;
         targetSpriteRenderer.enabled = false;
     }
     /// <summary>
@@ -47,11 +45,17 @@ public class TransitionOverTimeEffects : MonoBehaviour
     /// <param name="effect"></param>
     private void TransitionToNextState(TransitionState effect)
     {
+        // Scale main object
         Scale(effect);
 
+        // Rotate sprite object
         Rotate(effect);
 
-        StartCoroutine(ChangeColor(effect));
+        // Start changing color if nessesary
+        if (effect.Time > 0f && effect.Color != targetSpriteRenderer.color)
+        {
+            StaticFunctions.StartTransition(targetSpriteRenderer, effect.Color, effect.Time, colorChangeSmooth);
+        }
     }
 
     /// <summary>
@@ -84,30 +88,6 @@ public class TransitionOverTimeEffects : MonoBehaviour
             targetSpriteRenderer.transform.forward,
             effect.Rotation, 
             effect.Time).setEase(effect.easeType);
-    }
-    /// <summary>
-    /// Change color using the smoothness value
-    /// </summary>
-    /// <param name="effect"></param>
-    /// <returns></returns>
-    private IEnumerator ChangeColor(TransitionState effect)
-    {
-        if (effect.Time == 0f || effect.Color == targetSpriteRenderer.color)
-        {
-            targetSpriteRenderer.color = effect.Color;
-        }
-        else
-        {
-            float timeBetweenSteps = effect.Time * stepsBetweenMultiplier;
-            Color transitionColor = (effect.Color - targetSpriteRenderer.color) * stepsBetweenMultiplier;
-            int counter = 0;
-            while (counter < colorChangeSmooth)
-            {
-                targetSpriteRenderer.color += transitionColor;
-                counter++;
-                yield return new WaitForSecondsRealtime(timeBetweenSteps);
-            }
-        }
     }
 
     /// <summary>

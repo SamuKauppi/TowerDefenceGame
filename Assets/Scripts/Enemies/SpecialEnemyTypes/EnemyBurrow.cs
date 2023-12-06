@@ -12,41 +12,41 @@ public class EnemyBurrow : Enemy, ISpecialAbility
 
     IEnumerator StartBurrowing()
     {
-        SetVisibility(false);
-        SetColliderState(false);
-        SetSpeedModifier(burrowSpeed);
-        isBurrowing = true;
+        // Set burrowing true
+        ToggleBurrowing(true);
         StartCoroutine(SpawnBurrowVfx());
+
+        // Wait and then stop burrowing
         yield return new WaitForSeconds(burrowTime);
-        isBurrowing = false;
-        SetVisibility(true);
-        SetColliderState(true);
-        SetSpeedModifier(1f);
+        ToggleBurrowing(false);
+    }
+
+    /// <summary>
+    /// Sets values when burrowing and unburrowing
+    /// </summary>
+    /// <param name="value"></param>
+    private void ToggleBurrowing(bool value)
+    {
+        // Set variables to value
+        isBurrowing = value;
+        flyToEnd = value;
+
+        // Set visiblity to opposite value
+        enemyRenderer.enabled = !value;
+        enemyCollider.enabled = !value;
+
+        // Set float variables
+        abilitySpeedModifier = value ? burrowSpeed : 1f;
     }
 
     IEnumerator SpawnBurrowVfx()
     {
-        while(isBurrowing)
+        while (isBurrowing)
         {
             GameObject burrow = ObjectPooler.Instance.GetPooledObject(burrowIdent);
             burrow.transform.position = transform.position;
-            yield return new WaitForSeconds(0.2f);
+            yield return new WaitForSeconds(1f / burrowSpeed);
         }
-    }
-
-    void SetVisibility(bool isVisible)
-    {
-        enemyRenderer.enabled = isVisible;
-    }
-
-    void SetColliderState(bool isEnabled)
-    {
-        enemyCollider.enabled = isEnabled;
-    }
-
-    void SetSpeedModifier(float speed)
-    {
-        abilitySpeedModifier = speed;
     }
 
     public void ActivateAbility()

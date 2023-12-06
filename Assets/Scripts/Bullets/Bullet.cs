@@ -35,21 +35,6 @@ public class Bullet : BulletDamages, IUpdate, IFixedUpdate
         GameObjectUpdateManager.Instance.AddObject(this);
         initialDamage = Damage;
     }
-    /// <summary>
-    /// Update bullet (From interface)
-    /// </summary>
-    public void UpdateObject()
-    {
-        if (!HasInitialized)
-        {
-            InitializeBullet();
-        }
-        properties.OnBulletUpdate();
-
-        UpdateLifeTime();
-
-        ContainSpeed();
-    }
 
     /// <summary>
     /// Updates the lifetime of a bullet
@@ -130,6 +115,22 @@ public class Bullet : BulletDamages, IUpdate, IFixedUpdate
     {
         properties.OnBulletSpawn();
         HasInitialized = true;
+    }
+
+    /// <summary>
+    /// Update bullet (From interface)
+    /// </summary>
+    public void UpdateObject()
+    {
+        if (!HasInitialized)
+        {
+            InitializeBullet();
+        }
+        properties.OnBulletUpdate();
+
+        UpdateLifeTime();
+
+        ContainSpeed();
     }
 
     /// <summary>

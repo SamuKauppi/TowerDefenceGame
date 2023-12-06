@@ -7,18 +7,19 @@ public class Enemy : MonoBehaviour, IFixedUpdate, IUpdate
     public float MaxHealth { get; private set; }        // Max health
 
     // Enemy death handling
-    public delegate 
+    public delegate
         void EnemyDeathEventHandler(int value);             // Delegate
-    public static 
+    public static
         event EnemyDeathEventHandler OnEnemyDeath;          // Event
 
     // Enemy value
-    private const GameEntity coinType 
+    private const GameEntity coinType
         = GameEntity.CoinSpawner;                           // Coinspawner ident
     private int _enemyValue;                                // Value of the enemy when killed
 
     // References
     [SerializeField] private Rigidbody2D _rb;           // Reference to rigidbody component
+    private Pathfinding pathfinding;                    // To save the reference
 
     // Stats
     [SerializeField] private float health = 100f;       // Current health
@@ -27,15 +28,14 @@ public class Enemy : MonoBehaviour, IFixedUpdate, IUpdate
 
     // Pathfinding
     [SerializeField] private float distanceToStop;      // Distance to when enemy has reached it's target
-    [SerializeField] private float turnSpeed;           // How fast enemy can alter direction of movement
     private PathPoint currentTarget;                    // Current pathpoint target
     private Vector3 targetDirection = Vector3.zero;     // Direction to the next pathpoint
     private Vector3 currentDirection = Vector3.zero;    // Current direction of movement
-    private Pathfinding pathfinding;                    // To save the reference
 
-    // Move timers
-    private float _moveTimer;                            // Failsafe if no targets have been found in _moveTime seconds
-    private const float _moveTime = 2f;                  // Threshold for _moveTimer
+    // Movement variables
+    [SerializeField] private float turnSpeed;           // How fast enemy can alter direction of movement
+    private float _moveTimer = 2f;                      // Failsafe if no targets have been found in _moveTime seconds
+    private const float _moveTime = 2f;                 // Threshold for _moveTimer
 
     // Damage over time done from contact
     private readonly List<BulletDamages> bulletDamages = new();         // Every bullet that hits this enemy (for dealing dot)
@@ -47,6 +47,7 @@ public class Enemy : MonoBehaviour, IFixedUpdate, IUpdate
 
     // Ability variables
     private bool _hasAbilityActivated;                  // Ensures that ability is acitvated only once per lifetime
+    [SerializeField] protected bool flyToEnd;           // If true, the enemy goes the straight towards the end
     protected float abilitySpeedModifier = 1f;          // Speed modifier for abilities
 
     /// <summary>
@@ -98,6 +99,13 @@ public class Enemy : MonoBehaviour, IFixedUpdate, IUpdate
     /// </summary>c
     private void SetDirectionToTarget()
     {
+        // If the enemy is able to fly, set their direction straight to end
+        if (flyToEnd)
+        {
+            targetDirection = pathfinding.GetEndPoint() - transform.position;
+            targetDirection.Normalize();
+            return;
+        }
         // Get a new target if its null or target has not been reached in x seconds
         if (currentTarget == null || _moveTimer > _moveTime)
         {
@@ -158,9 +166,13 @@ public class Enemy : MonoBehaviour, IFixedUpdate, IUpdate
     {
         // Handle scoring and visual
         OnEnemyDeath?.Invoke(_enemyValue);
+
         // Create a coin spawner and start it
         CoinSpawner coinspawner = ObjectPooler.Instance.GetPooledObject(coinType).GetComponent<CoinSpawner>();
-        coinspawner.StartSpawningCoins(_enemyValue, transform.position);
+        coinspawner.transform.position = transform.position;
+        coinspawner.StartSpawningCoins(_enemyValue);
+
+        // Reset enemy
         ResetEnemy();
     }
 

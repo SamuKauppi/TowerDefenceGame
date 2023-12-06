@@ -7,6 +7,11 @@ public class KillEffectTimer : MonoBehaviour
     private IEnumerator KillEffect(float time)
     {
         yield return new WaitForSeconds(time);
+        KillObject();
+    }
+
+    private void KillObject()
+    {
         if (ObjectToKill != null)
         {
             ObjectToKill.SetActive(false);

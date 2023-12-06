@@ -44,85 +44,116 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1929ddfac2df3a74982260056317c707, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyData:
+  tier1DifficultyThreshold: 2000
+  tier2DifficultyThreshold: 7000
+  tier1Enemies:
   - enemyType: 3
     difficultyValue: 1
     currencyEarned: 10
-  - enemyType: 37
-    difficultyValue: 2
-    currencyEarned: 20
-  - enemyType: 38
-    difficultyValue: 3
-    currencyEarned: 30
+    enemyTier: 0
   - enemyType: 1
-    difficultyValue: 2
-    currencyEarned: 15
-  - enemyType: 33
-    difficultyValue: 3
-    currencyEarned: 25
-  - enemyType: 34
-    difficultyValue: 4
-    currencyEarned: 35
+    difficultyValue: 1
+    currencyEarned: 5
+    enemyTier: 0
   - enemyType: 2
     difficultyValue: 3
-    currencyEarned: 20
-  - enemyType: 35
-    difficultyValue: 4
-    currencyEarned: 30
-  - enemyType: 36
-    difficultyValue: 5
-    currencyEarned: 40
+    currencyEarned: 25
+    enemyTier: 0
   - enemyType: 27
     difficultyValue: 4
-    currencyEarned: 25
-  - enemyType: 41
-    difficultyValue: 5
-    currencyEarned: 35
-  - enemyType: 42
-    difficultyValue: 6
-    currencyEarned: 45
-  - enemyType: 28
-    difficultyValue: 5
     currencyEarned: 30
-  - enemyType: 43
-    difficultyValue: 6
-    currencyEarned: 40
-  - enemyType: 44
-    difficultyValue: 7
-    currencyEarned: 50
+    enemyTier: 0
+  - enemyType: 28
+    difficultyValue: 2
+    currencyEarned: 25
+    enemyTier: 0
   - enemyType: 30
     difficultyValue: 6
     currencyEarned: 35
-  - enemyType: 47
-    difficultyValue: 7
-    currencyEarned: 45
-  - enemyType: 48
-    difficultyValue: 8
-    currencyEarned: 55
+    enemyTier: 0
   - enemyType: 26
     difficultyValue: 7
     currencyEarned: 40
-  - enemyType: 39
-    difficultyValue: 8
-    currencyEarned: 50
-  - enemyType: 40
-    difficultyValue: 9
-    currencyEarned: 60
+    enemyTier: 0
   - enemyType: 31
     difficultyValue: 8
     currencyEarned: 45
-  - enemyType: 49
-    difficultyValue: 9
-    currencyEarned: 55
-  - enemyType: 50
-    difficultyValue: 10
-    currencyEarned: 65
+    enemyTier: 0
   - enemyType: 29
     difficultyValue: 9
     currencyEarned: 50
+    enemyTier: 0
+  tier2Enemies:
+  - enemyType: 37
+    difficultyValue: 20
+    currencyEarned: 20
+    enemyTier: 1
+  - enemyType: 33
+    difficultyValue: 20
+    currencyEarned: 10
+    enemyTier: 1
+  - enemyType: 35
+    difficultyValue: 40
+    currencyEarned: 35
+    enemyTier: 1
+  - enemyType: 41
+    difficultyValue: 50
+    currencyEarned: 40
+    enemyTier: 1
+  - enemyType: 43
+    difficultyValue: 30
+    currencyEarned: 35
+    enemyTier: 1
+  - enemyType: 47
+    difficultyValue: 70
+    currencyEarned: 45
+    enemyTier: 1
+  - enemyType: 39
+    difficultyValue: 80
+    currencyEarned: 50
+    enemyTier: 1
+  - enemyType: 49
+    difficultyValue: 90
+    currencyEarned: 55
+    enemyTier: 1
   - enemyType: 45
-    difficultyValue: 10
+    difficultyValue: 100
     currencyEarned: 60
+    enemyTier: 1
+  tier3Enemies:
+  - enemyType: 38
+    difficultyValue: 300
+    currencyEarned: 30
+    enemyTier: 2
+  - enemyType: 34
+    difficultyValue: 300
+    currencyEarned: 15
+    enemyTier: 2
+  - enemyType: 36
+    difficultyValue: 500
+    currencyEarned: 45
+    enemyTier: 2
+  - enemyType: 42
+    difficultyValue: 600
+    currencyEarned: 50
+    enemyTier: 2
+  - enemyType: 44
+    difficultyValue: 400
+    currencyEarned: 45
+    enemyTier: 2
+  - enemyType: 48
+    difficultyValue: 800
+    currencyEarned: 55
+    enemyTier: 2
+  - enemyType: 40
+    difficultyValue: 900
+    currencyEarned: 60
+    enemyTier: 2
+  - enemyType: 50
+    difficultyValue: 1000
+    currencyEarned: 65
+    enemyTier: 2
   - enemyType: 46
-    difficultyValue: 11
+    difficultyValue: 1100
     currencyEarned: 70
+    enemyTier: 2

@@ -47,17 +47,23 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: BackgroundEffect
+    uniqueID: 2020055873
+    locked: 0
   - name: Background
     uniqueID: 3346246527
+    locked: 0
+  - name: Pathpoint
+    uniqueID: 12834971
     locked: 0
   - name: TowerRange
     uniqueID: 1981058353
     locked: 0
-  - name: TowerBase
-    uniqueID: 2054934825
-    locked: 0
   - name: BackVFX
     uniqueID: 581728095
+    locked: 0
+  - name: TowerBase
+    uniqueID: 2054934825
     locked: 0
   - name: Enemies
     uniqueID: 1761752229
@@ -67,6 +73,9 @@ TagManager:
     locked: 0
   - name: TowerBarrel
     uniqueID: 3158376577
+    locked: 0
+  - name: FlyingEnemies
+    uniqueID: 3389086605
     locked: 0
   - name: VFX
     uniqueID: 2609989817

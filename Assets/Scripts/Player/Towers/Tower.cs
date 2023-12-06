@@ -183,10 +183,10 @@ public class Tower : MonoBehaviour, IUpdate
     {
         if (!AreTargetsActive())
         {
-            return barrel.up;
+            return -barrel.up;
         }
 
-        Vector2 closest = barrel.up;
+        Vector2 closest = -barrel.up;
         float shortestDist = 0f;
 
         foreach (Transform target in targets)
@@ -270,6 +270,7 @@ public class Tower : MonoBehaviour, IUpdate
             accuracyAngle = 0;
         }
     }
+
     /// <summary>
     /// Spawns a bullet and rotates by parameter
     /// </summary>
@@ -285,6 +286,7 @@ public class Tower : MonoBehaviour, IUpdate
         // Configure bullet properties
         ConfigureBulletProperties(latestBulletShot, currentShotAngle);
     }
+
     /// <summary>
     /// Configure properties for specific type of bullets that was shot
     /// </summary>
@@ -296,7 +298,7 @@ public class Tower : MonoBehaviour, IUpdate
             return;
         }
 
-        // Beam needs the barrel transform and the angle moveOffset
+        // Beam needs the barrel transform and the angle _moveOffset
         if (properties is BulletBeam beam)
         {
             beam.SetTowerBarrel(barrel, angleOffset);

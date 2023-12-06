@@ -128,6 +128,11 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 4993317015064832527, guid: 545f8fe2ff060024e9768ee3db8d45ad, type: 3}
   m_PrefabInstance: {fileID: 4993317014770537768}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &474137204 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7218357693825726223, guid: 9e9a9eb4eb05397428f026de7595fbe1, type: 3}
+  m_PrefabInstance: {fileID: 7218357691999684113}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &814854201 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3726361481544024124, guid: 3859058f97f2b0c4eacadc259f40d874, type: 3}
@@ -385,6 +390,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 286540351362381737, guid: 3859058f97f2b0c4eacadc259f40d874, type: 3}
+      propertyPath: m_Color.g
+      value: 0.72264147
+      objectReference: {fileID: 0}
+    - target: {fileID: 286540351362381737, guid: 3859058f97f2b0c4eacadc259f40d874, type: 3}
+      propertyPath: m_Color.r
+      value: 0.71132076
+      objectReference: {fileID: 0}
     - target: {fileID: 3726361481544024114, guid: 3859058f97f2b0c4eacadc259f40d874, type: 3}
       propertyPath: m_Name
       value: PlayerManager
@@ -681,6 +694,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 241259083814376895, guid: 2c6225fe3901a3c499d83dcaaa75875e, type: 3}
+      propertyPath: endPoint
+      value: 
+      objectReference: {fileID: 474137204}
+    - target: {fileID: 2673088090311837101, guid: 2c6225fe3901a3c499d83dcaaa75875e, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.09999943
+      objectReference: {fileID: 0}
     - target: {fileID: 7708607575827054913, guid: 2c6225fe3901a3c499d83dcaaa75875e, type: 3}
       propertyPath: waveUiManager
       value: 
@@ -732,6 +753,10 @@ PrefabInstance:
     - target: {fileID: 7708607575827055295, guid: 2c6225fe3901a3c499d83dcaaa75875e, type: 3}
       propertyPath: m_Name
       value: EnemyManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 8985297050914293181, guid: 2c6225fe3901a3c499d83dcaaa75875e, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.32
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2c6225fe3901a3c499d83dcaaa75875e, type: 3}

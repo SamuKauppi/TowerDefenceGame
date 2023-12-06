@@ -12,6 +12,7 @@ public class UpgradePanel : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
     // Upgrading
     [SerializeField] private UpgradeButton[] upgradeButtons;    // Button objects
     private int isMouseOverCounter = 0;                         // Failsafe detecting if OnPointer-events happen multiple times
+    private Tower targetToUpgrade;
 
     // Money related
     [SerializeField] private Button buildTowerButton;           // Button for buying towers
@@ -20,24 +21,45 @@ public class UpgradePanel : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
     private const string BUGBUCKS = "BugBucks: ";
     private const string TOWERTEXT = "Build Tower!\n Cost: ";
 
+    // Lives related
+    [SerializeField] private TMP_Text livesText;
+    private const string LIVES = "Lives: ";
+
     private void Awake()
     {
         Instance = this;
         HideUpgrades();
     }
 
+    private void SetTowerVisuals(bool value)
+    {
+        // Change the color based if it's being selected or deselected
+        targetToUpgrade.TowerBaseRend.color = value ? Color.red : Color.white;
+        // Show or hide tower range
+        targetToUpgrade.ShowTowerRange = value;
+    }
+
     /// <summary>
     /// Display upgrades on panel
     /// </summary>
     /// <param name="target"></param>
-    public void DisplayUpgrades(Tower target)
+    public void DisplayUpgrades(Tower target, int playerMoney)
     {
+        HideUpgrades();
+        // Hide previous tower visuals
+        if (targetToUpgrade != null)
+        {
+            SetTowerVisuals(false);
+        }
+        // Show new tower visuals
+        targetToUpgrade = target;
+        SetTowerVisuals(true);
+
         for (int i = 0; i < target.CurrentUpgrade.upgradePaths.Length; i++)
         {
             upgradeButtons[i].gameObject.SetActive(true);
-            upgradeButtons[i].DefineUpgrade(target.CurrentUpgrade.upgradePaths[i], target);
+            upgradeButtons[i].DefineUpgrade(target.CurrentUpgrade.upgradePaths[i], playerMoney);
         }
-        target.ShowTowerRange = true;
     }
 
     /// <summary>
@@ -45,26 +67,54 @@ public class UpgradePanel : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
     /// </summary>
     public void HideUpgrades()
     {
+        // Hide tower visuals
+        if (targetToUpgrade != null)
+        {
+            SetTowerVisuals(false);
+        }
         foreach (UpgradeButton button in upgradeButtons)
         {
             button.gameObject.SetActive(false);
-            if (button.HasTarget)
-            {
-                button.SetTargetColor(Color.white);
-                button.ShowTargetRange(false);
-            }
         }
     }
 
     /// <summary>
-    /// Updates the amount of money displayed on screen
+    /// Upgrade target tower
     /// </summary>
-    /// <param name="amount"></param>
-    public void UpdateMoneyText(int amount, int nextTowerCost, bool canBuildTower)
+    /// <param name="upgrade"></param>
+    public void SelectUpgrade(TowerUpgrade upgrade)
     {
-        moneyText.text = BUGBUCKS + amount;
+        if (targetToUpgrade)
+            targetToUpgrade.UpgradeTower(upgrade);
+
+        HideUpgrades();
+    }
+
+    /// <summary>
+    /// Updates the player money and health displayed on screen
+    /// </summary>
+    /// <param name="playerMoney"></param>
+    /// <param name="nextTowerCost"></param>
+    /// <param name="canBuildTower"></param>
+    public void UpdateMoneyText(int playerMoney, int nextTowerCost, bool canBuildTower)
+    {
+        moneyText.text = BUGBUCKS + playerMoney;
         buildTowerButton.interactable = canBuildTower;
         buildTowerText.text = TOWERTEXT + nextTowerCost;
+
+        foreach (UpgradeButton button in upgradeButtons)
+        {
+            button.IsUpgradeReady(playerMoney);
+        }
+    }
+
+    /// <summary>
+    /// Updates the life text
+    /// </summary>
+    /// <param name="hp"></param>
+    public void UpdateLivesText(float hp)
+    {
+        livesText.text = LIVES + hp;
     }
 
     /// <summary>

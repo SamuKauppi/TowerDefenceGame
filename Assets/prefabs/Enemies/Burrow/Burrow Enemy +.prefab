@@ -8,16 +8,20 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: -997810885618433181, guid: 23f905dac415cc14ebda939f8de55ac9, type: 3}
+      propertyPath: speed
+      value: 2.7
+      objectReference: {fileID: 0}
+    - target: {fileID: -997810885618433181, guid: 23f905dac415cc14ebda939f8de55ac9, type: 3}
       propertyPath: damage
       value: 20
       objectReference: {fileID: 0}
     - target: {fileID: -997810885618433181, guid: 23f905dac415cc14ebda939f8de55ac9, type: 3}
       propertyPath: health
-      value: 600
+      value: 3500
       objectReference: {fileID: 0}
     - target: {fileID: -997810885618433181, guid: 23f905dac415cc14ebda939f8de55ac9, type: 3}
       propertyPath: burrowTime
-      value: 3
+      value: 4.2
       objectReference: {fileID: 0}
     - target: {fileID: -997810885618433181, guid: 23f905dac415cc14ebda939f8de55ac9, type: 3}
       propertyPath: difficultyValue
@@ -73,15 +77,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4800382585030299712, guid: 23f905dac415cc14ebda939f8de55ac9, type: 3}
       propertyPath: m_Color.b
-      value: 0.38679248
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4800382585030299712, guid: 23f905dac415cc14ebda939f8de55ac9, type: 3}
       propertyPath: m_Color.g
-      value: 0.38679248
+      value: 0.27177528
       objectReference: {fileID: 0}
     - target: {fileID: 4800382585030299712, guid: 23f905dac415cc14ebda939f8de55ac9, type: 3}
       propertyPath: m_Color.r
-      value: 0.38679248
+      value: 0.4811321
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 23f905dac415cc14ebda939f8de55ac9, type: 3}

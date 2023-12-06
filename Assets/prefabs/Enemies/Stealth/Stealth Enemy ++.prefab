@@ -73,7 +73,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8288930384055412146, guid: dec540fbd3c9ba641b6c77efebcebc9c, type: 3}
       propertyPath: health
-      value: 100
+      value: 33333
       objectReference: {fileID: 0}
     - target: {fileID: 8288930384055412146, guid: dec540fbd3c9ba641b6c77efebcebc9c, type: 3}
       propertyPath: timeHidden

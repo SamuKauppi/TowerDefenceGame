@@ -1,13 +1,11 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class CoinSpawner : MonoBehaviour
 {
     private const GameEntity coinType = GameEntity.CoinVFX;
-    public void StartSpawningCoins(int enemyValue, Vector2 pos)
+    public void StartSpawningCoins(int enemyValue)
     {
-        transform.position = pos;
         StartCoroutine(SpawnCoins(enemyValue));
     }
 
@@ -23,7 +21,7 @@ public class CoinSpawner : MonoBehaviour
         {
             GameObject coin = ObjectPooler.Instance.GetPooledObject(coinType);
             coin.transform.position = transform.position;
-            costCounter += 5;
+            costCounter += 15;
             yield return new WaitForSeconds(0.15f);
         }
 

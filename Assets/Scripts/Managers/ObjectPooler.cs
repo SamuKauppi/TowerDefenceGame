@@ -72,6 +72,7 @@ public class ObjectPooler : MonoBehaviour
             if (pooledType.gameIdent == ident)
             {
                 GameObject objectToCheck = Instantiate(pooledType.obj, pooledType.parent);
+                SetValueIfEnemy(objectToCheck, pooledType.gameIdent);
                 objectToCheck.SetActive(true);
                 objectPool[ident].Enqueue(objectToCheck);
                 return objectToCheck;

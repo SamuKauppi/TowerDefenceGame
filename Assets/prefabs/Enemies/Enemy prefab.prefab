@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1664813065320826024}
   - component: {fileID: 5736154231517779001}
   m_Layer: 0
-  m_Name: Circle
+  m_Name: Graphic
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -71,7 +71,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1761752229
-  m_SortingLayer: 5
+  m_SortingLayer: 7
   m_SortingOrder: 0
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -137,6 +137,7 @@ MonoBehaviour:
   speed: 1
   distanceToStop: 0.28
   turnSpeed: 45
+  flyToEnd: 0
 --- !u!50 &976617091015190341
 Rigidbody2D:
   serializedVersion: 4

@@ -1898,7 +1898,7 @@ public class LeanTween : MonoBehaviour {
     }
 
     /**
-    * <summary>Tween any particular value (Vector2), this could be used to tween an arbitrary value like moveOffset property</summary>
+    * <summary>Tween any particular value (Vector2), this could be used to tween an arbitrary value like _moveOffset property</summary>
     * 
     * @method LeanTween.value (Vector2)
     * @param {GameObject} gameObject:GameObject Gameobject that you wish to attach the tween to

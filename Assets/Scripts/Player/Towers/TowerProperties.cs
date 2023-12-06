@@ -7,6 +7,7 @@ public class TowerProperties
     // Tower name
     public string name;
     public TowerUpgrade upgradeIdent;
+    [TextArea(3, 5)]
     public string description;
     public TowerUpgrade[] upgradePaths;
     // Tower sprites

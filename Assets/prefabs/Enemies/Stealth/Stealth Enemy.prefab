@@ -121,12 +121,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _rb: {fileID: 5625692471412878313}
-  difficultyValue: 3
-  health: 25
+  health: 33
   damage: 10
   speed: 2.85
   distanceToStop: 0.5
-  turnSpeed: 90
+  turnSpeed: 45
   enemyCollider: {fileID: 5625692471412878314}
   enemyRenderer: {fileID: 866156292859156629}
   startAsHidden: 1

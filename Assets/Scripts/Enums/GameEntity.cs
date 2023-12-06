@@ -53,5 +53,6 @@
     StrongerBurrowEnemy,
     BurrowVfx,
     CoinVFX,
-    CoinSpawner
+    CoinSpawner,
+    Arrow
 }

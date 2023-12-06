@@ -209,7 +209,7 @@ MonoBehaviour:
   - ident: WaveUi
     gameIdent: 25
     obj: {fileID: 1273729465144985213, guid: 33af6c81b1ff4944fbe585b2e9a467aa, type: 3}
-    amount: 7
+    amount: 20
     parent: {fileID: 0}
   - ident: fatE
     gameIdent: 2
@@ -289,7 +289,7 @@ MonoBehaviour:
   - ident: MirroredE
     gameIdent: 32
     obj: {fileID: 2643224328825240657, guid: 29b2c7889949915449e97d9b8ed1ee3b, type: 3}
-    amount: 10
+    amount: 100
     parent: {fileID: 4343196527950363764}
   - ident: TeleE
     gameIdent: 30
@@ -374,7 +374,12 @@ MonoBehaviour:
   - ident: CoinSpawner
     gameIdent: 53
     obj: {fileID: 4029765767335302060, guid: 090297a01ea5b8940ab5ce240fc9a920, type: 3}
-    amount: 20
+    amount: 50
+    parent: {fileID: 628350877}
+  - ident: Arrow
+    gameIdent: 54
+    obj: {fileID: 2745397498100922148, guid: dde8fdd6279f9cd46a1dc213f46496b4, type: 3}
+    amount: 3
     parent: {fileID: 628350877}
 --- !u!1 &4343196528215575429
 GameObject:

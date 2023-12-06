@@ -4,22 +4,26 @@ using UnityEngine;
 
 public class EnemyManager : MonoBehaviour
 {
-    [SerializeField] private Vector2 spawnYPositions = new(-3f, 4f);
     // Refeneces
     [SerializeField] private WaveUiManager waveUiManager;
+    private ObjectPooler pooler;
 
     // Waves from inspector
-    [SerializeField] private List<EnemyWave> preDeterminedWaves;
-
-    // Object pooler
-    private ObjectPooler pooler;
+    [SerializeField] private List<EnemyWave> preDeterminedWaves;    // Waves set in inspector
+    [SerializeField] private Vector2 spawnYPositions = new(-3f, 4f);// Spawn positions for enemies (randomly selected value between)
 
     // Waves
     private readonly Queue<EnemyWave> enemyWaveQueue = new();       // Queue for waves used in runtime
     private EnemyWave currentWave = null;                           // Current wave 
     private int _waveNumber = 0;                                    // Current wave number (starts at wave 0)
-   // private int _lastestDifficulty;                                 // Lastest difficulty (used to measure difficulty scale)
+    private int _lastestDifficulty;                                 // Lastest difficulty (used to measure difficulty scale)
+    private int _averageDifficultyIncrese;                          // How much difficulty increses over the predetermined waves
 
+    // On wave change
+    public delegate
+    void NewWaveEventHandler(Color value);                  // Delegate for detecting when new wave starts
+    public static
+        event NewWaveEventHandler OnWaveChange;             // Event
 
     // Variables for current wave
     private float _beforeWaveTimer;             // Timer for starting wave
@@ -41,7 +45,18 @@ public class EnemyManager : MonoBehaviour
             waveUiManager.AddWave(preDeterminedWaves[i].TotalWaveTime,
                 preDeterminedWaves[i].waveName,
                 preDeterminedWaves[i].waveColor);
+
+            // Calculate difficulties
+            int waveAvgDifficulty = preDeterminedWaves[i].WaveAvgDifficulty;
+
+            // Add difficutly to count avg difficulty increase
+            _averageDifficultyIncrese += waveAvgDifficulty;
+            // Save the avg difficulty as latest difficulty
+            _lastestDifficulty = waveAvgDifficulty;
         }
+
+        _averageDifficultyIncrese /= preDeterminedWaves.Count;
+        Debug.Log(_averageDifficultyIncrese);
 
         StartCoroutine(SpawnWaves());
     }
@@ -136,15 +151,25 @@ public class EnemyManager : MonoBehaviour
     /// </summary>
     private void StartNextWave()
     {
+        // Get a new wave
         currentWave = enemyWaveQueue.Dequeue();
+
+        // Reset timers and index
         _beforeWaveTimer = 0f;
         _betweenFormationsTimer = 0f;
         _betweenSpawnsTimer = 0f;
         _formationIndex = 0;
+        _waveTimer = 0f;
+
+        // Update delays in the wave
         currentWave.UpdateFormationDelay(_formationIndex);  // Update formationDelay between formations
         currentWave.UpdateSpawnDelay();
-        _waveTimer = 0f;
-        //_lastestDifficulty = currentWave.WaveDifficulty;
+
+        // Invoke wave change
+        OnWaveChange?.Invoke(currentWave.waveColor);
+
+        // Tell waveUi to continue moving
+        waveUiManager.ContinueUiMovement();
     }
 
     /// <summary>
@@ -153,11 +178,14 @@ public class EnemyManager : MonoBehaviour
     private IEnumerator SpawnWaves()
     {
         StartCoroutine(WaveTimer());
-        while (enemyWaveQueue.Count > 0)
+        while (true)
         {
+            if (enemyWaveQueue.Count < 5)
+            {
+                CreateNewWave();
+            }
             // Get new wave
             StartNextWave();
-            Debug.Log("Wave: " + _waveNumber + ", Difficulty: " + currentWave.WaveDifficulty);
 
             while (currentWave.WaveHasEnemies)
             {
@@ -169,10 +197,6 @@ public class EnemyManager : MonoBehaviour
             if (currentWave.TotalWaveTime > _waveTimer)
             {
                 yield return new WaitForSeconds(currentWave.TotalWaveTime - _waveTimer);
-            }
-            else
-            {
-                waveUiManager.FreezeUiElementsFor(_waveTimer - currentWave.TotalWaveTime);
             }
             _waveNumber++;
         }
@@ -191,9 +215,127 @@ public class EnemyManager : MonoBehaviour
         }
     }
 
-
+    /// <summary>
+    /// Create new wave
+    /// </summary>
     private void CreateNewWave()
     {
-        // EnemyWave newWave = new();
+        // Create new wave with 8 seconds delay
+        EnemyWave newWave = new()
+        {
+            delayBeforeWave = 8f
+        };
+
+        // Calcualte new difficulty 
+        _lastestDifficulty += _averageDifficultyIncrese;
+
+        // Add formations to wave
+        newWave.enemyFormations = CreateFormations();
+
+        // Initialize wave properties and visuals
+        newWave.InitializeWave();
+        newWave.CreateWaveVisuals(_waveNumber);
+
+        // Create wave ui element
+        waveUiManager.AddWave(newWave.TotalWaveTime, newWave.waveName, newWave.waveColor);
+
+        // Add wave to queue
+        enemyWaveQueue.Enqueue(newWave);
+    }
+
+    /// <summary>
+    /// Creates formations
+    /// </summary>
+    /// <param name="formationCount"></param>
+    /// <param name="enemies"></param>
+    /// <returns></returns>
+    private EnemyFormation[] CreateFormations()
+    {
+        // Decide how many formations are created
+        int formationCount = Random.Range(1, 4);
+
+        // List of formations
+        EnemyFormation[] formations = new EnemyFormation[formationCount];
+
+        // Loop through formations
+        for (int i = 0; i < formations.Length; i++)
+        {
+            // Create new formation
+            formations[i] = new()
+            {
+                // Create spawn pools for the formation
+                enemiesToSpawn = CreateSpawnPools(formationCount),
+                // Set the formation delay
+                formationDelay = 10f
+            };
+            // Set random index
+            formations[i].InitializeFirstRandomIndex();
+        }
+
+        return formations;
+    }
+
+    /// <summary>
+    /// Creates an array of EnemySpawnPool objects for a formation.
+    /// </summary>
+    /// <param name="formationCount">Number of formations.</param>
+    /// <returns>Array of EnemySpawnPool objects.</returns>
+    private EnemySpawnPool[] CreateSpawnPools(int formationCount)
+    {
+        // Fetch enemies for the formation based on the latest difficulty level
+        GameEntity[] enemies = SelectEnemies(_lastestDifficulty);
+
+        // Create an array of pools, each representing an enemy type
+        EnemySpawnPool[] pools = new EnemySpawnPool[enemies.Length];
+
+        // Initialize each pool with an enemy type and a count of 0
+        for (int i = 0; i < pools.Length; i++)
+        {
+            pools[i] = new EnemySpawnPool
+            {
+                enemyType = enemies[i],
+                count = 0
+            };
+        }
+
+        // Variables for tracking the pool index and used difficulty
+        int poolIndex = 0;
+        int usedDifficulty = 0;
+
+        // Increase the pool's enemy count until the difficulty budget is reached
+        while (usedDifficulty < _lastestDifficulty / formationCount)
+        {
+            // Increase enemy count, used difficulty, and total enemy count
+            pools[poolIndex].count++;
+            usedDifficulty += EnemyDifficultyData.Instance.GetDifficultyValue(pools[poolIndex].enemyType);
+
+            // Move to the next pool or loop back to the first one
+            poolIndex = (poolIndex + 1) % pools.Length;
+        }
+
+        // Assign spawn delay to each pool
+        foreach (EnemySpawnPool pool in pools)
+        {
+            pool.delay = Random.Range(0.01f, 0.75f);
+        }
+
+        // Return the array of created EnemySpawnPool objects
+        return pools;
+    }
+
+    /// <summary>
+    /// Returns random count of enemies based on difficulty
+    /// </summary>
+    /// <param name="difficulty"></param>
+    /// <returns></returns>
+    private GameEntity[] SelectEnemies(int difficulty)
+    {
+        int count = Random.Range(3, 7);
+        List<GameEntity> enemiesSelected = new();
+        for (int i = 0; i < count; i++)
+        {
+            enemiesSelected.Add(EnemyDifficultyData.Instance.GetRandomEnemy(difficulty));
+        }
+        return enemiesSelected.ToArray();
     }
 }

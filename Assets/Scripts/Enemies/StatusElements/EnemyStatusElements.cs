@@ -98,7 +98,7 @@ public class EnemyStatusElements
         foreach (StatusElementClass status in statuses)
         {
             // If the same status is already being applied
-            // Reset duration but set the stronger effect
+            // Reset smoothnessValue but set the stronger effect
             if (newStatus.bulletApplying == status.bulletApplying)
             {
                 if (newStatus.strength > status.strength)

@@ -1,18 +1,23 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-using Random = UnityEngine.Random;
 
 public class Pathfinding : MonoBehaviour
 {
     // Singleton
     public static Pathfinding Instance { get; private set; }
 
+    // Endpoint rendering
+    [SerializeField] private Transform endObj;                  // Visual object of parented to endPoint
+    private Vector2 highestYpos;                                // Position where endrend top left corner will be                                
+    private Vector2 lowestYpos;                                 // Position where endrend bot left corner will be
+    private bool isEndObjScaled;                                // Ensures that endObj is scaled for first recalculation
+
     // Pathpoints
     [SerializeField] private PathPoint point_prefab;            // Pathpoint prefab
-    [SerializeField] PathPoint[] pathPoints;                    // Pathpoints that have been created
     [SerializeField] private PathPoint endPoint;                // Pathpoint which enemies try to get to
-    [SerializeField] private PathPoint startingPoint;           // Pathpoint which enemies start (used for checking if path is valid)
+    private PathPoint[] pathPoints;                             // Pathpoints that have been created
+    private PathPoint startingPoint;                            // Pathpoint which enemies start (used for checking if path is valid)
 
     // Pathfinding area variables
     [SerializeField] private float exitPointSize = 5f;          // How big is the area where towers can't be built
@@ -22,6 +27,8 @@ public class Pathfinding : MonoBehaviour
     [SerializeField] private float startingXPosition = 6f;      // From where the pathpoints start being spawned in x axis
     [SerializeField] private float topYPosOffset;               // Offset from top where no more pathpoints are spawned
     [SerializeField] private float botYPosOffset;               // Offset from bot where no more pathpoints are spawned
+    private const float sizeMultiplier = 1.1f;                  // To increase the size of area disabled when placing tower
+                                                                // This improves the pathfinding
 
     /// <summary>
     /// Create Singleton and call GeneratePaths
@@ -53,7 +60,7 @@ public class Pathfinding : MonoBehaviour
         // Continue loop until yPos is over both top and bot mapHeight
         while (MathF.Abs(yPos) <= mapheight - topYPosOffset || MathF.Abs(yPos) <= mapheight - botYPosOffset)
         {
-            if ((yPos >= 0 && yPos <= mapheight - topYPosOffset) || 
+            if ((yPos >= 0 && yPos <= mapheight - topYPosOffset) ||
                 (yPos < 0 && yPos >= -(mapheight - botYPosOffset)))
             {
                 while (xPos >= -mapwidth)
@@ -168,9 +175,88 @@ public class Pathfinding : MonoBehaviour
                     // Add it to dictionary and save it's own distance with current pathpoint distance + 1
                     pathPointChecked.Add(pathPoint, 1 + current.StepsFromEnd);
                     pathPoint.SetDistanceToEnd(1 + current.StepsFromEnd, exitPointSize);
+
+                    if (!isEndObjScaled && pathPoint.IsCloseToExit)
+                    {
+                        DetermineEndPointDimensions(pathPoint.transform.position);
+                    }
                 }
             }
         }
+
+        isEndObjScaled = true;
+    }
+
+    /// <summary>
+    /// Get pathpoints inside an area
+    /// </summary>
+    /// <param name="position"></param>
+    /// <param name="size"></param>
+    /// <returns></returns>
+    private PathPoint[] GetPathpointsInArea(Vector2 position, Vector2 size)
+    {
+        Rect check = MakeACheckRect(position, size * sizeMultiplier);
+        List<PathPoint> points = new();
+        for (int i = 0; i < pathPoints.Length; i++)
+        {
+            if (check.Contains(pathPoints[i].transform.position))
+            {
+                points.Add(pathPoints[i]);
+            }
+        }
+        return points.ToArray();
+    }
+
+    /// <summary>
+    /// Create a rectangle at position with a size
+    /// </summary>
+    /// <param name="position"></param>
+    /// <param name="size"></param>
+    /// <returns></returns>
+    private Rect MakeACheckRect(Vector3 position, Vector2 size)
+    {
+        return new()
+        {
+            x = position.x - (size.x * 0.5f),
+            y = position.y - (size.y * 0.5f),
+            width = size.x,
+            height = size.y
+        };
+    }
+
+    /// <summary>
+    /// Set selected pathpoint pathable
+    /// </summary>
+    /// <param name="points"></param>
+    /// <param name="active"></param>
+    private void SetPathPointsActive(PathPoint[] points, bool active)
+    {
+        for (int i = 0; i < points.Length; i++)
+        {
+            points[i].SetPathable(active);
+        }
+        RecalculateDistances();
+    }
+
+    /// <summary>
+    /// Scales the endpoint visual object to size
+    /// </summary>
+    /// <param name="newPos"></param>
+    private void DetermineEndPointDimensions(Vector2 newPos)
+    {
+        if (newPos.y > highestYpos.y)
+        {
+            highestYpos = newPos;
+        }
+        if (newPos.y < lowestYpos.y)
+        {
+            lowestYpos = newPos;
+        }
+
+        // Calculate scale factor
+        float scaleY = Mathf.Abs(highestYpos.y - lowestYpos.y);
+
+        endObj.localScale = new Vector3(endObj.localScale.x, scaleY);
     }
 
     /// <summary>
@@ -280,63 +366,22 @@ public class Pathfinding : MonoBehaviour
     }
 
     /// <summary>
-    /// Get pathpoints inside an area
-    /// (NOTE: size is increased to avoid enemies getting stuck on towers)
-    /// </summary>
-    /// <param name="position"></param>
-    /// <param name="size"></param>
-    /// <returns></returns>
-    private PathPoint[] GetPathpointsInArea(Vector2 position, Vector2 size)
-    {
-        Rect check = MakeACheckRect(position, size * 1.42f);
-        List<PathPoint> points = new();
-        for (int i = 0; i < pathPoints.Length; i++)
-        {
-            if (check.Contains(pathPoints[i].transform.position))
-            {
-                points.Add(pathPoints[i]);
-            }
-        }
-        return points.ToArray();
-    }
-
-    /// <summary>
-    /// Create a rectangle at position with a size
-    /// </summary>
-    /// <param name="position"></param>
-    /// <param name="size"></param>
-    /// <returns></returns>
-    private Rect MakeACheckRect(Vector3 position, Vector2 size)
-    {
-        return new()
-        {
-            x = position.x - (size.x * 0.5f),
-            y = position.y - (size.y * 0.5f),
-            width = size.x,
-            height = size.y
-        };
-    }
-
-    /// <summary>
-    /// Set selected pathpoint pathable
-    /// </summary>
-    /// <param name="points"></param>
-    /// <param name="active"></param>
-    private void SetPathPointsActive(PathPoint[] points, bool active)
-    {
-        for (int i = 0; i < points.Length; i++)
-        {
-            points[i].SetPathable(active);
-        }
-        RecalculateDistances();
-    }
-
-    /// <summary>
     /// Return endpoint
     /// </summary>
     /// <returns></returns>
     public Vector3 GetEndPoint()
     {
         return endPoint.transform.position;
+    }
+
+    /// <summary>
+    /// Disables pathpoins in area
+    /// </summary>
+    /// <param name="pos"></param>
+    /// <param name="size"></param>
+    public void DisablePathpointsInArea(Vector2 pos, Vector2 size)
+    {
+        PathPoint[] points = GetPathpointsInArea(pos, size);
+        SetPathPointsActive(points, false);
     }
 }

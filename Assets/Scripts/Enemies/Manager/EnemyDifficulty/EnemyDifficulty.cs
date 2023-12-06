@@ -4,4 +4,5 @@ public class EnemyDifficulty
     public GameEntity enemyType;
     public int difficultyValue;
     public int currencyEarned;
+    public int enemyTier;
 }

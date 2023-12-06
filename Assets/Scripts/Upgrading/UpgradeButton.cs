@@ -1,46 +1,94 @@
 using UnityEngine;
 using TMPro;
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
-public class UpgradeButton : MonoBehaviour
+public class UpgradeButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
-    [SerializeField] private TMP_Text buttonText;
-    private Tower targetToUpgrade;
-    private TowerUpgrade upgradeType;
+    // OnUpgradeEvent
+    public delegate
+    void UpgradeTowerHandler(int cost);                 // Delegate for when upgrade happens
+    public static
+        event UpgradeTowerHandler OnUpgrade;            // Event
 
-    public bool HasTarget { get { return targetToUpgrade != null; } }
+    // Ui elements
+    [SerializeField] private Button button;             // Button that upgrades tower
+    [SerializeField] private TMP_Text buttonText;       // Text displayed in button
+    [SerializeField] private TMP_Text hoverText;        // Description displayed on hover object
+    [SerializeField] private GameObject hoverObject;    // HoverObject
 
-    public void DefineUpgrade(TowerUpgrade upgrade, Tower t)
+    // Upgrading
+    private int upgradeCost;                            // Cost of this upgrade
+    private TowerUpgrade upgradeType;                   // Upgrade type that this button has
+    private const string UPGRADETEXT = ":\n";           // Text put between the name and cost
+
+    // References
+    private UpgradePanel upgradePanel;
+
+    private void Start()
     {
-        if (HasTarget)
-        {
-            SetTargetColor(Color.white);
-            ShowTargetRange(false);
-        }
-
-        upgradeType = upgrade;
-        targetToUpgrade = t;
-
-        SetTargetColor(Color.red);
-        ShowTargetRange(true);
-        buttonText.text = TowerTypes.Instance.GetTowerProperties(upgrade).name;
+        upgradePanel = UpgradePanel.Instance;
     }
 
+    /// <summary>
+    /// Define what will be upgraded when button is pressed
+    /// </summary>
+    /// <param name="upgrade"></param>
+    /// <param name="t"></param>
+    public void DefineUpgrade(TowerUpgrade upgrade, int playerMoney)
+    {
+        // Ensure that the hover object is inactive
+        hoverObject.SetActive(false);
+
+        // Define upgrade
+        upgradeType = upgrade;
+
+        // Update UI
+        TowerProperties properties = TowerTypes.Instance.GetTowerProperties(upgrade);
+        upgradeCost = properties.cost;
+        buttonText.text = properties.name + UPGRADETEXT + upgradeCost;
+        hoverText.text = properties.description;
+
+        IsUpgradeReady(playerMoney);
+    }
+
+    /// <summary>
+    /// Upgrade tower
+    /// </summary>
     public void UpgradeTower()
     {
-        if (!HasTarget)
-            return;
-
-        targetToUpgrade.UpgradeTower(upgradeType);
-        UpgradePanel.Instance.HideUpgrades();
+        OnUpgrade?.Invoke(-upgradeCost);
+        upgradePanel.SelectUpgrade(upgradeType);
     }
 
-    public void SetTargetColor(Color color)
+    /// <summary>
+    /// Is upgrade able to be purchased
+    /// </summary>
+    /// <param name="playerMoney"></param>
+    public void IsUpgradeReady(int playerMoney)
     {
-        targetToUpgrade.TowerBaseRend.color = color;
+        // Disable button if player does not have enough money
+        if (playerMoney < upgradeCost)
+        {
+            button.interactable = false;
+        }
+        else
+        {
+            button.interactable = true;
+        }
     }
 
-    public void ShowTargetRange(bool value)
+    /// <summary>
+    /// Toggle hover object on exit and entry
+    /// </summary>
+    /// <param name="eventData"></param>
+    public void OnPointerExit(PointerEventData eventData)
     {
-        targetToUpgrade.ShowTowerRange = value;
+        hoverObject.SetActive(false);
+    }
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        hoverObject.SetActive(true);
     }
 }

@@ -71,6 +71,14 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: -1479468306, guid: b072c90f2a5b514448a6d9b936c9fd4a, type: 3}
+    - target: {fileID: 5736154231517779001, guid: 15653ddc2a0542b4191cc7331315cf50, type: 3}
+      propertyPath: m_SortingLayer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5736154231517779001, guid: 15653ddc2a0542b4191cc7331315cf50, type: 3}
+      propertyPath: m_SortingLayerID
+      value: -905880691
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 976617091015190340, guid: 15653ddc2a0542b4191cc7331315cf50, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 15653ddc2a0542b4191cc7331315cf50, type: 3}
@@ -122,7 +130,8 @@ MonoBehaviour:
   damage: 10
   speed: 0.5
   distanceToStop: 0.5
-  turnSpeed: 180
+  turnSpeed: 45
+  flyToEnd: 1
   maxXPosition: 9
   teleportDistance: 2
   teleportFrequency: 0.5
