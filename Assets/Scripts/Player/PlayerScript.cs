@@ -214,6 +214,7 @@ public class PlayerScript : MonoBehaviour
         towerAttached.gameObject.SetActive(false);
         upgradePanel.HideUpgrades();
     }
+
     /// <summary>
     /// If no towers are found within turret area range
     /// And it won't block path

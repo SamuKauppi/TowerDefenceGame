@@ -20,6 +20,7 @@ public class UpgradePanel : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
     [SerializeField] private TMP_Text moneyText;                // Displays money
     private const string BUGBUCKS = "BugBucks: ";
     private const string TOWERTEXT = "Build Tower!\n Cost: ";
+    private int money;
 
     // Lives related
     [SerializeField] private TMP_Text livesText;
@@ -31,10 +32,14 @@ public class UpgradePanel : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
         HideUpgrades();
     }
 
+    /// <summary>
+    /// Set tower visuals to match current state
+    /// </summary>
+    /// <param name="value"></param>
     private void SetTowerVisuals(bool value)
     {
         // Change the color based if it's being selected or deselected
-        targetToUpgrade.TowerBaseRend.color = value ? Color.red : Color.white;
+        targetToUpgrade.TowerBaseRend.color = value ? Color.red : targetToUpgrade.CurrentUpgrade.towerBaseColor;
         // Show or hide tower range
         targetToUpgrade.ShowTowerRange = value;
     }
@@ -85,9 +90,15 @@ public class UpgradePanel : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
     public void SelectUpgrade(TowerUpgrade upgrade)
     {
         if (targetToUpgrade)
+        {
             targetToUpgrade.UpgradeTower(upgrade);
+            DisplayUpgrades(targetToUpgrade, money);
+        }
+        else
+        {
+            HideUpgrades();
+        }
 
-        HideUpgrades();
     }
 
     /// <summary>
@@ -98,6 +109,7 @@ public class UpgradePanel : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
     /// <param name="canBuildTower"></param>
     public void UpdateMoneyText(int playerMoney, int nextTowerCost, bool canBuildTower)
     {
+        money = playerMoney;
         moneyText.text = BUGBUCKS + playerMoney;
         buildTowerButton.interactable = canBuildTower;
         buildTowerText.text = TOWERTEXT + nextTowerCost;

@@ -12,7 +12,7 @@ public class TowerProperties
     public TowerUpgrade[] upgradePaths;
     // Tower sprites
     public Sprite barrelSprite;
-    public Sprite towerSprite;
+    public Color towerBaseColor;
     // Bullets it shoots
     public GameEntity bulletIdent;
     // How often it shoots 

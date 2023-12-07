@@ -77,11 +77,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8288930384055412146, guid: dec540fbd3c9ba641b6c77efebcebc9c, type: 3}
       propertyPath: timeHidden
-      value: 2
+      value: 2.5
       objectReference: {fileID: 0}
     - target: {fileID: 8288930384055412146, guid: dec540fbd3c9ba641b6c77efebcebc9c, type: 3}
       propertyPath: timeVisible
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8288930384055412146, guid: dec540fbd3c9ba641b6c77efebcebc9c, type: 3}
       propertyPath: difficultyValue

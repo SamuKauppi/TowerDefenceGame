@@ -69,7 +69,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7949876785994564498, guid: fc69760c097fd154d960541e379da22b, type: 3}
       propertyPath: explosionStatuses.Array.data[0].strength
-      value: 0.75
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 7949876785994564498, guid: fc69760c097fd154d960541e379da22b, type: 3}
       propertyPath: StatusElementOnHit.Array.data[0].strength

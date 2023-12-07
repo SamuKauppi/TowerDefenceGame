@@ -136,7 +136,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   mainCamera: {fileID: 519420031}
-  startingMoney: 250
+  startingMoney: 2150000
   towerCostIncrese: 25
   startingCost: 50
   startingHealth: 100
@@ -301,7 +301,7 @@ SpriteRenderer:
   m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 7e239a493d5b03646b2685f34c0f5c08, type: 3}
-  m_Color: {r: 0.71132076, g: 0.72264147, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

@@ -390,14 +390,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 286540351362381737, guid: 3859058f97f2b0c4eacadc259f40d874, type: 3}
-      propertyPath: m_Color.g
-      value: 0.72264147
-      objectReference: {fileID: 0}
-    - target: {fileID: 286540351362381737, guid: 3859058f97f2b0c4eacadc259f40d874, type: 3}
-      propertyPath: m_Color.r
-      value: 0.71132076
-      objectReference: {fileID: 0}
     - target: {fileID: 3726361481544024114, guid: 3859058f97f2b0c4eacadc259f40d874, type: 3}
       propertyPath: m_Name
       value: PlayerManager

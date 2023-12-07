@@ -50,7 +50,7 @@ MonoBehaviour:
     description: Normal turret. It's shit
     upgradePaths: 020000000100000003000000
     barrelSprite: {fileID: 21300000, guid: f31ff9baa33a9434889841319e2a7dae, type: 3}
-    towerSprite: {fileID: 21300000, guid: cdedf60acfc9f9148923f3d87fe5fe67, type: 3}
+    towerBaseColor: {r: 1, g: 1, b: 1, a: 1}
     bulletIdent: 4
     attackSpeed: 0.4
     rotationSpeed: 0
@@ -65,10 +65,12 @@ MonoBehaviour:
     cost: 0
   - name: Impact
     upgradeIdent: 2
-    description: Bullets deal more damage
+    description: 'Bullets deal increased damage.
+
+      DMG: 8 >> 12'
     upgradePaths: 04000000070000000e000000
-    barrelSprite: {fileID: 21300000, guid: f31ff9baa33a9434889841319e2a7dae, type: 3}
-    towerSprite: {fileID: 21300000, guid: cdedf60acfc9f9148923f3d87fe5fe67, type: 3}
+    barrelSprite: {fileID: 21300000, guid: b0e0a932c9f07954f857a0d8ed7b34c9, type: 3}
+    towerBaseColor: {r: 0.8679245, g: 0.43723744, b: 0.43723744, a: 1}
     bulletIdent: 5
     attackSpeed: 0.4
     rotationSpeed: 0
@@ -83,10 +85,12 @@ MonoBehaviour:
     cost: 600
   - name: Scope
     upgradeIdent: 3
-    description: Shoots further and more accurate.
+    description: 'Shoots at longer range.
+
+      RANGE: 7 >> 8'
     upgradePaths: 1a0000001c0000000e000000
-    barrelSprite: {fileID: 21300000, guid: f31ff9baa33a9434889841319e2a7dae, type: 3}
-    towerSprite: {fileID: 21300000, guid: cdedf60acfc9f9148923f3d87fe5fe67, type: 3}
+    barrelSprite: {fileID: 21300000, guid: 9f31b8292a6b35c488f03eb0cf1bc3e5, type: 3}
+    towerBaseColor: {r: 0.3697935, g: 0.43053016, b: 0.7075472, a: 1}
     bulletIdent: 4
     attackSpeed: 0.4
     rotationSpeed: 0
@@ -101,12 +105,14 @@ MonoBehaviour:
     cost: 600
   - name: Rapid-fire
     upgradeIdent: 1
-    description: Shoots slightly faster.
+    description: 'Fires at a slightly faster rate.
+
+      SPD: 0.48 >> 0.38'
     upgradePaths: 19000000140000000e000000
-    barrelSprite: {fileID: 21300000, guid: f31ff9baa33a9434889841319e2a7dae, type: 3}
-    towerSprite: {fileID: 21300000, guid: cdedf60acfc9f9148923f3d87fe5fe67, type: 3}
+    barrelSprite: {fileID: 21300000, guid: 926abaa6e6321ff4da5bef5fe3e5add3, type: 3}
+    towerBaseColor: {r: 1, g: 0.96524924, b: 0.4943396, a: 1}
     bulletIdent: 4
-    attackSpeed: 0.28
+    attackSpeed: 0.38
     rotationSpeed: 0
     accuracy: 5
     aimThreshold: 30
@@ -119,11 +125,11 @@ MonoBehaviour:
     cost: 600
   - name: Beam
     upgradeIdent: 7
-    description: Shoots continuous beam of light. Damage is poor but highly accurate
-      and great area of effect.
+    description: Emits a continuous beam of light. Damage is moderate, but highly
+      accurate with a wide area of effect.
     upgradePaths: 090000000a000000
-    barrelSprite: {fileID: 21300000, guid: f31ff9baa33a9434889841319e2a7dae, type: 3}
-    towerSprite: {fileID: 21300000, guid: cdedf60acfc9f9148923f3d87fe5fe67, type: 3}
+    barrelSprite: {fileID: 21300000, guid: 3d36128add3cb8045a34a890340eee36, type: 3}
+    towerBaseColor: {r: 1, g: 0.73220867, b: 0.3433962, a: 1}
     bulletIdent: 10
     attackSpeed: 1
     rotationSpeed: 180
@@ -138,34 +144,35 @@ MonoBehaviour:
     cost: 1500
   - name: Lazer Blaster
     upgradeIdent: 10
-    description: Fires rapidly lazer blasts. Deals great damage.
+    description: Rapidly fires laser blasts, dealing substantial damage.
     upgradePaths: 0b000000
-    barrelSprite: {fileID: 21300000, guid: f31ff9baa33a9434889841319e2a7dae, type: 3}
-    towerSprite: {fileID: 21300000, guid: cdedf60acfc9f9148923f3d87fe5fe67, type: 3}
+    barrelSprite: {fileID: 21300000, guid: 2afef7b30085b0a4ebcd26a746e5b499, type: 3}
+    towerBaseColor: {r: 1, g: 0, b: 0.6771097, a: 1}
     bulletIdent: 12
     attackSpeed: 0.15
     rotationSpeed: 0
     accuracy: 0
     aimThreshold: 30
-    attackRange: 7
+    attackRange: 9
     chargeTime: 0
     burstShots: 1
     aimWhileFiring: 1
     spreadShots: 1
-    degreePerShot: 3
+    degreePerShot: 0
     cost: 4000
   - name: Light that burns the sky
     upgradeIdent: 11
-    description: Too bright...
+    description: This tower unleashes blinding brightness, firing in four different
+      directions with increased range.
     upgradePaths: 
-    barrelSprite: {fileID: 21300000, guid: f31ff9baa33a9434889841319e2a7dae, type: 3}
-    towerSprite: {fileID: 21300000, guid: cdedf60acfc9f9148923f3d87fe5fe67, type: 3}
+    barrelSprite: {fileID: 21300000, guid: 31ead22a27daeb14d8a84af37f43bdff, type: 3}
+    towerBaseColor: {r: 1, g: 0, b: 0.88648844, a: 1}
     bulletIdent: 12
     attackSpeed: 0.15
     rotationSpeed: 0
     accuracy: 0
     aimThreshold: 30
-    attackRange: 8
+    attackRange: 12
     chargeTime: 0
     burstShots: 1
     aimWhileFiring: 1
@@ -174,16 +181,16 @@ MonoBehaviour:
     cost: 10000
   - name: Hyper Beam
     upgradeIdent: 9
-    description: The ultimate beam. Slow but highest damage potential.
+    description: 'The ultimate beam: slow but with the highest damage potential.'
     upgradePaths: 
-    barrelSprite: {fileID: 21300000, guid: f31ff9baa33a9434889841319e2a7dae, type: 3}
-    towerSprite: {fileID: 21300000, guid: cdedf60acfc9f9148923f3d87fe5fe67, type: 3}
+    barrelSprite: {fileID: 21300000, guid: 144e747868cc7e649a5b99752f6473e6, type: 3}
+    towerBaseColor: {r: 1, g: 0.4401007, b: 0, a: 1}
     bulletIdent: 11
     attackSpeed: 3
     rotationSpeed: 180
     accuracy: 1
     aimThreshold: 5
-    attackRange: 8
+    attackRange: 9
     chargeTime: 2
     burstShots: 1
     aimWhileFiring: 0
@@ -192,10 +199,13 @@ MonoBehaviour:
     cost: 20000
   - name: Bomb
     upgradeIdent: 4
-    description: Shoots bombs. Explosions = more damage in larger area
+    description: 'Fires explosive bombs, causing more damage over a larger area.
+
+      DMG:
+      12 >> 30'
     upgradePaths: 05000000
-    barrelSprite: {fileID: 21300000, guid: f31ff9baa33a9434889841319e2a7dae, type: 3}
-    towerSprite: {fileID: 21300000, guid: cdedf60acfc9f9148923f3d87fe5fe67, type: 3}
+    barrelSprite: {fileID: 21300000, guid: be32554facf70fd419431330eaa35285, type: 3}
+    towerBaseColor: {r: 0.46226418, g: 0.46226418, b: 0.46226418, a: 1}
     bulletIdent: 7
     attackSpeed: 1
     rotationSpeed: 0
@@ -210,10 +220,11 @@ MonoBehaviour:
     cost: 1500
   - name: Kaboom
     upgradeIdent: 5
-    description: Destruction
+    description: Kaboom - Your solution to all problems involving explosions! Embrace
+      the blast!
     upgradePaths: 06000000
-    barrelSprite: {fileID: 21300000, guid: f31ff9baa33a9434889841319e2a7dae, type: 3}
-    towerSprite: {fileID: 21300000, guid: cdedf60acfc9f9148923f3d87fe5fe67, type: 3}
+    barrelSprite: {fileID: 21300000, guid: de9f31049fa181c46b90433625ddf85c, type: 3}
+    towerBaseColor: {r: 0.41509432, g: 0.18106379, b: 0, a: 1}
     bulletIdent: 8
     attackSpeed: 1.5
     rotationSpeed: 0
@@ -228,11 +239,10 @@ MonoBehaviour:
     cost: 4000
   - name: Hugeplosion
     upgradeIdent: 6
-    description: You have a problem with explosions? Hugeplosion is here to solve
-      your issues!
+    description: Unleashes utter destruction with overwhelming power.
     upgradePaths: 
-    barrelSprite: {fileID: 21300000, guid: f31ff9baa33a9434889841319e2a7dae, type: 3}
-    towerSprite: {fileID: 21300000, guid: cdedf60acfc9f9148923f3d87fe5fe67, type: 3}
+    barrelSprite: {fileID: 21300000, guid: a135769d40950bf40a3066f8cc7e04e0, type: 3}
+    towerBaseColor: {r: 0.2830189, g: 0, b: 0, a: 1}
     bulletIdent: 9
     attackSpeed: 1.5
     rotationSpeed: 0
@@ -247,10 +257,10 @@ MonoBehaviour:
     cost: 15000
   - name: Gun
     upgradeIdent: 14
-    description: Faster and stronger bullets.
+    description: Faster and stronger bullets with a longer range.
     upgradePaths: 110000000f00000013000000
-    barrelSprite: {fileID: 21300000, guid: f31ff9baa33a9434889841319e2a7dae, type: 3}
-    towerSprite: {fileID: 21300000, guid: cdedf60acfc9f9148923f3d87fe5fe67, type: 3}
+    barrelSprite: {fileID: 21300000, guid: aaaf7d0bccbb0224fb109ddd0f5c37cd, type: 3}
+    towerBaseColor: {r: 1, g: 0.8239651, b: 0.45660377, a: 1}
     bulletIdent: 15
     attackSpeed: 0.28
     rotationSpeed: 0
@@ -267,44 +277,45 @@ MonoBehaviour:
     upgradeIdent: 15
     description: Shotguns are cool, right?
     upgradePaths: 10000000
-    barrelSprite: {fileID: 21300000, guid: f31ff9baa33a9434889841319e2a7dae, type: 3}
-    towerSprite: {fileID: 21300000, guid: cdedf60acfc9f9148923f3d87fe5fe67, type: 3}
+    barrelSprite: {fileID: 21300000, guid: 6006521f01bf4fc4aa052a66f9bcccbb, type: 3}
+    towerBaseColor: {r: 1, g: 0.8239651, b: 0.45660377, a: 1}
     bulletIdent: 15
-    attackSpeed: 0.015
+    attackSpeed: 0.1
     rotationSpeed: 0
     accuracy: 0
     aimThreshold: 30
     attackRange: 7
     chargeTime: 1.5
-    burstShots: 3
+    burstShots: 1
     aimWhileFiring: 0
-    spreadShots: 3
-    degreePerShot: 3
+    spreadShots: 5
+    degreePerShot: 2
     cost: 2000
   - name: Blunderbuss
     upgradeIdent: 16
-    description: Shower enemies with bullets!
+    description: Deals more damage per shot but longer charge time.
     upgradePaths: 
-    barrelSprite: {fileID: 21300000, guid: f31ff9baa33a9434889841319e2a7dae, type: 3}
-    towerSprite: {fileID: 21300000, guid: cdedf60acfc9f9148923f3d87fe5fe67, type: 3}
-    bulletIdent: 15
-    attackSpeed: 0.015
+    barrelSprite: {fileID: 21300000, guid: 039784bef571a5049af12c0de8ee1746, type: 3}
+    towerBaseColor: {r: 1, g: 0.8239651, b: 0.45660377, a: 1}
+    bulletIdent: 16
+    attackSpeed: 0.1
     rotationSpeed: 0
     accuracy: 0
     aimThreshold: 30
     attackRange: 7
     chargeTime: 2.5
-    burstShots: 6
+    burstShots: 1
     aimWhileFiring: 0
     spreadShots: 5
-    degreePerShot: 3
+    degreePerShot: 2
     cost: 7000
   - name: SMG
     upgradeIdent: 17
-    description: So many bullets but has a reload time
+    description: Intensely increased attack rate, but has to stop and reload once
+      it runs out of bullets
     upgradePaths: 12000000
-    barrelSprite: {fileID: 21300000, guid: f31ff9baa33a9434889841319e2a7dae, type: 3}
-    towerSprite: {fileID: 21300000, guid: cdedf60acfc9f9148923f3d87fe5fe67, type: 3}
+    barrelSprite: {fileID: 21300000, guid: 528066d9c5019d247a01f146fee7151a, type: 3}
+    towerBaseColor: {r: 1, g: 0.8239651, b: 0.45660377, a: 1}
     bulletIdent: 15
     attackSpeed: 0.06
     rotationSpeed: 0
@@ -321,10 +332,10 @@ MonoBehaviour:
     upgradeIdent: 18
     description: It's raining bullets!
     upgradePaths: 
-    barrelSprite: {fileID: 21300000, guid: f31ff9baa33a9434889841319e2a7dae, type: 3}
-    towerSprite: {fileID: 21300000, guid: cdedf60acfc9f9148923f3d87fe5fe67, type: 3}
+    barrelSprite: {fileID: 21300000, guid: da12cbe94477ef54e915105b0e87a093, type: 3}
+    towerBaseColor: {r: 1, g: 0.8239651, b: 0.45660377, a: 1}
     bulletIdent: 15
-    attackSpeed: 0.03
+    attackSpeed: 0.06
     rotationSpeed: 0
     accuracy: 15
     aimThreshold: 30
@@ -337,10 +348,10 @@ MonoBehaviour:
     cost: 10000
   - name: Sniper
     upgradeIdent: 19
-    description: Ultimate long range tower
+    description: The ultimate long range tower
     upgradePaths: 
-    barrelSprite: {fileID: 21300000, guid: f31ff9baa33a9434889841319e2a7dae, type: 3}
-    towerSprite: {fileID: 21300000, guid: cdedf60acfc9f9148923f3d87fe5fe67, type: 3}
+    barrelSprite: {fileID: 21300000, guid: def3ff4951a91624b808ca24bf527276, type: 3}
+    towerBaseColor: {r: 1, g: 0.8239651, b: 0.45660377, a: 1}
     bulletIdent: 16
     attackSpeed: 1.1
     rotationSpeed: 0
@@ -355,10 +366,10 @@ MonoBehaviour:
     cost: 15000
   - name: Ember
     upgradeIdent: 20
-    description: Burns enemies with blasts of fire
+    description: Burns enemies with blasts of fire.
     upgradePaths: 1500000017000000
-    barrelSprite: {fileID: 21300000, guid: f31ff9baa33a9434889841319e2a7dae, type: 3}
-    towerSprite: {fileID: 21300000, guid: cdedf60acfc9f9148923f3d87fe5fe67, type: 3}
+    barrelSprite: {fileID: 21300000, guid: 98163310ad76e1a44ac6f2fc20b8537b, type: 3}
+    towerBaseColor: {r: 1, g: 0.4478027, b: 0.29622638, a: 1}
     bulletIdent: 17
     attackSpeed: 0.28
     rotationSpeed: 0
@@ -373,10 +384,10 @@ MonoBehaviour:
     cost: 1000
   - name: Flamethrower
     upgradeIdent: 21
-    description: Incinerate nearby enemies
+    description: Incinerate nearby enemies.
     upgradePaths: 16000000
-    barrelSprite: {fileID: 21300000, guid: f31ff9baa33a9434889841319e2a7dae, type: 3}
-    towerSprite: {fileID: 21300000, guid: cdedf60acfc9f9148923f3d87fe5fe67, type: 3}
+    barrelSprite: {fileID: 21300000, guid: d6272036c993a7444a7e8a3e9f88caa2, type: 3}
+    towerBaseColor: {r: 0.4716981, g: 0.018654726, b: 0, a: 1}
     bulletIdent: 18
     attackSpeed: 1.5
     rotationSpeed: 150
@@ -391,10 +402,10 @@ MonoBehaviour:
     cost: 5000
   - name: Ring of Fire
     upgradeIdent: 22
-    description: Bourn everything around you!
+    description: Burn everything around you!
     upgradePaths: 
-    barrelSprite: {fileID: 21300000, guid: f31ff9baa33a9434889841319e2a7dae, type: 3}
-    towerSprite: {fileID: 21300000, guid: cdedf60acfc9f9148923f3d87fe5fe67, type: 3}
+    barrelSprite: {fileID: 21300000, guid: b2eb06b6bfae84b408d8c87ca2b19531, type: 3}
+    towerBaseColor: {r: 0.38679248, g: 0, b: 0.004550615, a: 1}
     bulletIdent: 18
     attackSpeed: 1.5
     rotationSpeed: 100
@@ -409,10 +420,11 @@ MonoBehaviour:
     cost: 15000
   - name: Blue Flame
     upgradeIdent: 23
-    description: Burn so hot that enemies are slowed
+    description: Engulf foes in scorching blue flames, slowing them down in the searing
+      heat.
     upgradePaths: 18000000
-    barrelSprite: {fileID: 21300000, guid: f31ff9baa33a9434889841319e2a7dae, type: 3}
-    towerSprite: {fileID: 21300000, guid: cdedf60acfc9f9148923f3d87fe5fe67, type: 3}
+    barrelSprite: {fileID: 21300000, guid: 9ab08b7ffef6b9944b3dbbee54f09fd6, type: 3}
+    towerBaseColor: {r: 0.2853684, g: 0.8330489, b: 0.9056604, a: 1}
     bulletIdent: 19
     attackSpeed: 0.25
     rotationSpeed: 150
@@ -429,8 +441,8 @@ MonoBehaviour:
     upgradeIdent: 24
     description: Even hotter... or colder... who knows
     upgradePaths: 
-    barrelSprite: {fileID: 21300000, guid: f31ff9baa33a9434889841319e2a7dae, type: 3}
-    towerSprite: {fileID: 21300000, guid: cdedf60acfc9f9148923f3d87fe5fe67, type: 3}
+    barrelSprite: {fileID: 21300000, guid: 5c598137f89a01747835e738a1c963d6, type: 3}
+    towerBaseColor: {r: 0, g: 0.5414667, b: 1, a: 1}
     bulletIdent: 19
     attackSpeed: 0.25
     rotationSpeed: 150
@@ -445,10 +457,10 @@ MonoBehaviour:
     cost: 10000
   - name: Sword
     upgradeIdent: 25
-    description: Best close range tower for it's price...
+    description: Best close range tower for it's price.
     upgradePaths: 
-    barrelSprite: {fileID: 21300000, guid: f31ff9baa33a9434889841319e2a7dae, type: 3}
-    towerSprite: {fileID: 21300000, guid: cdedf60acfc9f9148923f3d87fe5fe67, type: 3}
+    barrelSprite: {fileID: 21300000, guid: 2f6c61fd96dc4a84cba5aec95b474b40, type: 3}
+    towerBaseColor: {r: 0.6886792, g: 0.6886792, b: 0.6886792, a: 1}
     bulletIdent: 20
     attackSpeed: 1
     rotationSpeed: 0
@@ -463,17 +475,17 @@ MonoBehaviour:
     cost: 2000
   - name: Wallop
     upgradeIdent: 28
-    description: Shoots impact bullets with short bursts
+    description: More damage with short bursts of shots.
     upgradePaths: 0c0000001d000000
-    barrelSprite: {fileID: 21300000, guid: f31ff9baa33a9434889841319e2a7dae, type: 3}
-    towerSprite: {fileID: 21300000, guid: cdedf60acfc9f9148923f3d87fe5fe67, type: 3}
+    barrelSprite: {fileID: 21300000, guid: cd035b43985113244848cb3b91512b0d, type: 3}
+    towerBaseColor: {r: 0.96759915, g: 1, b: 0.390566, a: 1}
     bulletIdent: 5
-    attackSpeed: 0.5
+    attackSpeed: 0.15
     rotationSpeed: 0
     accuracy: 5
     aimThreshold: 15
     attackRange: 9
-    chargeTime: 1
+    chargeTime: 0.5
     burstShots: 3
     aimWhileFiring: 0
     spreadShots: 1
@@ -481,10 +493,10 @@ MonoBehaviour:
     cost: 900
   - name: Boomerang
     upgradeIdent: 29
-    description: Everyone loves boomerangs
+    description: Everyone loves boomerangs.
     upgradePaths: 1e000000
-    barrelSprite: {fileID: 21300000, guid: f31ff9baa33a9434889841319e2a7dae, type: 3}
-    towerSprite: {fileID: 21300000, guid: cdedf60acfc9f9148923f3d87fe5fe67, type: 3}
+    barrelSprite: {fileID: 21300000, guid: f44730a239f196a42b4e1c45bab09b1a, type: 3}
+    towerBaseColor: {r: 0.28586727, g: 0.8301887, b: 0.2615877, a: 1}
     bulletIdent: 13
     attackSpeed: 1.25
     rotationSpeed: 0
@@ -499,10 +511,10 @@ MonoBehaviour:
     cost: 5000
   - name: Boomaster
     upgradeIdent: 30
-    description: Master of boomerangs
+    description: Master of boo's and rangs.
     upgradePaths: 
-    barrelSprite: {fileID: 21300000, guid: f31ff9baa33a9434889841319e2a7dae, type: 3}
-    towerSprite: {fileID: 21300000, guid: cdedf60acfc9f9148923f3d87fe5fe67, type: 3}
+    barrelSprite: {fileID: 21300000, guid: 55724067b164584488a2741750f920c3, type: 3}
+    towerBaseColor: {r: 0.004480481, g: 1, b: 0, a: 1}
     bulletIdent: 13
     attackSpeed: 0.5
     rotationSpeed: 0
@@ -519,8 +531,8 @@ MonoBehaviour:
     upgradeIdent: 26
     description: L-L-Lightning
     upgradePaths: 1b000000
-    barrelSprite: {fileID: 21300000, guid: f31ff9baa33a9434889841319e2a7dae, type: 3}
-    towerSprite: {fileID: 21300000, guid: cdedf60acfc9f9148923f3d87fe5fe67, type: 3}
+    barrelSprite: {fileID: 21300000, guid: 0701054a9244d9f40b3caf9bf88ca4e2, type: 3}
+    towerBaseColor: {r: 0.2588235, g: 0.4773024, b: 1, a: 1}
     bulletIdent: 21
     attackSpeed: 1
     rotationSpeed: 0
@@ -537,8 +549,8 @@ MonoBehaviour:
     upgradeIdent: 27
     description: Bring the wrath of the heavens upon these bugs!
     upgradePaths: 
-    barrelSprite: {fileID: 21300000, guid: f31ff9baa33a9434889841319e2a7dae, type: 3}
-    towerSprite: {fileID: 21300000, guid: cdedf60acfc9f9148923f3d87fe5fe67, type: 3}
+    barrelSprite: {fileID: 21300000, guid: 0b6c72bc370b39a41b2ce03587be609c, type: 3}
+    towerBaseColor: {r: 0, g: 0.0647583, b: 1, a: 1}
     bulletIdent: 21
     attackSpeed: 0.5
     rotationSpeed: 0
@@ -553,10 +565,10 @@ MonoBehaviour:
     cost: 17000
   - name: Catapult
     upgradeIdent: 12
-    description: Fling rocks towards your enemies. Rocks slow enemies heavily
+    description: Fling rocks towards your enemies. Rocks slow enemies heavily.
     upgradePaths: 0d000000
-    barrelSprite: {fileID: 21300000, guid: f31ff9baa33a9434889841319e2a7dae, type: 3}
-    towerSprite: {fileID: 21300000, guid: cdedf60acfc9f9148923f3d87fe5fe67, type: 3}
+    barrelSprite: {fileID: 21300000, guid: 933845292b9b14a4998baee18ae59ad2, type: 3}
+    towerBaseColor: {r: 0, g: 0.5283019, b: 0.05257621, a: 1}
     bulletIdent: 14
     attackSpeed: 1.5
     rotationSpeed: 90
@@ -573,8 +585,8 @@ MonoBehaviour:
     upgradeIdent: 13
     description: 3 x rocks + global range = not funny gag...
     upgradePaths: 
-    barrelSprite: {fileID: 21300000, guid: f31ff9baa33a9434889841319e2a7dae, type: 3}
-    towerSprite: {fileID: 21300000, guid: cdedf60acfc9f9148923f3d87fe5fe67, type: 3}
+    barrelSprite: {fileID: 21300000, guid: 5792a096491ce5c4ab96b2d81b345c90, type: 3}
+    towerBaseColor: {r: 0.10424797, g: 0.41509432, b: 0, a: 1}
     bulletIdent: 14
     attackSpeed: 2
     rotationSpeed: 90

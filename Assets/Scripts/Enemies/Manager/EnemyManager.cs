@@ -288,13 +288,14 @@ public class EnemyManager : MonoBehaviour
         // Create an array of pools, each representing an enemy type
         EnemySpawnPool[] pools = new EnemySpawnPool[enemies.Length];
 
-        // Initialize each pool with an enemy type and a count of 0
+        // Initialize each pool with an enemy type, a count of 0 and random spawn delay
         for (int i = 0; i < pools.Length; i++)
         {
             pools[i] = new EnemySpawnPool
             {
                 enemyType = enemies[i],
-                count = 0
+                count = 0,
+                delay = Random.Range(0.01f, 0.50f)
             };
         }
 
@@ -311,12 +312,6 @@ public class EnemyManager : MonoBehaviour
 
             // Move to the next pool or loop back to the first one
             poolIndex = (poolIndex + 1) % pools.Length;
-        }
-
-        // Assign spawn delay to each pool
-        foreach (EnemySpawnPool pool in pools)
-        {
-            pool.delay = Random.Range(0.01f, 0.75f);
         }
 
         // Return the array of created EnemySpawnPool objects

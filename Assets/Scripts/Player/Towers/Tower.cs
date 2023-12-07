@@ -13,7 +13,7 @@ public class Tower : MonoBehaviour, IUpdate
     // Sprites
     [SerializeField] private SpriteRenderer barrelSpriteRend;       // Sprite renderer of the barrel (asigned in inspector)
     [SerializeField] private SpriteRenderer towerSpriteRend;        // Sprite renderer of the tower (asigned in inspector)
-    [SerializeField] private SpriteRenderer rangeSpriteRend;
+    [SerializeField] private SpriteRenderer rangeSpriteRend;        // Sprite renderer of the range indicator
 
     // Targeting
     [SerializeField] private Transform barrel;                      // Barrel of the turret (pointed towards enemies)
@@ -344,7 +344,7 @@ public class Tower : MonoBehaviour, IUpdate
         CurrentUpgrade = TowerTypes.Instance.GetTowerProperties(upgrade);
         attackRangeObj.localScale = new Vector3(CurrentUpgrade.attackRange, CurrentUpgrade.attackRange, 1f);
         TowerBarrelRend.sprite = CurrentUpgrade.barrelSprite;
-        TowerBaseRend.sprite = CurrentUpgrade.towerSprite;
+        TowerBaseRend.color = CurrentUpgrade.towerBaseColor;
     }
 
     /// <summary>
