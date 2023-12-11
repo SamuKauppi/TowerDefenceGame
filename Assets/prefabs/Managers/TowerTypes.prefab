@@ -59,10 +59,11 @@ MonoBehaviour:
     attackRange: 7
     chargeTime: 0
     burstShots: 1
-    aimWhileFiring: 0
+    aimWhileFiring: 1
     spreadShots: 1
     degreePerShot: 0
     cost: 0
+    isOnSpecialLayer: 0
   - name: Impact
     upgradeIdent: 2
     description: 'Bullets deal increased damage.
@@ -79,10 +80,11 @@ MonoBehaviour:
     attackRange: 7
     chargeTime: 0
     burstShots: 1
-    aimWhileFiring: 0
+    aimWhileFiring: 1
     spreadShots: 1
     degreePerShot: 0
     cost: 600
+    isOnSpecialLayer: 0
   - name: Scope
     upgradeIdent: 3
     description: 'Shoots at longer range.
@@ -99,10 +101,11 @@ MonoBehaviour:
     attackRange: 8
     chargeTime: 0
     burstShots: 1
-    aimWhileFiring: 0
+    aimWhileFiring: 1
     spreadShots: 1
     degreePerShot: 0
     cost: 600
+    isOnSpecialLayer: 0
   - name: Rapid-fire
     upgradeIdent: 1
     description: 'Fires at a slightly faster rate.
@@ -119,10 +122,11 @@ MonoBehaviour:
     attackRange: 7
     chargeTime: 0
     burstShots: 1
-    aimWhileFiring: 0
+    aimWhileFiring: 1
     spreadShots: 1
     degreePerShot: 0
     cost: 600
+    isOnSpecialLayer: 0
   - name: Beam
     upgradeIdent: 7
     description: Emits a continuous beam of light. Damage is moderate, but highly
@@ -142,6 +146,7 @@ MonoBehaviour:
     spreadShots: 1
     degreePerShot: 0
     cost: 1500
+    isOnSpecialLayer: 1
   - name: Lazer Blaster
     upgradeIdent: 10
     description: Rapidly fires laser blasts, dealing substantial damage.
@@ -160,7 +165,8 @@ MonoBehaviour:
     spreadShots: 1
     degreePerShot: 0
     cost: 4000
-  - name: Light that burns the sky
+    isOnSpecialLayer: 1
+  - name: Light that\n burns the sky
     upgradeIdent: 11
     description: This tower unleashes blinding brightness, firing in four different
       directions with increased range.
@@ -179,6 +185,7 @@ MonoBehaviour:
     spreadShots: 4
     degreePerShot: 90
     cost: 10000
+    isOnSpecialLayer: 1
   - name: Hyper Beam
     upgradeIdent: 9
     description: 'The ultimate beam: slow but with the highest damage potential.'
@@ -197,6 +204,7 @@ MonoBehaviour:
     spreadShots: 1
     degreePerShot: 0
     cost: 20000
+    isOnSpecialLayer: 1
   - name: Bomb
     upgradeIdent: 4
     description: 'Fires explosive bombs, causing more damage over a larger area.
@@ -205,7 +213,7 @@ MonoBehaviour:
       12 >> 30'
     upgradePaths: 05000000
     barrelSprite: {fileID: 21300000, guid: be32554facf70fd419431330eaa35285, type: 3}
-    towerBaseColor: {r: 0.46226418, g: 0.46226418, b: 0.46226418, a: 1}
+    towerBaseColor: {r: 0.6320754, g: 0.020274075, b: 0.020274075, a: 1}
     bulletIdent: 7
     attackSpeed: 1
     rotationSpeed: 0
@@ -218,13 +226,14 @@ MonoBehaviour:
     spreadShots: 1
     degreePerShot: 0
     cost: 1500
+    isOnSpecialLayer: 1
   - name: Kaboom
     upgradeIdent: 5
     description: Kaboom - Your solution to all problems involving explosions! Embrace
       the blast!
     upgradePaths: 06000000
     barrelSprite: {fileID: 21300000, guid: de9f31049fa181c46b90433625ddf85c, type: 3}
-    towerBaseColor: {r: 0.41509432, g: 0.18106379, b: 0, a: 1}
+    towerBaseColor: {r: 0.6320754, g: 0.020274075, b: 0.020274075, a: 1}
     bulletIdent: 8
     attackSpeed: 1.5
     rotationSpeed: 0
@@ -237,6 +246,7 @@ MonoBehaviour:
     spreadShots: 1
     degreePerShot: 0
     cost: 4000
+    isOnSpecialLayer: 1
   - name: Hugeplosion
     upgradeIdent: 6
     description: Unleashes utter destruction with overwhelming power.
@@ -255,6 +265,7 @@ MonoBehaviour:
     spreadShots: 3
     degreePerShot: 45
     cost: 15000
+    isOnSpecialLayer: 1
   - name: Gun
     upgradeIdent: 14
     description: Faster and stronger bullets with a longer range.
@@ -273,6 +284,7 @@ MonoBehaviour:
     spreadShots: 1
     degreePerShot: 0
     cost: 700
+    isOnSpecialLayer: 0
   - name: Shotgun
     upgradeIdent: 15
     description: Shotguns are cool, right?
@@ -284,13 +296,14 @@ MonoBehaviour:
     rotationSpeed: 0
     accuracy: 0
     aimThreshold: 30
-    attackRange: 7
+    attackRange: 8
     chargeTime: 1.5
     burstShots: 1
     aimWhileFiring: 0
     spreadShots: 5
     degreePerShot: 2
     cost: 2000
+    isOnSpecialLayer: 0
   - name: Blunderbuss
     upgradeIdent: 16
     description: Deals more damage per shot but longer charge time.
@@ -302,13 +315,14 @@ MonoBehaviour:
     rotationSpeed: 0
     accuracy: 0
     aimThreshold: 30
-    attackRange: 7
+    attackRange: 8
     chargeTime: 2.5
     burstShots: 1
     aimWhileFiring: 0
     spreadShots: 5
     degreePerShot: 2
     cost: 7000
+    isOnSpecialLayer: 0
   - name: SMG
     upgradeIdent: 17
     description: Intensely increased attack rate, but has to stop and reload once
@@ -321,13 +335,14 @@ MonoBehaviour:
     rotationSpeed: 0
     accuracy: 10
     aimThreshold: 30
-    attackRange: 7
+    attackRange: 8
     chargeTime: 2
     burstShots: 50
     aimWhileFiring: 1
     spreadShots: 1
     degreePerShot: 0
     cost: 2500
+    isOnSpecialLayer: 0
   - name: Minigun
     upgradeIdent: 18
     description: It's raining bullets!
@@ -339,13 +354,14 @@ MonoBehaviour:
     rotationSpeed: 0
     accuracy: 15
     aimThreshold: 30
-    attackRange: 8
+    attackRange: 9
     chargeTime: 5
     burstShots: 500
     aimWhileFiring: 1
     spreadShots: 1
     degreePerShot: 0
     cost: 10000
+    isOnSpecialLayer: 0
   - name: Sniper
     upgradeIdent: 19
     description: The ultimate long range tower
@@ -364,6 +380,7 @@ MonoBehaviour:
     spreadShots: 1
     degreePerShot: 0
     cost: 15000
+    isOnSpecialLayer: 0
   - name: Ember
     upgradeIdent: 20
     description: Burns enemies with blasts of fire.
@@ -382,6 +399,7 @@ MonoBehaviour:
     spreadShots: 1
     degreePerShot: 0
     cost: 1000
+    isOnSpecialLayer: 0
   - name: Flamethrower
     upgradeIdent: 21
     description: Incinerate nearby enemies.
@@ -400,6 +418,7 @@ MonoBehaviour:
     spreadShots: 1
     degreePerShot: 0
     cost: 5000
+    isOnSpecialLayer: 1
   - name: Ring of Fire
     upgradeIdent: 22
     description: Burn everything around you!
@@ -418,6 +437,7 @@ MonoBehaviour:
     spreadShots: 9
     degreePerShot: 40
     cost: 15000
+    isOnSpecialLayer: 1
   - name: Blue Flame
     upgradeIdent: 23
     description: Engulf foes in scorching blue flames, slowing them down in the searing
@@ -437,6 +457,7 @@ MonoBehaviour:
     spreadShots: 1
     degreePerShot: 0
     cost: 3000
+    isOnSpecialLayer: 1
   - name: Blizzard
     upgradeIdent: 24
     description: Even hotter... or colder... who knows
@@ -455,12 +476,13 @@ MonoBehaviour:
     spreadShots: 3
     degreePerShot: 15
     cost: 10000
+    isOnSpecialLayer: 1
   - name: Sword
     upgradeIdent: 25
     description: Best close range tower for it's price.
     upgradePaths: 
     barrelSprite: {fileID: 21300000, guid: 2f6c61fd96dc4a84cba5aec95b474b40, type: 3}
-    towerBaseColor: {r: 0.6886792, g: 0.6886792, b: 0.6886792, a: 1}
+    towerBaseColor: {r: 0.6886792, g: 0.67648757, b: 0.5158597, a: 1}
     bulletIdent: 20
     attackSpeed: 1
     rotationSpeed: 0
@@ -473,12 +495,13 @@ MonoBehaviour:
     spreadShots: 1
     degreePerShot: 0
     cost: 2000
+    isOnSpecialLayer: 0
   - name: Wallop
     upgradeIdent: 28
     description: More damage with short bursts of shots.
     upgradePaths: 0c0000001d000000
     barrelSprite: {fileID: 21300000, guid: cd035b43985113244848cb3b91512b0d, type: 3}
-    towerBaseColor: {r: 0.96759915, g: 1, b: 0.390566, a: 1}
+    towerBaseColor: {r: 0.43061587, g: 0.4838639, b: 0.9056604, a: 1}
     bulletIdent: 5
     attackSpeed: 0.15
     rotationSpeed: 0
@@ -491,6 +514,7 @@ MonoBehaviour:
     spreadShots: 1
     degreePerShot: 0
     cost: 900
+    isOnSpecialLayer: 0
   - name: Boomerang
     upgradeIdent: 29
     description: Everyone loves boomerangs.
@@ -509,6 +533,7 @@ MonoBehaviour:
     spreadShots: 1
     degreePerShot: 0
     cost: 5000
+    isOnSpecialLayer: 1
   - name: Boomaster
     upgradeIdent: 30
     description: Master of boo's and rangs.
@@ -527,6 +552,7 @@ MonoBehaviour:
     spreadShots: 1
     degreePerShot: 0
     cost: 10000
+    isOnSpecialLayer: 1
   - name: Lightning bolt
     upgradeIdent: 26
     description: L-L-Lightning
@@ -545,6 +571,7 @@ MonoBehaviour:
     spreadShots: 1
     degreePerShot: 0
     cost: 3000
+    isOnSpecialLayer: 0
   - name: Thunder Storm
     upgradeIdent: 27
     description: Bring the wrath of the heavens upon these bugs!
@@ -563,6 +590,7 @@ MonoBehaviour:
     spreadShots: 1
     degreePerShot: 0
     cost: 17000
+    isOnSpecialLayer: 0
   - name: Catapult
     upgradeIdent: 12
     description: Fling rocks towards your enemies. Rocks slow enemies heavily.
@@ -581,6 +609,7 @@ MonoBehaviour:
     spreadShots: 1
     degreePerShot: 0
     cost: 3000
+    isOnSpecialLayer: 1
   - name: Trebuchet
     upgradeIdent: 13
     description: 3 x rocks + global range = not funny gag...
@@ -599,3 +628,4 @@ MonoBehaviour:
     spreadShots: 3
     degreePerShot: 5
     cost: 10000
+    isOnSpecialLayer: 1

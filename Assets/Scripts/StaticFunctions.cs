@@ -1,17 +1,24 @@
+using System.Collections;
 using UnityEngine;
-using System.Threading.Tasks;
 
-public static class StaticFunctions
+public class StaticFunctions : MonoBehaviour
 {
+    // Singleton
+    public static StaticFunctions Instance {  get; private set; }
+    private void Awake()
+    {
+        Instance = this;
+    }
+
     /// <summary>
-    /// Change the color of sprite renderer to target color
+    /// Change color of the sprite
     /// </summary>
     /// <param name="sr"></param>
     /// <param name="targetColor"></param>
     /// <param name="duration"></param>
     /// <param name="smoothness"></param>
     /// <returns></returns>
-    private static async Task TransitionColor(SpriteRenderer sr, Color targetColor, float duration, float smoothness)
+    private IEnumerator TransitionColor(SpriteRenderer sr, Color targetColor, float duration, float smoothness)
     {
         if (sr.color != targetColor)
         {
@@ -22,7 +29,7 @@ public static class StaticFunctions
             {
                 sr.color += transitionColor;
                 counter++;
-                await Task.Delay(Mathf.FloorToInt(timeBetweenSteps * 1000)); // Convert seconds to milliseconds
+                yield return new WaitForSeconds(timeBetweenSteps);
             }
         }
 
@@ -36,7 +43,7 @@ public static class StaticFunctions
     /// <param name="radius"></param>
     /// <param name="center"></param>
     /// <returns></returns>
-    public static Vector2 GetRandomPointInCircle(float radius, Vector2 center)
+    public Vector2 GetRandomPointInCircle(float radius, Vector2 center)
     {
         float randomAngle = Random.Range(0f, 2f * Mathf.PI);
 
@@ -50,8 +57,8 @@ public static class StaticFunctions
     /// <param name="targetColor"></param>
     /// <param name="duration"></param>
     /// <param name="smoothness"></param>
-    public static async void StartTransition(SpriteRenderer sr, Color targetColor, float duration, float smoothness = 100)
+    public void StartTransition(SpriteRenderer sr, Color targetColor, float duration, float smoothness = 100)
     {
-        await TransitionColor(sr, targetColor, duration, smoothness);
+        StartCoroutine(TransitionColor(sr, targetColor, duration, smoothness));
     }
 }

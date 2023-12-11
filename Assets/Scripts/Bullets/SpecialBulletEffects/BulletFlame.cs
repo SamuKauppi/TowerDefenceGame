@@ -5,12 +5,12 @@ public class BulletFlame : BulletBeam
 {
     [SerializeField] private Animator _animator;        // Animator for flame effect
     [SerializeField] private float _animationLength;    // Lifetime of the animation
-    private float _animationTimer;                      // Timer for life spawnTimer
+    private float _animationTimer;                      // Timer for life MaxTimeForColor
     private bool _isPlaying = false;
 
     private void Start()
     {
-        // Reduce the animation spawnTimer for 0.5 seconds (length of the end animation) 
+        // Reduce the animation MaxTimeForColor for 0.5 seconds (length of the end animation) 
         _animationLength -= 0.5f;
     }
     public override void OnBulletSpawn()

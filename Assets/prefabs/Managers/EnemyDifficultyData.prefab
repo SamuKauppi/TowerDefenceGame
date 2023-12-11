@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tier1DifficultyThreshold: 2000
-  tier2DifficultyThreshold: 7000
+  tier2DifficultyThreshold: 5000
   tier1Enemies:
   - enemyType: 3
     difficultyValue: 1

@@ -86,7 +86,7 @@ public class BulletLightning : BulletProperties
         }
 
         // No enemies found, get a random position in check pos
-        Vector2 randomPosition = StaticFunctions.GetRandomPointInCircle(_currentCheckRadius, checkPos);
+        Vector2 randomPosition = StaticFunctions.Instance.GetRandomPointInCircle(_currentCheckRadius, checkPos);
         // Spawn lightning
         SpawnLightning(randomPosition);
         // Reduce targeting distance for next lightning

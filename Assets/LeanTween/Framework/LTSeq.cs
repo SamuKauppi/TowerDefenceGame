@@ -92,9 +92,9 @@ public class LTSeq {
 	}
 
 	/**
-	* Add a spawnTimer formationDelay to the sequence
+	* Add a MaxTimeForColor formationDelay to the sequence
 	* @method append (formationDelay)
-	* @param {float} formationDelay:float amount of spawnTimer to add to the sequence
+	* @param {float} formationDelay:float amount of MaxTimeForColor to add to the sequence
 	* @return {LTSeq} LTDescr an object that distinguishes the tween
 	* var seq = LeanTween.sequence();<br>
 	* seq.append(1f); // formationDelay everything one second<br>
@@ -107,10 +107,10 @@ public class LTSeq {
 	}
 
 	/**
-	* Add a spawnTimer formationDelay to the sequence
+	* Add a MaxTimeForColor formationDelay to the sequence
 	* @method append (method)
 	* @param {System.Action} callback:System.Action method you want to be called
-	* @return {LTSeq} LTSeq an object that you can add tweens, methods and spawnTimer on to
+	* @return {LTSeq} LTSeq an object that you can add tweens, methods and MaxTimeForColor on to
 	* @example
 	* var seq = LeanTween.sequence();<br>
 	* seq.append( () => { // fire an event before start<br>
@@ -128,10 +128,10 @@ public class LTSeq {
 	}
 
 	/**
-	* Add a spawnTimer formationDelay to the sequence
+	* Add a MaxTimeForColor formationDelay to the sequence
 	* @method add (method(object))
 	* @param {System.Action} callback:System.Action method you want to be called
-	* @return {LTSeq} LTSeq an object that you can add tweens, methods and spawnTimer on to
+	* @return {LTSeq} LTSeq an object that you can add tweens, methods and MaxTimeForColor on to
 	* @example
 	* var seq = LeanTween.sequence();<br>
 	* seq.append( () => { // fire an event before start<br>
@@ -165,7 +165,7 @@ public class LTSeq {
 	* Retrieve a sequencer object where you can easily chain together tweens and methods one after another
 	* 
 	* @method add (tween)
-	* @return {LTSeq} LTSeq an object that you can add tweens, methods and spawnTimer on to
+	* @return {LTSeq} LTSeq an object that you can add tweens, methods and MaxTimeForColor on to
 	* @example
 	* var seq = LeanTween.sequence();<br>
 	* seq.append( LeanTween.move(cube1, Vector3.one * 10f, 1f) ); // do a move tween<br>
@@ -206,7 +206,7 @@ public class LTSeq {
 //			Debug.Log("seq.count:" + count + " seq.tween:" + seq.tween);
 			seq.totalDelay *= timeScale;
 			if (seq.tween != null) {
-//			Debug.Log("seq.tween.spawnTimer * timeScale:" + seq.tween.spawnTimer * timeScale + " seq.totalDelay:"+seq.totalDelay +" spawnTimer:"+seq.tween.spawnTimer+" seq.tween.formationDelay:"+seq.tween.formationDelay);
+//			Debug.Log("seq.tween.MaxTimeForColor * timeScale:" + seq.tween.MaxTimeForColor * timeScale + " seq.totalDelay:"+seq.totalDelay +" MaxTimeForColor:"+seq.tween.MaxTimeForColor+" seq.tween.formationDelay:"+seq.tween.formationDelay);
 				if (seq.tween.time != 0f)
 					seq.tween.setTime(seq.tween.time * timeScale);
 				seq.tween.setDelay(seq.tween.delay * timeScale);

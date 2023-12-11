@@ -14,12 +14,15 @@ public class Tower : MonoBehaviour, IUpdate
     [SerializeField] private SpriteRenderer barrelSpriteRend;       // Sprite renderer of the barrel (asigned in inspector)
     [SerializeField] private SpriteRenderer towerSpriteRend;        // Sprite renderer of the tower (asigned in inspector)
     [SerializeField] private SpriteRenderer rangeSpriteRend;        // Sprite renderer of the range indicator
+    private const string SPECIAL_LAYER = "SpecialBarrels";
+    private const string NORMAL_LAYER = "TowerBarrel";
 
     // Targeting
     [SerializeField] private Transform barrel;                      // Barrel of the turret (pointed towards enemies)
     private HashSet<Transform> targets = new();                     // Enemies inside circlecollider2d that istrigger
 
     // Properties
+    [SerializeField] private bool EnableAtStart;
     private bool IsFunctional { get; set; }                                     // Is the tower functional (has to be disabled while placing down)
     public Vector3 TowerSize { get; private set; }                              // Size of the turret
     public TowerProperties CurrentUpgrade { get; private set; }                 // Current upgrade of the turret 
@@ -62,6 +65,11 @@ public class Tower : MonoBehaviour, IUpdate
 
         attackTimer = CurrentUpgrade.attackSpeed;
         chargeTimer = CurrentUpgrade.chargeTime;
+
+        if (EnableAtStart)
+        {
+            IsFunctional = true;
+        }
     }
 
     /// <summary>
@@ -343,8 +351,11 @@ public class Tower : MonoBehaviour, IUpdate
     {
         CurrentUpgrade = TowerTypes.Instance.GetTowerProperties(upgrade);
         attackRangeObj.localScale = new Vector3(CurrentUpgrade.attackRange, CurrentUpgrade.attackRange, 1f);
+
         TowerBarrelRend.sprite = CurrentUpgrade.barrelSprite;
         TowerBaseRend.color = CurrentUpgrade.towerBaseColor;
+        // Change the sorting layer
+        barrelSpriteRend.sortingLayerName = CurrentUpgrade.isOnSpecialLayer ? SPECIAL_LAYER : NORMAL_LAYER;
     }
 
     /// <summary>

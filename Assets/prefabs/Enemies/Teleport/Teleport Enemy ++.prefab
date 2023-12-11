@@ -68,24 +68,20 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6874522523319106757, guid: 59f3aebba9c846d45921eadde1cefa1b, type: 3}
+      propertyPath: speed
+      value: 0.85
+      objectReference: {fileID: 0}
+    - target: {fileID: 6874522523319106757, guid: 59f3aebba9c846d45921eadde1cefa1b, type: 3}
       propertyPath: damage
       value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 6874522523319106757, guid: 59f3aebba9c846d45921eadde1cefa1b, type: 3}
       propertyPath: health
-      value: 40000
+      value: 7500
       objectReference: {fileID: 0}
     - target: {fileID: 6874522523319106757, guid: 59f3aebba9c846d45921eadde1cefa1b, type: 3}
       propertyPath: difficultyValue
       value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 6874522523319106757, guid: 59f3aebba9c846d45921eadde1cefa1b, type: 3}
-      propertyPath: teleportDistance
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6874522523319106757, guid: 59f3aebba9c846d45921eadde1cefa1b, type: 3}
-      propertyPath: teleportFrequency
-      value: 0.15
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 59f3aebba9c846d45921eadde1cefa1b, type: 3}

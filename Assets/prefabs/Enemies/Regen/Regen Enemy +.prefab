@@ -13,11 +13,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -2257597762461729361, guid: c16775e2e0412ca4998531369b6353fa, type: 3}
       propertyPath: health
-      value: 500
+      value: 700
       objectReference: {fileID: 0}
     - target: {fileID: -2257597762461729361, guid: c16775e2e0412ca4998531369b6353fa, type: 3}
       propertyPath: healthRegen
-      value: 50
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: -2257597762461729361, guid: c16775e2e0412ca4998531369b6353fa, type: 3}
       propertyPath: difficultyValue

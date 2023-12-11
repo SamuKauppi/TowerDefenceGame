@@ -77,6 +77,12 @@ TagManager:
   - name: FlyingEnemies
     uniqueID: 3389086605
     locked: 0
+  - name: SpecialBullets
+    uniqueID: 1676637305
+    locked: 0
+  - name: SpecialBarrels
+    uniqueID: 2982969537
+    locked: 0
   - name: VFX
     uniqueID: 2609989817
     locked: 0

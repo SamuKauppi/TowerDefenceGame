@@ -136,11 +136,12 @@ MonoBehaviour:
   distanceToStop: 0.5
   turnSpeed: 45
   flyToEnd: 0
-  copyTime: 2.5
+  copyTime: 5
   copyRadius: 1.5
   moveCopiedTime: 0.15
   copyTarget: 32
-  spawnLimit: 10
+  spawnLimit: 5
+  speedIncreseAfterSpawn: 0.3
 --- !u!50 &8037798384930114521 stripped
 Rigidbody2D:
   m_CorrespondingSourceObject: {fileID: 976617091015190341, guid: 15653ddc2a0542b4191cc7331315cf50, type: 3}

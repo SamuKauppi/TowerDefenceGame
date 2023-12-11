@@ -29,7 +29,7 @@ public class EnemyWave
     private int _enemyCounter;                                          // How many enemies have been spawned
 
     // Const
-    private const string WAVENAME = "Infinite wave: ";
+    private const string WAVENAME = "Wave: ";
 
     /// <summary>
     /// Calcualtes the total time it takes to complete this wave
@@ -80,8 +80,6 @@ public class EnemyWave
         WaveEnemyDifficulty = totalEnemyDifficulty;
         WaveSpawnDifficulty = Mathf.CeilToInt(totalEnemySpawnDifficulty);
         WaveAvgDifficulty = (WaveEnemyDifficulty + WaveSpawnDifficulty) / 2;
-
-        Debug.Log("average: " + WaveEnemyDifficulty + " and " + WaveSpawnDifficulty + " = " + WaveAvgDifficulty);
 
         // Return total enemy count
         return totalEnemyCount;

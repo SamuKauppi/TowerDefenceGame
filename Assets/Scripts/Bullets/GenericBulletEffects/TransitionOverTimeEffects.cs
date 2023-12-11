@@ -8,7 +8,7 @@ public class TransitionOverTimeEffects : MonoBehaviour
     [SerializeField] private GameObject targetGameObject;
 
     // States
-    [SerializeField] private TransitionState[] transitions;     // Contains states for rotation, scale, color and spawnTimer between
+    [SerializeField] private TransitionState[] transitions;     // Contains states for rotation, scale, color and MaxTimeForColor between
     [SerializeField] private float colorChangeSmooth;           // How smooth color change will be
     [SerializeField] private bool resetRotation;                // Will rotation be reset on each spawn
 
@@ -54,7 +54,7 @@ public class TransitionOverTimeEffects : MonoBehaviour
         // Start changing color if nessesary
         if (effect.Time > 0f && effect.Color != targetSpriteRenderer.color)
         {
-            StaticFunctions.StartTransition(targetSpriteRenderer, effect.Color, effect.Time, colorChangeSmooth);
+            StaticFunctions.Instance.StartTransition(targetSpriteRenderer, effect.Color, effect.Time, colorChangeSmooth);
         }
     }
 

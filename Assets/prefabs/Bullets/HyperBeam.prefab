@@ -148,6 +148,10 @@ PrefabInstance:
       value: 2.1
       objectReference: {fileID: 0}
     - target: {fileID: 8020897677356372882, guid: ae24d2e576676cd408f37c2898880027, type: 3}
+      propertyPath: audioType
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8020897677356372882, guid: ae24d2e576676cd408f37c2898880027, type: 3}
       propertyPath: damageOverTime
       value: 200
       objectReference: {fileID: 0}

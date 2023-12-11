@@ -13,15 +13,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -1977235389955268492, guid: 7d02f401f49776941b60c5cf64ba728b, type: 3}
       propertyPath: health
-      value: 5000
-      objectReference: {fileID: 0}
-    - target: {fileID: -1977235389955268492, guid: 7d02f401f49776941b60c5cf64ba728b, type: 3}
-      propertyPath: copyTime
-      value: 2.5
+      value: 2500
       objectReference: {fileID: 0}
     - target: {fileID: -1977235389955268492, guid: 7d02f401f49776941b60c5cf64ba728b, type: 3}
       propertyPath: copyRadius
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: -1977235389955268492, guid: 7d02f401f49776941b60c5cf64ba728b, type: 3}
       propertyPath: copyTarget
@@ -34,6 +30,10 @@ PrefabInstance:
     - target: {fileID: -1977235389955268492, guid: 7d02f401f49776941b60c5cf64ba728b, type: 3}
       propertyPath: difficultyValue
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: -1977235389955268492, guid: 7d02f401f49776941b60c5cf64ba728b, type: 3}
+      propertyPath: speedIncreseAfterSpawn
+      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 3286698622133368997, guid: 7d02f401f49776941b60c5cf64ba728b, type: 3}
       propertyPath: m_Color.b

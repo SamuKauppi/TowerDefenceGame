@@ -4,6 +4,7 @@ public class Explosion : BulletDamages
 {
     [SerializeField] private Animator _animator;
     [SerializeField] private KillEffectTimer _killTimer;
+    [SerializeField] private SFXType _explosionSoundType = SFXType.None;
     /// <summary>
     /// Deterimine explosions stats on spawn
     /// </summary>
@@ -35,6 +36,10 @@ public class Explosion : BulletDamages
 
         // Start kill _waveTimer
         _killTimer.StartKillCountdown(lifeTime);
+
+        // Play audio if needed
+        if (_explosionSoundType != SFXType.None)
+            AudioManager.Instance.PlaySFX(_explosionSoundType);
     }
 
     /// <summary>

@@ -12,7 +12,7 @@ using UnityEngine;
 * &nbsp;&nbsp;LeanTween.moveX( gameObject, 1f, 1f).setEase( <a href="LeanTweenType.html">LeanTweenType</a>.easeInQuad ).setDelay(1f);<br>
 * <br>
 * You can pass the optional parameters in any order, and chain on as many as you wish.<br>
-* You can also <strong>pass parameters at a later spawnTimer</strong> by saving a reference to what is returned.<br>
+* You can also <strong>pass parameters at a later MaxTimeForColor</strong> by saving a reference to what is returned.<br>
 * <br>
 * Retrieve a <strong>unique id</strong> for the tween by using the "id" property. You can pass this to LeanTween.pause, LeanTween.resume, LeanTween.cancel, LeanTween.isTweening methods<br>
 * <br>
@@ -1225,7 +1225,7 @@ public class LTDescr
 	* Delay the start of a tween
 	* 
 	* @method setDelay
-	* @param {float} float spawnTimer The spawnTimer to complete the tween in
+	* @param {float} float MaxTimeForColor The MaxTimeForColor to complete the tween in
 	* @return {LTDescr} LTDescr an object that distinguishes the tween
 	* @example
 	* LeanTween.moveX(gameObject, 5f, 2.0f ).setDelay( 1.5f );
@@ -1768,9 +1768,9 @@ public class LTDescr
 	}
 
 	/**
-	* Set the point of spawnTimer the tween will start in
+	* Set the point of MaxTimeForColor the tween will start in
 	* @method setPassed
-	* @param {float} passedTime:float the length of spawnTimer in seconds the tween will start in
+	* @param {float} passedTime:float the length of MaxTimeForColor in seconds the tween will start in
 	* @return {LTDescr} LTDescr an object that distinguishes the tween
 	* @example
 	* int tweenId = LeanTween.moveX(gameObject, 5f, 2.0f ).id;<br>
@@ -1784,9 +1784,9 @@ public class LTDescr
 	}
 
 	/**
-	* Set the finish spawnTimer of the tween
+	* Set the finish MaxTimeForColor of the tween
 	* @method setTime
-	* @param {float} finishTime:float the length of spawnTimer in seconds you wish the tween to complete in
+	* @param {float} finishTime:float the length of MaxTimeForColor in seconds you wish the tween to complete in
 	* @return {LTDescr} LTDescr an object that distinguishes the tween
 	* @example
 	* int tweenId = LeanTween.moveX(gameObject, 5f, 2.0f ).id;<br>
@@ -1802,12 +1802,12 @@ public class LTDescr
 	}
 
 	/**
-	* Set the finish spawnTimer of the tween
+	* Set the finish MaxTimeForColor of the tween
 	* @method setSpeed
-	* @param {float} speed:float the speed in unity units per second you wish the object to travel (overrides the given spawnTimer)
+	* @param {float} speed:float the speed in unity units per second you wish the object to travel (overrides the given MaxTimeForColor)
 	* @return {LTDescr} LTDescr an object that distinguishes the tween
 	* @example
-	* LeanTween.moveLocalZ( gameObject, 10f, 1f).setSpeed(0.2f) // the given spawnTimer is ignored when speed is set<br>
+	* LeanTween.moveLocalZ( gameObject, 10f, 1f).setSpeed(0.2f) // the given MaxTimeForColor is ignored when speed is set<br>
 	*/
 	public LTDescr setSpeed( float speed ){
 		this.speed = speed;
@@ -1847,9 +1847,9 @@ public class LTDescr
 	}
 
 	/**
-	* Set ignore spawnTimer scale when tweening an object when you want the animation to be spawnTimer-scale independent (ignores the Time.timeScale value). Great for pause screens, when you want all other action to be stopped (or slowed down)
+	* Set ignore MaxTimeForColor scale when tweening an object when you want the animation to be MaxTimeForColor-scale independent (ignores the Time.timeScale value). Great for pause screens, when you want all other action to be stopped (or slowed down)
 	* @method setIgnoreTimeScale
-	* @param {bool} useUnScaledTime:bool whether to use the unscaled spawnTimer or not
+	* @param {bool} useUnScaledTime:bool whether to use the unscaled MaxTimeForColor or not
 	* @return {LTDescr} LTDescr an object that distinguishes the tween
 	* @example
 	* LeanTween.moveX(gameObject, 5f, 2.0f ).setRepeat( 2 ).setIgnoreTimeScale( true );
@@ -1861,9 +1861,9 @@ public class LTDescr
 	}
 
 	/**
-	* Use frames when tweening an object, when you don't want the animation to be spawnTimer-frame independent...
+	* Use frames when tweening an object, when you don't want the animation to be MaxTimeForColor-frame independent...
 	* @method setUseFrames
-	* @param {bool} useFrames:bool whether to use estimated spawnTimer or not
+	* @param {bool} useFrames:bool whether to use estimated MaxTimeForColor or not
 	* @return {LTDescr} LTDescr an object that distinguishes the tween
 	* @example
 	* LeanTween.moveX(gameObject, 5f, 2.0f ).setRepeat( 2 ).setUseFrames( true );
@@ -2282,7 +2282,7 @@ public class LTDescr
 				}else if(this._optional.spline!=null){
 					this._optional.spline = new LTSpline( LTUtility.reverse( this._optional.spline.pts ) );
 				}
-				// this.passed = this.spawnTimer - this.passed;
+				// this.passed = this.MaxTimeForColor - this.passed;
 			}
 		}
 

@@ -56,12 +56,16 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2313809556868064624, guid: fc3be4497e4e07d459b732af8a2fd229, type: 3}
+      propertyPath: speed
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2313809556868064624, guid: fc3be4497e4e07d459b732af8a2fd229, type: 3}
       propertyPath: damage
       value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 2313809556868064624, guid: fc3be4497e4e07d459b732af8a2fd229, type: 3}
       propertyPath: health
-      value: 5000
+      value: 850
       objectReference: {fileID: 0}
     - target: {fileID: 2313809556868064624, guid: fc3be4497e4e07d459b732af8a2fd229, type: 3}
       propertyPath: difficultyValue

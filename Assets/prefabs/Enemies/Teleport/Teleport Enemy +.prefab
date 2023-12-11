@@ -8,24 +8,20 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: -4103099140386316919, guid: 29681b3018e8b084fa51b5276c3e1e78, type: 3}
+      propertyPath: speed
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: -4103099140386316919, guid: 29681b3018e8b084fa51b5276c3e1e78, type: 3}
       propertyPath: damage
       value: 20
       objectReference: {fileID: 0}
     - target: {fileID: -4103099140386316919, guid: 29681b3018e8b084fa51b5276c3e1e78, type: 3}
       propertyPath: health
-      value: 3000
+      value: 750
       objectReference: {fileID: 0}
     - target: {fileID: -4103099140386316919, guid: 29681b3018e8b084fa51b5276c3e1e78, type: 3}
       propertyPath: difficultyValue
       value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: -4103099140386316919, guid: 29681b3018e8b084fa51b5276c3e1e78, type: 3}
-      propertyPath: teleportDistance
-      value: 1.5
-      objectReference: {fileID: 0}
-    - target: {fileID: -4103099140386316919, guid: 29681b3018e8b084fa51b5276c3e1e78, type: 3}
-      propertyPath: teleportFrequency
-      value: 0.25
       objectReference: {fileID: 0}
     - target: {fileID: 2244196568688894280, guid: 29681b3018e8b084fa51b5276c3e1e78, type: 3}
       propertyPath: m_Color.b

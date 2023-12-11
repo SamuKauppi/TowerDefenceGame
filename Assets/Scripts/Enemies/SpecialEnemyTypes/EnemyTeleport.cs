@@ -17,7 +17,7 @@ public class EnemyTeleport : Enemy, ISpecialAbility
             {
                 continue;
             }
-            Vector3 randomPos = StaticFunctions.GetRandomPointInCircle(teleportDistance, transform.position);
+            Vector3 randomPos = StaticFunctions.Instance.GetRandomPointInCircle(teleportDistance, transform.position);
 
             if (Mathf.Abs(randomPos.y) < teleportDistance &&
                 randomPos.x >= transform.position.x)

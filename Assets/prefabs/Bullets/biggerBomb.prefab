@@ -73,7 +73,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2377344280394233251, guid: f09f8941e6c25724984454493f5651c0, type: 3}
       propertyPath: statusesOnHit.Array.data[0].strength
-      value: 0.85
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 2377344280394233251, guid: f09f8941e6c25724984454493f5651c0, type: 3}
       propertyPath: statusesOnHit.Array.data[0].bulletApplying

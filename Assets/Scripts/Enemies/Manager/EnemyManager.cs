@@ -5,8 +5,9 @@ using UnityEngine;
 public class EnemyManager : MonoBehaviour
 {
     // Refeneces
-    [SerializeField] private WaveUiManager waveUiManager;
-    private ObjectPooler pooler;
+    [SerializeField] private GameOverUi gameOverUi;                 // Handles game over panel
+    [SerializeField] private WaveUiManager waveUiManager;           // Handles the wave ui
+    private ObjectPooler pooler;                                    // Pooler for spawning enemies
 
     // Waves from inspector
     [SerializeField] private List<EnemyWave> preDeterminedWaves;    // Waves set in inspector
@@ -17,7 +18,7 @@ public class EnemyManager : MonoBehaviour
     private EnemyWave currentWave = null;                           // Current wave 
     private int _waveNumber = 0;                                    // Current wave number (starts at wave 0)
     private int _lastestDifficulty;                                 // Lastest difficulty (used to measure difficulty scale)
-    private int _averageDifficultyIncrese;                          // How much difficulty increses over the predetermined waves
+    private int _averageDifficultyDifference;                       // How much difficulty increses over the predetermined waves
 
     // On wave change
     public delegate
@@ -32,12 +33,33 @@ public class EnemyManager : MonoBehaviour
     private int _formationIndex;                // Counter keeping track which formations is used
     private float _waveTimer;                   // Timer to keep visuals and wave in sync
 
+    // Game over
+    private bool spawnEnemies = true;           // Set to false once game ends
+
+    private void OnEnable()
+    {
+        PlayerScript.OnGameOver += StopSpawning;
+    }
+
+    private void OnDisable()
+    {
+        PlayerScript.OnGameOver -= StopSpawning;
+    }
+
+    private void StopSpawning(int wavesCompleted, int enemiesKilled, int moneyEarned)
+    {
+        spawnEnemies = false;
+        gameOverUi.gameObject.SetActive(true);
+        gameOverUi.SetStats(wavesCompleted, enemiesKilled, moneyEarned);
+    }
+
     /// <summary>
     /// Set the ObjectPooler reference and add waves from inspector to queue
     /// </summary>
     private void Start()
     {
         pooler = ObjectPooler.Instance;
+
         for (int i = 0; i < preDeterminedWaves.Count; i++)
         {
             preDeterminedWaves[i].InitializeWave();
@@ -49,14 +71,22 @@ public class EnemyManager : MonoBehaviour
             // Calculate difficulties
             int waveAvgDifficulty = preDeterminedWaves[i].WaveAvgDifficulty;
 
-            // Add difficutly to count avg difficulty increase
-            _averageDifficultyIncrese += waveAvgDifficulty;
-            // Save the avg difficulty as latest difficulty
+            // Calculate the difference between consecutive difficulties
+            if (i > 0)
+            {
+                int difficultyDifference = waveAvgDifficulty - preDeterminedWaves[i - 1].WaveAvgDifficulty;
+                _averageDifficultyDifference += Mathf.Abs(difficultyDifference);
+            }
+
+            // Save the current difficulty for the next iteration
             _lastestDifficulty = waveAvgDifficulty;
         }
 
-        _averageDifficultyIncrese /= preDeterminedWaves.Count;
-        Debug.Log(_averageDifficultyIncrese);
+        // Calculate the average difficulty difference
+        if (preDeterminedWaves.Count > 1)
+        {
+            _averageDifficultyDifference /= (preDeterminedWaves.Count - 1);
+        }
 
         StartCoroutine(SpawnWaves());
     }
@@ -178,7 +208,7 @@ public class EnemyManager : MonoBehaviour
     private IEnumerator SpawnWaves()
     {
         StartCoroutine(WaveTimer());
-        while (true)
+        while (spawnEnemies)
         {
             if (enemyWaveQueue.Count < 5)
             {
@@ -187,17 +217,14 @@ public class EnemyManager : MonoBehaviour
             // Get new wave
             StartNextWave();
 
-            while (currentWave.WaveHasEnemies)
+            while (currentWave.WaveHasEnemies && spawnEnemies)
             {
                 HandleWave();
                 yield return null;
             }
 
-            // Either delay the start of the new wave or stop wave Ui elements to fix desync between them
-            if (currentWave.TotalWaveTime > _waveTimer)
-            {
-                yield return new WaitForSeconds(currentWave.TotalWaveTime - _waveTimer);
-            }
+            // Wait until wave is properly over
+            yield return new WaitForSeconds(currentWave.TotalWaveTime - _waveTimer);   
             _waveNumber++;
         }
     }
@@ -208,7 +235,7 @@ public class EnemyManager : MonoBehaviour
     /// <returns></returns>
     private IEnumerator WaveTimer()
     {
-        while (true)
+        while (spawnEnemies)
         {
             _waveTimer += Time.deltaTime;
             yield return null;
@@ -227,14 +254,14 @@ public class EnemyManager : MonoBehaviour
         };
 
         // Calcualte new difficulty 
-        _lastestDifficulty += _averageDifficultyIncrese;
+        _lastestDifficulty += _averageDifficultyDifference;
 
         // Add formations to wave
         newWave.enemyFormations = CreateFormations();
 
         // Initialize wave properties and visuals
         newWave.InitializeWave();
-        newWave.CreateWaveVisuals(_waveNumber);
+        newWave.CreateWaveVisuals(_waveNumber + enemyWaveQueue.Count);
 
         // Create wave ui element
         waveUiManager.AddWave(newWave.TotalWaveTime, newWave.waveName, newWave.waveColor);
@@ -266,7 +293,7 @@ public class EnemyManager : MonoBehaviour
                 // Create spawn pools for the formation
                 enemiesToSpawn = CreateSpawnPools(formationCount),
                 // Set the formation delay
-                formationDelay = 10f
+                formationDelay = 0f
             };
             // Set random index
             formations[i].InitializeFirstRandomIndex();
@@ -295,7 +322,7 @@ public class EnemyManager : MonoBehaviour
             {
                 enemyType = enemies[i],
                 count = 0,
-                delay = Random.Range(0.01f, 0.50f)
+                delay = Random.Range(0.01f, 0.35f)
             };
         }
 
@@ -325,7 +352,7 @@ public class EnemyManager : MonoBehaviour
     /// <returns></returns>
     private GameEntity[] SelectEnemies(int difficulty)
     {
-        int count = Random.Range(3, 7);
+        int count = Random.Range(5, 7);
         List<GameEntity> enemiesSelected = new();
         for (int i = 0; i < count; i++)
         {

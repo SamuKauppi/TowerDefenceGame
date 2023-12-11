@@ -17,11 +17,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1025282775564902189, guid: 2b0dedcc79391e245822167ed912fbdb, type: 3}
       propertyPath: health
-      value: 35000
+      value: 17500
       objectReference: {fileID: 0}
     - target: {fileID: 1025282775564902189, guid: 2b0dedcc79391e245822167ed912fbdb, type: 3}
       propertyPath: burrowTime
-      value: 5.2
+      value: 5.4
       objectReference: {fileID: 0}
     - target: {fileID: 1025282775564902189, guid: 2b0dedcc79391e245822167ed912fbdb, type: 3}
       propertyPath: difficultyValue

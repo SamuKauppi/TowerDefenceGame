@@ -13,7 +13,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -1761717479969819627, guid: cdb29b1a4451cda48878b9ec33dea536, type: 3}
       propertyPath: health
-      value: 3333
+      value: 165
       objectReference: {fileID: 0}
     - target: {fileID: -1761717479969819627, guid: cdb29b1a4451cda48878b9ec33dea536, type: 3}
       propertyPath: difficultyValue

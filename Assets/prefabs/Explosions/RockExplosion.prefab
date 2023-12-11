@@ -94,6 +94,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb274689a2f05334a97625cd2fc1b782, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ObjectToKill: {fileID: 0}
 --- !u!114 &2414154245048000415
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -111,6 +112,7 @@ MonoBehaviour:
   statusesOnHit: []
   _animator: {fileID: 4935124436406456333}
   _killTimer: {fileID: -175801193223326209}
+  _explosionSoundType: 0
 --- !u!95 &4935124436406456333 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 8565955595562019675, guid: de1a163c4a0809142a971feb6f9c50ee, type: 3}

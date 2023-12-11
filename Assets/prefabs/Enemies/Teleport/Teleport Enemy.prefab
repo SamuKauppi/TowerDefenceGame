@@ -133,7 +133,7 @@ MonoBehaviour:
   turnSpeed: 45
   flyToEnd: 1
   maxXPosition: 9
-  teleportDistance: 2
+  teleportDistance: 1
   teleportFrequency: 0.5
 --- !u!50 &6715906167306687028 stripped
 Rigidbody2D:

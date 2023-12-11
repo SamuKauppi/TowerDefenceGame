@@ -33,7 +33,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1930133802080899264, guid: de1a163c4a0809142a971feb6f9c50ee, type: 3}
       propertyPath: m_WasSpriteAssigned
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3540091739760738816, guid: de1a163c4a0809142a971feb6f9c50ee, type: 3}
       propertyPath: m_Name
@@ -134,6 +134,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb274689a2f05334a97625cd2fc1b782, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ObjectToKill: {fileID: 0}
 --- !u!114 &6027606796800631153
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -151,6 +152,7 @@ MonoBehaviour:
   statusesOnHit: []
   _animator: {fileID: 7889018598953001844}
   _killTimer: {fileID: -9170982627434398425}
+  _explosionSoundType: 2
 --- !u!95 &7889018598953001844 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 8565955595562019675, guid: de1a163c4a0809142a971feb6f9c50ee, type: 3}

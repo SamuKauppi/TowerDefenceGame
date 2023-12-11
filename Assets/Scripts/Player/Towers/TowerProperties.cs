@@ -37,4 +37,6 @@ public class TowerProperties
     public int degreePerShot;
     // Cost to upgrade
     public int cost;
+    // Will this bullet be on special layer  (to highlight better bullets)
+    public bool isOnSpecialLayer;
 }

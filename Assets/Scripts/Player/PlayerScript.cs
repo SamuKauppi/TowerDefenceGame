@@ -1,6 +1,5 @@
-using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class PlayerScript : MonoBehaviour
 {
@@ -15,12 +14,11 @@ public class PlayerScript : MonoBehaviour
     [SerializeField] private int towerCostIncrese = 50;     // How much does the cost increse after every tower
     [SerializeField] private int startingCost = 100;        // How much does the costs of tower start at
     [SerializeField] private float startingHealth = 100f;   // Satrting health
-    private UpgradePanel upgradePanel;                      // Reference for faster access
 
     // Tower related variables
+    private readonly HashSet<Tower> towersPlaced = new();   // Tracking every created tower (to disable when game ends)
     private bool isAttached;                                // If a tower is attached to the cursor
     private Tower towerAttached;                            // Instance of a tower that is attached to cursor
-    private int towersPlaced = 0;                           // Amount of towers placed
     private Vector2 mousePosition;                          // The current position of mouse
     private Vector2 lastMousePos;                           // Position of the mouse in the last frame.
                                                             // Move attached tower to this pos
@@ -29,7 +27,18 @@ public class PlayerScript : MonoBehaviour
     // Gameplay
     public float PlayerHealth { get; private set; }         // Players health
     public int PlayerMoney { get; private set; }            // Players money
-    private int _costOfNextTower = 0;
+    private int _costOfNextTower = 0;                       // Cost of next tower
+    private UpgradePanel upgradePanel;                      // Reference for faster access
+
+    // Stats
+    public delegate
+        void GameOverEvent(int money, int kills, int waves);// Delegate for detecting when new wave starts
+    public static
+        event GameOverEvent OnGameOver;                     // Event
+    private int moneyEarned;                                // How much money did player earn during game
+    private int enemiesKilled;                              // How many enemies player defeated
+    private int wavesCompleted = -2;                        // Waves completed (-2 because first wave is delay and increses when wave starts)
+    private bool playerIsDead;                              // To prevent calling the game over event multiple times
 
     // Background
     [SerializeField] private SpriteRenderer backgroundColorSr;  // Background sprite
@@ -53,7 +62,7 @@ public class PlayerScript : MonoBehaviour
     private void OnEnable()
     {
         // Ememy death
-        Enemy.OnEnemyDeath += UpdateMoney;
+        Enemy.OnEnemyDeath += EnemyKilled;
         // Tower upgrade
         UpgradeButton.OnUpgrade += UpdateMoney;
         // Wave change
@@ -66,7 +75,7 @@ public class PlayerScript : MonoBehaviour
     private void OnDisable()
     {
         // Enemy death
-        Enemy.OnEnemyDeath -= UpdateMoney;
+        Enemy.OnEnemyDeath -= EnemyKilled;
         // Upgrade tower
         UpgradeButton.OnUpgrade -= UpdateMoney;
         // Wave change
@@ -81,10 +90,13 @@ public class PlayerScript : MonoBehaviour
     {
         // Ensure that alpha is 1
         color.a = 1f;
-        StaticFunctions.StartTransition(backgroundColorSr, color, transitionTime, smoothnessValue);
+        StaticFunctions.Instance.StartTransition(backgroundColorSr, color, transitionTime, smoothnessValue);
 
         // Gain one health on wave end
         TakeDamage(-1f);
+
+        // Update stats
+        wavesCompleted++;
     }
 
     /// <summary>
@@ -96,6 +108,22 @@ public class PlayerScript : MonoBehaviour
         PlayerMoney += amount;
         bool canBuildNew = PlayerMoney >= _costOfNextTower;
         upgradePanel.UpdateMoneyText(PlayerMoney, _costOfNextTower, canBuildNew);
+
+        // Update stats
+        if (amount > 0)
+        {
+            moneyEarned += amount;
+        }
+    }
+
+    /// <summary>
+    /// Increse enemies killed and gain money based on enemy
+    /// </summary>
+    /// <param name="moneyEarned"></param>
+    private void EnemyKilled(int moneyEarned)
+    {
+        enemiesKilled++;
+        UpdateMoney(moneyEarned);
     }
 
     /// <summary>
@@ -115,6 +143,11 @@ public class PlayerScript : MonoBehaviour
         else if (towerAttached != null)
         {
             TurretPlacement();
+        }
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            UpdateMoney(1000);
         }
     }
 
@@ -222,11 +255,13 @@ public class PlayerScript : MonoBehaviour
     /// </summary>
     private void AttemptToPlaceTower()
     {
+        // Get every collider in range
         Collider2D[] collidersInRange = Physics2D.OverlapAreaAll(
             towerAttached.transform.position - (towerAttached.TowerSize * 0.4f),
             towerAttached.transform.position + (towerAttached.TowerSize * 0.4f),
             towerLayer);
 
+        // Check if any of them is a non trigger and cancel building if so
         for (int i = 0; i < collidersInRange.Length; i++)
         {
             if (!collidersInRange[i].isTrigger)
@@ -236,15 +271,18 @@ public class PlayerScript : MonoBehaviour
             }
         }
 
-        towersPlaced++;
-        if (Pathfinding.Instance.CheckIfPathIsValid(towerAttached.transform.position, towerAttached.TowerSize, towersPlaced))
+
+        // Perform calculations for pathfinding. If the new tower won't block the path, build it
+        if (Pathfinding.Instance.CheckIfPathIsValid(towerAttached.transform.position, towerAttached.TowerSize))
         {
+            towersPlaced.Add(towerAttached);
             isAttached = false;
             towerAttached.SetFunctional(true);
             towerAttached.ShowTowerRange = false;
             int currentCost = -_costOfNextTower;
             _costOfNextTower += towerCostIncrese;
             UpdateMoney(currentCost);
+            AudioManager.Instance.PlaySFX(SFXType.Placement);
         }
         else
         {
@@ -271,12 +309,25 @@ public class PlayerScript : MonoBehaviour
     /// <param name="amount"></param>
     public void TakeDamage(float amount)
     {
+        if (playerIsDead) return;
+
         PlayerHealth = Mathf.Clamp(PlayerHealth - amount, 0, startingHealth);
         upgradePanel.UpdateLivesText(PlayerHealth);
+
+        if (amount > 0)
+        {
+            AudioManager.Instance.PlaySFX(SFXType.Damage);
+        }
+
         if (PlayerHealth <= 0)
         {
-            Debug.Log("deth");
-            SceneManager.LoadScene(0);
+            foreach (var tower in towersPlaced)
+            {
+                tower.SetFunctional(false);
+            }
+
+            OnGameOver?.Invoke(wavesCompleted, enemiesKilled, moneyEarned);
+            playerIsDead = true;
         }
     }
 }

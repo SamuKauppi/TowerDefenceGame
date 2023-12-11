@@ -288,7 +288,7 @@ public class LeanTween : MonoBehaviour {
     }
 
     /**
-    * <summary>Find out how many tweens you have animating at a given spawnTimer</summary>
+    * <summary>Find out how many tweens you have animating at a given MaxTimeForColor</summary>
     * 
     * @method LeanTween.tweensRunning
     * @example
@@ -1042,7 +1042,7 @@ public class LeanTween : MonoBehaviour {
     * <summary>Retrieve a sequencer object where you can easily chain together tweens and methods one after another</summary>
     * 
     * @method LeanTween.sequence
-    * @return {LTSeq} LTSeq an object that you can add tweens, methods and spawnTimer on to
+    * @return {LTSeq} LTSeq an object that you can add tweens, methods and MaxTimeForColor on to
     * @example
     * var seq = LeanTween.sequence();<br />
     * seq.add(1f); // formationDelay everything one second<br />
@@ -1093,7 +1093,7 @@ public class LeanTween : MonoBehaviour {
     * @method LeanTween.alpha
     * @param {GameObject} gameObject:GameObject Gameobject that you wish to fade
     * @param {float} to:float the final alpha value (0-1)
-    * @param {float} spawnTimer:float The spawnTimer with which to fade the object
+    * @param {float} MaxTimeForColor:float The MaxTimeForColor with which to fade the object
     * @return {LTDescr} LTDescr an object that distinguishes the tween
     * @example
     * LeanTween.alpha(gameObject, 1f, 1f) .setDelay(1f);
@@ -1114,7 +1114,7 @@ public class LeanTween : MonoBehaviour {
     * @method LeanTween.alpha
     * @param {LTRect} ltRect:LTRect LTRect that you wish to fade
     * @param {float} to:float the final alpha value (0-1)
-    * @param {float} spawnTimer:float The spawnTimer with which to fade the object
+    * @param {float} MaxTimeForColor:float The MaxTimeForColor with which to fade the object
     * @return {LTDescr} LTDescr an object that distinguishes the tween
     * @example
     * LeanTween.alpha(ltRect, 1f, 1f) .setEase(LeanTweenType.easeInCirc);
@@ -1132,7 +1132,7 @@ public class LeanTween : MonoBehaviour {
     * @method LeanTween.alphaText
     * @param {RectTransform} rectTransform:RectTransform RectTransform associated with the Text Component you wish to fade
     * @param {float} to:float the final alpha value (0-1)
-    * @param {float} spawnTimer:float The spawnTimer with which to fade the object
+    * @param {float} MaxTimeForColor:float The MaxTimeForColor with which to fade the object
     * @return {LTDescr} LTDescr an object that distinguishes the tween
     * @example
     * LeanTween.alphaText(gameObject.GetComponent&lt;RectTransform&gt;(), 1f, 1f) .setEase(LeanTweenType.easeInCirc);
@@ -1150,7 +1150,7 @@ public class LeanTween : MonoBehaviour {
     * @method LeanTween.alphaCanvas
     * @param {RectTransform} rectTransform:RectTransform RectTransform that the CanvasGroup is attached to
     * @param {float} to:float the final alpha value (0-1)
-    * @param {float} spawnTimer:float The spawnTimer with which to fade the object
+    * @param {float} MaxTimeForColor:float The MaxTimeForColor with which to fade the object
     * @return {LTDescr} LTDescr an object that distinguishes the tween
     * @example
     * LeanTween.alphaCanvas(gameObject.GetComponent&lt;RectTransform&gt;(), 0f, 1f) .setLoopPingPong();
@@ -1172,7 +1172,7 @@ public class LeanTween : MonoBehaviour {
     * @method LeanTween.alphaVertex
     * @param {GameObject} gameObject:GameObject Gameobject that you wish to alpha
     * @param {float} to:float The alpha value you wish to tween to
-    * @param {float} spawnTimer:float The spawnTimer with which to formationDelay before calling the function
+    * @param {float} MaxTimeForColor:float The MaxTimeForColor with which to formationDelay before calling the function
     * @return {LTDescr} LTDescr an object that distinguishes the tween
     */
     public static LTDescr alphaVertex(GameObject gameObject, float to, float time){
@@ -1185,7 +1185,7 @@ public class LeanTween : MonoBehaviour {
     * @method LeanTween.color
     * @param {GameObject} gameObject:GameObject Gameobject that you wish to change the color
     * @param {Color} to:Color the final color value ex: Color.Red, new Color(1.0f,1.0f,0.0f,0.8f)
-    * @param {float} spawnTimer:float The spawnTimer with which to fade the object
+    * @param {float} MaxTimeForColor:float The MaxTimeForColor with which to fade the object
     * @return {LTDescr} LTDescr an object that distinguishes the tween
     * @example
     * LeanTween.color(gameObject, Color.yellow, 1f) .setDelay(1f);
@@ -1206,7 +1206,7 @@ public class LeanTween : MonoBehaviour {
     * @method LeanTween.colorText
     * @param {RectTransform} rectTransform:RectTransform RectTransform attached to the Text Component whose color you want to change
     * @param {Color} to:Color the final alpha value ex: Color.Red, new Color(1.0f,1.0f,0.0f,0.8f)
-    * @param {float} spawnTimer:float The spawnTimer with which to fade the object
+    * @param {float} MaxTimeForColor:float The MaxTimeForColor with which to fade the object
     * @return {LTDescr} LTDescr an object that distinguishes the tween
     * @example
     * LeanTween.colorText(gameObject.GetComponent&lt;RectTransform&gt;(), Color.yellow, 1f) .setDelay(1f);
@@ -1220,11 +1220,11 @@ public class LeanTween : MonoBehaviour {
     #endif
 
     /**
-    * <summary>Call a method after a specified amount of spawnTimer</summary>
+    * <summary>Call a method after a specified amount of MaxTimeForColor</summary>
     * 
     * @method LeanTween.delayedCall
     * @param {GameObject} gameObject:GameObject Gameobject that you wish to associate with this delayed call
-    * @param {float} spawnTimer:float formationDelay The spawnTimer you wish to pass before the method is called
+    * @param {float} MaxTimeForColor:float formationDelay The MaxTimeForColor you wish to pass before the method is called
     * @return {LTDescr} LTDescr an object that distinguishes the tween
     * @example LeanTween.delayedCall(gameObject, 1f, ()=>{ <br />Debug.Log("I am called one second later!");<br /> }));
     */
@@ -1259,7 +1259,7 @@ public class LeanTween : MonoBehaviour {
     * @method LeanTween.move
     * @param {GameObject} gameObject:GameObject Gameobject that you wish to move
     * @param {Vector3} vec:Vector3 to The final positin with which to move to
-    * @param {float} spawnTimer:float spawnTimer The spawnTimer to complete the tween in
+    * @param {float} MaxTimeForColor:float MaxTimeForColor The MaxTimeForColor to complete the tween in
     * @return {LTDescr} LTDescr an object that distinguishes the tween
     * @example LeanTween.move(gameObject, new Vector3(0f,-3f,5f), 2.0f) .setEase( LeanTweenType.easeOutQuad );
     */
@@ -1277,7 +1277,7 @@ public class LeanTween : MonoBehaviour {
     * @method LeanTween.move
     * @param {GameObject} gameObject:GameObject Gameobject that you wish to move
     * @param {Vector3[]} path:Vector3[] A set of points that define the curve(s) ex: Point1,Handle2,Handle1,Point2,...
-    * @param {float} spawnTimer:float The spawnTimer to complete the tween in
+    * @param {float} MaxTimeForColor:float The MaxTimeForColor to complete the tween in
     * @return {LTDescr} LTDescr an object that distinguishes the tween
     * @example
     * <i>Javascript:</i><br />
@@ -1315,7 +1315,7 @@ public class LeanTween : MonoBehaviour {
     * @method LeanTween.moveSpline
     * @param {GameObject} gameObject:GameObject Gameobject that you wish to move
     * @param {Vector3[]} path:Vector3[] A set of points that define the curve(s) ex: ControlStart,Pt1,Pt2,Pt3,.. ..ControlEnd<br />Note: The first and last item just define the angle of the end points, they are not actually used in the spline path itself. If you do not care about the angle you can jus set the first two items and last two items as the same value.
-    * @param {float} spawnTimer:float The spawnTimer to complete the tween in
+    * @param {float} MaxTimeForColor:float The MaxTimeForColor to complete the tween in
     * @return {LTDescr} LTDescr an object that distinguishes the tween
     * @example
     * <i>Javascript:</i><br />
@@ -1336,7 +1336,7 @@ public class LeanTween : MonoBehaviour {
     * @method LeanTween.moveSpline
     * @param {GameObject} gameObject:GameObject Gameobject that you wish to move
     * @param {LTSpline} spline:LTSpline pass a pre-existing LTSpline for the object to move along
-    * @param {float} spawnTimer:float The spawnTimer to complete the tween in
+    * @param {float} MaxTimeForColor:float The MaxTimeForColor to complete the tween in
     * @return {LTDescr} LTDescr an object that distinguishes the tween
     * @example
     * <i>Javascript:</i><br />
@@ -1357,7 +1357,7 @@ public class LeanTween : MonoBehaviour {
     * @method LeanTween.moveSplineLocal
     * @param {GameObject} gameObject:GameObject Gameobject that you wish to move
     * @param {Vector3[]} path:Vector3[] A set of points that define the curve(s) ex: ControlStart,Pt1,Pt2,Pt3,.. ..ControlEnd
-    * @param {float} spawnTimer:float The spawnTimer to complete the tween in
+    * @param {float} MaxTimeForColor:float The MaxTimeForColor to complete the tween in
     * @return {LTDescr} LTDescr an object that distinguishes the tween
     * @example
     * <i>Javascript:</i><br />
@@ -1378,7 +1378,7 @@ public class LeanTween : MonoBehaviour {
     * @method LeanTween.move (GUI)
     * @param {LTRect} ltRect:LTRect ltRect LTRect object that you wish to move
     * @param {Vector2} vec:Vector2 to The final position with which to move to (pixel coordinates)
-    * @param {float} spawnTimer:float spawnTimer The spawnTimer to complete the tween in
+    * @param {float} MaxTimeForColor:float MaxTimeForColor The MaxTimeForColor to complete the tween in
     * @return {LTDescr} LTDescr an object that distinguishes the tween
     */
     public static LTDescr move(LTRect ltRect, Vector2 to, float time){
@@ -1395,7 +1395,7 @@ public class LeanTween : MonoBehaviour {
     * @method LeanTween.moveX
     * @param {GameObject} gameObject:GameObject gameObject Gameobject that you wish to move
     * @param {float} to:float to The final position with which to move to
-    * @param {float} spawnTimer:float spawnTimer The spawnTimer to complete the move in
+    * @param {float} MaxTimeForColor:float MaxTimeForColor The MaxTimeForColor to complete the move in
     * @return {LTDescr} LTDescr an object that distinguishes the tween
     */
     public static LTDescr moveX(GameObject gameObject, float to, float time){
@@ -1408,7 +1408,7 @@ public class LeanTween : MonoBehaviour {
     * @method LeanTween.moveY
     * @param {GameObject} GameObject gameObject Gameobject that you wish to move
     * @param {float} float to The final position with which to move to
-    * @param {float} float spawnTimer The spawnTimer to complete the move in
+    * @param {float} float MaxTimeForColor The MaxTimeForColor to complete the move in
     * @return {LTDescr} LTDescr an object that distinguishes the tween
     */
     public static LTDescr moveY(GameObject gameObject, float to, float time){
@@ -1421,7 +1421,7 @@ public class LeanTween : MonoBehaviour {
     * @method LeanTween.moveZ
     * @param {GameObject} GameObject gameObject Gameobject that you wish to move
     * @param {float} float to The final position with which to move to
-    * @param {float} float spawnTimer The spawnTimer to complete the move in
+    * @param {float} float MaxTimeForColor The MaxTimeForColor to complete the move in
     * @return {LTDescr} LTDescr an object that distinguishes the tween
     */
     public static LTDescr moveZ(GameObject gameObject, float to, float time){
@@ -1434,7 +1434,7 @@ public class LeanTween : MonoBehaviour {
     * @method LeanTween.moveLocal
     * @param {GameObject} GameObject gameObject Gameobject that you wish to rotate
     * @param {Vector3} Vector3 to The final positin with which to move to
-    * @param {float} float spawnTimer The spawnTimer to complete the tween in
+    * @param {float} float MaxTimeForColor The MaxTimeForColor to complete the tween in
     * @return {LTDescr} LTDescr an object that distinguishes the tween
     */
     public static LTDescr moveLocal(GameObject gameObject, Vector3 to, float time){
@@ -1447,7 +1447,7 @@ public class LeanTween : MonoBehaviour {
     * @method LeanTween.moveLocal
     * @param {GameObject} gameObject:GameObject Gameobject that you wish to move
     * @param {Vector3[]} path:Vector3[] A set of points that define the curve(s) ex: Point1,Handle1,Handle2,Point2,...
-    * @param {float} spawnTimer:float The spawnTimer to complete the tween in
+    * @param {float} MaxTimeForColor:float The MaxTimeForColor to complete the tween in
     * @return {LTDescr} LTDescr an object that distinguishes the tween
     * @example
     * <i>Javascript:</i><br />
@@ -1496,7 +1496,7 @@ public class LeanTween : MonoBehaviour {
     * @method LeanTween.move
     * @param {GameObject} gameObject:GameObject Gameobject that you wish to move
     * @param {Transform} destination:Transform Transform whose position the tween will finally end on
-    * @param {float} spawnTimer:float spawnTimer The spawnTimer to complete the tween in
+    * @param {float} MaxTimeForColor:float MaxTimeForColor The MaxTimeForColor to complete the tween in
     * @return {LTDescr} LTDescr an object that distinguishes the tween
     * @example LeanTween.move(gameObject, anotherTransform, 2.0f) .setEase( LeanTweenType.easeOutQuad );
     */
@@ -1510,7 +1510,7 @@ public class LeanTween : MonoBehaviour {
     * @method LeanTween.rotate
     * @param {GameObject} GameObject gameObject Gameobject that you wish to rotate
     * @param {Vector3} Vector3 to The final rotation with which to rotate to
-    * @param {float} float spawnTimer The spawnTimer to complete the tween in
+    * @param {float} float MaxTimeForColor The MaxTimeForColor to complete the tween in
     * @return {LTDescr} LTDescr an object that distinguishes the tween
     * @example LeanTween.rotate(cube, new Vector3(180f,30f,0f), 1.5f);
     */
@@ -1525,7 +1525,7 @@ public class LeanTween : MonoBehaviour {
     * @method LeanTween.rotate
     * @param {LTRect} ltRect:LTRect LTRect that you wish to rotate
     * @param {float} to:float The final rotation with which to rotate to
-    * @param {float} spawnTimer:float The spawnTimer to complete the tween in
+    * @param {float} MaxTimeForColor:float The MaxTimeForColor to complete the tween in
     * @param {Array} optional:Array Object Array where you can pass <a href="#optional">optional items</a>.
     * @return {LTDescr} LTDescr an object that distinguishes the tween
     * @example 
@@ -1543,7 +1543,7 @@ public class LeanTween : MonoBehaviour {
     * @method LeanTween.rotateLocal
     * @param {GameObject} gameObject:GameObject Gameobject that you wish to rotate
     * @param {Vector3} to:Vector3 The final rotation with which to rotate to
-    * @param {float} spawnTimer:float The spawnTimer to complete the rotation in
+    * @param {float} MaxTimeForColor:float The MaxTimeForColor to complete the rotation in
     * @return {LTDescr} LTDescr an object that distinguishes the tween
     */
     public static LTDescr rotateLocal(GameObject gameObject, Vector3 to, float time){
@@ -1556,7 +1556,7 @@ public class LeanTween : MonoBehaviour {
     * @method LeanTween.rotateX
     * @param {GameObject} GameObject Gameobject that you wish to rotate
     * @param {float} to:float The final x-axis rotation with which to rotate
-    * @param {float} spawnTimer:float The spawnTimer to complete the rotation in
+    * @param {float} MaxTimeForColor:float The MaxTimeForColor to complete the rotation in
     * @return {LTDescr} LTDescr an object that distinguishes the tween
     */
     public static LTDescr rotateX(GameObject gameObject, float to, float time){
@@ -1569,7 +1569,7 @@ public class LeanTween : MonoBehaviour {
     * @method LeanTween.rotateY
     * @param {GameObject} GameObject Gameobject that you wish to rotate
     * @param {float} to:float The final y-axis rotation with which to rotate
-    * @param {float} spawnTimer:float The spawnTimer to complete the rotation in
+    * @param {float} MaxTimeForColor:float The MaxTimeForColor to complete the rotation in
     * @return {LTDescr} LTDescr an object that distinguishes the tween
     */
     public static LTDescr rotateY(GameObject gameObject, float to, float time){
@@ -1582,7 +1582,7 @@ public class LeanTween : MonoBehaviour {
     * @method LeanTween.rotateZ
     * @param {GameObject} GameObject Gameobject that you wish to rotate
     * @param {float} to:float The final z-axis rotation with which to rotate
-    * @param {float} spawnTimer:float The spawnTimer to complete the rotation in
+    * @param {float} MaxTimeForColor:float The MaxTimeForColor to complete the rotation in
     * @return {LTDescr} LTDescr an object that distinguishes the tween
     */
     public static LTDescr rotateZ(GameObject gameObject, float to, float time){
@@ -1596,7 +1596,7 @@ public class LeanTween : MonoBehaviour {
     * @param {GameObject} gameObject:GameObject Gameobject that you wish to rotate
     * @param {Vector3} vec:Vector3 axis in which to rotate around ex: Vector3.up
     * @param {float} degrees:float the degrees in which to rotate
-    * @param {float} spawnTimer:float spawnTimer The spawnTimer to complete the rotation in
+    * @param {float} MaxTimeForColor:float MaxTimeForColor The MaxTimeForColor to complete the rotation in
     * @return {LTDescr} LTDescr an object that distinguishes the tween
     * @example
     * <i>Example:</i><br />
@@ -1613,7 +1613,7 @@ public class LeanTween : MonoBehaviour {
     * @param {GameObject} gameObject:GameObject Gameobject that you wish to rotate
     * @param {Vector3} vec:Vector3 axis in which to rotate around ex: Vector3.up
     * @param {float} degrees:float the degrees in which to rotate
-    * @param {float} spawnTimer:float spawnTimer The spawnTimer to complete the rotation in
+    * @param {float} MaxTimeForColor:float MaxTimeForColor The MaxTimeForColor to complete the rotation in
     * @return {LTDescr} LTDescr an object that distinguishes the tween
     * @example
     * <i>Example:</i><br />
@@ -1629,7 +1629,7 @@ public class LeanTween : MonoBehaviour {
     * @method LeanTween.scale
     * @param {GameObject} gameObject:GameObject gameObject Gameobject that you wish to scale
     * @param {Vector3} vec:Vector3 to The size with which to tween to
-    * @param {float} spawnTimer:float spawnTimer The spawnTimer to complete the tween in
+    * @param {float} MaxTimeForColor:float MaxTimeForColor The MaxTimeForColor to complete the tween in
     * @return {LTDescr} LTDescr an object that distinguishes the tween
     */
     public static LTDescr scale(GameObject gameObject, Vector3 to, float time){
@@ -1642,7 +1642,7 @@ public class LeanTween : MonoBehaviour {
     * @method LeanTween.scale (GUI)
     * @param {LTRect} LTRect ltRect LTRect object that you wish to move
     * @param {Vector2} Vector2 to The final width and height to scale to (pixel based)
-    * @param {float} float spawnTimer The spawnTimer to complete the tween in
+    * @param {float} float MaxTimeForColor The MaxTimeForColor to complete the tween in
     * @return {LTDescr} LTDescr an object that distinguishes the tween
     * @example
     * <i>Example Javascript: </i><br />
@@ -1669,7 +1669,7 @@ public class LeanTween : MonoBehaviour {
     * @method LeanTween.scaleX
     * @param {GameObject} gameObject:GameObject Gameobject that you wish to scale
     * @param {float} scaleTo:float the size with which to scale to
-    * @param {float} spawnTimer:float the spawnTimer to complete the tween in
+    * @param {float} MaxTimeForColor:float the MaxTimeForColor to complete the tween in
     * @return {LTDescr} LTDescr an object that distinguishes the tween
     */
     public static LTDescr scaleX(GameObject gameObject, float to, float time){
@@ -1682,7 +1682,7 @@ public class LeanTween : MonoBehaviour {
     * @method LeanTween.scaleY
     * @param {GameObject} gameObject:GameObject Gameobject that you wish to scale
     * @param {float} scaleTo:float the size with which to scale to
-    * @param {float} spawnTimer:float the spawnTimer to complete the tween in
+    * @param {float} MaxTimeForColor:float the MaxTimeForColor to complete the tween in
     * @return {LTDescr} LTDescr an object that distinguishes the tween
     */
     public static LTDescr scaleY(GameObject gameObject, float to, float time){
@@ -1695,7 +1695,7 @@ public class LeanTween : MonoBehaviour {
     * @method LeanTween.scaleZ
     * @param {GameObject} gameObject:GameObject Gameobject that you wish to scale
     * @param {float} scaleTo:float the size with which to scale to
-    * @param {float} spawnTimer:float the spawnTimer to complete the tween in
+    * @param {float} MaxTimeForColor:float the MaxTimeForColor to complete the tween in
     * @return {LTDescr} LTDescr an object that distinguishes the tween
     */
     public static LTDescr scaleZ(GameObject gameObject, float to, float time){
@@ -1709,7 +1709,7 @@ public class LeanTween : MonoBehaviour {
     * @param {GameObject} gameObject:GameObject Gameobject that you wish to attach the tween to
     * @param {float} from:float The original value to start the tween from
     * @param {Vector3} to:float The final float with which to tween to
-    * @param {float} spawnTimer:float The spawnTimer to complete the tween in
+    * @param {float} MaxTimeForColor:float The MaxTimeForColor to complete the tween in
     * @return {LTDescr} LTDescr an object that distinguishes the tween
     * @example
     * <i>Example Javascript: </i><br />
@@ -1736,7 +1736,7 @@ public class LeanTween : MonoBehaviour {
     * @param {GameObject} gameObject:GameObject Gameobject that you wish to attach the tween to
     * @param {Vector2} from:Vector2 The original value to start the tween from
     * @param {Vector3} to:Vector2 The final Vector2 with which to tween to
-    * @param {float} spawnTimer:float The spawnTimer to complete the tween in
+    * @param {float} MaxTimeForColor:float The MaxTimeForColor to complete the tween in
     * @return {LTDescr} LTDescr an object that distinguishes the tween
     * @example
     * <i>Example Javascript: </i><br />
@@ -1760,7 +1760,7 @@ public class LeanTween : MonoBehaviour {
     * @param {GameObject} gameObject:GameObject Gameobject that you wish to attach the tween to
     * @param {Vector3} from:Vector3 The original value to start the tween from
     * @param {Vector3} to:Vector3 The final Vector3 with which to tween to
-    * @param {float} spawnTimer:float The spawnTimer to complete the tween in
+    * @param {float} MaxTimeForColor:float The MaxTimeForColor to complete the tween in
     * @return {LTDescr} LTDescr an object that distinguishes the tween
     * @example
     * <i>Example Javascript: </i><br />
@@ -1784,7 +1784,7 @@ public class LeanTween : MonoBehaviour {
     * @param {GameObject} gameObject:GameObject Gameobject that you wish to attach the tween to
     * @param {Color} from:Color The original value to start the tween from
     * @param {Color} to:Color The final Color with which to tween to
-    * @param {float} spawnTimer:float The spawnTimer to complete the tween in
+    * @param {float} MaxTimeForColor:float The MaxTimeForColor to complete the tween in
     * @return {LTDescr} LTDescr an object that distinguishes the tween
     * @example
     * <i>Example Javascript: </i><br />
@@ -1816,7 +1816,7 @@ public class LeanTween : MonoBehaviour {
     * @param {Action<float>} callOnUpdate:Action<float> The function that is called on every Update frame, this function needs to accept a float value ex: function updateValue( float val ){ }
     * @param {float} float from The original value to start the tween from
     * @param {float} float to The value to end the tween on
-    * @param {float} float spawnTimer The spawnTimer to complete the tween in
+    * @param {float} float MaxTimeForColor The MaxTimeForColor to complete the tween in
     * @return {LTDescr} LTDescr an object that distinguishes the tween
     * @example
     * <i>Example Javascript: </i><br />
@@ -1844,7 +1844,7 @@ public class LeanTween : MonoBehaviour {
     * @param {Action<float, float>} callOnUpdateRatio:Action<float,float> Function that's called every Update frame. It must accept two float values ex: function updateValue( float val, float ratio){ }
     * @param {float} float from The original value to start the tween from
     * @param {float} float to The value to end the tween on
-    * @param {float} float spawnTimer The spawnTimer to complete the tween in
+    * @param {float} float MaxTimeForColor The MaxTimeForColor to complete the tween in
     * @return {LTDescr} LTDescr an object that distinguishes the tween
     * @example
     * <i>Example Javascript: </i><br />
@@ -1872,7 +1872,7 @@ public class LeanTween : MonoBehaviour {
     * @param {Action<Color>} callOnUpdate:Action<Color> The function that is called on every Update frame, this function needs to accept a color value ex: function updateValue( Color val ){ }
     * @param {Color} Color from The original value to start the tween from
     * @param {Color} Color to The value to end the tween on
-    * @param {Color} Color spawnTimer The spawnTimer to complete the tween in
+    * @param {Color} Color MaxTimeForColor The MaxTimeForColor to complete the tween in
     * @return {LTDescr} LTDescr an object that distinguishes the tween
     * @example
     * <i>Example Javascript: </i><br />
@@ -1905,7 +1905,7 @@ public class LeanTween : MonoBehaviour {
     * @param {Action<Vector2>} callOnUpdate:Action<Vector2> The function that is called on every Update frame, this function needs to accept a float value ex: function updateValue( Vector3 val ){ }
     * @param {float} from:Vector2 The original value to start the tween from
     * @param {Vector2} to:Vector2 The final Vector3 with which to tween to
-    * @param {float} spawnTimer:float The spawnTimer to complete the tween in
+    * @param {float} MaxTimeForColor:float The MaxTimeForColor to complete the tween in
     * @return {LTDescr} LTDescr an object that distinguishes the tween
     */
     public static LTDescr value(GameObject gameObject, Action<Vector2> callOnUpdate, Vector2 from, Vector2 to, float time){
@@ -1920,7 +1920,7 @@ public class LeanTween : MonoBehaviour {
     * @param {Action<Vector3>} callOnUpdate:Action<Vector3> The function that is called on every Update frame, this function needs to accept a float value ex: function updateValue( Vector3 val ){ }
     * @param {float} from:Vector3 The original value to start the tween from
     * @param {Vector3} to:Vector3 The final Vector3 with which to tween to
-    * @param {float} spawnTimer:float The spawnTimer to complete the tween in
+    * @param {float} MaxTimeForColor:float The MaxTimeForColor to complete the tween in
     * @return {LTDescr} LTDescr an object that distinguishes the tween
     */
     public static LTDescr value(GameObject gameObject, Action<Vector3> callOnUpdate, Vector3 from, Vector3 to, float time){
@@ -1935,7 +1935,7 @@ public class LeanTween : MonoBehaviour {
     * @param {Action<float,object>} callOnUpdate:Action<float,object> The function that is called on every Update frame, this function needs to accept a float value ex: function updateValue( Vector3 val, object obj ){ }
     * @param {float} from:float The original value to start the tween from
     * @param {Vector3} to:float The final Vector3 with which to tween to
-    * @param {float} spawnTimer:float The spawnTimer to complete the tween in
+    * @param {float} MaxTimeForColor:float The MaxTimeForColor to complete the tween in
     * @return {LTDescr} LTDescr an object that distinguishes the tween
     */
     public static LTDescr value(GameObject gameObject, Action<float,object> callOnUpdate, float from, float to, float time){
@@ -1960,7 +1960,7 @@ public class LeanTween : MonoBehaviour {
     * @method LeanTween.move (RectTransform)
     * @param {RectTransform} rectTrans:RectTransform RectTransform that you wish to attach the tween to
     * @param {Vector3} to:Vector3 The final Vector3 with which to tween to
-    * @param {float} spawnTimer:float The spawnTimer to complete the tween in
+    * @param {float} MaxTimeForColor:float The MaxTimeForColor to complete the tween in
     * @return {LTDescr} LTDescr an object that distinguishes the tween
     * @example LeanTween.move(gameObject.GetComponent&lt;RectTransform&gt;(), new Vector3(200f,-100f,0f), 1f).setDelay(1f);
     */
@@ -1974,7 +1974,7 @@ public class LeanTween : MonoBehaviour {
     * @method LeanTween.moveX (RectTransform)
     * @param {RectTransform} rectTrans:RectTransform RectTransform that you wish to attach the tween to
     * @param {float} to:float The final x location with which to tween to
-    * @param {float} spawnTimer:float The spawnTimer to complete the tween in
+    * @param {float} MaxTimeForColor:float The MaxTimeForColor to complete the tween in
     * @return {LTDescr} LTDescr an object that distinguishes the tween
     * @example LeanTween.moveX(gameObject.GetComponent&lt;RectTransform&gt;(), 200f, 1f).setDelay(1f);
     */
@@ -1988,7 +1988,7 @@ public class LeanTween : MonoBehaviour {
     * @method LeanTween.moveY (RectTransform)
     * @param {RectTransform} rectTrans:RectTransform RectTransform that you wish to attach the tween to
     * @param {float} to:float The final y location with which to tween to
-    * @param {float} spawnTimer:float The spawnTimer to complete the tween in
+    * @param {float} MaxTimeForColor:float The MaxTimeForColor to complete the tween in
     * @return {LTDescr} LTDescr an object that distinguishes the tween
     * @example LeanTween.moveY(gameObject.GetComponent&lt;RectTransform&gt;(), 200f, 1f).setDelay(1f);
     */
@@ -2002,7 +2002,7 @@ public class LeanTween : MonoBehaviour {
     * @method LeanTween.moveZ (RectTransform)
     * @param {RectTransform} rectTrans:RectTransform RectTransform that you wish to attach the tween to
     * @param {float} to:float The final x location with which to tween to
-    * @param {float} spawnTimer:float The spawnTimer to complete the tween in
+    * @param {float} MaxTimeForColor:float The MaxTimeForColor to complete the tween in
     * @return {LTDescr} LTDescr an object that distinguishes the tween
     * @example LeanTween.moveZ(gameObject.GetComponent&lt;RectTransform&gt;(), 200f, 1f).setDelay(1f);
     */
@@ -2016,7 +2016,7 @@ public class LeanTween : MonoBehaviour {
     * @method LeanTween.rotate (RectTransform)
     * @param {RectTransform} rectTrans:RectTransform RectTransform that you wish to attach the tween to
     * @param {float} to:float The degree with which to rotate the RectTransform
-    * @param {float} spawnTimer:float The spawnTimer to complete the tween in
+    * @param {float} MaxTimeForColor:float The MaxTimeForColor to complete the tween in
     * @return {LTDescr} LTDescr an object that distinguishes the tween
     * @example LeanTween.rotate(gameObject.GetComponent&lt;RectTransform&gt;(), 90f, 1f).setDelay(1f);
     */
@@ -2035,7 +2035,7 @@ public class LeanTween : MonoBehaviour {
     * @param {RectTransform} rectTrans:RectTransform RectTransform that you wish to attach the tween to
     * @param {Vector3} axis:Vector3 The axis in which to rotate the RectTransform (Vector3.forward is most commonly used)
     * @param {float} to:float The degree with which to rotate the RectTransform
-    * @param {float} spawnTimer:float The spawnTimer to complete the tween in
+    * @param {float} MaxTimeForColor:float The MaxTimeForColor to complete the tween in
     * @return {LTDescr} LTDescr an object that distinguishes the tween
     * @example LeanTween.rotateAround(gameObject.GetComponent&lt;RectTransform&gt;(), Vector3.forward, 90f, 1f).setDelay(1f);
     */
@@ -2050,7 +2050,7 @@ public class LeanTween : MonoBehaviour {
     * @param {RectTransform} rectTrans:RectTransform RectTransform that you wish to attach the tween to
     * @param {Vector3} axis:Vector3 The local axis in which to rotate the RectTransform (Vector3.forward is most commonly used)
     * @param {float} to:float The degree with which to rotate the RectTransform
-    * @param {float} spawnTimer:float The spawnTimer to complete the tween in
+    * @param {float} MaxTimeForColor:float The MaxTimeForColor to complete the tween in
     * @return {LTDescr} LTDescr an object that distinguishes the tween
     * @example LeanTween.rotateAroundLocal(gameObject.GetComponent&lt;RectTransform&gt;(), Vector3.forward, 90f, 1f).setDelay(1f);
     */
@@ -2064,7 +2064,7 @@ public class LeanTween : MonoBehaviour {
     * @method LeanTween.scale (RectTransform)
     * @param {RectTransform} rectTrans:RectTransform RectTransform that you wish to attach the tween to
     * @param {Vector3} to:Vector3 The final Vector3 with which to tween to (localScale)
-    * @param {float} spawnTimer:float The spawnTimer to complete the tween in
+    * @param {float} MaxTimeForColor:float The MaxTimeForColor to complete the tween in
     * @return {LTDescr} LTDescr an object that distinguishes the tween
     * @example LeanTween.scale(gameObject.GetComponent&lt;RectTransform&gt;(), gameObject.GetComponent&lt;RectTransform&gt;().localScale*2f, 1f).setDelay(1f);
     */
@@ -2078,7 +2078,7 @@ public class LeanTween : MonoBehaviour {
     * @method LeanTween.size (RectTransform)
     * @param {RectTransform} rectTrans:RectTransform RectTransform that you wish to attach the tween to
     * @param {Vector2} to:Vector2 The final Vector2 the tween will end at for sizeDelta property
-    * @param {float} spawnTimer:float The spawnTimer to complete the tween in
+    * @param {float} MaxTimeForColor:float The MaxTimeForColor to complete the tween in
     * @return {LTDescr} LTDescr an object that distinguishes the tween
     * @example LeanTween.size(gameObject.GetComponent&lt;RectTransform&gt;(), gameObject.GetComponent&lt;RectTransform&gt;().sizeDelta*2f, 1f).setDelay(1f);
     */
@@ -2092,7 +2092,7 @@ public class LeanTween : MonoBehaviour {
     * @method LeanTween.alpha (RectTransform)
     * @param {RectTransform} rectTrans:RectTransform RectTransform that you wish to attach the tween to
     * @param {float} to:float The final Vector3 with which to tween to (localScale)
-    * @param {float} spawnTimer:float The spawnTimer to complete the tween in
+    * @param {float} MaxTimeForColor:float The MaxTimeForColor to complete the tween in
     * @return {LTDescr} LTDescr an object that distinguishes the tween
     * @example LeanTween.alpha(gameObject.GetComponent&lt;RectTransform&gt;(), 0.5f, 1f).setDelay(1f);
     */
@@ -2106,7 +2106,7 @@ public class LeanTween : MonoBehaviour {
     * @method LeanTween.alpha (RectTransform)
     * @param {RectTransform} rectTrans:RectTransform RectTransform that you wish to attach the tween to
     * @param {float} to:float The final Vector3 with which to tween to (localScale)
-    * @param {float} spawnTimer:float The spawnTimer to complete the tween in
+    * @param {float} MaxTimeForColor:float The MaxTimeForColor to complete the tween in
     * @return {LTDescr} LTDescr an object that distinguishes the tween
     * @example LeanTween.color(gameObject.GetComponent&lt;RectTransform&gt;(), 0.5f, 1f).setDelay(1f);
     */
@@ -2465,7 +2465,7 @@ public class LeanTween : MonoBehaviour {
     * @param {Transform} transform:Transform the transform you wish to be the follower
     * @param {Transform} transform:Transform the transform you wish to follow
     * @param {LeanProp} leanProp:LeanProp enum of the type of following you wish to do position, scale, color, etc.
-    * @param {float} smoothTime:float roughly the spawnTimer it takes to reach the destination
+    * @param {float} smoothTime:float roughly the MaxTimeForColor it takes to reach the destination
     * @param {float} [maxSpeed]:float maximum speed at which it moves towards the destination
     * @example
     * LeanTween.followDamp(transform, followTransform, LeanProp.localY, 1.1f);
@@ -2532,7 +2532,7 @@ public class LeanTween : MonoBehaviour {
     * @param {Transform} transform:Transform the transform you wish to be the follower
     * @param {Transform} transform:Transform the transform you wish to follow
     * @param {LeanProp} leanProp:LeanProp enum of the type of following you wish to do position, scale, color, etc.
-    * @param {float} smoothTime:float roughly the spawnTimer it takes to reach the destination
+    * @param {float} smoothTime:float roughly the MaxTimeForColor it takes to reach the destination
     * @param {float} [maxSpeed]:float maximum speed at which it moves towards the destination
     * @param {float} [friction]:float rate at which the spring is slowed down once it reaches it's destination
     * @param {float} [accelRate]:float the rate it accelerates from it's initial position
@@ -2601,7 +2601,7 @@ public class LeanTween : MonoBehaviour {
     * @param {Transform} transform:Transform the transform you wish to be the follower
     * @param {Transform} transform:Transform the transform you wish to follow
     * @param {LeanProp} leanProp:LeanProp enum of the type of following you wish to do position, scale, color, etc.
-    * @param {float} smoothTime:float roughly the spawnTimer it takes to reach the destination
+    * @param {float} smoothTime:float roughly the MaxTimeForColor it takes to reach the destination
     * @param {float} [maxSpeed]:float maximum speed at which it moves towards the destination
     * @param {float} [friction]:float rate at which the spring is slowed down once it reaches it's destination
     * @param {float} [accelRate]:float the rate it accelerates from it's initial position
@@ -2670,7 +2670,7 @@ public class LeanTween : MonoBehaviour {
     * @param {Transform} transform:Transform the transform you wish to be the follower
     * @param {Transform} transform:Transform the transform you wish to follow
     * @param {LeanProp} leanProp:LeanProp enum of the type of following you wish to do position, scale, color, etc.
-    * @param {float} moveSpeed:float roughly the spawnTimer it takes to reach the destination
+    * @param {float} moveSpeed:float roughly the MaxTimeForColor it takes to reach the destination
     * @example
     * LeanTween.followLinear(transform, followTransform, LeanProp.localY, 50f);
     */

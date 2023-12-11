@@ -254,9 +254,9 @@ public class Pathfinding : MonoBehaviour
         }
 
         // Calculate scale factor
-        float scaleY = Mathf.Abs(highestYpos.y - lowestYpos.y);
+        float scale = Mathf.Abs(highestYpos.y - lowestYpos.y);
 
-        endObj.localScale = new Vector3(endObj.localScale.x, scaleY);
+        endObj.localScale = new Vector3(scale, scale);
     }
 
     /// <summary>
@@ -323,8 +323,8 @@ public class Pathfinding : MonoBehaviour
     /// </summary>
     /// <param name="position"></param>
     /// <param name="size"></param>
-    /// <returns></returns>
-    public bool CheckIfPathIsValid(Vector3 position, Vector2 size, int towerCount = 0)
+    /// <returns>Is the path valid</returns>
+    public bool CheckIfPathIsValid(Vector3 position, Vector2 size)
     {
         // Get relevant pathpoints
         PathPoint[] points = GetPathpointsInArea(position, size);
@@ -344,21 +344,20 @@ public class Pathfinding : MonoBehaviour
         SetPathPointsActive(points, false);
 
         // Make a pathfinding simulation from the start until it's close to exit
-        if (towerCount > 3)
+
+        PathPoint testPath = startingPoint;
+        List<PathPoint> lastPathpoints = new();
+        while (!testPath.IsCloseToExit)
         {
-            PathPoint testPath = startingPoint;
-            List<PathPoint> lastPathpoints = new();
-            while (!testPath.IsCloseToExit)
+            testPath = GetNextPathpoint(testPath);
+            if (lastPathpoints.Contains(testPath))
             {
-                testPath = GetNextPathpoint(testPath);
-                if (lastPathpoints.Contains(testPath))
-                {
-                    // Blocking path
-                    SetPathPointsActive(points, true);
-                    return false;
-                }
-                lastPathpoints.Add(testPath);
+                // Blocking path
+                SetPathPointsActive(points, true);
+                return false;
             }
+            lastPathpoints.Add(testPath);
+
         }
 
         // Is a valid path

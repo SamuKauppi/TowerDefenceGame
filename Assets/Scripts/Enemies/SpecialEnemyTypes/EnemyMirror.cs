@@ -9,6 +9,7 @@ public class EnemyMirror : Enemy, ISpecialAbility
     [SerializeField] private float moveCopiedTime = 0.25f;
     [SerializeField] private GameEntity copyTarget = GameEntity.MirrorEnemy;
     [SerializeField] private int spawnLimit = 10;
+    [SerializeField] private float speedIncreseAfterSpawn;
     private int enemiesSpawned;
 
     private IEnumerator StartCopying()
@@ -19,9 +20,10 @@ public class EnemyMirror : Enemy, ISpecialAbility
             yield return new WaitForSeconds(copyTime);
             enemiesSpawned++;
             GameObject enemy = ObjectPooler.Instance.GetPooledObject(copyTarget);
-            Vector3 randPos = StaticFunctions.GetRandomPointInCircle(copyRadius, transform.position);
+            Vector3 randPos = StaticFunctions.Instance.GetRandomPointInCircle(copyRadius, transform.position);
             enemy.transform.position = transform.position;
             LeanTween.move(enemy, randPos, moveCopiedTime);
+            abilitySpeedModifier = 1 + (speedIncreseAfterSpawn * enemiesSpawned);
         }
     }
 

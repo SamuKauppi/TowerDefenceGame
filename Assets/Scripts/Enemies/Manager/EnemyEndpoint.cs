@@ -12,7 +12,8 @@ public class EnemyEndpoint : MonoBehaviour
         if (collision.TryGetComponent(out Enemy enemy))
         {
             // Player takes damage
-            player.TakeDamage(enemy.GetEnemyDamage());
+            if (player)
+                player.TakeDamage(enemy.GetEnemyDamage());
             // Reset enemy
             enemy.EnemyReachedEnd();
         }

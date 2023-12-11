@@ -9,7 +9,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1456510449449574117, guid: 45433dec586468149b3ce8ecda589806, type: 3}
       propertyPath: speed
-      value: 3
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 1456510449449574117, guid: 45433dec586468149b3ce8ecda589806, type: 3}
       propertyPath: damage
@@ -17,7 +17,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1456510449449574117, guid: 45433dec586468149b3ce8ecda589806, type: 3}
       propertyPath: health
-      value: 500
+      value: 750
       objectReference: {fileID: 0}
     - target: {fileID: 1456510449449574117, guid: 45433dec586468149b3ce8ecda589806, type: 3}
       propertyPath: difficultyValue

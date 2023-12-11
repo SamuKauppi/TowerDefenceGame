@@ -10,6 +10,7 @@ public class Bullet : BulletDamages, IUpdate, IFixedUpdate
     public GameObject Object => gameObject; // From interface
 
     // Stats
+    [SerializeField] private SFXType audioType = SFXType.None;  // If this bullet has audio       
     [SerializeField] private bool isBeam;                       // Is the bullet a beam (overrides all speed related variables)
     [SerializeField] private float speed = 100;                 // Speed of the bullet
     [SerializeField] private float acceleration;                // Acceleration of the bullet
@@ -18,27 +19,28 @@ public class Bullet : BulletDamages, IUpdate, IFixedUpdate
     [SerializeField] private int health = 1;                    // How many hits can the bullet take
 
     // Variables
-    private float startingSpeed;                                // Starting speed
-    private float initialAccel;                                 // Initial acceleration
-    private float initialDamage;                                // Initial damage (damage reduses after every hit)
-    private int maxHealth;                                      // Max health
-    private float lifeTimer = 0;                                // Timer to live                    
-    private bool HasInitialized;
+    private float _startingSpeed;                               // Starting speed
+    private float _initialAccel;                                // Initial acceleration
+    private float _initialDamage;                               // Initial damage (damage reduses after every hit)
+    private int _maxHealth;                                     // Max health
+    private float _lifeTimer = 0;                               // Timer to live                    
+    private bool _hasInitialized;                               // Checks if the bullet has been Initialized
+
     /// <summary>
     /// Initilize bullets base stats 
     /// </summary>
     private void Start()
     {
-        maxHealth = health;
-        startingSpeed = speed;
-        initialAccel = acceleration;
+        _maxHealth = health;
+        _startingSpeed = speed;
+        _initialAccel = acceleration;
         GameObjectUpdateManager.Instance.AddObject(this);
-        initialDamage = Damage;
+        _initialDamage = Damage;
     }
 
     /// <summary>
     /// Updates the lifetime of a bullet
-    /// 0 == _animationLength = bullet does not die by spawnTimer
+    /// 0 == _animationLength = bullet does not die by lifeTime
     /// </summary>
     private void UpdateLifeTime()
     {
@@ -46,12 +48,13 @@ public class Bullet : BulletDamages, IUpdate, IFixedUpdate
         {
             return;
         }
-        lifeTimer += Time.deltaTime;
-        if (lifeTimer > lifeTime)
+        _lifeTimer += Time.deltaTime;
+        if (_lifeTimer > lifeTime)
         {
             KillBullet();
         }
     }
+
     /// <summary>
     /// Contain speed if true
     /// </summary>
@@ -64,38 +67,70 @@ public class Bullet : BulletDamages, IUpdate, IFixedUpdate
                 speed = 0;
                 acceleration = 0;
             }
-            if (speed > startingSpeed)
+            if (speed > _startingSpeed)
             {
-                speed = startingSpeed;
+                speed = _startingSpeed;
                 acceleration = 0;
             }
         }
     }
+
     /// <summary>
-    /// Reduce bullet hp. If max hp <= 0, the bullet can't die from time
+    /// Reduce bullet hp. If max hp <= 0, the bullet can't die from hits
     /// </summary>
     private void ReduceBulletHits()
     {
         health--;
-        if (health <= 0 && maxHealth > 0)
+        if (health <= 0 && _maxHealth > 0)
         {
             KillBullet();
         }
     }
+
     /// <summary>
     /// Kill bullet and reset it's variables
     /// </summary>
     private void KillBullet()
     {
-        lifeTimer = 0f;
-        health = maxHealth;
-        speed = startingSpeed;
-        acceleration = initialAccel;
-        SetDamage(initialDamage);
+        _lifeTimer = 0f;
+        health = _maxHealth;
+        speed = _startingSpeed;
+        acceleration = _initialAccel;
+        SetDamage(_initialDamage);
         properties.OnBulletDespawn();
         gameObject.SetActive(false);
-        HasInitialized = false;
+        _hasInitialized = false;
     }
+
+    /// <summary>
+    /// Initialize bullet
+    /// </summary>
+    public void InitializeBullet()
+    {
+        properties.OnBulletSpawn();
+        _hasInitialized = true;
+        if (audioType != SFXType.None)
+        {
+            AudioManager.Instance.PlaySFX(audioType);
+        }
+    }
+
+    /// <summary>
+    /// Update bullet (From interface)
+    /// </summary>
+    public void UpdateObject()
+    {
+        if (!_hasInitialized)
+        {
+            InitializeBullet();
+        }
+        properties.OnBulletUpdate();
+
+        UpdateLifeTime();
+
+        ContainSpeed();
+    }
+
     /// <summary>
     /// Fixed update (From interface)
     /// </summary>
@@ -106,31 +141,6 @@ public class Bullet : BulletDamages, IUpdate, IFixedUpdate
         speed += (acceleration * Time.fixedDeltaTime);
         _rb.MovePosition(speed * Time.fixedDeltaTime * transform.up.normalized + transform.position);
         properties.OnBulletFixedUpdate();
-    }
-
-    /// <summary>
-    /// Initialize bullet
-    /// </summary>
-    public void InitializeBullet()
-    {
-        properties.OnBulletSpawn();
-        HasInitialized = true;
-    }
-
-    /// <summary>
-    /// Update bullet (From interface)
-    /// </summary>
-    public void UpdateObject()
-    {
-        if (!HasInitialized)
-        {
-            InitializeBullet();
-        }
-        properties.OnBulletUpdate();
-
-        UpdateLifeTime();
-
-        ContainSpeed();
     }
 
     /// <summary>

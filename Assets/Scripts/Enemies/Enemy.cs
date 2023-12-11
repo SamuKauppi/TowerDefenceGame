@@ -128,12 +128,12 @@ public class Enemy : MonoBehaviour, IFixedUpdate, IUpdate
     }
 
     /// <summary>
-    /// Take damage for every damage over spawnTimer effect
+    /// Take damage for every damage over MaxTimeForColor effect
     /// </summary>
     private void UpdateDamageOverTime()
     {
 
-        // Update damage over spawnTimer effects based on _waveTimer
+        // Update damage over MaxTimeForColor effects based on _waveTimer
         _damageTimer += Time.fixedDeltaTime;
         if (_damageTimer <= _damageTime) return;
 
@@ -218,7 +218,7 @@ public class Enemy : MonoBehaviour, IFixedUpdate, IUpdate
             return;
         DealDamageToEnemy(bullet, bullet.GetBulletDamage());
 
-        // Does the bullet contain damage over spawnTimer
+        // Does the bullet contain damage over MaxTimeForColor
         if (bullet.DamageOverTime <= 0)
         {
             return;
