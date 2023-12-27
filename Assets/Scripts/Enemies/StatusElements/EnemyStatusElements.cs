@@ -32,8 +32,11 @@ public class EnemyStatusElements
         {
             // Handle slow
             case StatusEffect.Slow:
-                if (status.strength < SpeedModifier)
-                    SpeedModifier = status.strength;
+                if ((1 - status.strength) < SpeedModifier)
+                {
+                    SpeedModifier = 1 - status.strength;
+                }
+
                 break;
 
             // Handle dot
@@ -102,7 +105,15 @@ public class EnemyStatusElements
             if (newStatus.bulletApplying == status.bulletApplying)
             {
                 if (newStatus.strength > status.strength)
+                {
                     status.strength = newStatus.strength;
+                }
+
+                if (newStatus.duration > status.duration)
+                {
+                    status.duration = newStatus.duration;
+                }
+
                 status.timer = 0f;
                 return;
             }

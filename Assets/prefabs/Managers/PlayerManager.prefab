@@ -136,7 +136,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   mainCamera: {fileID: 519420031}
-  startingMoney: 250
+  startingMoney: 275
   towerCostIncrese: 25
   startingCost: 50
   startingHealth: 100

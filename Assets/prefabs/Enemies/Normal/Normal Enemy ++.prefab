@@ -65,7 +65,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8079019838769297264, guid: 2d63df40bc23c6c48b4499b0ad01ac28, type: 3}
       propertyPath: health
-      value: 2500
+      value: 5000
       objectReference: {fileID: 0}
     - target: {fileID: 8079019838769297264, guid: 2d63df40bc23c6c48b4499b0ad01ac28, type: 3}
       propertyPath: difficultyValue

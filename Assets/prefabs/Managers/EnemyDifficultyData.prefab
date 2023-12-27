@@ -53,35 +53,35 @@ MonoBehaviour:
     enemyTier: 0
   - enemyType: 1
     difficultyValue: 1
-    currencyEarned: 5
+    currencyEarned: 10
     enemyTier: 0
   - enemyType: 2
     difficultyValue: 3
-    currencyEarned: 25
+    currencyEarned: 30
     enemyTier: 0
   - enemyType: 27
     difficultyValue: 4
-    currencyEarned: 30
+    currencyEarned: 35
     enemyTier: 0
   - enemyType: 28
     difficultyValue: 2
-    currencyEarned: 25
+    currencyEarned: 30
     enemyTier: 0
   - enemyType: 30
     difficultyValue: 6
-    currencyEarned: 35
+    currencyEarned: 40
     enemyTier: 0
   - enemyType: 26
     difficultyValue: 7
-    currencyEarned: 40
+    currencyEarned: 45
     enemyTier: 0
   - enemyType: 31
     difficultyValue: 8
-    currencyEarned: 45
+    currencyEarned: 50
     enemyTier: 0
   - enemyType: 29
     difficultyValue: 9
-    currencyEarned: 50
+    currencyEarned: 55
     enemyTier: 0
   tier2Enemies:
   - enemyType: 37

@@ -84,6 +84,10 @@ PrefabInstance:
       value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 2477231569044453826, guid: c7f9a2e14c4e02d4ab3e82511d145d2c, type: 3}
+      propertyPath: statusesOnHit.Array.data[0].strength
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2477231569044453826, guid: c7f9a2e14c4e02d4ab3e82511d145d2c, type: 3}
       propertyPath: statusesOnHit.Array.data[0].bulletApplying
       value: 14
       objectReference: {fileID: 0}
@@ -197,8 +201,8 @@ MonoBehaviour:
   explosionStatuses:
   - bulletApplying: 14
     statusEff: 0
-    duration: 1.5
-    strength: 0.75
+    duration: 2
+    strength: 0.25
     timer: 0
   radius: 0.75
   damage: 15

@@ -169,8 +169,8 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1684977479
-  m_SortingLayer: 11
-  m_SortingOrder: 0
+  m_SortingLayer: 13
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: 271a27f0ab67468479d07859e09a3ca4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -608,6 +608,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0b3046fe24232a43b55be74624d63e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameOverUi: {fileID: 0}
   waveUiManager: {fileID: 0}
   preDeterminedWaves:
   - waveName: Get Ready!
@@ -620,7 +621,7 @@ MonoBehaviour:
     enemyFormations:
     - enemiesToSpawn:
       - enemyType: 3
-        count: 10
+        count: 11
         delay: 2
       formationDelay: 0
       spawnOrder: 0
@@ -653,7 +654,7 @@ MonoBehaviour:
         delay: 2
       formationDelay: 0
       spawnOrder: 1
-  - waveName: These enemies regenerate health overtime
+  - waveName: Ladybugs enemies gain health overtime
     waveColor: {r: 1, g: 0.68913305, b: 0.63584906, a: 0}
     delayBeforeWave: 5
     enemyFormations:

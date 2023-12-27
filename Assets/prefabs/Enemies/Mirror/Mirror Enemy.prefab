@@ -140,7 +140,7 @@ MonoBehaviour:
   copyRadius: 1.5
   moveCopiedTime: 0.15
   copyTarget: 32
-  spawnLimit: 5
+  spawnLimit: 3
   speedIncreseAfterSpawn: 0.3
 --- !u!50 &8037798384930114521 stripped
 Rigidbody2D:

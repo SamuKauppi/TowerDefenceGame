@@ -99,6 +99,11 @@ public class WaveUiManager : MonoBehaviour, IUpdate
                 _isAllowedToMove--;
                 _wavesPastMiddle.Add(waveUi);
             }
+            else if (waveUiXPos > _middleXPos && _wavesPastMiddle.Contains(waveUi))
+            {
+                _isAllowedToMove++;
+                _wavesPastMiddle.Remove(waveUi);
+            }
 
             // Check if the wave ui elements right most side has moved out of the containers left most side
             if (waveUiXPos < _containerXPos)

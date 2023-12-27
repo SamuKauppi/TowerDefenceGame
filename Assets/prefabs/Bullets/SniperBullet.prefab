@@ -45,11 +45,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 334820565493981338, guid: 3612622c6eedfc64383d38134259a7c1, type: 3}
       propertyPath: statusesOnHit.Array.data[0].duration
-      value: 0.2
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 334820565493981338, guid: 3612622c6eedfc64383d38134259a7c1, type: 3}
       propertyPath: statusesOnHit.Array.data[0].strength
-      value: 0.15
+      value: 0.85
       objectReference: {fileID: 0}
     - target: {fileID: 334820565493981338, guid: 3612622c6eedfc64383d38134259a7c1, type: 3}
       propertyPath: statusesOnHit.Array.data[0].bulletApplying

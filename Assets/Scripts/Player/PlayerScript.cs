@@ -144,11 +144,6 @@ public class PlayerScript : MonoBehaviour
         {
             TurretPlacement();
         }
-
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            UpdateMoney(1000);
-        }
     }
 
     /// <summary>

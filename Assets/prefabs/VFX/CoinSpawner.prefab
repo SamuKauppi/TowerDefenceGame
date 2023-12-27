@@ -45,6 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bae9c23612bdd7a419ae6dcc2cfeba0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  originalVolume: 0.35
   coinSource: {fileID: 6957264577883670885}
   coinSounds:
   - {fileID: 8300000, guid: 69906c28c2dbcdb41886452e7c633520, type: 3}
@@ -62,7 +63,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 0.2
+  m_Volume: 0.25
   m_Pitch: 1
   Loop: 0
   Mute: 0

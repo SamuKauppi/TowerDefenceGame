@@ -416,6 +416,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: TowerTypes
       objectReference: {fileID: 0}
+    - target: {fileID: 2088093448435488338, guid: 098300dd5233ee242a3a9c7d6f7c8665, type: 3}
+      propertyPath: towerTypes.Array.data[24].cost
+      value: 1500
+      objectReference: {fileID: 0}
+    - target: {fileID: 2088093448435488338, guid: 098300dd5233ee242a3a9c7d6f7c8665, type: 3}
+      propertyPath: towerTypes.Array.data[26].cost
+      value: 2500
+      objectReference: {fileID: 0}
+    - target: {fileID: 2088093448435488338, guid: 098300dd5233ee242a3a9c7d6f7c8665, type: 3}
+      propertyPath: towerTypes.Array.data[27].cost
+      value: 10000
+      objectReference: {fileID: 0}
     - target: {fileID: 2088093448435488339, guid: 098300dd5233ee242a3a9c7d6f7c8665, type: 3}
       propertyPath: m_RootOrder
       value: 7

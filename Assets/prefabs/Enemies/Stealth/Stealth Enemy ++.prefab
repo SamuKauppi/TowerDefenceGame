@@ -73,7 +73,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8288930384055412146, guid: dec540fbd3c9ba641b6c77efebcebc9c, type: 3}
       propertyPath: health
-      value: 1650
+      value: 1000
       objectReference: {fileID: 0}
     - target: {fileID: 8288930384055412146, guid: dec540fbd3c9ba641b6c77efebcebc9c, type: 3}
       propertyPath: timeHidden
@@ -89,7 +89,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8288930384055412146, guid: dec540fbd3c9ba641b6c77efebcebc9c, type: 3}
       propertyPath: speedModifierAsHidden
-      value: 0.3
+      value: 0.27
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dec540fbd3c9ba641b6c77efebcebc9c, type: 3}

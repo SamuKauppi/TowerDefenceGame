@@ -15,15 +15,16 @@ public class EnemyMirror : Enemy, ISpecialAbility
     private IEnumerator StartCopying()
     {
         yield return new WaitForEndOfFrame();
+        enemiesSpawned = 0;
         while (enemiesSpawned < spawnLimit)
         {
-            yield return new WaitForSeconds(copyTime);
             enemiesSpawned++;
             GameObject enemy = ObjectPooler.Instance.GetPooledObject(copyTarget);
             Vector3 randPos = StaticFunctions.Instance.GetRandomPointInCircle(copyRadius, transform.position);
             enemy.transform.position = transform.position;
             LeanTween.move(enemy, randPos, moveCopiedTime);
             abilitySpeedModifier = 1 + (speedIncreseAfterSpawn * enemiesSpawned);
+            yield return new WaitForSeconds(copyTime);
         }
     }
 

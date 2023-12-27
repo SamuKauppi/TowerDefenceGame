@@ -25,7 +25,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -1977235389955268492, guid: 7d02f401f49776941b60c5cf64ba728b, type: 3}
       propertyPath: spawnLimit
-      value: 5
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: -1977235389955268492, guid: 7d02f401f49776941b60c5cf64ba728b, type: 3}
       propertyPath: difficultyValue
