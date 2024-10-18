@@ -5,7 +5,7 @@ public class PathPoint : MonoBehaviour
     public bool IsPathable { get; private set; }        // Is this pathpoint pathable
     public bool IsCloseToExit { get; private set; }     // Is this pathpoint close to exit. If is, towers can't be place here
     public int StepsFromEnd { get; set; }               // Steps to reach the end
-    public Vector2 PathfindingId { get; set; }          // Position in pathpoint grid
+    public PathfindingID ID { get; set; }               // Position in pathpoint grid
     public PathPoint[] Neighbours { get; set; }         // Neighbours to this pathpoint
 
     private int pathValue = 0;                          // Check how many towers are over this pathpoint
@@ -45,5 +45,17 @@ public class PathPoint : MonoBehaviour
             IsPathable = true;
             pathValue = 0;
         }
+    }
+}
+
+[System.Serializable]
+public class PathfindingID
+{
+    public int x = 0;
+    public int y = 0;
+    public PathfindingID(int x, int y)
+    {
+        this.x = x; 
+        this.y = y;
     }
 }

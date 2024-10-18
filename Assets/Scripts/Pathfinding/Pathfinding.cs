@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class Pathfinding : MonoBehaviour
@@ -16,7 +17,7 @@ public class Pathfinding : MonoBehaviour
     // Pathpoints
     [SerializeField] private PathPoint point_prefab;            // Pathpoint prefab
     [SerializeField] private PathPoint endPoint;                // Pathpoint which enemies try to get to
-    private PathPoint[] pathPoints;                             // Pathpoints that have been created
+    private PathPoint[] pathPoints =  new PathPoint[0];         // Pathpoints that have been created
     private PathPoint startingPoint;                            // Pathpoint which enemies start (used for checking if path is valid)
 
     // Pathfinding area variables
@@ -37,6 +38,7 @@ public class Pathfinding : MonoBehaviour
     {
         Instance = this;
         endPoint.SetPathable(true);
+        endPoint.ID = new(0, 0);
         startingPoint = endPoint; // give a starting point a starting value
         GeneratePaths();
     }
@@ -66,7 +68,7 @@ public class Pathfinding : MonoBehaviour
                 while (xPos >= -mapwidth)
                 {
                     xIndex++;
-                    points.Add(CreatePathpoint(new Vector3(xPos, yPos), new Vector2(xIndex, yIndex)));
+                    points.Add(CreatePathpoint(new Vector3(xPos, yPos), new PathfindingID(xIndex, yIndex)));
                     xPos -= positionStep;
                 }
             }
@@ -101,16 +103,16 @@ public class Pathfinding : MonoBehaviour
     /// <param name="pos"></param>
     /// <param name="pathId"></param>
     /// <returns></returns>
-    private PathPoint CreatePathpoint(Vector3 pos, Vector2 pathId)
+    private PathPoint CreatePathpoint(Vector3 pos, PathfindingID pathId)
     {
         // Create pathpoint
         PathPoint pathpoint = Instantiate(point_prefab, pos, Quaternion.identity, transform);
         // Set position relative to other pathpoints (used to determine neighbours later)
-        pathpoint.PathfindingId = pathId;
+        pathpoint.ID = pathId;
         // Set it pathable as default
         pathpoint.SetPathable(true);
         // Save the last point on x-axis as starting point (used to check if path was blocked when building a tower)
-        if (pathId.y == 0 && pathId.x > startingPoint.PathfindingId.x)
+        if (pathId.y == 0 && pathId.x > startingPoint.ID.x)
         {
             startingPoint = pathpoint;
         }
@@ -129,8 +131,8 @@ public class Pathfinding : MonoBehaviour
         List<PathPoint> neighbours = new();
         for (int i = 0; i < pathPoints.Length; i++)
         {
-            int xDifference = (int)Math.Abs(pathPoints[i].PathfindingId.x - currentPoint.PathfindingId.x);
-            int yDifference = (int)Math.Abs(pathPoints[i].PathfindingId.y - currentPoint.PathfindingId.y);
+            int xDifference = Math.Abs(pathPoints[i].ID.x - currentPoint.ID.x);
+            int yDifference = Math.Abs(pathPoints[i].ID.y - currentPoint.ID.y);
 
             // If pathpoint is directly LEFT, RIGHT, UP, DOWN, or DIAGONAL
             // Add it as a neighbour
@@ -141,7 +143,8 @@ public class Pathfinding : MonoBehaviour
                 neighbours.Add(pathPoints[i]);
             }
         }
-        return neighbours.ToArray();
+
+        return neighbours.OrderBy(p => Mathf.Abs(p.ID.x) + Mathf.Abs(p.ID.y)).ToArray();
     }
 
     /// <summary>
