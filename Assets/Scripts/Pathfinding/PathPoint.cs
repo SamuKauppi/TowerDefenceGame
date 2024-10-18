@@ -7,6 +7,7 @@ public class PathPoint : MonoBehaviour
     public int StepsFromEnd { get; set; }               // Steps to reach the end
     public PathfindingID ID { get; set; }               // Position in pathpoint grid
     public PathPoint[] Neighbours { get; set; }         // Neighbours to this pathpoint
+    public float FScore { get; set; }                   // fscore is used to compare when A* pathfinding
 
     private int pathValue = 0;                          // Check how many towers are over this pathpoint
 

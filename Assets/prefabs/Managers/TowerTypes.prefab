@@ -578,7 +578,7 @@ MonoBehaviour:
     aimWhileFiring: 1
     spreadShots: 1
     degreePerShot: 0
-    cost: 2000
+    cost: 1500
     isOnSpecialLayer: 1
   - name: Boomaster
     upgradeIdent: 30
@@ -618,7 +618,7 @@ MonoBehaviour:
     aimWhileFiring: 1
     spreadShots: 1
     degreePerShot: 0
-    cost: 3000
+    cost: 2500
     isOnSpecialLayer: 0
   - name: Thunder Storm
     upgradeIdent: 27
@@ -640,7 +640,7 @@ MonoBehaviour:
     aimWhileFiring: 1
     spreadShots: 1
     degreePerShot: 0
-    cost: 11000
+    cost: 10000
     isOnSpecialLayer: 0
   - name: Catapult
     upgradeIdent: 12

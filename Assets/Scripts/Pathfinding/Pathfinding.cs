@@ -94,7 +94,7 @@ public class Pathfinding : MonoBehaviour
         }
 
         // Calculate pathPointChecked from end to start
-        RecalculateDistances();
+        RecalculateDistancesAStar();
     }
 
     /// <summary>
@@ -150,7 +150,7 @@ public class Pathfinding : MonoBehaviour
     /// <summary>
     /// Calculate pathfinding
     /// </summary>
-    private void RecalculateDistances()
+    private void RecalculateDistancesAStar()
     {
         // Create queue and dictionary with the first point as first value
         // Dictionary value is int (number of steps from start)
@@ -238,7 +238,7 @@ public class Pathfinding : MonoBehaviour
         {
             points[i].SetPathable(active);
         }
-        RecalculateDistances();
+        RecalculateDistancesAStar();
     }
 
     /// <summary>
